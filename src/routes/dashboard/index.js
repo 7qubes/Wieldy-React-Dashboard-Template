@@ -17,7 +17,7 @@ import CurrentPlan from "components/dashboard/Listing/CurrentPlan";
 import BalanceHistory from "components/dashboard/Crypto/BalanceHistory";
 import {recentActivity, taskList, trafficData} from "./data";
 
-const CRM = () => {
+const Dashboard = () => {
   return (
     <Auxiliary>
       <Row>
@@ -78,4 +78,4 @@ const CRM = () => {
   );
 };
 
-export default CRM;
+export default Dashboard;

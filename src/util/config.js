@@ -1,3 +1,3 @@
 module.exports = {
-  footerText: 'Copyright Company Name © 2019',
+  footerText: 'Copyright - 7QUBES LLC © 2017-2020',
 }

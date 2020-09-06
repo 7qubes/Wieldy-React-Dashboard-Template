@@ -7,7 +7,7 @@ import Extensions from "./extensions/index";
 import ExtraComponents from "./extraComponents/index";
 import InBuiltApps from "./inBuiltApps/index";
 import SocialApps from "./socialApps/index";
-import Dashboard from "./main/index";
+import Dashboard from "./dashboard/index";
 import Documents from "./documents/index";
 
 const App = ({match}) => (

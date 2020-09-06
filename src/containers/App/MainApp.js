@@ -108,7 +108,7 @@ const MainApp = () => {
           <App match={match}/>
           <Footer>
             <div className="gx-layout-footer-content">
-              {footerText}
+              Copyright - <span style={{fontWeight: 'bold'}}>7QUBES</span> LLC © 2017-2020
             </div>
           </Footer>
         </Content>
