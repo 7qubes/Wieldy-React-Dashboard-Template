@@ -51,49 +51,98 @@ const SidebarContent = () => {
             theme={themeType === THEME_TYPE_LITE ? 'lite' : 'dark'}
             mode="inline">
 
-            <MenuItemGroup key="main" className="gx-menu-group" title={<IntlMessages id="sidebar.main"/>}>
-              <SubMenu key="dashboard" popupClassName={getNavStyleSubMenuClass(navStyle)}
-                       title={<span> <i className="icon icon-dasbhoard"/>
-                         <span><IntlMessages id="sidebar.dashboard"/></span></span>}>
-                <Menu.Item key="main/dashboard/crypto">
-                  <Link to="/main/dashboard/crypto">
-                    <i className="icon icon-crypto"/>
-                    <span><IntlMessages id="sidebar.dashboard.crypto"/></span>
-                  </Link>
+            <MenuItemGroup key="main" className="gx-menu-group">
+              <Menu.Item key="dashboard">
+                <Link to="/dashboard"><i className="icon icon-dasbhoard"/>
+                  <span><IntlMessages id="sidebar.dashboard"/></span></Link>
+              </Menu.Item>
+
+              <Menu.Item key="contacts">
+                <Link to="/in-built-apps/contacts"><i className="icon icon-contacts"/><span><IntlMessages
+                  id="sidebar.contactsApp"/></span></Link>
+              </Menu.Item>
+
+              <SubMenu key="calendar" popupClassName={getNavStyleSubMenuClass(navStyle)}
+                       title={<span><i className="icon icon-calendar"/><span><IntlMessages
+                         id="sidebar.calendar"/></span></span>}>
+                <Menu.Item key="extensions/calendar/basic">
+                  <Link to="/extensions/calendar/basic">
+                    <span><IntlMessages
+                      id="sidebar.calendar.basic"/></span></Link>
                 </Menu.Item>
-                <Menu.Item key="main/dashboard/crm">
-                  <Link to="/main/dashboard/crm">
-                    <i className="icon icon-crm"/>
-                    <span><IntlMessages id="sidebar.dashboard.crm"/></span>
-                  </Link>
+                <Menu.Item key="extensions/calendar/cultures">
+                  <Link to="/extensions/calendar/cultures">
+                    <span><IntlMessages
+                      id="sidebar.calendar.cultures"/></span></Link>
                 </Menu.Item>
-                <Menu.Item key="main/dashboard/listing">
-                  <Link to="/main/dashboard/listing">
-                    <i className="icon icon-listing-dbrd"/>
-                    <span><IntlMessages id="sidebar.dashboard.listing"/></span>
-                  </Link>
+                <Menu.Item key="extensions/calendar/popup">
+                  <Link to="/extensions/calendar/popup">
+                    <span><IntlMessages
+                      id="sidebar.calendar.popup"/></span></Link>
+                </Menu.Item>
+                <Menu.Item key="extensions/calendar/rendering">
+                  <Link to="/extensions/calendar/rendering">
+                    <span><IntlMessages
+                      id="sidebar.calendar.rendering"/></span></Link>
+                </Menu.Item>
+                <Menu.Item key="extensions/calendar/selectable">
+                  <Link to="/extensions/calendar/selectable">
+                    <span><IntlMessages
+                      id="sidebar.calendar.selectable"/></span></Link>
+                </Menu.Item>
+                <Menu.Item key="extensions/calendar/timeslots">
+                  <Link to="/extensions/calendar/timeslots">
+                    <span><IntlMessages id="sidebar.calendar.timeslots"/></span></Link>
                 </Menu.Item>
               </SubMenu>
 
-              <Menu.Item key="main/widgets">
-                <Link to="/main/widgets"><i className="icon icon-widgets"/>
-                  <span><IntlMessages id="sidebar.widgets"/></span></Link>
-              </Menu.Item>
+              <SubMenu key="feedBack" popupClassName={getNavStyleSubMenuClass(navStyle)} title={
+                <span>
+                  <i className="icon icon-feedback"/>
+                    <span><IntlMessages id="sidebar.components.feedBack"/></span>
 
-              <Menu.Item key="main/metrics">
-                <Link to="/main/metrics"><i className="icon icon-apps"/>
-                  <span><IntlMessages id="sidebar.metrics"/></span></Link>
-              </Menu.Item>
+              </span>}>
+                <Menu.Item key="components/feedBack/alert">
+                  <Link to="/components/feedBack/alert">
+                    <span><IntlMessages
+                      id="sidebar.feedBack.alert"/></span></Link>
+                </Menu.Item>
+                <Menu.Item key="components/feedBack/modal">
+                  <Link to="/components/feedBack/modal">
+                    <span><IntlMessages
+                      id="sidebar.feedBack.modal"/></span></Link>
+                </Menu.Item>
+                <Menu.Item key="components/feedBack/message">
+                  <Link to="/components/feedBack/message">
+                    <span><IntlMessages
+                      id="sidebar.feedBack.message"/></span></Link>
+                </Menu.Item>
+                <Menu.Item key="components/feedBack/notification">
+                  <Link to="/components/feedBack/notification">
+                    <span><IntlMessages
+                      id="sidebar.feedBack.notification"/></span></Link>
+                </Menu.Item>
+                <Menu.Item key="components/feedBack/progress">
+                  <Link to="/components/feedBack/progress">
+                    <span><IntlMessages
+                      id="sidebar.feedBack.progress"/></span></Link>
+                </Menu.Item>
+                <Menu.Item key="components/feedBack/popconfirm">
+                  <Link to="/components/feedBack/popconfirm">
+                    <span><IntlMessages id="sidebar.feedBack.popConfirm"/></span>
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="components/feedBack/spin">
+                  <Link to="/components/feedBack/spin">
+                    <span><IntlMessages
+                      id="sidebar.feedBack.spin"/></span></Link>
+                </Menu.Item>
+              </SubMenu>
 
-              <Menu.Item key="main/layouts">
-                <Link to="/main/layouts"><i className="icon icon-card"/>
-                 <span> <IntlMessages id="sidebar.layouts"/></span></Link>
-              </Menu.Item>
 
             </MenuItemGroup>
 
-            <MenuItemGroup key="in-built-apps" className="gx-menu-group"
-                           title={<IntlMessages id="sidebar.inBuiltApp"/>}>
+            <MenuItemGroup key="in-built-apps" className="gx-menu-group">
               <Menu.Item key="in-built-apps/mail">
                 <Link to="/in-built-apps/mail"><i className="icon icon-email"/><span><IntlMessages
                   id="sidebar.mailApp"/></span></Link>
@@ -103,11 +152,6 @@ const SidebarContent = () => {
                 <Link to="/in-built-apps/todo"><i
                   className="icon icon-check-square-o"/><span><IntlMessages
                   id="sidebar.todoApp"/></span></Link>
-              </Menu.Item>
-
-              <Menu.Item key="in-built-apps/contacts">
-                <Link to="/in-built-apps/contacts"><i className="icon icon-contacts"/><span><IntlMessages
-                  id="sidebar.contactsApp"/></span></Link>
               </Menu.Item>
 
               <Menu.Item key="in-built-apps/chat">
@@ -367,49 +411,6 @@ const SidebarContent = () => {
                   <Link to="/components/dataDisplay/tabs">
                     <span><IntlMessages
                       id="sidebar.dataDisplay.tabs"/></span></Link>
-                </Menu.Item>
-              </SubMenu>
-
-              <SubMenu key="feedBack" popupClassName={getNavStyleSubMenuClass(navStyle)} title={
-                <span>
-                  <i className="icon icon-feedback"/>
-                    <span><IntlMessages id="sidebar.components.feedBack"/></span>
-
-              </span>}>
-                <Menu.Item key="components/feedBack/alert">
-                  <Link to="/components/feedBack/alert">
-                    <span><IntlMessages
-                      id="sidebar.feedBack.alert"/></span></Link>
-                </Menu.Item>
-                <Menu.Item key="components/feedBack/modal">
-                  <Link to="/components/feedBack/modal">
-                    <span><IntlMessages
-                      id="sidebar.feedBack.modal"/></span></Link>
-                </Menu.Item>
-                <Menu.Item key="components/feedBack/message">
-                  <Link to="/components/feedBack/message">
-                    <span><IntlMessages
-                      id="sidebar.feedBack.message"/></span></Link>
-                </Menu.Item>
-                <Menu.Item key="components/feedBack/notification">
-                  <Link to="/components/feedBack/notification">
-                    <span><IntlMessages
-                      id="sidebar.feedBack.notification"/></span></Link>
-                </Menu.Item>
-                <Menu.Item key="components/feedBack/progress">
-                  <Link to="/components/feedBack/progress">
-                    <span><IntlMessages
-                      id="sidebar.feedBack.progress"/></span></Link>
-                </Menu.Item>
-                <Menu.Item key="components/feedBack/popconfirm">
-                  <Link to="/components/feedBack/popconfirm">
-                    <span><IntlMessages id="sidebar.feedBack.popConfirm"/></span>
-                  </Link>
-                </Menu.Item>
-                <Menu.Item key="components/feedBack/spin">
-                  <Link to="/components/feedBack/spin">
-                    <span><IntlMessages
-                      id="sidebar.feedBack.spin"/></span></Link>
                 </Menu.Item>
               </SubMenu>
 
@@ -773,40 +774,6 @@ const SidebarContent = () => {
                   </Menu.Item>
                 </SubMenu>
 
-              </SubMenu>
-
-              <SubMenu key="calendar" popupClassName={getNavStyleSubMenuClass(navStyle)}
-                       title={<span><i className="icon icon-calendar"/><span><IntlMessages
-                         id="sidebar.calendar"/></span></span>}>
-                <Menu.Item key="extensions/calendar/basic">
-                  <Link to="/extensions/calendar/basic">
-                    <span><IntlMessages
-                      id="sidebar.calendar.basic"/></span></Link>
-                </Menu.Item>
-                <Menu.Item key="extensions/calendar/cultures">
-                  <Link to="/extensions/calendar/cultures">
-                    <span><IntlMessages
-                      id="sidebar.calendar.cultures"/></span></Link>
-                </Menu.Item>
-                <Menu.Item key="extensions/calendar/popup">
-                  <Link to="/extensions/calendar/popup">
-                    <span><IntlMessages
-                      id="sidebar.calendar.popup"/></span></Link>
-                </Menu.Item>
-                <Menu.Item key="extensions/calendar/rendering">
-                  <Link to="/extensions/calendar/rendering">
-                    <span><IntlMessages
-                      id="sidebar.calendar.rendering"/></span></Link>
-                </Menu.Item>
-                <Menu.Item key="extensions/calendar/selectable">
-                  <Link to="/extensions/calendar/selectable">
-                    <span><IntlMessages
-                      id="sidebar.calendar.selectable"/></span></Link>
-                </Menu.Item>
-                <Menu.Item key="extensions/calendar/timeslots">
-                  <Link to="/extensions/calendar/timeslots">
-                    <span><IntlMessages id="sidebar.calendar.timeslots"/></span></Link>
-                </Menu.Item>
               </SubMenu>
 
             </MenuItemGroup>

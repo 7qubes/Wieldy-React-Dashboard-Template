@@ -1,19 +1,11 @@
 import React from "react";
 import {Route, Switch} from "react-router-dom";
-import Widgets from "./Widgets";
-import Metrics from "./Metrics";
-import Dashboard from "./dashboard";
-import Layouts from "./Layouts";
-import asyncComponent from "../../util/asyncComponent";
+import asyncComponent from "util/asyncComponent";
 
-const Main = ({match}) => (
+const Dashboard = ({match}) => (
   <Switch>
-    <Route path={`${match.url}/dashboard`} component={Dashboard}/>
-    <Route path={`${match.url}/widgets`} component={Widgets}/>
-    <Route path={`${match.url}/metrics`} component={Metrics}/>
-    <Route path={`${match.url}/layouts`} component={Layouts}/>
-    <Route path={`${match.url}/algolia`} component={asyncComponent(() => import('../algolia'))}/>
+    <Route path={`${match.url}/`} component={asyncComponent(() => import('./dashboard/CRM/index'))}/>
   </Switch>
 );
 
-export default Main;
+export default Dashboard;

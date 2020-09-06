@@ -54,7 +54,6 @@ const RecentActivity =(props)=> {
               })}
             </Timeline>
           </div>)}
-        <span className="gx-link gx-btn-link" onClick={onLoadMore}>Load More</span>
       </div>
     );
 };

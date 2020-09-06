@@ -24,6 +24,7 @@ const TaskList = (props) => {
   return (
     <Widget title="Task List" styleName="gx-card-tabs"
             extra={<i className="icon icon-search-new gx-pointer gx-fs-xxl gx-text-primary"/>}>
+      <row>
       <Tabs defaultActiveKey="1">
         <TabPane tab="All Task" key="1">
           {taskList.map((task, index) =>
@@ -35,6 +36,7 @@ const TaskList = (props) => {
             <TaskItem key={"2" + index} data={task} onChange={onChange}/>)
         }</TabPane>
       </Tabs>
+        </row>
     </Widget>
   );
 };

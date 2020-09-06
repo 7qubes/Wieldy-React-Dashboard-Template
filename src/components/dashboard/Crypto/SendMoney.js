@@ -68,7 +68,7 @@ const SendMoney = () => {
     <Widget
       title={
         <h2 className="h4 gx-text-capitalize gx-mb-0">
-          Send Money to</h2>
+          Transactions</h2>
       } extra={
       <p className="gx-text-primary gx-mb-0 gx-pointer gx-d-none gx-d-sm-block">
         <i className="icon icon-add-circle gx-fs-lg gx-d-inline-flex gx-vertical-align-middle"/> Add New Account</p>
