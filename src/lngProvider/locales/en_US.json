@@ -306,5 +306,13 @@
   "sidebar.map.weather": "Weather map",
   "sidebar.extensions.shuffle": "Shuffle",
   "sidebar.extensions.profile": "Profile",
-  "sidebar.social": "Social Apps"
+  "sidebar.social": "Social Apps",
+  "sidebar.social.media": "Social Media",
+  "sidebar.finance": "Finance",
+  "sidebar.inventories": "Inventories",
+  "sidebar.website": "Website",
+  "sidebar.reports": "Reports",
+  "sidebar.analytics": "Analytics",
+  "sidebar.workspace": "Workspace",
+  "sidebar.billing": "Billing"
 }

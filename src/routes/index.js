@@ -14,7 +14,7 @@ const App = ({match}) => (
   <div className="gx-main-content-wrapper">
     <Switch>
       <Route path={`${match.url}dashboard`} component={Dashboard}/>
-      <Route path={`${match.url}components`} component={Components}/>
+      <Route path={`${match.url}contacts`} component={Components}/>
       <Route path={`${match.url}custom-views`} component={CustomViews}/>
       <Route path={`${match.url}extensions`} component={Extensions}/>
       <Route path={`${match.url}extra-components`} component={ExtraComponents}/>

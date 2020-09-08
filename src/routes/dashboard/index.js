@@ -1,20 +1,20 @@
 import React from "react";
 import {Col, Row} from "antd";
 
-import TaskList from "components/dashboard/CRM/TaskList";
-import SiteVisit from "components/dashboard/CRM/SiteVisit";
-import RecentActivity from "components/dashboard/CRM/RecentActivity";
-import WelComeCard from "components/dashboard/CRM/WelComeCard";
-import SiteAudience from "components/dashboard/CRM/SiteAudience";
-import SendMoney from "components/dashboard/Crypto/SendMoney";
-import RewardCard from "components/dashboard/Crypto/RewardCard";
+import TaskList from "components/dashboard/TaskList";
+import SiteVisit from "components/dashboard/SiteVisit";
+import RecentActivity from "components/dashboard/RecentActivity";
+import WelComeCard from "components/dashboard/WelComeCard";
+import SiteAudience from "components/dashboard/SiteAudience";
+import SendMoney from "components/dashboard/SendMoney";
+import RewardCard from "components/dashboard/RewardCard";
 import Auxiliary from "util/Auxiliary";
-import TotalRevenueCard from "components/dashboard/CRM/TotalRevenueCard";
-import NewCustomers from "components/dashboard/CRM/NewCustomers";
-import GrowthCard from "components/dashboard/CRM/GrowthCard";
+import TotalRevenueCard from "components/dashboard/TotalRevenueCard";
+import NewCustomers from "components/dashboard/NewCustomers";
+import GrowthCard from "components/dashboard/GrowthCard";
 import Widget from "components/Widget/index";
-import CurrentPlan from "components/dashboard/Listing/CurrentPlan";
-import BalanceHistory from "components/dashboard/Crypto/BalanceHistory";
+import CurrentPlan from "components/dashboard/CurrentPlan";
+import BalanceHistory from "components/dashboard/BalanceHistory";
 import {recentActivity, taskList, trafficData} from "./data";
 
 const Dashboard = () => {
