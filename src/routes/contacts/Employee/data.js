@@ -27,38 +27,45 @@ const userImageList = [
 export const aboutList = [
   {
     id: 1,
-    title: 'Current working',
-    icon: 'close-circle',
+    title: 'Works at',
+    icon: 'company',
     userList: '',
-    desc: ['Project X']
+    desc: ['G-axon Tech Pvt. Ltd.']
   },
   {
     id: 2,
-    title: 'Future Project',
-    icon: 'calendar',
+    title: 'Birthday',
+    icon: 'birthday-new',
     userList: '',
-    desc: ['Project Z']
+    desc: ['Oct 25, 1984']
   },
   {
     id: 3,
-    title: 'Pass Project',
-    icon: 'growth',
+    title: 'Went to',
+    icon: 'graduation',
     userList: '',
-    desc: ['Project W']
+    desc: ['Oxford University']
   },
   {
     id: 4,
-    title: 'Due Dates',
-    icon: 'hotel-booking',
+    title: 'Lives in London',
+    icon: 'home',
     userList: '',
-    desc: ['Jan 20 2021']
+    desc: ['From Switzerland']
   },
   {
     id: 5,
-    title: 'Ratings',
-    icon: 'eye',
-    userList: '',
-    desc: '5/5'
+    title: '4 Family Members',
+    icon: 'family',
+    userList: [<ul className="gx-list-inline gx-mb-0" key={1}>
+      {userImageList.map((user, index) =>
+        <li className="gx-mb-2" key={index}>
+          <Avatar className="gx-size-30" src={user.image}/>
+        </li>
+      )
+      }
+    </ul>],
+    desc: ''
   },
 ];
 

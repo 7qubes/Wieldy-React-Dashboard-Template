@@ -18,14 +18,20 @@ const ProfileHeader = () => {
           <div className="gx-profile-banner-top-right">
             <ul className="gx-follower-list">
               <li>
-                <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">2k+</span>
-                <span className="gx-fs-sm">Followers</span></li>
+                <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">
+                  <i className="icon icon-edit"/>
+                </span>
+                <span className="gx-fs-sm">Contact</span></li>
               <li>
-                <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">847</span>
-                <span className="gx-fs-sm">Following</span></li>
+                <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">
+                  <i className="icon icon-add-circle"/>
+                </span>
+                <span className="gx-fs-sm">Project</span></li>
               <li>
-                <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">327</span>
-                <span className="gx-fs-sm">Friends</span>
+                <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">
+                  <i className="icon icon-add-circle"/>
+                </span>
+                <span className="gx-fs-sm">Equipment</span>
               </li>
             </ul>
           </div>
@@ -34,25 +40,25 @@ const ProfileHeader = () => {
           <div className="gx-tab-list">
             <ul className="gx-navbar-nav">
               <li>
-                <span className="gx-link">Timeline</span>
+                <span className="gx-link">General</span>
               </li>
               <li>
-                <span className="gx-link">About</span>
+                <span className="gx-link">Emergency</span>
               </li>
               <li>
-                <span className="gx-link">Photos</span>
+                <span className="gx-link">Agreements</span>
               </li>
               <li>
-                <span className="gx-link">Friends <span className="gx-fs-xs">287</span></span>
+                <span className="gx-link">Training</span>
               </li>
               <li>
-                <span className="gx-link">More</span>
+                <span className="gx-link">Performance</span>
               </li>
             </ul>
           </div>
           <span className="gx-link gx-profile-setting">
             <i className="icon icon-setting gx-fs-lg gx-mr-2 gx-mr-sm-3 gx-d-inline-flex gx-vertical-align-middle"/>
-            <span className="gx-d-inline-flex gx-vertical-align-middle gx-ml-1 gx-ml-sm-0">Setting</span>
+            <span className="gx-d-inline-flex gx-vertical-align-middle gx-ml-1 gx-ml-sm-0">Settings</span>
           </span>
         </div>
       </div>

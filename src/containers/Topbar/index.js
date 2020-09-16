@@ -94,7 +94,7 @@ const Topbar = () => {
                 <span className="gx-pointer gx-flex-row gx-align-items-center">
                   <i className={`flag flag-24 flag-${locale.icon}`}/>
                   <span className="gx-pl-2 gx-language-name">{locale.name}</span>
-                  <i className="icon icon-chevron-down gx-pl-2"/>
+                  <i className="icon icon-question-circle gx-pl-2" style={{fontSize: '20px'}}/>
                 </span>
           </Popover>
         </li>

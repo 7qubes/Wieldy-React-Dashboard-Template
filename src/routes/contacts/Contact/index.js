@@ -25,6 +25,21 @@ const filterOptions = [
     id: 3,
     name: 'Starred contacts',
     icon: 'star'
+  }, {
+
+    id: 4,
+    name: 'Employee',
+    icon: 'team'
+  }, {
+
+    id: 5,
+    name: 'Vendors',
+    icon: 'team'
+  }, {
+
+    id: 6,
+    name: 'Customers',
+    icon: 'team'
   }
 ];
 
@@ -44,8 +59,8 @@ class Contact extends Component {
           <div className="gx-module-add-task">
             <Button className="gx-btn-block ant-btn" type="primary" aria-label="add"
                     onClick={this.onAddContact}>
-              <i className="icon icon-add gx-mr-2"/>
-              <span>Add New Contact</span>
+              <i className="icon icon-add-circle gx-mr-2"/>
+              <span>Add Contacts</span>
             </Button>
           </div>
           <div className="gx-module-side-nav">
@@ -83,6 +98,7 @@ class Contact extends Component {
       } : contact)
     })
   };
+
   onContactSelect = (data) => {
     data.selected = !data.selected;
     let selectedContacts = 0;
@@ -106,7 +122,6 @@ class Contact extends Component {
     });
 
   };
-
 
   onAddContact = () => {
     this.setState({addContactState: true});
@@ -140,11 +155,36 @@ class Contact extends Component {
         });
         break;
       }
+      case 'Employee': {
+        this.setState({
+          selectedSectionId: option.id,
+          filterOption: option.name,
+          contactList: this.state.allContact.filter((contact) => contact.employee)
+        });
+        break;
+      }
+      case 'Vendors': {
+        this.setState({
+          selectedSectionId: option.id,
+          filterOption: option.name,
+          contactList: this.state.allContact.filter((contact) => contact.vendors)
+        });
+        break;
+      }
+      case 'Customers': {
+        this.setState({
+          selectedSectionId: option.id,
+          filterOption: option.name,
+          contactList: this.state.allContact.filter((contact) => contact.customers)
+        });
+        break;
+      }
       default:
         break;
     }
 
   };
+
   onSaveContact = (data) => {
     let isNew = true;
     const contactList = this.state.allContact.map((contact) => {
@@ -195,10 +235,16 @@ class Contact extends Component {
         this.setState({contactList: filterContact});
       } else if (filterOption === 'Frequently contacted') {
         this.setState({contactList: filterContact.filter((contact) => contact.frequently)});
-
       } else if (filterOption === 'Starred contacts') {
         this.setState({contactList: filterContact.filter((contact) => contact.starred)});
+      } else if (filterOption === 'Employee') {
+        this.setState({contactList: filterContact.filter((contact) => contact.employee)});
+      } else if (filterOption === 'Vendors') {
+        this.setState({contactList: filterContact.filter((contact) => contact.vendors)});
+      } else if (filterOption === 'Customers') {
+        this.setState({contactList: filterContact.filter((contact) => contact.customers)});
       }
+
     }
   };
   handleRequestClose = () => {
@@ -279,7 +325,6 @@ class Contact extends Component {
     return (
       <div className="gx-main-content">
         <div className="gx-app-module">
-
           <div className="gx-d-block gx-d-lg-none">
             <Drawer
               placement="left"
@@ -313,8 +358,6 @@ class Contact extends Component {
                           checked={selectedContacts > 0}
                           onChange={this.onAllContactSelect.bind(this)}
                           value="SelectMail"/>
-
-
                 {selectedContacts > 0 &&
                 <i className="gx-icon-btn icon icon-trash" onClick={this.onDeleteSelectedContact.bind(this)}/>}
 

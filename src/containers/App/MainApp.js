@@ -98,7 +98,6 @@ const MainApp = () => {
     }
   };
 
-
   return (
     <Layout className="gx-app-layout">
       {getSidebar(navStyle, width)}

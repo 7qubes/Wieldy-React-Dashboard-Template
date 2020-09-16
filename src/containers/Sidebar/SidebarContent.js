@@ -53,13 +53,8 @@ const SidebarContent = () => {
 
             {/*<MenuItemGroup key="main" className="gx-menu-group">*/}
               <Menu.Item key="dashboard">
-                <Link to="/dashboard"><i className="icon icon-dasbhoard"/>
+                <Link to="/dashboard"><i className="icon icon-culture-calendar"/>
                   <span><IntlMessages id="sidebar.dashboard"/></span></Link>
-              </Menu.Item>
-
-              <Menu.Item key="billing">
-                <Link to="/billing"><i className="icon icon-amchart"/>
-                  <span><IntlMessages id="sidebar.billing"/></span></Link>
               </Menu.Item>
 
               <Menu.Item key="contacts">
@@ -67,8 +62,18 @@ const SidebarContent = () => {
                   id="sidebar.contactsApp"/></span></Link>
               </Menu.Item>
 
+              {/*<Menu.Item key="in-built-apps/contacts">*/}
+              {/*  <Link to="/in-built-apps/contacts"><i className="icon icon-contacts"/><span><IntlMessages*/}
+              {/*    id="sidebar.contactsApp"/></span></Link>*/}
+              {/*</Menu.Item>*/}
+
+              <Menu.Item key="billing">
+                <Link to="/billing"><i className="icon icon-amchart"/>
+                  <span><IntlMessages id="sidebar.billing"/></span></Link>
+              </Menu.Item>
+
               <SubMenu key="calendar" popupClassName={getNavStyleSubMenuClass(navStyle)}
-                       title={<span><i className="icon icon-calendar"/><span><IntlMessages
+                       title={<span><i className="icon icon-calendar-new"/><span><IntlMessages
                          id="sidebar.calendar"/></span></span>}>
                 <Menu.Item key="extensions/calendar/basic">
                   <Link to="/extensions/calendar/basic">
@@ -150,7 +155,7 @@ const SidebarContent = () => {
               </Menu.Item>
 
               <Menu.Item key="finance">
-                <Link to="/finance"><i className="icon icon-email"/><span><IntlMessages
+                <Link to="/finance"><i className="icon icon-chart-area"/><span><IntlMessages
                   id="sidebar.finance"/></span></Link>
               </Menu.Item>
 
@@ -165,17 +170,17 @@ const SidebarContent = () => {
               </Menu.Item>
 
               <Menu.Item key="reports">
-                <Link to="/reports"><i className="icon icon-email"/><span><IntlMessages
+                <Link to="/reports"><i className="icon icon-anchor"/><span><IntlMessages
                   id="sidebar.reports"/></span></Link>
               </Menu.Item>
 
               <Menu.Item key="analytics">
-                <Link to="/analytics"><i className="icon icon-email"/><span><IntlMessages
+                <Link to="/analytics"><i className="icon icon-chart-radial"/><span><IntlMessages
                   id="sidebar.analytics"/></span></Link>
               </Menu.Item>
 
               <Menu.Item key="workspace">
-                <Link to="/workspace"><i className="icon icon-email"/><span><IntlMessages
+                <Link to="/workspace"><i className="icon icon-chart-tree"/><span><IntlMessages
                   id="sidebar.workspace"/></span></Link>
               </Menu.Item>
 
