@@ -314,5 +314,12 @@
   "sidebar.reports": "Reports",
   "sidebar.analytics": "Analytics",
   "sidebar.workspace": "Workspace",
-  "sidebar.billing": "Billing"
+  "sidebar.billing": "Billing",
+  "sidebar.billing.transactions": "Transactions",
+  "sidebar.billing.payment": "Make Payment",
+  "sidebar.communications": "Communications",
+  "sidebar.communications.email": "Email",
+  "sidebar.communications.chats": "Chats",
+  "sidebar.communications.calls": "Video Calls",
+  "sidebar.communications.support": "Support"
 }

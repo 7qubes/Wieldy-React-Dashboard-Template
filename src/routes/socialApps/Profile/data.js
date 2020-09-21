@@ -24,7 +24,7 @@ const userImageList = [
   },
 ]
 
-export const aboutList = [
+export const workList = [
   {
     id: 1,
     title: 'Current working',
@@ -59,6 +59,87 @@ export const aboutList = [
     icon: 'eye',
     userList: '',
     desc: '5/5'
+  },
+];
+export const overviewList = [
+  {
+    id: 1,
+    title: 'Works At',
+    icon: 'company',
+    userList: '',
+    desc: ['G-axon Tech Pvt.Ltd']
+  },
+  {
+    id: 2,
+    title: 'Birthday',
+    icon: 'birthday-new',
+    userList: '',
+    desc: ['Oct 25, 1984']
+  },
+  {
+    id: 3,
+    title: 'Went to',
+    icon: 'graduation',
+    userList: '',
+    desc: ['Oxford University']
+  },
+  {
+    id: 4,
+    title: 'Lives in',
+    icon: 'home',
+    userList: '',
+    desc: ['From Switzerland']
+  },
+  {
+    id: 5,
+    title: '4 Family Members',
+    icon: 'family',
+    userList: [<ul className="gx-list-inline gx-mb-0" key={1}>
+      {userImageList.map((user, index) =>
+        <li className="gx-mb-2" key={index}>
+          <Avatar className="gx-size-30" src={user.image}/>
+        </li>
+      )
+      }
+    </ul>],
+    desc: ''
+  },
+];
+export const equipmentList = [
+  {
+    id: 1,
+    title: 'Desktop',
+    icon: 'data-display',
+    userList: '',
+    desc: ['Dell-145736']
+  },
+  {
+    id: 2,
+    title: 'laptop',
+    icon: 'keyboard',
+    userList: '',
+    desc: ['Dell-64242']
+  },
+  {
+    id: 3,
+    title: 'Vehicle',
+    icon: 'dasbhoard',
+    userList: '',
+    desc: ['Tesla Model 3-14']
+  },
+  {
+    id: 4,
+    title: 'Iphone',
+    icon: 'phone',
+    userList: '',
+    desc: ['Apple-67483']
+  },
+  {
+    id: 5,
+    title: 'Camera',
+    icon: 'camera',
+    userList: '',
+    desc: ['Cannon-9986']
   },
 ];
 

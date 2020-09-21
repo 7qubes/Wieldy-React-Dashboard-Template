@@ -1,16 +1,15 @@
 import React from "react";
 import {Col, Row} from "antd";
-import About from "../../../components/profile/About/index";
-import Biography from "../../../components/profile/Biography/index";
-import Events from "../../../components/profile/Events/index";
-import Contact from "../../../components/profile/Contact/index";
+import About from "../../../components/profile/employee/About/index";
+import Events from "../../../components/profile/employee/Events/index";
+import Contact from "../../../components/profile/employee/Contact/index";
 
 import {friendList} from './data'
 import {photoList} from "../Wall/data";
-import Friends from "../../../components/profile/Friends/index";
+import Friends from "../../../components/profile/employee/Friends/index";
 import Photos from "../../../components/profile/Photos/index";
 import Auxiliary from "../../../util/Auxiliary";
-import ProfileHeader from "../../../components/profile/ProfileHeader/index";
+import ProfileHeader from "../../../components/profile/employee/ProfileHeader/index";
 
 
 const Profile = () => {
@@ -22,7 +21,7 @@ const Profile = () => {
         <Row>
           <Col xl={16} lg={14} md={14} sm={24} xs={24}>
             <About/>
-            <Biography/>
+            {/*<Biography/>*/}
             <Events/>
           </Col>
 

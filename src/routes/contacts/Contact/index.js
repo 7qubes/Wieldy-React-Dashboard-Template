@@ -7,6 +7,7 @@ import ContactList from "components/contacts/ContactList";
 import AppModuleHeader from "components/AppModuleHeader/index";
 import AddContact from "components/contacts/AddContact";
 import IntlMessages from "util/IntlMessages";
+import UploadClick from "../../components/dataEntry/Upload/UploadClick";
 
 let contactId = 723812738;
 
@@ -75,8 +76,8 @@ class Contact extends Component {
                   </span>
                 </li>
               )}
-
             </ul>
+            <UploadClick/>
           </div>
         </CustomScrollbars>
       </div>

@@ -50,142 +50,102 @@ const SidebarContent = () => {
             selectedKeys={[selectedKeys]}
             theme={themeType === THEME_TYPE_LITE ? 'lite' : 'dark'}
             mode="inline">
+            <Menu.Item key="dashboard">
+              <Link to="/dashboard"><i className="icon icon-culture-calendar"/>
+                <span><IntlMessages id="sidebar.dashboard"/></span></Link>
+            </Menu.Item>
 
-            {/*<MenuItemGroup key="main" className="gx-menu-group">*/}
-              <Menu.Item key="dashboard">
-                <Link to="/dashboard"><i className="icon icon-culture-calendar"/>
-                  <span><IntlMessages id="sidebar.dashboard"/></span></Link>
+            <Menu.Item key="contacts">
+              <Link to="/contacts"><i className="icon icon-contacts"/><span><IntlMessages
+                id="sidebar.contactsApp"/></span></Link>
+            </Menu.Item>
+
+            <SubMenu key="billing" popupClassName={getNavStyleSubMenuClass(navStyle)}
+                     title={
+                       <span><i className="icon icon-amchart"/><span><IntlMessages id="sidebar.billing"/></span></span>
+                     }>
+              <Menu.Item key="billing/transactions">
+                <Link to="/billing/transactions">
+                  <i className="icon icon-chart-scatter"/>
+                  <span><IntlMessages id="sidebar.billing.transactions"/></span>
+                </Link>
               </Menu.Item>
-
-              <Menu.Item key="contacts">
-                <Link to="/contacts"><i className="icon icon-contacts"/><span><IntlMessages
-                  id="sidebar.contactsApp"/></span></Link>
+              <Menu.Item key="billing/payment">
+                <Link to="/billing/payment">
+                  <i className="icon icon-bitcoin"/>
+                  <span><IntlMessages id="sidebar.billing.payment"/></span>
+                </Link>
               </Menu.Item>
-
-              {/*<Menu.Item key="in-built-apps/contacts">*/}
-              {/*  <Link to="/in-built-apps/contacts"><i className="icon icon-contacts"/><span><IntlMessages*/}
-              {/*    id="sidebar.contactsApp"/></span></Link>*/}
-              {/*</Menu.Item>*/}
-
-              <Menu.Item key="billing">
-                <Link to="/billing"><i className="icon icon-amchart"/>
-                  <span><IntlMessages id="sidebar.billing"/></span></Link>
+              <Menu.Item key="billing/invoice">
+                <Link to="/billing/invoice">
+                  <i className="icon icon-chart-bar"/>
+                  <span><IntlMessages id="sidebar.billing.invoice"/></span>
+                </Link>
               </Menu.Item>
+            </SubMenu>
 
-              <SubMenu key="calendar" popupClassName={getNavStyleSubMenuClass(navStyle)}
-                       title={<span><i className="icon icon-calendar-new"/><span><IntlMessages
-                         id="sidebar.calendar"/></span></span>}>
-                <Menu.Item key="extensions/calendar/basic">
-                  <Link to="/extensions/calendar/basic">
-                    <span><IntlMessages
-                      id="sidebar.calendar.basic"/></span></Link>
-                </Menu.Item>
-                <Menu.Item key="extensions/calendar/cultures">
-                  <Link to="/extensions/calendar/cultures">
-                    <span><IntlMessages
-                      id="sidebar.calendar.cultures"/></span></Link>
-                </Menu.Item>
-                <Menu.Item key="extensions/calendar/popup">
-                  <Link to="/extensions/calendar/popup">
-                    <span><IntlMessages
-                      id="sidebar.calendar.popup"/></span></Link>
-                </Menu.Item>
-                <Menu.Item key="extensions/calendar/rendering">
-                  <Link to="/extensions/calendar/rendering">
-                    <span><IntlMessages
-                      id="sidebar.calendar.rendering"/></span></Link>
-                </Menu.Item>
-                <Menu.Item key="extensions/calendar/selectable">
-                  <Link to="/extensions/calendar/selectable">
-                    <span><IntlMessages
-                      id="sidebar.calendar.selectable"/></span></Link>
-                </Menu.Item>
-                <Menu.Item key="extensions/calendar/timeslots">
-                  <Link to="/extensions/calendar/timeslots">
-                    <span><IntlMessages id="sidebar.calendar.timeslots"/></span></Link>
-                </Menu.Item>
-              </SubMenu>
+            <Menu.Item key="calendar">
+              <Link to="/calendar"><i className="icon icon-calendar-new"/>
+                <span><IntlMessages id="sidebar.calendar"/></span></Link>
+            </Menu.Item>
 
-              <SubMenu key="feedBack" popupClassName={getNavStyleSubMenuClass(navStyle)} title={
-                <span>
-                  <i className="icon icon-chat-new"/>
-                    <span><IntlMessages id="sidebar.components.feedBack"/></span>
-
-              </span>}>
-                <Menu.Item key="components/feedBack/alert">
-                  <Link to="/components/feedBack/alert">
-                    <span><IntlMessages
-                      id="sidebar.feedBack.alert"/></span></Link>
-                </Menu.Item>
-                <Menu.Item key="components/feedBack/modal">
-                  <Link to="/components/feedBack/modal">
-                    <span><IntlMessages
-                      id="sidebar.feedBack.modal"/></span></Link>
-                </Menu.Item>
-                <Menu.Item key="components/feedBack/message">
-                  <Link to="/components/feedBack/message">
-                    <span><IntlMessages
-                      id="sidebar.feedBack.message"/></span></Link>
-                </Menu.Item>
-                <Menu.Item key="components/feedBack/notification">
-                  <Link to="/components/feedBack/notification">
-                    <span><IntlMessages
-                      id="sidebar.feedBack.notification"/></span></Link>
-                </Menu.Item>
-                <Menu.Item key="components/feedBack/progress">
-                  <Link to="/components/feedBack/progress">
-                    <span><IntlMessages
-                      id="sidebar.feedBack.progress"/></span></Link>
-                </Menu.Item>
-                <Menu.Item key="components/feedBack/popconfirm">
-                  <Link to="/components/feedBack/popconfirm">
-                    <span><IntlMessages id="sidebar.feedBack.popConfirm"/></span>
-                  </Link>
-                </Menu.Item>
-                <Menu.Item key="components/feedBack/spin">
-                  <Link to="/components/feedBack/spin">
-                    <span><IntlMessages
-                      id="sidebar.feedBack.spin"/></span></Link>
-                </Menu.Item>
-              </SubMenu>
-
-              <Menu.Item key="media">
-                <Link to="/media"><i className="icon icon-email"/><span><IntlMessages
-                  id="sidebar.social.media"/></span></Link>
+            <SubMenu key="communications" popupClassName={getNavStyleSubMenuClass(navStyle)}
+                     title={
+                       <span><i className="icon icon-chat-new"/><span>
+                         <IntlMessages id="sidebar.communications"/></span></span>
+                     }>
+              <Menu.Item key="communications/email">
+                <Link to="/communications/email">
+                  <span><IntlMessages id="sidebar.communications.email"/></span></Link>
               </Menu.Item>
-
-              <Menu.Item key="finance">
-                <Link to="/finance"><i className="icon icon-chart-area"/><span><IntlMessages
-                  id="sidebar.finance"/></span></Link>
+              <Menu.Item key="communications/chats">
+                <Link to="/communications/chats">
+                  <span><IntlMessages id="sidebar.communications.chats"/></span></Link>
               </Menu.Item>
-
-              <Menu.Item key="inventories">
-                <Link to="/inventories"><i className="icon icon-bitcoin"/><span><IntlMessages
-                  id="sidebar.inventories"/></span></Link>
+              <Menu.Item key="communications/calls">
+                <Link to="/communications/calls">
+                  <span><IntlMessages id="sidebar.communications.calls"/></span></Link>
               </Menu.Item>
-
-              <Menu.Item key="website">
-                <Link to="/website"><i className="icon icon-chart"/><span><IntlMessages
-                  id="sidebar.website"/></span></Link>
+              <Menu.Item key="communications/support">
+                <Link to="/communications/support">
+                  <span><IntlMessages id="sidebar.communications.support"/></span></Link>
               </Menu.Item>
+            </SubMenu>
 
-              <Menu.Item key="reports">
-                <Link to="/reports"><i className="icon icon-anchor"/><span><IntlMessages
-                  id="sidebar.reports"/></span></Link>
-              </Menu.Item>
+            <Menu.Item key="media">
+              <Link to="/media"><i className="icon icon-email"/><span><IntlMessages
+                id="sidebar.social.media"/></span></Link>
+            </Menu.Item>
 
-              <Menu.Item key="analytics">
-                <Link to="/analytics"><i className="icon icon-chart-radial"/><span><IntlMessages
-                  id="sidebar.analytics"/></span></Link>
-              </Menu.Item>
+            <Menu.Item key="finance">
+              <Link to="/finance"><i className="icon icon-chart-area"/><span><IntlMessages
+                id="sidebar.finance"/></span></Link>
+            </Menu.Item>
 
-              <Menu.Item key="workspace">
-                <Link to="/workspace"><i className="icon icon-chart-tree"/><span><IntlMessages
-                  id="sidebar.workspace"/></span></Link>
-              </Menu.Item>
+            <Menu.Item key="inventories">
+              <Link to="/inventories"><i className="icon icon-crypto"/><span><IntlMessages
+                id="sidebar.inventories"/></span></Link>
+            </Menu.Item>
 
+            <Menu.Item key="website">
+              <Link to="/website"><i className="icon icon-chart"/><span><IntlMessages
+                id="sidebar.website"/></span></Link>
+            </Menu.Item>
 
-            {/*</MenuItemGroup>*/}
+            <Menu.Item key="reports">
+              <Link to="/reports"><i className="icon icon-anchor"/><span><IntlMessages
+                id="sidebar.reports"/></span></Link>
+            </Menu.Item>
+
+            <Menu.Item key="analytics">
+              <Link to="/analytics"><i className="icon icon-chart-radial"/><span><IntlMessages
+                id="sidebar.analytics"/></span></Link>
+            </Menu.Item>
+
+            <Menu.Item key="workspace">
+              <Link to="/workspace"><i className="icon icon-chart-tree"/><span><IntlMessages
+                id="sidebar.workspace"/></span></Link>
+            </Menu.Item>
           </Menu>
         </CustomScrollbars>
       </div>
