@@ -317,6 +317,7 @@
   "sidebar.billing": "Billing",
   "sidebar.billing.transactions": "Transactions",
   "sidebar.billing.payment": "Make Payment",
+  "sidebar.billing.invoice": "Send Invoice",
   "sidebar.communications": "Communications",
   "sidebar.communications.email": "Email",
   "sidebar.communications.chats": "Chats",
