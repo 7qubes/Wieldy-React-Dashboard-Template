@@ -10,11 +10,11 @@ const Client = () => {
 
   return (
     <Auxiliary>
-      <div className="gx-profile-banner">
+      <div className="gx-profile-banner" style={{backgroundColor: '#311B80'}}>
         <div className="gx-profile-container">
           <div className="gx-profile-banner-top">
             <div className="gx-profile-banner-top-left">
-              <div className="gx-profile-banner-avatar">
+              <div className="gx-profile-banner-avatar ">
                 <Avatar className="gx-size-90" alt="..." src={"https://via.placeholder.com/150"}/>
               </div>
               <div className="gx-profile-banner-avatar-info">
@@ -73,7 +73,7 @@ const Client = () => {
             </Widget>
             <Widget styleName="gx-card-profile">
               <div className="ant-card-head">
-                <span className="ant-card-head-title gx-mb-1">Subcriptions</span>
+                <span className="ant-card-head-title gx-mb-1">Subscriptions</span>
               </div>
               <div className="ant-card-body">
                 <Row>
