@@ -9,7 +9,7 @@ const RewardCard = () => {
         <i className={`icon icon-refer gx-fs-xlxl gx-text-white`}/>
       </div>
       <div className="gx-text-center">
-        <h2 className="h3 gx-mb-3 gx-text-white">Reffer and Get Reward</h2>
+        <h2 className="h3 gx-mb-3 gx-text-white">Refer and Get Reward</h2>
         <p className="gx-text-white gx-mb-3">Refer us to your friends and
           earn bonus when they join.</p>
         <Button size="large" className="gx-btn-secondary gx-mt-md-5 gx-mb-1">Invite Friends</Button>
