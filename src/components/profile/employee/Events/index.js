@@ -2,8 +2,8 @@ import React from "react";
 
 import Widget from "components/Widget/index";
 import {Form, Input, Col, Row} from "antd";
-import EventItem from "./EventItem";
-import {eventList} from "../../../../routes/socialApps/Profile/data"
+// import EventItem from "./EventItem";
+// import {eventList} from "../../../../routes/socialApps/Profile/data"
 
 const FormItem = Form.Item;
 

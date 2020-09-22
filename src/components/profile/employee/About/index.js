@@ -1,7 +1,7 @@
 import React from "react";
 import {Card, Col, Row, Tabs} from "antd";
 import Widget from "components/Widget";
-import {equipmentList, overviewList, workList} from '../../../../routes/socialApps/Profile/data'
+import {equipmentList, overviewList, workList} from './data'
 import AboutItem from "./AboutItem";
 
 

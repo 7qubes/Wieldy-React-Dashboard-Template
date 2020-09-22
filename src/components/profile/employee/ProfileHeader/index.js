@@ -3,7 +3,7 @@ import {Avatar} from "antd";
 
 const ProfileHeader = () => {
   return (
-    <div className="gx-profile-banner">
+    <div className="gx-profile-banner" style={{backgroundColor: '#6236FF'}}>
       <div className="gx-profile-container">
         <div className="gx-profile-banner-top">
           <div className="gx-profile-banner-top-left">

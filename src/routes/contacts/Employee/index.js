@@ -14,6 +14,9 @@ import Auxiliary from "../../../util/Auxiliary";
 import ProfileHeader from "../../../components/profile/employee/ProfileHeader/index";
 import PersonalInformation from "../../../components/profile/emergency/PersonalInformation"
 import MedicalInformation from "../../../components/profile/emergency/MedicalInformation"
+import AgreementsTable from "../../../components/Table/AgreementsTable";
+import TrainingTable from "../../../components/Table/TrainingTable";
+import PerformanceTable from "../../../components/Table/PerformanceTable";
 const TabPane = Tabs.TabPane;
 
 const Profile = () => {
@@ -72,18 +75,20 @@ const Profile = () => {
           </TabPane>
           <TabPane tab="Agreements" key="3">
             <Row>
-
+              <Col span={24}>
+                <AgreementsTable/>
+              </Col>
             </Row>
           </TabPane>
           <TabPane tab="Training" key="4">
             <Row>
-
+              <Col span={24}>
+                <TrainingTable/>
+              </Col>
             </Row>
           </TabPane>
           <TabPane tab="Performance" key="5">
-            <Row>
-
-            </Row>
+              <PerformanceTable/>
           </TabPane>
         </Tabs>
       </div>
