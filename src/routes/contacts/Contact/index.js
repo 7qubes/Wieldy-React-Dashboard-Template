@@ -7,7 +7,7 @@ import ContactList from "components/contacts/ContactList";
 import AppModuleHeader from "components/AppModuleHeader/index";
 import AddContact from "components/contacts/AddContact";
 import IntlMessages from "util/IntlMessages";
-import UploadClick from "../../components/dataEntry/Upload/UploadClick";
+import UploadClick from "../../../components/Upload/UploadClick";
 
 let contactId = 723812738;
 
@@ -60,11 +60,12 @@ class Contact extends Component {
           <div className="gx-module-add-task">
             <Button className="gx-btn-block ant-btn" type="primary" aria-label="add"
                     onClick={this.onAddContact}>
-              <i className="icon icon-add-circle gx-mr-2"/>
+              <i className="icon icon-add-circle gx-mr-1"/>
               <span>Add Contacts</span>
             </Button>
           </div>
           <div className="gx-module-side-nav">
+            <UploadClick/>
             <ul className="gx-module-nav">
               {filterOptions.map(option => <li key={option.id} className="gx-nav-item">
                   <span
@@ -77,7 +78,6 @@ class Contact extends Component {
                 </li>
               )}
             </ul>
-            <UploadClick/>
           </div>
         </CustomScrollbars>
       </div>
