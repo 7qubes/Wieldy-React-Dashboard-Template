@@ -29,13 +29,7 @@ const columns = [
     key: 'status',
     render: (text, record) => (
       <span>
-      <span className="gx-link">Action 一 {record.name}</span>
-      <Divider type="vertical"/>
-      <span className="gx-link">Delete</span>
-      <Divider type="vertical"/>
-      <span className="gx-link ant-dropdown-link">
-        More actions <Icon type="down"/>
-      </span>
+      <span className="gx-link">Signed</span>
     </span>
     ),
   }
