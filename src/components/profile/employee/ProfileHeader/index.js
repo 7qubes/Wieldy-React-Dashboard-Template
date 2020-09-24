@@ -1,10 +1,14 @@
 import React from "react";
-import {Avatar} from "antd";
+import {Avatar, Button} from "antd";
 
 const ProfileHeader = () => {
+  const url = `/contacts`;
   return (
     <div className="gx-profile-banner" style={{backgroundColor: '#6236FF'}}>
       <div className="gx-profile-container">
+        <a href={url}>
+          <i className="icon icon-arrow-left"/>
+        </a>
         <div className="gx-profile-banner-top">
           <div className="gx-profile-banner-top-left">
             <div className="gx-profile-banner-avatar">
@@ -36,31 +40,6 @@ const ProfileHeader = () => {
             </ul>
           </div>
         </div>
-        {/*<div className="gx-profile-banner-bottom">*/}
-        {/*  <div className="gx-tab-list">*/}
-        {/*    <ul className="gx-navbar-nav">*/}
-        {/*      <li>*/}
-        {/*        <span className="gx-link">General</span>*/}
-        {/*      </li>*/}
-        {/*      <li>*/}
-        {/*        <span className="gx-link">Emergency</span>*/}
-        {/*      </li>*/}
-        {/*      <li>*/}
-        {/*        <span className="gx-link">Agreements</span>*/}
-        {/*      </li>*/}
-        {/*      <li>*/}
-        {/*        <span className="gx-link">Training</span>*/}
-        {/*      </li>*/}
-        {/*      <li>*/}
-        {/*        <span className="gx-link">Performance</span>*/}
-        {/*      </li>*/}
-        {/*    </ul>*/}
-        {/*  </div>*/}
-        {/*  <span className="gx-link gx-profile-setting">*/}
-        {/*    <i className="icon icon-setting gx-fs-lg gx-mr-2 gx-mr-sm-3 gx-d-inline-flex gx-vertical-align-middle"/>*/}
-        {/*    <span className="gx-d-inline-flex gx-vertical-align-middle gx-ml-1 gx-ml-sm-0">Settings</span>*/}
-        {/*  </span>*/}
-        {/*</div>*/}
       </div>
     </div>
   )
