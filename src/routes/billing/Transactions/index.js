@@ -4,7 +4,9 @@ import {Col, Row} from "antd";
 import Auxiliary from "util/Auxiliary";
 import IntlMessages from "util/IntlMessages";
 import AppModuleHeader from "components/AppModuleHeader/index";
-// import BankBalance from "../../../components/BankBalance"
+import BalanceHistory from "components/dashboard/BalanceHistory";
+import ToolTheDay from "../../../components/Widgets/ToolTheDay";
+import TransactionsTable from "../../../components/Table/TransactionsTable";
 
 
 const Transactions = () => {
@@ -35,17 +37,25 @@ const Transactions = () => {
             </div>
           </div>
         </div>
-        {/*<Row>*/}
+      </Row>
+        <div style={{marginBottom: '30px'}}>
         <Col span={24}>
           <Row>
-            <div className="gx-card">
-              <div className="gx-card-body">
-                {/*<BankBalance/>*/}
-              </div>
-            </div>
+            <Col xl={6} lg={6} md={6} sm={24} xs={24} className="gx-order-sm-1">
+              <ToolTheDay/>
+            </Col>
+              <Col xl={18} lg={18} md={18} sm={24} xs={24} className="gx-order-sm-1">
+                <Row>
+                  <Col xl={24} lg={24} md={24} sm={24} xs={24}>
+                    <BalanceHistory/>
+                    <TransactionsTable/>
+                  </Col>
+                </Row>
+              </Col>
           </Row>
         </Col>
-      </Row>
+          </div>
+      {/*</Row>*/}
     </Auxiliary>
   );
 };

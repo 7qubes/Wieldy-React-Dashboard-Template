@@ -180,6 +180,7 @@
   "chat.chatUser": "Chats",
   "chat.contacts": "Contacts",
   "chat.transactions": "Transactions",
+  "chat.payee": "Payees",
   "chat.searchStartNewChat": "Search or start new chat",
   "chat.typeMessage": "Type and hit enter to send message",
   "chat.status": "it's a status....not your diary...",
