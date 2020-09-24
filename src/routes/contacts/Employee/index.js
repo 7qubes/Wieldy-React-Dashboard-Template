@@ -24,8 +24,8 @@ const Profile = () => {
     <Auxiliary>
       <ProfileHeader/>
       <div className="gx-profile-content">
-        <Tabs defaultActiveKey="1">
-          <TabPane tab="General" key="1" style={{fontColor: '#ffffff'}}>
+        <Tabs defaultActiveKey="1" style={{fontColor: '#ffffff'}}>
+          <TabPane tab="General" key="1">
             <Row>
               <Col xl={16} lg={14} md={14} sm={24} xs={24}>
                 <About/>
@@ -73,7 +73,7 @@ const Profile = () => {
               </Col>
             </Row>
           </TabPane>
-          <TabPane tab="Agreements" key="3">
+          <TabPane tab="Documents" key="3">
             <Row>
               <Col span={24}>
                 <AgreementsTable/>

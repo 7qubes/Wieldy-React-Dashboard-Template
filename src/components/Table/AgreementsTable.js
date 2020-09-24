@@ -67,7 +67,7 @@ const data = [
 
 const AgreementsTable = () => {
   return (
-    <Card title="Agreements">
+    <Card title="Documents">
       <Table className="gx-table-responsive" columns={columns} dataSource={data}/>
     </Card>
   );

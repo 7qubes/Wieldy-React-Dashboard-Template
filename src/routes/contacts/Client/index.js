@@ -7,11 +7,14 @@ import Widget from "components/Widget/index";
 const FormItem = Form.Item;
 
 const Client = () => {
-
+  const url = `/contacts`;
   return (
     <Auxiliary>
       <div className="gx-profile-banner" style={{backgroundColor: '#311B80'}}>
         <div className="gx-profile-container">
+          <a href={url}>
+            <i className="icon icon-arrow-left"/>
+          </a>
           <div className="gx-profile-banner-top">
             <div className="gx-profile-banner-top-left">
               <div className="gx-profile-banner-avatar">
