@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Button, Checkbox, Drawer, message} from "antd";
+import {Button, Checkbox, Drawer, message, Col} from "antd";
 import CustomScrollbars from "util/CustomScrollbars";
 
 import contactList from "../../contacts/Contact/data/contactList";
@@ -14,32 +14,32 @@ let contactId = 723812738;
 const filterOptions = [
   {
     id: 1,
-    name: 'All contacts',
+    name: 'All Payees',
     icon: 'all-contacts'
   }, {
     id: 2,
-    name: 'Frequently contacted',
+    name: 'Frequently Paid',
     icon: 'frequent'
 
   }, {
 
     id: 3,
-    name: 'Starred contacts',
+    name: 'Alphabetical Order',
     icon: 'star'
   }, {
 
     id: 4,
-    name: 'Employee',
+    name: 'Last Paid',
     icon: 'team'
   }, {
 
     id: 5,
-    name: 'Vendors',
+    name: 'Utilities Group',
     icon: 'team'
   }, {
 
     id: 6,
-    name: 'Customers',
+    name: 'Employees Group',
     icon: 'team'
   }
 ];
@@ -50,8 +50,8 @@ class Payment extends Component {
     return <div className="gx-module-side">
       <div className="gx-module-side-header">
         <div className="gx-module-logo">
-          <i className="icon icon-contacts gx-mr-4"/>
-          <span><IntlMessages id="chat.contacts"/></span>
+          <i className="icon icon-compose gx-mr-4"/>
+          <span><IntlMessages id="chat.payee"/></span>
         </div>
       </div>
 
@@ -61,11 +61,10 @@ class Payment extends Component {
             <Button className="gx-btn-block ant-btn" type="primary" aria-label="add"
                     onClick={this.onAddContact}>
               <i className="icon icon-add-circle gx-mr-1"/>
-              <span>Add Contacts</span>
+              <span>Add New Payee</span>
             </Button>
           </div>
           <div className="gx-module-side-nav">
-            <UploadClick/>
             <ul className="gx-module-nav">
               {filterOptions.map(option => <li key={option.id} className="gx-nav-item">
                   <span
@@ -346,12 +345,13 @@ class Payment extends Component {
                      onClick={this.onToggleDrawer.bind(this)}/>
               </span>
 
-              <AppModuleHeader placeholder="Search contact" notification={false} apps={false}
+              <AppModuleHeader placeholder="Search Payee history" notification={false} apps={false}
                                user={this.state.user}
                                onChange={this.updateContactUser.bind(this)}
                                value={this.state.searchUser}/>
             </div>
             <div className="gx-module-box-content">
+              <Col md={12}>
 
               <div className="gx-module-box-topbar">
                 <Checkbox color="primary" className="gx-icon-btn"
@@ -377,6 +377,10 @@ class Payment extends Component {
 
 
               </CustomScrollbars>
+                </Col>
+              <Col md={12}>
+
+              </Col>
 
             </div>
           </div>

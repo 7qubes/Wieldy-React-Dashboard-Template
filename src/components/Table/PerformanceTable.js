@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, Divider, Table} from "antd";
+import {Card, Divider, Table, Rate, Collapse} from "antd";
 import Icon from '@ant-design/icons';
 
 const columns = [
@@ -37,7 +37,7 @@ const data = [
     date: '10/10/2019',
     reviewer: 'Jonathan Nolan',
     review: 'Overall Good Progress',
-    rating: 'rating'
+    rating: <Rate disabled defaultValue={4}/>
   },
   {
     key: '2',
@@ -45,7 +45,7 @@ const data = [
     date: '10/10/2019',
     reviewer: 'Jonathan Nolan',
     review: 'Overall Good Progress',
-    rating: 'rating'
+    rating: <Rate disabled defaultValue={4}/>
   },
   {
     key: '3',
@@ -53,8 +53,32 @@ const data = [
     date: '10/10/2019',
     reviewer: 'Jonathan Nolan',
     review: 'Overall Good Progress',
-    rating: 'rating'
-  }
+    rating: <Rate disabled defaultValue={4}/>
+  },
+  {
+    key: '4',
+    project: 'Project W',
+    date: '10/10/2019',
+    reviewer: 'Jonathan Nolan',
+    review: 'Overall Good Progress',
+    rating: <Rate disabled defaultValue={4}/>
+  },
+  {
+    key: '5',
+    project: 'Project W',
+    date: '10/10/2019',
+    reviewer: 'Jonathan Nolan',
+    review: 'Overall Good Progress',
+    rating: <Rate disabled defaultValue={4}/>
+  },
+  {
+    key: '6',
+    project: 'Project W',
+    date: '10/10/2019',
+    reviewer: 'Jonathan Nolan',
+    review: 'Overall Good Progress',
+    rating: <Rate disabled defaultValue={4}/>
+  },
 ];
 
 const PerformanceTable = () => {

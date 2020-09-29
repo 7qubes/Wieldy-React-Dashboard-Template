@@ -105,11 +105,18 @@ export const contactList = [
     title: 'Web page',
     icon: 'link',
     desc: [<span className="gx-link" key={2}>example.com</span>]
-  }, {
+  },
+  {
     id: 3,
     title: 'Phone',
     icon: 'phone',
     desc: ['+1-987 (454) 987']
+  },
+  {
+    id: 4,
+    title: 'Chat',
+    icon: 'chat-bubble',
+    desc: ['@username']
   },
 ];
 
