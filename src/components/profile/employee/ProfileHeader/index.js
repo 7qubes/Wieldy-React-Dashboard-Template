@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useState }from "react";
 import {Avatar, Button} from "antd";
+import SweetAlert from "react-bootstrap-sweetalert";
+import IntlMessages from "util/IntlMessages";
 
-const ProfileHeader = () => {
-  const url = `/contacts`;
-  return (
+class ProfileHeader extends React.Component {
+  onConfirm = () => {
+    this.setState({
+      prompt: false,
+    });
+  };
+
+  onCancel = () => {
+    this.setState({
+      prompt: false
+    })
+  };
+
+
+  constructor() {
+    super();
+    this.state = {
+      prompt: false,
+    }
+  }
+  render () {
+    const {prompt} = this.state;
+    const url = `/contacts`;
+    return(
     <div className="gx-profile-banner" style={{backgroundColor: '#6236FF'}}>
       <div className="gx-profile-container">
         <a href={url}>
@@ -30,7 +53,24 @@ const ProfileHeader = () => {
                 <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">
                   <i className="icon icon-add-circle"/>
                 </span>
-                <span className="gx-fs-sm">Project</span></li>
+                <span className="gx-fs-sm">
+                  <Button className="gx-mb-0" type="primary" onClick={() => {
+                    this.setState({prompt: true})
+                  }}>Project</Button>
+                </span>
+                <SweetAlert show={prompt}
+                            input
+                            showCancel
+                            cancelBtnBsStyle="default"
+                            title={<IntlMessages id="sweetAlerts.anInput"/>}
+                            inputPlaceHolder={<IntlMessages id="sweetAlerts.anInput"/>}
+                  onConfirm={this.onConfirm}
+                  onCancel={this.onCancel}
+                            customClass="gx-sweet-alert-top-space"
+                >
+                  <IntlMessages id="sweetAlerts.basic"/>{<IntlMessages id="sweetAlerts.writeSomething"/>}
+                </SweetAlert>
+              </li>
               <li>
                 <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">
                   <i className="icon icon-add-circle"/>
@@ -42,7 +82,9 @@ const ProfileHeader = () => {
         </div>
       </div>
     </div>
-  )
+    )
+  }
+
 };
 
 export default ProfileHeader;
