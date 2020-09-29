@@ -1,6 +1,14 @@
 import React from "react";
-import {Card, Divider, Table} from "antd";
+import {Card, Collapse, Divider, Table} from "antd";
 import Icon from '@ant-design/icons';
+
+const Panel = Collapse.Panel;
+
+const customPanelStyle = {
+  borderRadius: 4,
+  border: 0,
+  overflow: 'hidden',
+};
 
 const columns = [
   {
@@ -28,9 +36,12 @@ const columns = [
     title: 'Status',
     key: 'status',
     render: (text, record) => (
-      <span>
-      <span className="gx-link">Signed</span>
-    </span>
+      <Collapse bordered={false} expandIconPosition='right'>
+        <Panel header="Signed" style={customPanelStyle}>
+          <p><icon className='icon icon-eye'/> View</p>
+          <p><icon className='icon icon-backtop'/> Export</p>
+        </Panel>
+      </Collapse>
     ),
   }
 ];
