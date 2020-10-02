@@ -5,8 +5,9 @@ import Auxiliary from "util/Auxiliary";
 import IntlMessages from "util/IntlMessages";
 import AppModuleHeader from "components/AppModuleHeader/index";
 import BalanceHistory from "components/dashboard/BalanceHistory";
-import ToolTheDay from "../../../components/Widgets/ToolTheDay";
-import TransactionsTable from "../../../components/Table/TransactionsTable";
+import ToolTheDay from "components/Widgets/ToolTheDay";
+import TransactionsTable from "components/Table/TransactionsTable";
+import ConnectBank from "components/billing/Transaction/ConnectBank";
 
 
 const Transactions = () => {
@@ -38,10 +39,11 @@ const Transactions = () => {
           </div>
         </div>
       </Row>
-        <div style={{marginBottom: '30px'}}>
+        <div style={{marginTop: '30px'}}>
         <Col span={24}>
           <Row>
             <Col xl={6} lg={6} md={6} sm={24} xs={24} className="gx-order-sm-1">
+              <ConnectBank/>
               <ToolTheDay/>
             </Col>
               <Col xl={18} lg={18} md={18} sm={24} xs={24} className="gx-order-sm-1">

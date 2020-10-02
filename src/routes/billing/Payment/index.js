@@ -2,12 +2,11 @@ import React, {Component} from "react";
 import {Button, Checkbox, Drawer, message, Col} from "antd";
 import CustomScrollbars from "util/CustomScrollbars";
 
-import contactList from "../../contacts/Contact/data/contactList";
-import ContactList from "components/contacts/ContactList";
+import paymentList from "./data";
+import PaymentList from "components/billing/Payment";
 import AppModuleHeader from "components/AppModuleHeader/index";
-import AddContact from "components/contacts/AddContact";
+import AddPayment from "components/billing/Payment/AddPayment";
 import IntlMessages from "util/IntlMessages";
-import UploadClick from "../../../components/Upload/UploadClick";
 
 let contactId = 723812738;
 
@@ -20,24 +19,19 @@ const filterOptions = [
     id: 2,
     name: 'Frequently Paid',
     icon: 'frequent'
-
   }, {
-
     id: 3,
     name: 'Alphabetical Order',
     icon: 'star'
   }, {
-
     id: 4,
     name: 'Last Paid',
     icon: 'team'
   }, {
-
     id: 5,
     name: 'Utilities Group',
     icon: 'team'
   }, {
-
     id: 6,
     name: 'Employees Group',
     icon: 'team'
@@ -84,25 +78,10 @@ class Payment extends Component {
 
   };
 
-  addFavourite = (data) => {
-    this.setState({
-      alertMessage: data.starred ? 'Contact removed as star' : 'Contact marked as star',
-      showMessage: true,
-      contactList: this.state.contactList.map((contact) => contact.id === data.id ? {
-        ...contact,
-        starred: !data.starred
-      } : contact),
-      allContact: this.state.allContact.map((contact) => contact.id === data.id ? {
-        ...contact,
-        starred: !data.starred
-      } : contact)
-    })
-  };
-
   onContactSelect = (data) => {
     data.selected = !data.selected;
     let selectedContacts = 0;
-    const contactList = this.state.contactList.map(contact => {
+    const paymentList = this.state.paymentList.map(contact => {
         if (contact.selected) {
           selectedContacts++;
         }
@@ -118,24 +97,24 @@ class Payment extends Component {
     );
     this.setState({
       selectedContacts: selectedContacts,
-      contactList: contactList
+      paymentList: paymentList
     });
 
   };
 
   onAddContact = () => {
-    this.setState({addContactState: true});
+    this.setState({addPaymentState: true});
   };
   onContactClose = () => {
-    this.setState({addContactState: false});
+    this.setState({addPaymentState: false});
   };
   onFilterOptionSelect = (option) => {
     switch (option.name) {
-      case 'All contacts': {
+      case 'All Payees': {
         this.setState({
           selectedSectionId: option.id,
           filterOption: option.name,
-          contactList: this.state.allContact
+          paymentList: this.state.allContact
         });
         break;
       }
@@ -143,51 +122,18 @@ class Payment extends Component {
         this.setState({
           selectedSectionId: option.id,
           filterOption: option.name,
-          contactList: this.state.allContact.filter((contact) => contact.frequently)
-        });
-        break;
-      }
-      case 'Starred contacts': {
-        this.setState({
-          selectedSectionId: option.id,
-          filterOption: option.name,
-          contactList: this.state.allContact.filter((contact) => contact.starred)
-        });
-        break;
-      }
-      case 'Employee': {
-        this.setState({
-          selectedSectionId: option.id,
-          filterOption: option.name,
-          contactList: this.state.allContact.filter((contact) => contact.employee)
-        });
-        break;
-      }
-      case 'Vendors': {
-        this.setState({
-          selectedSectionId: option.id,
-          filterOption: option.name,
-          contactList: this.state.allContact.filter((contact) => contact.vendors)
-        });
-        break;
-      }
-      case 'Customers': {
-        this.setState({
-          selectedSectionId: option.id,
-          filterOption: option.name,
-          contactList: this.state.allContact.filter((contact) => contact.customers)
+          paymentList: this.state.allContact.filter((contact) => contact.frequently)
         });
         break;
       }
       default:
         break;
     }
-
   };
 
   onSaveContact = (data) => {
     let isNew = true;
-    const contactList = this.state.allContact.map((contact) => {
+    const paymentList = this.state.allContact.map((contact) => {
       if (contact.id === data.id) {
         isNew = false;
         return data
@@ -196,13 +142,13 @@ class Payment extends Component {
       }
     });
     if (isNew) {
-      contactList.push(data);
+      paymentList.push(data);
     }
     this.setState({
-      alertMessage: isNew ? 'Contact Added Successfully' : 'Contact Updated Successfully',
+      alertMessage: isNew ? 'Payment Added Successfully' : 'Payment Updated Successfully',
       showMessage: true,
-      contactList: contactList,
-      allContact: contactList
+      paymentList: paymentList,
+      allContact: paymentList
     });
     // this.onFilterOptionSelect(this.state.filterOption);
   };
@@ -211,7 +157,7 @@ class Payment extends Component {
       alertMessage: 'Contact Deleted Successfully',
       showMessage: true,
       allContact: this.state.allContact.filter((contact) => contact.id !== data.id),
-      contactList: this.state.allContact.filter((contact) => contact.id !== data.id)
+      paymentList: this.state.allContact.filter((contact) => contact.id !== data.id)
     })
   };
   onDeleteSelectedContact = () => {
@@ -220,29 +166,29 @@ class Payment extends Component {
       alertMessage: 'Contact Deleted Successfully',
       showMessage: true,
       allContact: contacts,
-      contactList: contacts,
+      paymentList: contacts,
       selectedContacts: 0
     })
   };
   filterContact = (userName) => {
     const {filterOption} = this.state;
     if (userName === '') {
-      this.setState({contactList: this.state.allContact});
+      this.setState({paymentList: this.state.allContact});
     } else {
       const filterContact = this.state.allContact.filter((contact) =>
         contact.name.toLowerCase().indexOf(userName.toLowerCase()) > -1);
       if (filterOption === 'All contacts') {
-        this.setState({contactList: filterContact});
+        this.setState({paymentList: filterContact});
       } else if (filterOption === 'Frequently contacted') {
-        this.setState({contactList: filterContact.filter((contact) => contact.frequently)});
+        this.setState({paymentList: filterContact.filter((contact) => contact.frequently)});
       } else if (filterOption === 'Starred contacts') {
-        this.setState({contactList: filterContact.filter((contact) => contact.starred)});
+        this.setState({paymentList: filterContact.filter((contact) => contact.starred)});
       } else if (filterOption === 'Employee') {
-        this.setState({contactList: filterContact.filter((contact) => contact.employee)});
+        this.setState({paymentList: filterContact.filter((contact) => contact.employee)});
       } else if (filterOption === 'Vendors') {
-        this.setState({contactList: filterContact.filter((contact) => contact.vendors)});
+        this.setState({paymentList: filterContact.filter((contact) => contact.vendors)});
       } else if (filterOption === 'Customers') {
-        this.setState({contactList: filterContact.filter((contact) => contact.customers)});
+        this.setState({paymentList: filterContact.filter((contact) => contact.customers)});
       }
 
     }
@@ -253,32 +199,32 @@ class Payment extends Component {
     });
   };
   getAllContact = () => {
-    let contactList = this.state.allContact.map((contact) => contact ? {
+    let paymentList = this.state.allContact.map((contact) => contact ? {
       ...contact,
       selected: true
     } : contact);
     this.setState({
-      selectedContacts: contactList.length,
-      allContact: contactList,
-      contactList: contactList
+      selectedContacts: paymentList.length,
+      allContact: paymentList,
+      paymentList: paymentList
     });
   };
   getUnselectedAllContact = () => {
-    let contactList = this.state.allContact.map((contact) => contact ? {
+    let paymentList = this.state.allContact.map((contact) => contact ? {
       ...contact,
       selected: false
     } : contact);
     this.setState({
       selectedContacts: 0,
-      allContact: contactList,
-      contactList: contactList
+      allContact: paymentList,
+      paymentList: paymentList
     });
   };
 
   constructor() {
     super();
     this.state = {
-      noContentFoundMessage: 'No Contact found in selected folder',
+      noPaymentFoundMessage: 'No Payment found in selected folder',
       alertMessage: '',
       showMessage: false,
       selectedSectionId: 1,
@@ -290,16 +236,16 @@ class Payment extends Component {
       },
       searchUser: '',
       filterOption: 'All contacts',
-      allContact: contactList,
-      contactList: contactList,
+      allContact: paymentList,
+      paymentList: paymentList,
       selectedContact: null,
       selectedContacts: 0,
-      addContactState: false,
+      addPaymentState: false,
     }
   }
 
   onAllContactSelect() {
-    const selectAll = this.state.selectedContacts < this.state.contactList.length;
+    const selectAll = this.state.selectedContacts < this.state.paymentList.length;
     if (selectAll) {
       this.getAllContact();
     } else {
@@ -321,7 +267,17 @@ class Payment extends Component {
   }
 
   render() {
-    const {user, contactList, addContactState, drawerState, selectedContacts, alertMessage, showMessage, noContentFoundMessage} = this.state;
+    const {
+      user,
+      paymentList,
+      addPaymentState,
+      drawerState,
+      selectedContacts,
+      alertMessage,
+      showMessage,
+      noPaymentFoundMessage
+    } = this.state;
+
     return (
       <div className="gx-main-content">
         <div className="gx-app-module">
@@ -351,11 +307,9 @@ class Payment extends Component {
                                value={this.state.searchUser}/>
             </div>
             <div className="gx-module-box-content">
-              <Col md={12}>
-
               <div className="gx-module-box-topbar">
                 <Checkbox color="primary" className="gx-icon-btn"
-                          indeterminate={selectedContacts > 0 && selectedContacts < contactList.length}
+                          indeterminate={selectedContacts > 0 && selectedContacts < paymentList.length}
                           checked={selectedContacts > 0}
                           onChange={this.onAllContactSelect.bind(this)}
                           value="SelectMail"/>
@@ -364,32 +318,26 @@ class Payment extends Component {
 
               </div>
               <CustomScrollbars className="gx-module-content-scroll">
-                {contactList.length === 0 ?
+                {paymentList.length === 0 ?
                   <div className="gx-h-100 gx-d-flex gx-align-items-center gx-justify-content-center">
-                    {noContentFoundMessage}
+                    {noPaymentFoundMessage}
                   </div>
-                  : <ContactList contactList={contactList}
-                                 addFavourite={this.addFavourite.bind(this)}
+                  : <PaymentList paymentList={paymentList}
+                                 // addFavourite={this.addFavourite.bind(this)}
                                  onContactSelect={this.onContactSelect.bind(this)}
                                  onDeleteContact={this.onDeleteContact.bind(this)}
                                  onSaveContact={this.onSaveContact.bind(this)}/>
                 }
-
-
               </CustomScrollbars>
-                </Col>
-              <Col md={12}>
-
-              </Col>
-
             </div>
           </div>
         </div>
 
-        <AddContact open={addContactState} contact={{
+        <AddPayment open={addPaymentState} contact={{
           'id': contactId++,
           'name': '',
           'thumb': '',
+          'nickName': '',
           'email': '',
           'phone': '',
           'designation': '',

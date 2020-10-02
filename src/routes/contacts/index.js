@@ -7,9 +7,9 @@ import asyncComponent from "util/asyncComponent";
 const Contacts = ({match}) => (
   <Switch>
     <Route exact path={`${match.url}/`} component={asyncComponent(() => import('./Contact'))}/>
-    <Route exact path={`/contacts/vendor`} component={asyncComponent(() => import('./Vendor'))}/>
-    <Route exact path={`/contacts/client`} component={asyncComponent(() => import('./Client'))}/>
-    <Route exact path={`/contacts/employee`} component={asyncComponent(() => import('./Employee'))}/>
+    <Route exact path={`${match.url}/vendor`} component={asyncComponent(() => import('./Vendor'))}/>
+    <Route exact path={`${match.url}/client`} component={asyncComponent(() => import('./Client'))}/>
+    <Route exact path={`${match.url}/employee`} component={asyncComponent(() => import('./Employee'))}/>
   </Switch>
 );
 
