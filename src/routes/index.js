@@ -7,6 +7,7 @@ import Billing from "./billing"
 import Calendar from "./calendar"
 import Communications from "./communications";
 import SocialMedia from "./socialMedia";
+import Finance from "./Finance";
 import Inventories from "./Inventories"
 import Reports from "./Report"
 
@@ -19,6 +20,7 @@ const App = ({match}) => (
       <Route path={`${match.url}calendar`} component={Calendar}/>
       <Route path={`${match.url}communications`} component={Communications}/>
       <Route path={`${match.url}media`} component={SocialMedia}/>
+      <Route path={`${match.url}finance`} component={Finance}/>
       <Route path={`${match.url}inventories`} component={Inventories}/>
       <Route path={`${match.url}reports`} component={Reports}/>
     </Switch>
