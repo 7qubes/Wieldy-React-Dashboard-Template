@@ -4,11 +4,8 @@ import {Col, Row} from "antd";
 import Auxiliary from "util/Auxiliary";
 import IntlMessages from "util/IntlMessages";
 import AppModuleHeader from "components/AppModuleHeader/index";
-import BalanceHistory from "components/dashboard/BalanceHistory";
-import ToolTheDay from "components/Widgets/ToolTheDay";
-import TransactionsTable from "components/Table/TransactionsTable";
-import ConnectBank from "components/billing/Transaction/ConnectBank";
-
+import CreateInvoice from "components/billing/Invoice/CreateInvoice";
+import SendInvoice from "components/billing/Invoice/SendInvoice";
 
 const Transactions = () => {
   return (
@@ -21,7 +18,7 @@ const Transactions = () => {
                 <div className="gx-module-side-header">
                   <div className="gx-module-logo">
                     <i className="icon icon-compose gx-mr-4"/>
-                    <span><IntlMessages id="chat.transactions"/></span>
+                    <span><IntlMessages id="chat.invoice"/></span>
                   </div>
                 </div>
               </div>
@@ -33,29 +30,23 @@ const Transactions = () => {
                        {/*// onClick={this.onToggleDrawer.bind(this)}/>*/}
                 </span>
 
-                <AppModuleHeader placeholder="Search Transactions" notification={false} apps={false}/>
+                <AppModuleHeader placeholder="Search Payee history" notification={false} apps={false}/>
               </div>
             </div>
           </div>
         </div>
       </Row>
         <div style={{marginTop: '30px'}}>
-        <Col span={24}>
+        {/*<Col span={24}>*/}
           <Row>
-            <Col xl={6} lg={6} md={6} sm={24} xs={24} className="gx-order-sm-1">
-              <ConnectBank/>
-              <ToolTheDay/>
+            <Col xl={12} lg={12} md={12} sm={24} xs={24} className="gx-order-sm-1">
+              <CreateInvoice/>
             </Col>
-              <Col xl={18} lg={18} md={18} sm={24} xs={24} className="gx-order-sm-1">
-                <Row>
-                  <Col xl={24} lg={24} md={24} sm={24} xs={24}>
-                    <BalanceHistory/>
-                    <TransactionsTable/>
-                  </Col>
-                </Row>
-              </Col>
+            <Col xl={12} lg={12} md={12} sm={24} xs={24} className="gx-order-sm-1">
+              <SendInvoice/>
+            </Col>
           </Row>
-        </Col>
+        {/*</Col>*/}
           </div>
       {/*</Row>*/}
     </Auxiliary>

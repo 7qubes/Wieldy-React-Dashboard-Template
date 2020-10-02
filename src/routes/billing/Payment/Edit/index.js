@@ -1,11 +1,20 @@
 import React, {Component} from "react";
-import {Button, Checkbox, Drawer, message, Col} from "antd";
+import {Button, Checkbox, Drawer, message, Col, Row} from "antd";
 import CustomScrollbars from "util/CustomScrollbars";
 
-import paymentList from "./data";
+import paymentList from "../data";
 import PaymentList from "components/billing/Payment";
 import AppModuleHeader from "components/AppModuleHeader/index";
 import AddPayment from "components/billing/Payment/AddPayment";
+import PayeeName from "components/billing/Payment/PayeeName/index";
+import AccountType from "components/billing/Payment/AccountType/index";
+import PayeeGroup from "components/billing/Payment/PayeeGroup/index";
+import Status from "components/billing/Payment/Status/index";
+import Payments from "components/billing/Payment/Payments/index";
+import Address from "components/billing/Payment/Address/index";
+import PayeeDate from "components/billing/Payment/PayeeDate/index";
+import PayeeAmount from "components/billing/Payment/PayeeAmount/index";
+// import Payee from "components/billing/Payment/Payee/index";
 import IntlMessages from "util/IntlMessages";
 
 let contactId = 723812738;
@@ -38,7 +47,7 @@ const filterOptions = [
   }
 ];
 
-class Payment extends Component {
+class Edit extends Component {
 
   ContactSideBar = (user) => {
     return <div className="gx-module-side">
@@ -307,28 +316,24 @@ class Payment extends Component {
                                value={this.state.searchUser}/>
             </div>
             <div className="gx-module-box-content">
-              <div className="gx-module-box-topbar">
-                <Checkbox color="primary" className="gx-icon-btn"
-                          indeterminate={selectedContacts > 0 && selectedContacts < paymentList.length}
-                          checked={selectedContacts > 0}
-                          onChange={this.onAllContactSelect.bind(this)}
-                          value="SelectMail"/>
-                {selectedContacts > 0 &&
-                <i className="gx-icon-btn icon icon-trash" onClick={this.onDeleteSelectedContact.bind(this)}/>}
-
+              <div className="gx-module-box-topbar" style={{backgroundColor: '#6236FF'}}>
+                <span style={{color: '#ffffff'}}>All State</span>
               </div>
-              <CustomScrollbars className="gx-module-content-scroll">
-                {paymentList.length === 0 ?
-                  <div className="gx-h-100 gx-d-flex gx-align-items-center gx-justify-content-center">
-                    {noPaymentFoundMessage}
-                  </div>
-                  : <PaymentList paymentList={paymentList}
-                                 // addFavourite={this.addFavourite.bind(this)}
-                                 onContactSelect={this.onContactSelect.bind(this)}
-                                 onDeleteContact={this.onDeleteContact.bind(this)}
-                                 onSaveContact={this.onSaveContact.bind(this)}/>
-                }
-              </CustomScrollbars>
+              <Row>
+                <Col md={12}>
+                  <PayeeName/>
+                  <AccountType/>
+                  <PayeeGroup/>
+                  <Status/>
+                </Col>
+                <Col md={12}>
+                  <Payments/>
+                  <Address/>
+                  <PayeeAmount/>
+                  <PayeeDate/>
+                </Col>
+              </Row>
+
             </div>
           </div>
         </div>
@@ -353,4 +358,4 @@ class Payment extends Component {
   }
 }
 
-export default Payment;
+export default Edit;
