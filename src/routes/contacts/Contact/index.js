@@ -7,7 +7,7 @@ import ContactList from "components/contacts/ContactList";
 import AppModuleHeader from "components/AppModuleHeader/index";
 import AddContact from "components/contacts/AddContact";
 import IntlMessages from "util/IntlMessages";
-import UploadClick from "../../../components/Upload/UploadClick";
+import UploadClick from "components/Upload/UploadClick";
 
 let contactId = 723812738;
 

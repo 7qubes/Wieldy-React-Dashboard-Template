@@ -2,8 +2,8 @@ import React, {Component} from "react";
 import {Button, Checkbox, Drawer, message, Col, Row} from "antd";
 import CustomScrollbars from "util/CustomScrollbars";
 
-import paymentList from "../data";
-import PaymentList from "components/billing/Payment";
+// import paymentList from "../data";
+// import PaymentList from "components/billing/Payment";
 import AppModuleHeader from "components/AppModuleHeader/index";
 import AddPayment from "components/billing/Payment/AddPayment";
 import PayeeName from "components/billing/Payment/PayeeName/index";
@@ -22,39 +22,24 @@ let contactId = 723812738;
 const filterOptions = [
   {
     id: 1,
-    name: 'All Payees',
-    icon: 'all-contacts'
+    name: '@username',
   }, {
     id: 2,
-    name: 'Frequently Paid',
-    icon: 'frequent'
+    name: '@username',
   }, {
     id: 3,
-    name: 'Alphabetical Order',
-    icon: 'star'
-  }, {
-    id: 4,
-    name: 'Last Paid',
-    icon: 'team'
-  }, {
-    id: 5,
-    name: 'Utilities Group',
-    icon: 'team'
-  }, {
-    id: 6,
-    name: 'Employees Group',
-    icon: 'team'
+    name: '@username',
   }
 ];
 
-class Edit extends Component {
+class SocialMedia extends Component {
 
   ContactSideBar = (user) => {
     return <div className="gx-module-side">
       <div className="gx-module-side-header">
         <div className="gx-module-logo">
           <i className="icon icon-compose gx-mr-4"/>
-          <span><IntlMessages id="chat.payee"/></span>
+          <span><IntlMessages id="chat.media"/></span>
         </div>
       </div>
 
@@ -64,7 +49,7 @@ class Edit extends Component {
             <Button className="gx-btn-block ant-btn" type="primary" aria-label="add"
                     onClick={this.onAddContact}>
               <i className="icon icon-add-circle gx-mr-1"/>
-              <span>Add New Payee</span>
+              <span>Add Account</span>
             </Button>
           </div>
           <div className="gx-module-side-nav">
@@ -74,7 +59,8 @@ class Edit extends Component {
                     className={`gx-link ${option.id === this.state.selectedSectionId ? 'active' : ''}`} onClick={
                     this.onFilterOptionSelect.bind(this, option)
                   }>
-                    <i className={`icon icon-${option.icon}`}/>
+                    {/*<i className={`icon icon-${option.icon}`}/>*/}
+                    <Checkbox/>
                     <span>{option.name}</span>
                   </span>
                 </li>
@@ -87,29 +73,29 @@ class Edit extends Component {
 
   };
 
-  onContactSelect = (data) => {
-    data.selected = !data.selected;
-    let selectedContacts = 0;
-    const paymentList = this.state.paymentList.map(contact => {
-        if (contact.selected) {
-          selectedContacts++;
-        }
-        if (contact.id === data.id) {
-          if (contact.selected) {
-            selectedContacts++;
-          }
-          return data;
-        } else {
-          return contact;
-        }
-      }
-    );
-    this.setState({
-      selectedContacts: selectedContacts,
-      paymentList: paymentList
-    });
-
-  };
+  // onContactSelect = (data) => {
+  //   data.selected = !data.selected;
+  //   let selectedContacts = 0;
+  //   const paymentList = this.state.paymentList.map(contact => {
+  //       if (contact.selected) {
+  //         selectedContacts++;
+  //       }
+  //       if (contact.id === data.id) {
+  //         if (contact.selected) {
+  //           selectedContacts++;
+  //         }
+  //         return data;
+  //       } else {
+  //         return contact;
+  //       }
+  //     }
+  //   );
+  //   this.setState({
+  //     selectedContacts: selectedContacts,
+  //     paymentList: paymentList
+  //   });
+  //
+  // };
 
   onAddContact = () => {
     this.setState({addPaymentState: true});
@@ -169,16 +155,16 @@ class Edit extends Component {
       paymentList: this.state.allContact.filter((contact) => contact.id !== data.id)
     })
   };
-  onDeleteSelectedContact = () => {
-    const contacts = this.state.allContact.filter((contact) => !contact.selected);
-    this.setState({
-      alertMessage: 'Contact Deleted Successfully',
-      showMessage: true,
-      allContact: contacts,
-      paymentList: contacts,
-      selectedContacts: 0
-    })
-  };
+  // onDeleteSelectedContact = () => {
+  //   const contacts = this.state.allContact.filter((contact) => !contact.selected);
+  //   this.setState({
+  //     alertMessage: 'Contact Deleted Successfully',
+  //     showMessage: true,
+  //     allContact: contacts,
+  //     paymentList: contacts,
+  //     selectedContacts: 0
+  //   })
+  // };
   filterContact = (userName) => {
     const {filterOption} = this.state;
     if (userName === '') {
@@ -245,22 +231,22 @@ class Edit extends Component {
       },
       searchUser: '',
       filterOption: 'All contacts',
-      allContact: paymentList,
-      paymentList: paymentList,
+      // allContact: paymentList,
+      // paymentList: paymentList,
       selectedContact: null,
       selectedContacts: 0,
       addPaymentState: false,
     }
   }
 
-  onAllContactSelect() {
-    const selectAll = this.state.selectedContacts < this.state.paymentList.length;
-    if (selectAll) {
-      this.getAllContact();
-    } else {
-      this.getUnselectedAllContact();
-    }
-  }
+  // onAllContactSelect() {
+  //   const selectAll = this.state.selectedContacts < this.state.paymentList.length;
+  //   if (selectAll) {
+  //     this.getAllContact();
+  //   } else {
+  //     this.getUnselectedAllContact();
+  //   }
+  // }
 
   updateContactUser(evt) {
     this.setState({
@@ -278,13 +264,13 @@ class Edit extends Component {
   render() {
     const {
       user,
-      paymentList,
+      // paymentList,
       addPaymentState,
       drawerState,
-      selectedContacts,
+      // selectedContacts,
       alertMessage,
       showMessage,
-      noPaymentFoundMessage
+      // noPaymentFoundMessage
     } = this.state;
 
     return (
@@ -310,28 +296,18 @@ class Edit extends Component {
                      onClick={this.onToggleDrawer.bind(this)}/>
               </span>
 
-              <AppModuleHeader placeholder="Search Payee history" notification={false} apps={false}
+              <AppModuleHeader placeholder="Search Social Media" notification={false} apps={false}
                                user={this.state.user}
                                onChange={this.updateContactUser.bind(this)}
                                value={this.state.searchUser}/>
             </div>
             <div className="gx-module-box-content">
               <div className="gx-module-box-topbar" style={{backgroundColor: '#6236FF'}}>
-                <h2 style={{color: '#ffffff'}}>All State</h2>
+                <span style={{color: '#ffffff'}}>@username</span>
               </div>
               <Row>
-                <Col md={12}>
-                  <PayeeName/>
-                  <AccountType/>
-                  <PayeeGroup/>
-                  <Status/>
-                </Col>
-                <Col md={12}>
-                  <Payments/>
-                  <Address/>
-                  <PayeeAmount/>
-                  <PayeeDate/>
-                </Col>
+                <span>Automation page</span>
+
               </Row>
 
             </div>
@@ -358,4 +334,4 @@ class Edit extends Component {
   }
 }
 
-export default Edit;
+export default SocialMedia;

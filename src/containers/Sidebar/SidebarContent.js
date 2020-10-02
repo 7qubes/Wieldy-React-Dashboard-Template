@@ -112,10 +112,24 @@ const SidebarContent = () => {
               </Menu.Item>
             </SubMenu>
 
-            <Menu.Item key="media">
-              <Link to="/media"><i className="icon icon-email"/><span><IntlMessages
-                id="sidebar.social.media"/></span></Link>
-            </Menu.Item>
+            <SubMenu key="media" popupClassName={getNavStyleSubMenuClass(navStyle)}
+                     title={
+                       <span><i className="icon icon-email"/><span>
+                         <IntlMessages id="sidebar.social.media"/></span></span>
+                     }>
+              <Menu.Item key="media/analytics">
+                <Link to="/media/analytics">
+                  <span><IntlMessages id="sidebar.social.analytics"/></span></Link>
+              </Menu.Item>
+              <Menu.Item key="media/scheduling">
+                <Link to="/media/scheduling">
+                  <span><IntlMessages id="sidebar.social.scheduling"/></span></Link>
+              </Menu.Item>
+              <Menu.Item key="media/automation">
+                <Link to="/media/automation">
+                  <span><IntlMessages id="sidebar.social.automation"/></span></Link>
+              </Menu.Item>
+            </SubMenu>
 
             <Menu.Item key="finance">
               <Link to="/finance"><i className="icon icon-chart-area"/><span><IntlMessages
