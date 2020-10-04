@@ -8,6 +8,7 @@ import ExtraComponents from "./extraComponents/index";
 import InBuiltApps from "./inBuiltApps/index";
 import asyncComponent from "util/asyncComponent";
 import SocialApps from "./socialApps/index";
+import SocialMedia from "./socialMedia/index";
 import Dashboard from "./dashboard/index";
 import Documents from "./documents/index";
 import Contacts from "./contacts"
@@ -23,6 +24,8 @@ const App = ({match}) => (
       <Route path={`${match.url}in-built-apps`} component={InBuiltApps}/>
       <Route path={`${match.url}social-apps`} component={SocialApps}/>
       <Route path={`${match.url}documents`} component={Documents}/>
+      <Route path={`${match.url}social-media`} component={SocialMedia}/>
+
     </Switch>
   </div>
 );

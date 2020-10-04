@@ -150,7 +150,7 @@ const SidebarContent = () => {
               </SubMenu>
 
               <Menu.Item key="media">
-                <Link to="/media"><i className="icon icon-email"/><span><IntlMessages
+                <Link to="/social-media/"><i className="icon icon-email"/><span><IntlMessages
                   id="sidebar.social.media"/></span></Link>
               </Menu.Item>
 
