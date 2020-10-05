@@ -10,7 +10,7 @@ const customPanelStyle = {
   overflow: 'hidden',
 };
 
-const url = `/billing/invoice/detail`;
+const url = `/billing/invoice`;
 
 const columns = [
   {
@@ -75,9 +75,15 @@ const data = [
     invoice: 'AllState',
     amount: 861334,
   },
+  {
+    key: '7',
+    date: '07/02/2020',
+    invoice: 'AllState',
+    amount: 861334,
+  },
 ];
 
-const InvoiceTable = () => {
+const DetailTable = () => {
   return (
     <Card>
       <Table className="gx-table-responsive" columns={columns} dataSource={data}/>
@@ -85,4 +91,4 @@ const InvoiceTable = () => {
   );
 };
 
-export default InvoiceTable;
+export default DetailTable;

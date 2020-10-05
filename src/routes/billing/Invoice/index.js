@@ -72,11 +72,6 @@ class Invoice extends Component {
 
   };
 
-  // onAddContact = () => {
-  //   return(
-  //     <Redirect to='/billing/invoice/send'/>
-  //   )
-  // };
   onContactClose = () => {
     this.setState({addContactState: false});
   };
@@ -158,10 +153,7 @@ class Invoice extends Component {
   render() {
     const {
       user,
-      addPaymentState,
       drawerState,
-      alertMessage,
-      showMessage,
     } = this.state;
 
     return (
@@ -196,21 +188,6 @@ class Invoice extends Component {
             </div>
           </div>
         </div>
-
-        {/*<AddContact open={addPaymentState} contact={{*/}
-        {/*  'id': contactId++,*/}
-        {/*  'name': '',*/}
-        {/*  'thumb': '',*/}
-        {/*  'email': '',*/}
-        {/*  'phone': '',*/}
-        {/*  'designation': '',*/}
-        {/*  'selected': false,*/}
-        {/*  'starred': false,*/}
-        {/*  'frequently': false,*/}
-        {/*}} onSaveContact={this.onSaveContact}*/}
-        {/*            onContactClose={this.onContactClose} onDeleteContact={this.onDeleteContact}/>*/}
-
-        {/*{showMessage && message.info(<span id="message-id">{alertMessage}</span>, 3, this.handleRequestClose)}*/}
       </div>
     )
   }
