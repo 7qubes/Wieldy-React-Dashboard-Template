@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Table, Form, Row, Col, Input, DatePicker} from "antd";
+import {Button, Table, Form, Row, Col, Input, Tooltip, DatePicker} from "antd";
 
 import Widget from "components/Widget/index";
 
@@ -55,7 +55,9 @@ const SendInvoice = () => {
   return (
     <Widget styleName="gx-ch-capitalize gx-card-sm-px" extra={
       <div className="gx-list-inline gx-ml-auto gx-mb-0 gx-text-grey">
-        <i className="icon icon-backtop"/>
+        <Tooltip title="Print">
+          <i className="icon icon-backtop"/>
+        </Tooltip>
       </div>
     } title={<h2 className="gx-text-capitalize gx-mb-0">
         Invoice Viewer</h2>
