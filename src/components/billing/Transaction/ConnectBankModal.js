@@ -1,7 +1,7 @@
 import React from "react";
 import {Avatar, Input, Modal} from "antd";
 import {NotificationContainer, NotificationManager} from "react-notifications";
-
+import BankSignInModal from "./BankSignInModal"
 import IntlMessages from "util/IntlMessages";
 
 class ConnectBankModal extends React.Component {
@@ -9,13 +9,22 @@ class ConnectBankModal extends React.Component {
     super(props);
     this.state = {
       name: this.props.name,
-      nickName: this.props.nickName
+      nickName: this.props.nickName,
+      showSignInModal: false
     }
   }
 
+  showSignInModal = () => {
+    this.setState({showSignInModal: true})
+  };
+
+  closeSignInModal = () => {
+    this.setState({showSignInModal: false})
+  };
+
   render() {
     const {open, onClose} = this.props;
-    // const {name, nickName} = this.state;
+    const {showSignInModal} = this.state;
 
     return (
       <Modal
@@ -40,13 +49,13 @@ class ConnectBankModal extends React.Component {
             </div>
             <div className="gx-form-group" style={{marginTop: '30px'}}>
               <p>Or Choose from Popular Banks</p>
-              <ul className="gx-list-inline gx-mb-3 gx-mb-lg-4">
+              <ul className="gx-list-inline gx-mb-3 gx-mb-lg-4" onClick={this.showSignInModal}>
                 <li><Avatar src={"https://via.placeholder.com/150"}/></li>
                 <li><Avatar src={"https://via.placeholder.com/150"}/></li>
                 <li><Avatar src={"https://via.placeholder.com/150"}/></li>
                 <li><Avatar className="gx-bg-primary gx-text-white">Ms</Avatar></li>
               </ul>
-
+              <BankSignInModal open={showSignInModal} onClose={this.closeSignInModal}/>
             </div>
           </div>
         </div>

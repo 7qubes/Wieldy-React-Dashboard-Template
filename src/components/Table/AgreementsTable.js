@@ -35,7 +35,7 @@ const columns = [
   {
     title: 'Status',
     key: 'status',
-    render: (text, record) => (
+    render: () => (
       <Collapse bordered={false} expandIconPosition='right'>
         <Panel header="Signed" style={customPanelStyle}>
           <p><icon className='icon icon-eye'/> View</p>

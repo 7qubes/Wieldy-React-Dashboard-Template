@@ -29,6 +29,15 @@ const columns = [
     title: 'External Link',
     dataIndex: 'link',
     key: 'link',
+    render: () => (
+      <Collapse bordered={false} expandIconPosition='right'>
+        <Panel header="External Link" style={customPanelStyle}>
+          <p className="gx-link">Link</p>
+          <p>Username: 123456789</p>
+          <p>Password: password</p>
+        </Panel>
+      </Collapse>
+    )
   }
 ];
 
@@ -45,13 +54,6 @@ const data = [
     date: '10/10/2020',
     startDate: '08/10/2020',
     clearedDate: '08/25/2020',
-    link: <Collapse bordered={false} expandIconPosition='right'>
-        <Panel header="External Link" style={customPanelStyle}>
-          <p>Link</p>
-          <p>Username: 123456789</p>
-          <p>Password: password</p>
-        </Panel>
-      </Collapse>
   },
   {
     key: '2',
@@ -59,13 +61,6 @@ const data = [
     date: '10/10/2020',
     startDate: '08/10/2020',
     clearedDate: '08/25/2020',
-    link: <Collapse bordered={false} expandIconPosition='right'>
-        <Panel header="External Link" style={customPanelStyle}>
-          <p>Link</p>
-          <p>Username: 123456789</p>
-          <p>Password: password</p>
-        </Panel>
-      </Collapse>
   }
 ];
 

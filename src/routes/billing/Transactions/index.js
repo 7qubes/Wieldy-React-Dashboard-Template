@@ -8,6 +8,7 @@ import BalanceHistory from "components/dashboard/BalanceHistory";
 import ToolTheDay from "components/Widgets/ToolTheDay";
 import TransactionsTable from "components/Table/TransactionsTable";
 import ConnectBank from "components/billing/Transaction/ConnectBank";
+import ManageCard from "../../../components/billing/Transaction/ManageCard";
 
 
 const Transactions = () => {
@@ -44,7 +45,7 @@ const Transactions = () => {
           <Row>
             <Col xl={6} lg={6} md={6} sm={24} xs={24} className="gx-order-sm-1">
               <ConnectBank/>
-              <ToolTheDay/>
+              <ManageCard/>
             </Col>
               <Col xl={18} lg={18} md={18} sm={24} xs={24} className="gx-order-sm-1">
                 <Row>

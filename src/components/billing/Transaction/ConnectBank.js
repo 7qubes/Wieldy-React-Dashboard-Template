@@ -19,7 +19,7 @@ class ConnectBank extends React.Component {
   render() {
     const {showEdit} = this.state;
     return (
-      <Widget styleName="gx-blue-cyan-gradient gx-text-white gx-card-1367-p">
+      <Widget styleName="gx-bg-orange gx-text-white gx-card-1367-p">
         <div onClick={this.showEdit}>
           <div className="gx-flex-row gx-justify-content-between gx-mb-2">
             <i className="icon icon-mail-open gx-fs-xxl gx-mr-2"/>

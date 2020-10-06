@@ -4,7 +4,7 @@ import CustomScrollbars from "util/CustomScrollbars";
 
 import AppModuleHeader from "components/AppModuleHeader/index";
 import IntlMessages from "util/IntlMessages";
-import UploadClick from "components/Upload/UploadClick";
+// import UploadClick from "components/Upload/UploadClick";
 
 let contactId = 723812738;
 
@@ -172,7 +172,6 @@ class Finance extends Component {
                 {/*<h2 style={{color: '#ffffff'}}>Standard Reports</h2>*/}
               </div>
               <Row>
-
 
               </Row>
             </div>
