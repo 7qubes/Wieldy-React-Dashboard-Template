@@ -313,6 +313,105 @@ class Automation extends Component {
                         )}
                     </Row>
                   </Card>
+                  <Card className="gx-card" title="Hashtags">
+                    <Row>
+                        {tags.map((tag, index) => {
+                          const isLongTag = tag.length > 20;
+                          const tagElem = (
+                            <Tag key={tag} color="#2db7f5" closable afterClose={() => this.handleClose(tag)}>
+                              {isLongTag ? `${tag.slice(0, 20)}...` : tag}
+                            </Tag>
+                          );
+                          return isLongTag ? <Tooltip title={tag} key={tag}>{tagElem}</Tooltip> : tagElem;
+                        })}
+                        {!inputVisible && (
+                          <Tag
+                            onClick={this.showInput}
+                            style={{background: '#fff', borderStyle: 'dashed'}}
+                          >
+                            <PlusOutlined /> New Tag
+                          </Tag>
+                        )}
+                        {inputVisible && (
+                          <Input
+                            ref={this.saveInputRef}
+                            type="text"
+                            size="small"
+                            style={{width: 78}}
+                            value={inputValue}
+                            onChange={this.handleInputChange}
+                            onBlur={this.handleInputConfirm}
+                            onPressEnter={this.handleInputConfirm}
+                          />
+                        )}
+                    </Row>
+                  </Card>
+                  <Card className="gx-card" title="Locations">
+                    <Row>
+                        {tags.map((tag, index) => {
+                          const isLongTag = tag.length > 20;
+                          const tagElem = (
+                            <Tag key={tag} color="#2db7f5" closable afterClose={() => this.handleClose(tag)}>
+                              {isLongTag ? `${tag.slice(0, 20)}...` : tag}
+                            </Tag>
+                          );
+                          return isLongTag ? <Tooltip title={tag} key={tag}>{tagElem}</Tooltip> : tagElem;
+                        })}
+                        {!inputVisible && (
+                          <Tag
+                            onClick={this.showInput}
+                            style={{background: '#fff', borderStyle: 'dashed'}}
+                          >
+                            <PlusOutlined /> New Tag
+                          </Tag>
+                        )}
+                        {inputVisible && (
+                          <Input
+                            ref={this.saveInputRef}
+                            type="text"
+                            size="small"
+                            style={{width: 78}}
+                            value={inputValue}
+                            onChange={this.handleInputChange}
+                            onBlur={this.handleInputConfirm}
+                            onPressEnter={this.handleInputConfirm}
+                          />
+                        )}
+                    </Row>
+                  </Card>
+                  <Card className="gx-card" title="Interests">
+                    <Row>
+                        {tags.map((tag, index) => {
+                          const isLongTag = tag.length > 20;
+                          const tagElem = (
+                            <Tag key={tag} color="#2db7f5" closable afterClose={() => this.handleClose(tag)}>
+                              {isLongTag ? `${tag.slice(0, 20)}...` : tag}
+                            </Tag>
+                          );
+                          return isLongTag ? <Tooltip title={tag} key={tag}>{tagElem}</Tooltip> : tagElem;
+                        })}
+                        {!inputVisible && (
+                          <Tag
+                            onClick={this.showInput}
+                            style={{background: '#fff', borderStyle: 'dashed'}}
+                          >
+                            <PlusOutlined /> New Tag
+                          </Tag>
+                        )}
+                        {inputVisible && (
+                          <Input
+                            ref={this.saveInputRef}
+                            type="text"
+                            size="small"
+                            style={{width: 78}}
+                            value={inputValue}
+                            onChange={this.handleInputChange}
+                            onBlur={this.handleInputConfirm}
+                            onPressEnter={this.handleInputConfirm}
+                          />
+                        )}
+                    </Row>
+                  </Card>
 
                 </Col>
               </Row>
