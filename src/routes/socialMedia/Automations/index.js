@@ -7,6 +7,7 @@ import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
 import PlusOutlined from "@ant-design/icons/lib/icons/PlusOutlined";
 import IntlMessages from "util/IntlMessages";
 import SchedulePost from "../../../components/SocialMedia/SchedulePost";
+import AddAccount from "../../../components/SocialMedia/AddAccount";
 
 let contactId = 723812738;
 
@@ -160,11 +161,6 @@ class Automation extends Component {
 
     }
   };
-  handleRequestClose = () => {
-    this.setState({
-      showMessage: false,
-    });
-  };
 
   constructor() {
     super();
@@ -185,41 +181,9 @@ class Automation extends Component {
       selectedContacts: 0,
       addAccount: false,
       schedulePost: false,
-      inputVisible: false,
-      inputValue: '',
-      tags: ['@taylorfun', '@taylorfun', '@taylorfun',],
     }
   }
 
-  handleClose = (removedTag) => {
-    const tags = this.state.tags.filter(tag => tag !== removedTag);
-    console.log(tags);
-    this.setState({tags});
-  };
-
-  showInput = () => {
-    this.setState({inputVisible: true}, () => this.input.focus());
-  };
-
-  handleInputChange = (e) => {
-    this.setState({inputValue: e.target.value});
-  };
-
-  handleInputConfirm = () => {
-    const inputValue = this.state.inputValue;
-    let tags = this.state.tags;
-    if (inputValue && tags.indexOf(inputValue) === -1) {
-      tags = [...tags, inputValue];
-    }
-    console.log(tags);
-    this.setState({
-      tags,
-      inputVisible: false,
-      inputValue: '',
-    });
-  };
-
-  saveInputRef = input => this.input = input;
 
   updateContactUser(evt) {
     this.setState({
@@ -280,139 +244,10 @@ class Automation extends Component {
               </div>
               <Row>
                 <Col md={24}>
-                  <Card className="gx-card" title="Similar accounts">
-                    <Row>
-                        {tags.map((tag, index) => {
-                          const isLongTag = tag.length > 20;
-                          const tagElem = (
-                            <Tag key={tag} color="#2db7f5" closable afterClose={() => this.handleClose(tag)}>
-                              {isLongTag ? `${tag.slice(0, 20)}...` : tag}
-                            </Tag>
-                          );
-                          return isLongTag ? <Tooltip title={tag} key={tag}>{tagElem}</Tooltip> : tagElem;
-                        })}
-                        {!inputVisible && (
-                          <Tag
-                            onClick={this.showInput}
-                            style={{background: '#fff', borderStyle: 'dashed'}}
-                          >
-                            <PlusOutlined /> New Tag
-                          </Tag>
-                        )}
-                        {inputVisible && (
-                          <Input
-                            ref={this.saveInputRef}
-                            type="text"
-                            size="small"
-                            style={{width: 78}}
-                            value={inputValue}
-                            onChange={this.handleInputChange}
-                            onBlur={this.handleInputConfirm}
-                            onPressEnter={this.handleInputConfirm}
-                          />
-                        )}
-                    </Row>
-                  </Card>
-                  <Card className="gx-card" title="Hashtags">
-                    <Row>
-                        {tags.map((tag, index) => {
-                          const isLongTag = tag.length > 20;
-                          const tagElem = (
-                            <Tag key={tag} color="#2db7f5" closable afterClose={() => this.handleClose(tag)}>
-                              {isLongTag ? `${tag.slice(0, 20)}...` : tag}
-                            </Tag>
-                          );
-                          return isLongTag ? <Tooltip title={tag} key={tag}>{tagElem}</Tooltip> : tagElem;
-                        })}
-                        {!inputVisible && (
-                          <Tag
-                            onClick={this.showInput}
-                            style={{background: '#fff', borderStyle: 'dashed'}}
-                          >
-                            <PlusOutlined /> New Tag
-                          </Tag>
-                        )}
-                        {inputVisible && (
-                          <Input
-                            ref={this.saveInputRef}
-                            type="text"
-                            size="small"
-                            style={{width: 78}}
-                            value={inputValue}
-                            onChange={this.handleInputChange}
-                            onBlur={this.handleInputConfirm}
-                            onPressEnter={this.handleInputConfirm}
-                          />
-                        )}
-                    </Row>
-                  </Card>
-                  <Card className="gx-card" title="Locations">
-                    <Row>
-                        {tags.map((tag, index) => {
-                          const isLongTag = tag.length > 20;
-                          const tagElem = (
-                            <Tag key={tag} color="#2db7f5" closable afterClose={() => this.handleClose(tag)}>
-                              {isLongTag ? `${tag.slice(0, 20)}...` : tag}
-                            </Tag>
-                          );
-                          return isLongTag ? <Tooltip title={tag} key={tag}>{tagElem}</Tooltip> : tagElem;
-                        })}
-                        {!inputVisible && (
-                          <Tag
-                            onClick={this.showInput}
-                            style={{background: '#fff', borderStyle: 'dashed'}}
-                          >
-                            <PlusOutlined /> New Tag
-                          </Tag>
-                        )}
-                        {inputVisible && (
-                          <Input
-                            ref={this.saveInputRef}
-                            type="text"
-                            size="small"
-                            style={{width: 78}}
-                            value={inputValue}
-                            onChange={this.handleInputChange}
-                            onBlur={this.handleInputConfirm}
-                            onPressEnter={this.handleInputConfirm}
-                          />
-                        )}
-                    </Row>
-                  </Card>
-                  <Card className="gx-card" title="Interests">
-                    <Row>
-                        {tags.map((tag, index) => {
-                          const isLongTag = tag.length > 20;
-                          const tagElem = (
-                            <Tag key={tag} color="#2db7f5" closable afterClose={() => this.handleClose(tag)}>
-                              {isLongTag ? `${tag.slice(0, 20)}...` : tag}
-                            </Tag>
-                          );
-                          return isLongTag ? <Tooltip title={tag} key={tag}>{tagElem}</Tooltip> : tagElem;
-                        })}
-                        {!inputVisible && (
-                          <Tag
-                            onClick={this.showInput}
-                            style={{background: '#fff', borderStyle: 'dashed'}}
-                          >
-                            <PlusOutlined /> New Tag
-                          </Tag>
-                        )}
-                        {inputVisible && (
-                          <Input
-                            ref={this.saveInputRef}
-                            type="text"
-                            size="small"
-                            style={{width: 78}}
-                            value={inputValue}
-                            onChange={this.handleInputChange}
-                            onBlur={this.handleInputConfirm}
-                            onPressEnter={this.handleInputConfirm}
-                          />
-                        )}
-                    </Row>
-                  </Card>
-
+                  <AddAccount title="Similar Accounts"/>
+                  <AddAccount title="Hashtags"/>
+                  <AddAccount title="Locations"/>
+                  <AddAccount title="Interests"/>
                 </Col>
               </Row>
             </div>
