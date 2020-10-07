@@ -2,7 +2,8 @@ import React from "react";
 import {Avatar, Input, Modal} from "antd";
 import {NotificationContainer, NotificationManager} from "react-notifications";
 import BankSignInModal from "./BankSignInModal"
-import IntlMessages from "util/IntlMessages";
+
+const Search = Input.Search;
 
 class ConnectBankModal extends React.Component {
   constructor(props) {
@@ -40,12 +41,7 @@ class ConnectBankModal extends React.Component {
           <div className="gx-modal-box-form-item">
             <div className="gx-form-group">
               <p>Enter Bank URL</p>
-              <Input
-                required
-                placeholder="Enter Bank URL"
-                // onChange={(event) => this.setState({name: event.target.value})}
-                // defaultValue={name}
-                margin="none"/>
+              <Search placeholder="Enter Bank URL" enterButton="Search" size="large"/>
             </div>
             <div className="gx-form-group" style={{marginTop: '30px'}}>
               <p>Or Choose from Popular Banks</p>

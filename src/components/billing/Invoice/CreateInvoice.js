@@ -1,8 +1,8 @@
 import React from "react";
-import {Button, Form, Row, Col, Input, DatePicker} from "antd";
-
+import {Form, Row, Col, Input, DatePicker} from "antd";
 import Widget from "components/Widget/index";
 
+const Search = Input.Search;
 
 const CreateInvoice = () => {
   return (
@@ -11,7 +11,7 @@ const CreateInvoice = () => {
       <Form className="gx-form-row0 gx-mb-0">
         <div className="gx-mb-3">
           <Col md={24}>
-            <Input placeholder="Enter a company name or SIREN"/>
+            <Search placeholder="Enter a company name or SIREN" enterButton="Search" size="large"/>
           </Col>
         </div>
         <Row>
@@ -89,9 +89,6 @@ const CreateInvoice = () => {
             <p>Tax Total: $480</p>
             <h2>Total: $14500</h2>
           </Col>
-          {/*<Col md={24} className="gx-text-right">*/}
-          {/*  */}
-          {/*</Col>*/}
         </Row>
       </Form>
     </Widget>
