@@ -1,23 +1,21 @@
 import React, {Component} from "react";
-import {Button, Checkbox, Drawer, message, Col, Row} from "antd";
+import {Button, Checkbox, Drawer, message, Card, Col, Select, Row, Avatar} from "antd";
 import CustomScrollbars from "util/CustomScrollbars";
-
-// import paymentList from "../data";
-// import PaymentList from "components/billing/Payment";
 import AppModuleHeader from "components/AppModuleHeader/index";
-import AddPayment from "components/billing/Payment/AddPayment";
-import PayeeName from "components/billing/Payment/PayeeName/index";
-import AccountType from "components/billing/Payment/AccountType/index";
-import PayeeGroup from "components/billing/Payment/PayeeGroup/index";
-import Status from "components/billing/Payment/Status/index";
-import Payments from "components/billing/Payment/Payments/index";
-import Address from "components/billing/Payment/Address/index";
-import PayeeDate from "components/billing/Payment/PayeeDate/index";
-import PayeeAmount from "components/billing/Payment/PayeeAmount/index";
-// import Payee from "components/billing/Payment/Payee/index";
+import AddSocialAccount from "components/SocialMedia/AddSocialAccount"
+import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
+// import AddPayment from "components/billing/Payment/AddPayment";
 import IntlMessages from "util/IntlMessages";
+import SchedulePost from "../../../components/SocialMedia/SchedulePost";
+import {Calendar, momentLocalizer} from 'react-big-calendar'
+import moment from 'moment'
+
+import events from "./events";
+
+const localizer = momentLocalizer(moment);
 
 let contactId = 723812738;
+const Option = Select.Option;
 
 const filterOptions = [
   {
@@ -32,7 +30,7 @@ const filterOptions = [
   }
 ];
 
-class SocialMedia extends Component {
+class PostSchedule extends Component {
 
   ContactSideBar = (user) => {
     return <div className="gx-module-side">
@@ -47,9 +45,9 @@ class SocialMedia extends Component {
         <CustomScrollbars className="gx-module-side-scroll">
           <div className="gx-module-add-task">
             <Button className="gx-btn-block ant-btn" type="primary" aria-label="add"
-                    onClick={this.onAddContact}>
+                    onClick={this.onShowSchedulePost}>
               <i className="icon icon-add-circle gx-mr-1"/>
-              <span>Add Account</span>
+              <span>Schedule a Post</span>
             </Button>
           </div>
           <div className="gx-module-side-nav">
@@ -59,13 +57,20 @@ class SocialMedia extends Component {
                     className={`gx-link ${option.id === this.state.selectedSectionId ? 'active' : ''}`} onClick={
                     this.onFilterOptionSelect.bind(this, option)
                   }>
-                    {/*<i className={`icon icon-${option.icon}`}/>*/}
-                    <Checkbox/>
-                    <span>{option.name}</span>
+                    <Checkbox className="gx-icon-btn"/>
+                    <Avatar className="gx-mr-2" shape="square" size="small" icon={<UserOutlined />}/>
+                    <span className="gx-contact-name">{option.name}</span>
                   </span>
                 </li>
               )}
             </ul>
+          </div>
+          <div className="gx-module-add-task">
+            <Button className="gx-btn-block ant-btn" aria-label="add"
+                    onClick={this.onAddAccount}>
+              <i className="icon icon-add-circle gx-mr-1"/>
+              <span>Add account</span>
+            </Button>
           </div>
         </CustomScrollbars>
       </div>
@@ -73,36 +78,20 @@ class SocialMedia extends Component {
 
   };
 
-  // onContactSelect = (data) => {
-  //   data.selected = !data.selected;
-  //   let selectedContacts = 0;
-  //   const paymentList = this.state.paymentList.map(contact => {
-  //       if (contact.selected) {
-  //         selectedContacts++;
-  //       }
-  //       if (contact.id === data.id) {
-  //         if (contact.selected) {
-  //           selectedContacts++;
-  //         }
-  //         return data;
-  //       } else {
-  //         return contact;
-  //       }
-  //     }
-  //   );
-  //   this.setState({
-  //     selectedContacts: selectedContacts,
-  //     paymentList: paymentList
-  //   });
-  //
-  // };
+  onAddAccount = () => {
+    this.setState({addAccount: true});
+  };
+  onClose = () => {
+    this.setState({addAccount: false});
+  };
 
-  onAddContact = () => {
-    this.setState({addPaymentState: true});
+  onShowSchedulePost = () => {
+    this.setState({schedulePost: true});
   };
-  onContactClose = () => {
-    this.setState({addPaymentState: false});
+  onCloseSchedulePost = () => {
+    this.setState({schedulePost: false});
   };
+
   onFilterOptionSelect = (option) => {
     switch (option.name) {
       case 'All Payees': {
@@ -155,16 +144,6 @@ class SocialMedia extends Component {
       paymentList: this.state.allContact.filter((contact) => contact.id !== data.id)
     })
   };
-  // onDeleteSelectedContact = () => {
-  //   const contacts = this.state.allContact.filter((contact) => !contact.selected);
-  //   this.setState({
-  //     alertMessage: 'Contact Deleted Successfully',
-  //     showMessage: true,
-  //     allContact: contacts,
-  //     paymentList: contacts,
-  //     selectedContacts: 0
-  //   })
-  // };
   filterContact = (userName) => {
     const {filterOption} = this.state;
     if (userName === '') {
@@ -193,28 +172,6 @@ class SocialMedia extends Component {
       showMessage: false,
     });
   };
-  getAllContact = () => {
-    let paymentList = this.state.allContact.map((contact) => contact ? {
-      ...contact,
-      selected: true
-    } : contact);
-    this.setState({
-      selectedContacts: paymentList.length,
-      allContact: paymentList,
-      paymentList: paymentList
-    });
-  };
-  getUnselectedAllContact = () => {
-    let paymentList = this.state.allContact.map((contact) => contact ? {
-      ...contact,
-      selected: false
-    } : contact);
-    this.setState({
-      selectedContacts: 0,
-      allContact: paymentList,
-      paymentList: paymentList
-    });
-  };
 
   constructor() {
     super();
@@ -231,22 +188,12 @@ class SocialMedia extends Component {
       },
       searchUser: '',
       filterOption: 'All contacts',
-      // allContact: paymentList,
-      // paymentList: paymentList,
       selectedContact: null,
       selectedContacts: 0,
-      addPaymentState: false,
+      addAccount: false,
+      schedulePost: false
     }
   }
-
-  // onAllContactSelect() {
-  //   const selectAll = this.state.selectedContacts < this.state.paymentList.length;
-  //   if (selectAll) {
-  //     this.getAllContact();
-  //   } else {
-  //     this.getUnselectedAllContact();
-  //   }
-  // }
 
   updateContactUser(evt) {
     this.setState({
@@ -264,13 +211,9 @@ class SocialMedia extends Component {
   render() {
     const {
       user,
-      // paymentList,
-      addPaymentState,
       drawerState,
-      // selectedContacts,
-      alertMessage,
-      showMessage,
-      // noPaymentFoundMessage
+      addAccount,
+      schedulePost
     } = this.state;
 
     return (
@@ -303,35 +246,42 @@ class SocialMedia extends Component {
             </div>
             <div className="gx-module-box-content">
               <div className="gx-module-box-topbar" style={{backgroundColor: '#6236FF'}}>
-                <span style={{color: '#ffffff'}}>@username</span>
+                <Avatar className="gx-mr-2" size="large" icon={<UserOutlined />}/>
+                <span className="gx-contact-name" style={{color: '#ffffff'}}> @username</span>
               </div>
               <Row>
-                <span>Post Scheduling page</span>
-
+                <Col md={24}>
+                  <Card className="gx-card">
+                    <div className="gx-main-content">
+                      <div className="gx-rbc-calendar">
+                        <Calendar
+                          localizer={localizer}
+                          selectable
+                          events={events}
+                          defaultView='week'
+                          scrollToTime={new Date(1970, 1, 1, 6)}
+                          defaultDate={new Date(2015, 3, 12)}
+                          onSelectEvent={event => alert(event.title)}
+                          onSelectSlot={(slotInfo) => alert(
+                            `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +
+                            `\nend: ${slotInfo.end.toLocaleString()}` +
+                            `\naction: ${slotInfo.action}`
+                          )}
+                        />
+                      </div>
+                    </div>
+                  </Card>
+                </Col>
               </Row>
-
             </div>
           </div>
         </div>
 
-        <AddPayment open={addPaymentState} contact={{
-          'id': contactId++,
-          'name': '',
-          'thumb': '',
-          'nickName': '',
-          'email': '',
-          'phone': '',
-          'designation': '',
-          'selected': false,
-          'starred': false,
-          'frequently': false,
-        }} onSaveContact={this.onSaveContact}
-                    onContactClose={this.onContactClose} onDeleteContact={this.onDeleteContact}/>
-
-        {showMessage && message.info(<span id="message-id">{alertMessage}</span>, 3, this.handleRequestClose)}
+        <AddSocialAccount open={addAccount} onClose={this.onClose}/>
+        <SchedulePost open={schedulePost} onClose={this.onCloseSchedulePost}/>
       </div>
     )
   }
 }
 
-export default SocialMedia;
+export default PostSchedule;
