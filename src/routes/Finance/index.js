@@ -1,13 +1,14 @@
 import React, {Component} from "react";
-import {Button, Drawer, Row} from "antd";
+import {Button, Col, Card, Drawer, Row, Select} from "antd";
 import CustomScrollbars from "util/CustomScrollbars";
 
 import AppModuleHeader from "components/AppModuleHeader/index";
 import IntlMessages from "util/IntlMessages";
+import FollowerGraph from "../../components/SocialMedia/FollowerGraph";
 // import UploadClick from "components/Upload/UploadClick";
 
 let contactId = 723812738;
-
+const Option = Select.Option;
 const filterOptions = [
   {
     id: 1,
@@ -168,9 +169,27 @@ class Finance extends Component {
                                value={this.state.searchUser}/>
             </div>
             <div className="gx-module-box-content">
-              <div className="gx-module-box-topbar" style={{backgroundColor: '#6236FF'}}>
-                {/*<h2 style={{color: '#ffffff'}}>Standard Reports</h2>*/}
-              </div>
+              {/*<div className="gx-module-box-topbar" style={{backgroundColor: '#6236FF'}}>*/}
+              {/*  <h2 style={{color: '#ffffff'}}>Standard Reports</h2>*/}
+              {/*</div>*/}
+              <Row>
+                <Col md={18}>
+                    <Select className="gx-mr-3 gx-mb-3" defaultValue="Portfolio" style={{width: 300}}>
+                      <Option value="portfolio">Portfolio</Option>
+                      <Option value="sales">Sales</Option>
+                      <Option value="table">Cap table</Option>
+                    </Select>
+                    <Button size="small" className="gx-btn-outline-primary">7 Days</Button>
+                    <Button size="small" className="gx-btn-outline-primary">1 Month</Button>
+                    <Button size="small" className="gx-btn-outline-primary">3 Months</Button>
+                  <Card className="gx-card" title="Performance">
+                    <FollowerGraph/>
+                  </Card>
+                </Col>
+                <Col md={6}>
+
+                </Col>
+              </Row>
               <Row>
 
               </Row>

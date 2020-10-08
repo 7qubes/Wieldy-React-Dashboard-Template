@@ -1,10 +1,12 @@
 import React, {Component} from "react";
-import {Drawer, Row} from "antd";
+import {Card, Drawer, Col, Row} from "antd";
 import CustomScrollbars from "util/CustomScrollbars";
 
 import AppModuleHeader from "components/AppModuleHeader/index";
 import IntlMessages from "util/IntlMessages";
 import UploadClick from "components/Upload/UploadClick";
+import FollowerGraph from "../../components/SocialMedia/FollowerGraph";
+import ReportBarChart from "../../components/Report/ReportBarChart";
 
 let contactId = 723812738;
 
@@ -106,9 +108,6 @@ class Reports extends Component {
         avatar: "https://via.placeholder.com/150"
       },
       searchUser: '',
-      // filterOption: 'All contacts',
-      // allContact: paymentList,
-      // paymentList: paymentList,
       selectedContact: null,
       selectedContacts: 0,
     }
@@ -166,8 +165,14 @@ class Reports extends Component {
                 <h2 style={{color: '#ffffff'}}>Standard Reports</h2>
               </div>
               <Row>
-
-
+                <Col md={24}>
+                  <Card className="gx-card" title="Simple with Gradient">
+                    <FollowerGraph/>
+                  </Card>
+                  <Card className="gx-card" title="Gradient Bar Chart">
+                    <ReportBarChart/>
+                  </Card>
+                </Col>
               </Row>
             </div>
           </div>
