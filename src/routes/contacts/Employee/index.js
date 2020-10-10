@@ -2,7 +2,7 @@ import React from "react";
 import {Avatar, Button, Col, Row, Tabs} from "antd";
 import About from "../../../components/profile/employee/About/index";
 import Events from "../../../components/profile/employee/Events/index";
-import Emergency from "../../../components/profile/employee/Emergency";
+// import Emergency from "../../../components/profile/employee/Emergency";
 import Contact from "../../../components/profile/employee/Contact/index";
 import Agreements from "../../../components/profile/employee/Agreements";
 import Training from "../../../components/profile/employee/Training";
@@ -11,8 +11,8 @@ import Performance from "../../../components/profile/employee/Performance";
 import {friendList} from './data'
 import Friends from "../../../components/profile/employee/Friends/index";
 import Auxiliary from "../../../util/Auxiliary";
-import PersonalInformation from "../../../components/profile/emergency/PersonalInformation"
-import MedicalInformation from "../../../components/profile/emergency/MedicalInformation"
+// import PersonalInformation from "../../../components/profile/emergency/PersonalInformation"
+// import MedicalInformation from "../../../components/profile/emergency/MedicalInformation"
 import AgreementsTable from "../../../components/Table/AgreementsTable";
 import TrainingTable from "../../../components/Table/TrainingTable";
 import PerformanceTable from "../../../components/Table/PerformanceTable";
@@ -101,7 +101,7 @@ class Profile extends React.Component {
                       <Events/>
                     </Col>
                     <Col xl={8} lg={10} md={10} sm={24} xs={24}>
-                      <Emergency/>
+                      {/* <Emergency/> */}
                     </Col>
                   </Row>
                   <Row>
@@ -130,13 +130,13 @@ class Profile extends React.Component {
             <TabPane tab="Emergency" key="2">
               <Row>
                 <Col xl={16} lg={16} md={16} sm={24} xs={24}>
-                  <PersonalInformation/>
+                  {/* <PersonalInformation/> */}
                 </Col>
                 <Col xl={8} lg={8} md={8} sm={24} xs={24}>
-                  <Emergency/>
+                  {/* <Emergency/> */}
                 </Col>
                 <Col xl={24} lg={24} md={24} sm={24} xs={24}>
-                  <MedicalInformation/>
+                  {/* <MedicalInformation/> */}
                 </Col>
               </Row>
             </TabPane>
