@@ -8267,7 +8267,7 @@ textarea.ant-picker-input > input {
 }
 .ant-form-item-control-input-content {
   flex: auto;
-  max-width: 100%;
+  max-width: 98%;
 }
 .ant-form-item-explain,
 .ant-form-item-extra {
@@ -36656,7 +36656,7 @@ textarea.gx-chat-textarea {
   padding-bottom: 88px;
   margin: -32px;
   margin-bottom: -58px;
-  background-color: #003366;
+  background-color: #6236FF;
   color: #ffffff;
   position: relative;
 }
@@ -36759,6 +36759,7 @@ textarea.gx-chat-textarea {
 @media (max-width: 575px) {
   .gx-profile-banner-top-right {
     margin-left: 0;
+    margin-top: 30px;
   }
 }
 .gx-profile-banner-bottom {

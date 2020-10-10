@@ -8267,7 +8267,7 @@ textarea.ant-picker-input > input {
 }
 .ant-form-item-control-input-content {
   flex: auto;
-  max-width: 100%;
+  max-width: 98%;
 }
 .ant-form-item-explain,
 .ant-form-item-extra {

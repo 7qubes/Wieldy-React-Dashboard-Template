@@ -1,0 +1,64 @@
+import React from "react";
+import {Avatar, Input, Modal} from "antd";
+import {NotificationContainer, NotificationManager} from "react-notifications";
+import BankSignInModal from "./BankSignInModal"
+
+const Search = Input.Search;
+
+class ConnectBankModal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: this.props.name,
+      nickName: this.props.nickName,
+      showSignInModal: false
+    }
+  }
+
+  showSignInModal = () => {
+    this.setState({showSignInModal: true})
+  };
+
+  closeSignInModal = () => {
+    this.setState({showSignInModal: false})
+  };
+
+  render() {
+    const {open, onClose} = this.props;
+    const {showSignInModal} = this.state;
+
+    return (
+      <Modal
+        // style={{backgroundColor: '#6236FF'}}
+        title={<h2>Connect Bank</h2>}
+        visible={open}
+        onCancel={onClose}
+        onOk={onClose}
+        footer={null}
+        >
+        {/*<Modal.Header>Connect Bank</Modal.Header>*/}
+        <div className="gx-modal-box-row">
+          <div className="gx-modal-box-form-item">
+            <div className="gx-form-group">
+              <p>Enter Bank URL</p>
+              <Search placeholder="Enter Bank URL" enterButton="Search" size="large"/>
+            </div>
+            <div className="gx-form-group" style={{marginTop: '30px'}}>
+              <p>Or Choose from Popular Banks</p>
+              <ul className="gx-list-inline gx-mb-3 gx-mb-lg-4" onClick={this.showSignInModal}>
+                <li><Avatar src={"https://via.placeholder.com/150"}/></li>
+                <li><Avatar src={"https://via.placeholder.com/150"}/></li>
+                <li><Avatar src={"https://via.placeholder.com/150"}/></li>
+                <li><Avatar className="gx-bg-primary gx-text-white">Ms</Avatar></li>
+              </ul>
+              <BankSignInModal open={showSignInModal} onClose={this.closeSignInModal}/>
+            </div>
+          </div>
+        </div>
+        <NotificationContainer/>
+      </Modal>
+    );
+  }
+}
+
+export default ConnectBankModal;
