@@ -2,6 +2,7 @@ import React from "react";
 import {Col, Form, Row, Upload, Button, TimePicker, DatePicker, message, Input, Modal} from "antd";
 import {NotificationContainer, NotificationManager} from "react-notifications";
 import {LoadingOutlined,PlusOutlined} from "@ant-design/icons";
+import moment from 'moment'
 
 const FormItem = Form.Item;
 const {TextArea} = Input;
@@ -31,8 +32,13 @@ class SchedulePost extends React.Component {
 
   state = {
     loading: false,
+    selectedTime : this.props.selectedTime?this.props.selectedTime:new Date()
   };
+  onChange=(e)=>{
+    console.log(e)
+  }
   handleChange = (info) => {
+    console.log(info.file)
     if (info.file.status === 'uploading') {
       this.setState({loading: true});
       return;
@@ -41,10 +47,23 @@ class SchedulePost extends React.Component {
       // Get this url from response in real world.
       getBase64(info.file.originFileObj, imageUrl => this.setState({
         imageUrl,
+        filename:info.file.originFileObj.name,
         loading: false,
       }));
     }
   };
+  onSubmit=()=>{
+    if( !this.state.text && !this.state.file)
+      return 
+    this.props.onOk({
+      'file':this.state.imageUrl.split(',')[1],
+      'filename':this.state.filename,
+      'user_id':123,
+      'text':this.state.text+" "+this.state.hashtag,
+      'medium':[1],
+      'sch_dt':this.props.selectedTime?this.props.selectedTime:new Date().toISOString()
+  })
+  }
 
 
   render() {
@@ -61,17 +80,18 @@ class SchedulePost extends React.Component {
       <Modal
         // style={{backgroundColor: '#6236FF'}}
         title={
-            <h2>@username</h2>
+            <h2>{this.props.name}</h2>
         }
         visible={open}
         onCancel={onClose}
-        onOk={onClose}
         footer={[
           <div>
-          <Button>Discard</Button>
-          <DatePicker className="gx-mb-3"/>
-          <TimePicker value={this.state.value} onChange={this.onChange} style={{marginLeft: '5px'}}/>
-          <Button type="primary" style={{marginLeft: '5px'}}>Schedule Post</Button>
+          <Button  onClick={onClose} >Discard</Button>
+          <DatePicker value={moment(this.state.selectedTime)} className="gx-mb-3"/>
+          <TimePicker value={moment(this.state.selectedTime)} onChange={(e)=>this.onChange(e)} style={{marginLeft: '5px'}}
+           format={'HH:mm'}
+          />
+          <Button onClick={this.onSubmit} type="primary" style={{marginLeft: '5px'}}>Schedule Post</Button>
             </div>
         ]}
         >
@@ -95,8 +115,8 @@ class SchedulePost extends React.Component {
               </div>
               </Col>
               <Col md={18}>
-                <TextArea className="ant-card" placeholder="Write Captions here..." rows={3}/>
-                <TextArea className="ant-card" placeholder="Hashtags" rows={2}/>
+                <TextArea className="ant-card"  onChange={(e)=>{this.setState({'text':e.target.value})} } placeholder="Write Captions here..." rows={3}/>
+                <TextArea className="ant-card"  onChange={(e)=>{this.setState({'hashtag':e.target.value})}} placeholder="Add Hashtags separated by a space" rows={2}/>
                 <Input placeholder="Location"/>
               </Col>
             </Row>
