@@ -5,7 +5,7 @@ import Auxiliary from "util/Auxiliary";
 import IntlMessages from "util/IntlMessages";
 import AppModuleHeader from "components/AppModuleHeader/index";
 import BalanceHistory from "components/dashboard/BalanceHistory";
-import ToolTheDay from "components/Widgets/ToolTheDay";
+// import ToolTheDay from "components/Widgets/ToolTheDay";
 import TransactionsTable from "components/Table/TransactionsTable";
 import ConnectBank from "components/billing/Transaction/ConnectBank";
 import ManageCard from "../../../components/billing/Transaction/ManageCard";
