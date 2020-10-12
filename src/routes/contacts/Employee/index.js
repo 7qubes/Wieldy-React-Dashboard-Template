@@ -85,13 +85,25 @@ class Profile extends React.Component {
                     </span>
                     <span className="gx-fs-sm">Equipment</span>
                   </li>
+                  <li>
+                    <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">
+                      <i className="icon icon-setting"/>
+                    </span>
+                    <span className="gx-fs-sm">Setting</span>
+                  </li>
                 </ul>
               </div>
             </div>
+            {/*<div className="gx-profile-banner-bottom">*/}
+            {/*  <span className="gx-link gx-profile-setting">*/}
+            {/*    <i className="icon icon-setting gx-fs-lg gx-mr-2 gx-mr-sm-3 gx-d-inline-flex gx-vertical-align-middle"/>*/}
+            {/*    <span className="gx-d-inline-flex gx-vertical-align-middle gx-ml-1 gx-ml-sm-0">Setting</span>*/}
+            {/*  </span>*/}
+            {/*</div>*/}
           </div>
         </div>
         <div className="gx-profile-content">
-          <Tabs defaultActiveKey="1" style={{fontColor: '#ffffff'}}>
+          <Tabs defaultActiveKey="1" style={{color: '#ffffff'}}>
             <TabPane tab="General" key="1">
               <Row>
                 <Col xl={16} lg={14} md={14} sm={24} xs={24}>
