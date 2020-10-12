@@ -9,7 +9,7 @@ import Communications from "./communications";
 import SocialMedia from "./socialMedia";
 import Finance from "./Finance";
 import Inventories from "./Inventories"
-import Reports from "./Report"
+import Reports from "./reports"
 
 const App = ({match}) => (
   <div className="gx-main-content-wrapper">

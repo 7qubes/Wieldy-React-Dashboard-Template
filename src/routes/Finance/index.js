@@ -5,6 +5,8 @@ import CustomScrollbars from "util/CustomScrollbars";
 import AppModuleHeader from "components/AppModuleHeader/index";
 import IntlMessages from "util/IntlMessages";
 import FollowerGraph from "../../components/SocialMedia/FollowerGraph";
+import DataTable from "../../components/Finance/DataTable";
+import CollapsePanel from "../../components/Finance/CollapsePanel";
 // import UploadClick from "components/Upload/UploadClick";
 
 let contactId = 723812738;
@@ -185,8 +187,15 @@ class Finance extends Component {
                   <Card className="gx-card" title="Performance">
                     <FollowerGraph/>
                   </Card>
+                  <DataTable/>
                 </Col>
                 <Col md={6}>
+                  <Card className="gx-card">
+                    <CollapsePanel header="Holdings 15,000" color='#419EF9'/>
+                    <CollapsePanel header="Invest 15,000" color='#419EF9'/>
+                    <CollapsePanel header="Credit 15,000" color='#419EF9'/>
+                    <CollapsePanel header="Expenses -100" color='#F33620'/>
+                  </Card>
 
                 </Col>
               </Row>
