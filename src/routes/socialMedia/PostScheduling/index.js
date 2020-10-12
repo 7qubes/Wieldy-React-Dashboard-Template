@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Button, Checkbox, Drawer, message, Card, Col, Select, Row, Avatar, Radio} from "antd";
+import {Button, Checkbox, Drawer, message, Card, Col, Select, Row, Avatar, notification } from "antd";
 import CustomScrollbars from "util/CustomScrollbars";
 import AppModuleHeader from "components/AppModuleHeader/index";
 import AddSocialAccount from "components/SocialMedia/AddSocialAccount"
@@ -12,7 +12,7 @@ import moment from 'moment'
 import axios from "axios"
 
 import events from "./events";
-import { FacebookFilled } from "@ant-design/icons";
+import { FacebookFilled,InstagramFilled,TwitterOutlined,LinkedinOutlined } from "@ant-design/icons";
 
 const localizer = momentLocalizer(moment);
 
@@ -35,6 +35,18 @@ const filterOptions = [
 class PostSchedule extends Component {
 
   ContactSideBar = (props) => {
+    const getSocialMediaIcon=(medium)=>{
+      switch(parseInt(medium)){
+        case 1:
+          return <FacebookFilled style={{color:'#1877f2'}} />
+        case 2:
+          return <InstagramFilled  />
+        case 3:
+          return <TwitterOutlined style={{color:'rgba(29,161,242,1.00)'}} />
+        case 4:
+          return <LinkedinOutlined  style={{color:'#0073b1'}} />
+      }
+    }
     return <div className="gx-module-side">
       <div className="gx-module-side-header">
         <div className="gx-module-logo">
@@ -59,8 +71,8 @@ class PostSchedule extends Component {
                     className={`gx-link ${option.id === this.state.selectedSectionId ? 'active' : ''}`} onClick={
                     this.onFilterOptionSelect.bind(this, option)
                   }>
-                    <Radio className="gx-icon-btn" onChange={(e)=>props.select(index)}/>
-                    <Avatar className="gx-mr-2" shape="square" size="small" icon={<FacebookFilled />}/>
+                    <Checkbox className="gx-icon-btn" onChange={(e)=>props.select(index,e.target.checked)}/>
+                    <Avatar className="gx-mr-2" shape="square" size="small" icon={getSocialMediaIcon(option.medium)}/>
                     <span className="gx-contact-name">{option.name}</span>
                   </span>
                 </li>
@@ -88,18 +100,26 @@ class PostSchedule extends Component {
   };
 
   onShowSchedulePost = () => {
-    this.setState({schedulePost: true});
+    if (this.state.selection.length == 1)
+      this.setState({schedulePost: true});
+    else
+      notification['info']({
+      message: 'Please select an account'
+      });
+      
   };
   onCloseSchedulePost = (params) => {
     
     this.setState({schedulePost: false});
   };
   onSchedulePost =(params)=>{
-    console.log(params)
     var self= this
     axios.post('http://localhost:5000/addEvent', params)
 		  .then(function (response) {
-			console.log(response);
+      console.log(response);
+      notification['success']({
+        message:"Post Scheduled Succesfully"
+      })
 		  })
 		  .catch(function (error) {
 			console.log(error);
@@ -191,6 +211,7 @@ class PostSchedule extends Component {
     super();
     this.state = {
       status:[],
+      selection:[],
       noPaymentFoundMessage: 'No Payment found in selected folder',
       alertMessage: '',
       showMessage: false,
@@ -235,6 +256,18 @@ class PostSchedule extends Component {
 			console.log(error);
 		  });
   }
+  select=(index,checked)=>{
+    var selection = this.state.selection
+    var status = this.state.status
+    if(checked)
+      selection.push(status[index])
+    else
+    {
+      var i = selection.indexOf(status[index])
+      selection.splice(i,1)
+    }
+    this.setState({selection})
+  }
   componentDidMount(){
     this.getStatus()
   }
@@ -246,7 +279,10 @@ class PostSchedule extends Component {
       schedulePost,
       status
     } = this.state;
-    console.log(this.state.startTime)
+    const SideBar = this.ContactSideBar({
+      status,
+      select:this.select
+    })
     return (
       <div className="gx-main-content">
         <div className="gx-app-module">
@@ -256,17 +292,11 @@ class PostSchedule extends Component {
               closable={false}
               visible={drawerState}
               onClose={this.onToggleDrawer.bind(this)}>
-              {this.ContactSideBar({
-                status,
-                select:(a)=> console.log(a)
-              })}
+              {SideBar}
             </Drawer>
           </div>
           <div className="gx-module-sidenav gx-d-none gx-d-lg-flex">
-            {this.ContactSideBar({
-                status,
-                select:(a)=> console.log(a)
-              })}
+            {SideBar}
           </div>
 
           <div className="gx-module-box">
@@ -315,12 +345,14 @@ class PostSchedule extends Component {
         </div>
 
         <AddSocialAccount open={addAccount} onClose={this.onClose}/>
+        {schedulePost?
         <SchedulePost 
-        open={schedulePost}
-        name={'@Goplutus'}
+        open={true}
+        name={this.state.selection[0]}
         selectedTime={this.state.startTime} 
         onOk = { this.onSchedulePost}
         onClose={this.onCloseSchedulePost}/>
+        :""} 
       </div>
     )
   }

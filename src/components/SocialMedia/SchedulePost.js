@@ -1,8 +1,9 @@
 import React from "react";
 import {Col, Form, Row, Upload, Button, TimePicker, DatePicker, message, Input, Modal} from "antd";
 import {NotificationContainer, NotificationManager} from "react-notifications";
-import {LoadingOutlined,PlusOutlined} from "@ant-design/icons";
+import {LoadingOutlined,PlusOutlined,FacebookFilled,InstagramFilled,TwitterOutlined,LinkedinOutlined } from "@ant-design/icons";
 import moment from 'moment'
+import 'moment-timezone';
 
 const FormItem = Form.Item;
 const {TextArea} = Input;
@@ -32,13 +33,41 @@ class SchedulePost extends React.Component {
 
   state = {
     loading: false,
-    selectedTime : this.props.selectedTime?this.props.selectedTime:new Date()
+    timezone: moment.tz.guess(true),
+    selectedTime : this.props.selectedTime?this.props.selectedTime:new Date().toISOString(),
+    account:this.props.name?this.props.name:{'name':'','medium':''}
+
   };
-  onChange=(e)=>{
-    console.log(e)
+  getSocialMediaIcon=(medium)=>{
+    switch(parseInt(medium)){
+      case 1:
+        return <FacebookFilled style={{fontSize:'32px',color:'#1877f2'}} />
+      case 2:
+        return <InstagramFilled style={{fontSize:'32px',}} />
+      case 3:
+        return <TwitterOutlined style={{fontSize:'32px',color:'rgba(29,161,242,1.00)'}} />
+      case 4:
+        return <LinkedinOutlined style={{fontSize:'32px',color:'#0073b1'}} />
+    }
+  }
+  onChange=(e,type)=>{
+    var selectedTime = moment(this.state.selectedTime)
+    if(type === 'date')
+    {
+      selectedTime.set('year',e.get('year'))
+      selectedTime.set('month',e.get('month'))
+      selectedTime.set('date',e.get('date'))
+    }
+    if(type === 'time')
+    {
+      selectedTime.set('hour',e.get('hour'))
+      selectedTime.set('minute',e.get('minute'))
+    }
+
+    this.setState({selectedTime:selectedTime.toISOString()})
+
   }
   handleChange = (info) => {
-    console.log(info.file)
     if (info.file.status === 'uploading') {
       this.setState({loading: true});
       return;
@@ -58,13 +87,13 @@ class SchedulePost extends React.Component {
     this.props.onOk({
       'file':this.state.imageUrl.split(',')[1],
       'filename':this.state.filename,
+      'name':this.state.account['name'],
       'user_id':123,
       'text':this.state.text+" "+this.state.hashtag,
-      'medium':[1],
-      'sch_dt':this.props.selectedTime?this.props.selectedTime:new Date().toISOString()
+      'medium':this.state.account['medium'],
+      'sch_dt':this.state.selectedTime
   })
   }
-
 
   render() {
     const {open, onClose} = this.props;
@@ -80,15 +109,16 @@ class SchedulePost extends React.Component {
       <Modal
         // style={{backgroundColor: '#6236FF'}}
         title={
-            <h2>{this.props.name}</h2>
+        <h2>{this.getSocialMediaIcon(this.state.account['medium'])}{<span>&emsp;</span>}{ this.state.account['name'] }</h2>
         }
+        maskClosable={false}
         visible={open}
         onCancel={onClose}
         footer={[
           <div>
           <Button  onClick={onClose} >Discard</Button>
-          <DatePicker value={moment(this.state.selectedTime)} className="gx-mb-3"/>
-          <TimePicker value={moment(this.state.selectedTime)} onChange={(e)=>this.onChange(e)} style={{marginLeft: '5px'}}
+          <DatePicker allowClear={false} value={moment(this.state.selectedTime)} onChange={(e)=>this.onChange(e,'date')} className="gx-mb-3"/>
+          <TimePicker allowClear={false} value={moment(this.state.selectedTime)} onChange={(e)=>this.onChange(e,'time')} style={{marginLeft: '5px'}}
            format={'HH:mm'}
           />
           <Button onClick={this.onSubmit} type="primary" style={{marginLeft: '5px'}}>Schedule Post</Button>
@@ -119,6 +149,9 @@ class SchedulePost extends React.Component {
                 <TextArea className="ant-card"  onChange={(e)=>{this.setState({'hashtag':e.target.value})}} placeholder="Add Hashtags separated by a space" rows={2}/>
                 <Input placeholder="Location"/>
               </Col>
+            </Row>
+            <Row style={{paddingTop:20,paddingLeft:20}}>
+                <h5> This will be posted on {moment.tz(moment(this.state.selectedTime), this.state.timezone).format("dddd, MMMM Do YYYY, h:mm a zz")}</h5>
             </Row>
           </div>
         </div>
