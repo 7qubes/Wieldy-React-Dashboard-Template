@@ -22,6 +22,7 @@ const columns = [
     title: 'Review',
     dataIndex: 'review',
     key: 'review',
+    width: '50%'
   },
   {
     title: 'Rating',
@@ -37,7 +38,44 @@ const data = [
     date: '10/10/2019',
     reviewer: 'Jonathan Nolan',
     review: 'Overall Good Progress',
-    rating: <Rate disabled defaultValue={4}/>
+    rating: <Rate disabled defaultValue={4}/>,
+    children: [{
+      key: 11,
+      project: '',
+      date: '',
+      reviewer: '',
+      review: 'Client Service Skills: Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
+        'In molestie ultricies urna non volutpat. Nam fermentum cursus elit, et tempus metus scelerisque imperdiet. ' +
+        'Sed tincidunt molestie justo, a vulputate velit sagittis at. Pellentesque consequat leo tortor.',
+      rating: <Rate disabled defaultValue={3}/>,
+      }, {
+      key: 12,
+      project: '',
+      date: '',
+      reviewer: '',
+      review: 'Team Work Skills: Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
+        'In molestie ultricies urna non volutpat. Nam fermentum cursus elit, et tempus metus scelerisque imperdiet. ' +
+        'Sed tincidunt molestie justo, a vulputate velit sagittis at. Pellentesque consequat leo tortor.',
+      rating: <Rate disabled defaultValue={5}/>,
+      }, {
+      key: 13,
+      project: '',
+      date: '',
+      reviewer: '',
+      review: 'Quality of Work: Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
+        'In molestie ultricies urna non volutpat. Nam fermentum cursus elit, et tempus metus scelerisque imperdiet. ' +
+        'Sed tincidunt molestie justo, a vulputate velit sagittis at. Pellentesque consequat leo tortor.',
+      rating: <Rate disabled defaultValue={5}/>,
+    }, {
+      key: 14,
+      project: '',
+      date: '',
+      reviewer: '',
+      review: 'Judgement and Decision Making: Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
+        'In molestie ultricies urna non volutpat. Nam fermentum cursus elit, et tempus metus scelerisque imperdiet. ' +
+        'Sed tincidunt molestie justo, a vulputate velit sagittis at. Pellentesque consequat leo tortor.',
+      rating: <Rate disabled defaultValue={5}/>,
+    }],
   },
   {
     key: '2',
@@ -45,7 +83,44 @@ const data = [
     date: '10/10/2019',
     reviewer: 'Jonathan Nolan',
     review: 'Overall Good Progress',
-    rating: <Rate disabled defaultValue={4}/>
+    rating: <Rate disabled defaultValue={4}/>,
+    children: [{
+      key: 21,
+      project: '',
+      date: '',
+      reviewer: '',
+      review: 'Client Service Skills: Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
+        'In molestie ultricies urna non volutpat. Nam fermentum cursus elit, et tempus metus scelerisque imperdiet. ' +
+        'Sed tincidunt molestie justo, a vulputate velit sagittis at. Pellentesque consequat leo tortor.',
+      rating: <Rate disabled defaultValue={3}/>,
+      }, {
+      key: 22,
+      project: '',
+      date: '',
+      reviewer: '',
+      review: 'Team Work Skills: Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
+        'In molestie ultricies urna non volutpat. Nam fermentum cursus elit, et tempus metus scelerisque imperdiet. ' +
+        'Sed tincidunt molestie justo, a vulputate velit sagittis at. Pellentesque consequat leo tortor.',
+      rating: <Rate disabled defaultValue={5}/>,
+      }, {
+      key: 23,
+      project: '',
+      date: '',
+      reviewer: '',
+      review: 'Quality of Work: Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
+        'In molestie ultricies urna non volutpat. Nam fermentum cursus elit, et tempus metus scelerisque imperdiet. ' +
+        'Sed tincidunt molestie justo, a vulputate velit sagittis at. Pellentesque consequat leo tortor.',
+      rating: <Rate disabled defaultValue={5}/>,
+    }, {
+      key: 24,
+      project: '',
+      date: '',
+      reviewer: '',
+      review: 'Judgement and Decision Making: Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
+        'In molestie ultricies urna non volutpat. Nam fermentum cursus elit, et tempus metus scelerisque imperdiet. ' +
+        'Sed tincidunt molestie justo, a vulputate velit sagittis at. Pellentesque consequat leo tortor.',
+      rating: <Rate disabled defaultValue={5}/>,
+    }],
   },
   {
     key: '3',
