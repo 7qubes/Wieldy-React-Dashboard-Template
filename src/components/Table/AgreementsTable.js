@@ -1,6 +1,7 @@
 import React from "react";
 import {Card, Collapse, Divider, Table} from "antd";
 import Icon from '@ant-design/icons';
+import pdf from './sample.pdf'
 
 const Panel = Collapse.Panel;
 
@@ -50,21 +51,21 @@ const data = [
   {
     key: '1',
     id: '4514',
-    contractor: 'John Brown',
+    contractor: <a href={pdf} target='_blank'>John Brown</a>,
     doc: 32,
     type: 'New Hire',
   },
   {
     key: '2',
     id: '4514',
-    contractor: 'Jim Green',
+    contractor: <a href={pdf} target='_blank'>Jim Green</a>,
     doc: 42,
     type: 'New Hire',
   },
   {
     key: '3',
     id: '4514',
-    contractor: 'Joe Black',
+    contractor: <a href={pdf} target='_blank'>Joe Black</a>,
     doc: 32,
     type: 'New Hire',
   }
