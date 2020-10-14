@@ -39,7 +39,10 @@ const columns = [
     render: () => (
       <Collapse bordered={false} expandIconPosition='right'>
         <Panel header="Signed" style={customPanelStyle}>
-          <p><icon className='icon icon-eye'/> View</p>
+          <p>
+            <a href={pdf} target='_blank'>
+              <icon className='icon icon-eye'/> View</a>
+          </p>
           <p><icon className='icon icon-backtop'/> Export</p>
         </Panel>
       </Collapse>
