@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, Collapse, Divider, Table} from "antd";
+import {Button, Card, Collapse, Divider, Table} from "antd";
 import Icon from '@ant-design/icons';
 import pdf from './sample.pdf'
 
@@ -76,7 +76,12 @@ const data = [
 
 const AgreementsTable = () => {
   return (
-    <Card title="Documents">
+    <Card title="Documents" extra={
+      <Button className="gx-btn-block ant-btn" type="primary">
+          <i className="icon icon-add-circle gx-mr-1"/>
+          <span>Add Document</span>
+      </Button>
+    }>
       <Table className="gx-table-responsive" columns={columns} dataSource={data}/>
     </Card>
   );

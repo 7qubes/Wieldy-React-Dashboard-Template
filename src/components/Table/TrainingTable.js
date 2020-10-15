@@ -1,6 +1,7 @@
 import React from "react";
-import {Card, Divider, Table, Collapse} from "antd";
+import {Card, Divider, Table, Collapse, Button} from "antd";
 import Icon from '@ant-design/icons';
+import AddTraining from "../contact/AddTraining";
 
 const Panel = Collapse.Panel;
 
@@ -64,12 +65,36 @@ const data = [
   }
 ];
 
-const TrainingTable = () => {
-  return (
-    <Card title="Training">
-      <Table className="gx-table-responsive" columns={columns} dataSource={data}/>
-    </Card>
+class TrainingTable extends React.Component{
+  constructor() {
+    super();
+    this.state = {
+      showAddModal: false
+    }
+  }
+
+  showAddModal = () => {
+    this.setState({showAddModal: true})
+  };
+
+  hideAddModal = () => {
+    this.setState({showAddModal: false})
+  };
+
+  render() {
+    const {showAddModal} = this.state;
+    return (
+      <Card title="Training" extra={
+        <Button className="gx-btn-block ant-btn" type="primary" onClick={this.showAddModal}>
+          <i className="icon icon-add-circle gx-mr-1"/>
+          <span>Add Training</span>
+        </Button>
+      }>
+        <Table className="gx-table-responsive" columns={columns} dataSource={data}/>
+        <AddTraining open={showAddModal} onClose={this.hideAddModal}/>
+      </Card>
   );
-};
+  }
+}
 
 export default TrainingTable;

@@ -1,6 +1,6 @@
 import React from "react";
-import {Card, Divider, Table, Rate, Collapse} from "antd";
-import Icon from '@ant-design/icons';
+import {Card, Button, Table, Rate} from "antd";
+import AddPerformance from "../contact/AddPerformance";
 
 const columns = [
   {
@@ -156,12 +156,37 @@ const data = [
   },
 ];
 
-const PerformanceTable = () => {
-  return (
-    <Card title="Performance">
-      <Table className="gx-table-responsive" columns={columns} dataSource={data}/>
-    </Card>
-  );
-};
+class PerformanceTable extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      showAddModal: false
+    }
+  }
+
+  showAddModal = () => {
+    this.setState({showAddModal: true})
+  };
+
+  hideAddModal = () => {
+    this.setState({showAddModal: false})
+  };
+
+  render() {
+    const {showAddModal} = this.state;
+    return (
+      <Card title="Performance" extra={
+        <Button className="gx-btn-block ant-btn" type="primary" onClick={this.showAddModal}>
+          <i className="icon icon-add-circle gx-mr-1"/>
+          <span>Add Review</span>
+          {/*Add Review*/}
+        </Button>
+      }>
+        <Table className="gx-table-responsive" columns={columns} dataSource={data}/>
+        <AddPerformance open={showAddModal} onClose={this.hideAddModal}/>
+      </Card>
+    );
+  }
+}
 
 export default PerformanceTable;
