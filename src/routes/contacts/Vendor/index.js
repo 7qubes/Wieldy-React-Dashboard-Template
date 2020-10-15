@@ -8,6 +8,7 @@ const FormItem = Form.Item;
 
 const Vendor = () => {
   const url = `/contacts`;
+  const avatar = require('assets/images/avatar.jpg');
 
   return (
     <Auxiliary>
@@ -19,7 +20,7 @@ const Vendor = () => {
           <div className="gx-profile-banner-top">
             <div className="gx-profile-banner-top-left">
               <div className="gx-profile-banner-avatar">
-                <Avatar className="gx-size-90" alt="..." src={"https://via.placeholder.com/150"}/>
+                <Avatar className="gx-size-90" alt="..." src={avatar}/>
               </div>
               <div className="gx-profile-banner-avatar-info">
                 <h2 className="gx-mb-2 gx-mb-sm-3 gx-fs-xxl gx-font-weight-light">Kiley Brown</h2>
