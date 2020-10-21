@@ -21,7 +21,11 @@ class EditModal extends React.Component {
       <Modal
         visible={open}
         onCancel={onClose}
-        onOk={onClose}
+        onOk={()=>{
+          NotificationManager.success(<IntlMessages id="notification.successMessage"/>, <IntlMessages
+            id="notification.titleHere"/>);
+          // onClose();
+        }}
         >
 
         <div className="gx-modal-box-row">

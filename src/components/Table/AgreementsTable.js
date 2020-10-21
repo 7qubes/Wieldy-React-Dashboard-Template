@@ -3,7 +3,7 @@ import {Button, Card, Collapse, Divider, Table} from "antd";
 import Icon from '@ant-design/icons';
 import pdf from './sample.pdf'
 import UploadClick from "components/Upload/UploadClick";
-import AddAgreements from "../contact/AddAgreements";
+import AddDocument from "../contact/AddDocument";
 
 
 const Panel = Collapse.Panel;
@@ -77,18 +77,37 @@ const data = [
   }
 ];
 
-const AgreementsTable = () => {
-  return (
-    <Card title="Documents" extra={
-      // <Button className="gx-btn-block ant-btn" type="primary">
-      //     <i className="icon icon-add-circle gx-mr-1"/>
-      //     <span>Add Document</span>
-      // </Button>
-      <AddAgreements/>
-    }>
-      <Table className="gx-table-responsive" columns={columns} dataSource={data}/>
-    </Card>
-  );
-};
+class AgreementsTable extends React.Component{
+  constructor() {
+    super();
+    this.state = {
+      showAddDocument: false
+    }
+  }
+
+  showAddDocument = () => {
+    this.setState({showAddDocument: true})
+  };
+
+  hideAddDocument = () => {
+    this.setState({showAddDocument: false})
+  };
+
+  render() {
+    const {showAddDocument} = this.state;
+    return (
+      <Card title="Documents" extra={
+        <Button className="gx-btn-block ant-btn" type="primary" onClick={this.showAddDocument}>
+          <i className="icon icon-add-circle gx-mr-1"/>
+          <span>Add Document</span>
+        </Button>
+        // <AddDocument/>
+      }>
+        <Table className="gx-table-responsive" columns={columns} dataSource={data}/>
+        <AddDocument open={showAddDocument} onClose={this.hideAddDocument}/>
+      </Card>
+    );
+  }
+}
 
 export default AgreementsTable;

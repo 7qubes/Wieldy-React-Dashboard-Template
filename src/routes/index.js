@@ -23,6 +23,7 @@ const App = ({match}) => (
       <Route path={`${match.url}finance`} component={Finance}/>
       <Route path={`${match.url}inventories`} component={Inventories}/>
       <Route path={`${match.url}reports`} component={Reports}/>
+      <Route path={`${match.url}workspace`} />
     </Switch>
   </div>
 );
