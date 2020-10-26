@@ -1,32 +1,35 @@
 import React from "react";
 import {CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
+import download1 from "../SocialMedia/Twitter_Images/download1.png";
+import download2 from "../SocialMedia/Twitter_Images/download2.png";
+
+const months =['Jan', 'Feb', 'Mar', 'Apr', 'Jun','Jul','Aug', 'Sep', 'Oct','Nov','Dec' ]
+
 
 const data = [
-  {name: 'Jan', price: 240, amt: 2400},
-  {name: 'Feb', price: 139, amt: 2210},
-  {name: 'Mar', price: 980, amt: 2290},
-  {name: 'Apr', price: 390, amt: 2000},
-  {name: 'May', price: 480, amt: 2181},
-  {name: 'Jun', price: 380, amt: 2500},
-  {name: 'Jul', price: 430, amt: 2100},
-  {name: 'Aug', price: 430, amt: 2100},
-  {name: 'Sep', price: 430, amt: 2100},
-  {name: 'Oct', price: 430, amt: 2100},
-  {name: 'Nov', price: 430, amt: 2100},
-  {name: 'Dec', price: 430, amt: 2100},
+  {name: months[0], price: 240, amt: 2400},
+  {name: months[1], price: 139, amt: 2210},
+  {name: months[2], price: 980, amt: 2290},
+  {name: months[3], price: 390, amt: 2000},
+  {name: months[4], price: 480, amt: 2181},
+  {name: months[5], price: 380, amt: 2500},
+  {name: months[6], price: 430, amt: 2100},
+  {name: months[7], price: 430, amt: 2100},
+  {name: months[8], price: 430, amt: 2100},
+  {name: months[9], price: 430, amt: 2100},
+  {name: months[10], price: 430, amt: 2100},
+  {name: months[11], price: 430, amt: 2100},
 ];
 
 const FollowerGraph = () => (
-  <ResponsiveContainer width="100%" height={200}>
-    <LineChart data={data}
-               margin={{top: 10, right: 0, left: -15, bottom: 0}}>
-      <XAxis dataKey="name"/>
-      <YAxis/>
-      <CartesianGrid strokeDasharray="3 3"/>
-      <Tooltip/>
-      <Line type='monotone' dataKey='price' stroke='#003366' fill='#003366'/>
-    </LineChart>
-  </ResponsiveContainer>
+
+  <div>
+
+  <img src={download1} alt="this is car image" />
+  <img src={download2} alt="this is car image2" />
+
+</div>
+ 
 );
 
 export default FollowerGraph
