@@ -135,8 +135,8 @@ class SchedulePost extends React.Component {
                   name="avatar"
                   listType="picture-card"
                   className="avatar-uploader"
+                  customRequest={()=>console.log('')}
                   showUploadList={false}
-                  action="//jsonplaceholder.typicode.com/posts/"
                   beforeUpload={beforeUpload}
                   onChange={this.handleChange}
                 >
