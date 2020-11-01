@@ -19,18 +19,6 @@ const localizer = momentLocalizer(moment);
 let contactId = 723812738;
 const Option = Select.Option;
 
-const filterOptions = [
-  {
-    id: 1,
-    name: '@username',
-  }, {
-    id: 2,
-    name: '@username',
-  }, {
-    id: 3,
-    name: '@username',
-  }
-];
 
 class PostSchedule extends Component {
 
@@ -97,6 +85,7 @@ class PostSchedule extends Component {
   };
   onClose = () => {
     this.setState({addAccount: false});
+    this.getStatus()
   };
 
   onShowSchedulePost = () => {
@@ -212,6 +201,7 @@ class PostSchedule extends Component {
     this.state = {
       status:[],
       selection:[],
+      events:[],
       noPaymentFoundMessage: 'No Payment found in selected folder',
       alertMessage: '',
       showMessage: false,
@@ -256,6 +246,27 @@ class PostSchedule extends Component {
 			console.log(error);
 		  });
   }
+  getEvents=()=>{
+    var self = this
+    axios.post('http://localhost:5000/getEvents', {
+			user_id: '123',
+		  })
+		  .then(function (response) {
+      console.log(response);
+      var events = []
+      response.data.map(e =>{
+        events.push({
+          'title': e.text,
+          'start': new Date(e.sch_dt),
+          'end': new Date(e.sch_dt),
+        })
+      })
+			self.setState({events:events})
+		  })
+		  .catch(function (error) {
+			console.log(error);
+		  });
+  }
   select=(index,checked)=>{
     var selection = this.state.selection
     var status = this.state.status
@@ -270,6 +281,7 @@ class PostSchedule extends Component {
   }
   componentDidMount(){
     this.getStatus()
+    this.getEvents()
   }
   render() {
     const {
@@ -281,7 +293,8 @@ class PostSchedule extends Component {
     } = this.state;
     const SideBar = this.ContactSideBar({
       status,
-      select:this.select
+      select:this.select,
+      getStatus:this.getStatus
     })
     return (
       <div className="gx-main-content">
@@ -324,10 +337,11 @@ class PostSchedule extends Component {
                         <Calendar
                           localizer={localizer}
                           selectable
-                          events={events}
+                          events={this.state.events}
                           defaultView='week'
                           scrollToTime={new Date(1970, 1, 1, 6)}
                           defaultDate={new Date()}
+                          titleAccessor={(event)=>'String'}
                           onSelectEvent={event => alert(event.title)}
                           onSelectSlot={(slotInfo) => {
                             if (slotInfo.start > new Date())
