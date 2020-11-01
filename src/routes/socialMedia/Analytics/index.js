@@ -8,6 +8,7 @@ import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
 import IntlMessages from "util/IntlMessages";
 import SchedulePost from "../../../components/SocialMedia/SchedulePost";
 import FollowerGraph from "../../../components/SocialMedia/FollowerGraph";
+import BarCharts from "../../../components/SocialMedia/BarCharts";
 
 let contactId = 723812738;
 const Option = Select.Option;
@@ -171,6 +172,7 @@ class SocialMedia extends Component {
   constructor() {
     super();
     this.state = {
+      loading:true,
       noPaymentFoundMessage: 'No Payment found in selected folder',
       alertMessage: '',
       showMessage: false,
@@ -186,7 +188,9 @@ class SocialMedia extends Component {
       selectedContact: null,
       selectedContacts: 0,
       addAccount: false,
-      schedulePost: false
+      schedulePost: false,
+      bar_data:{},
+      page_likes:{}
     }
   }
 
@@ -203,6 +207,21 @@ class SocialMedia extends Component {
     });
   }
 
+  async componentDidMount(){
+     fetch("http://localhost:5000/fb_stats/page_views")
+     .then(res => res.json())
+      .then(result => {
+        console.log(result)
+        this.setState({bar_data:result,loading:false})
+      })
+      fetch("http://localhost:5000/fb_stats/page_likes")
+      .then(res => res.json())
+       .then(result => {
+         console.log(result)
+         this.setState({page_likes:result,loading:false})
+       })
+  }
+
   render() {
     const {
       user,
@@ -212,6 +231,8 @@ class SocialMedia extends Component {
     } = this.state;
 
     return (
+      <div>
+      
       <div className="gx-main-content">
         <div className="gx-app-module">
           <div className="gx-d-block gx-d-lg-none">
@@ -239,6 +260,7 @@ class SocialMedia extends Component {
                                onChange={this.updateContactUser.bind(this)}
                                value={this.state.searchUser}/>
             </div>
+            { this.state.loading ? <div>Loading...</div>:
             <div className="gx-module-box-content">
               <div className="gx-module-box-topbar" style={{backgroundColor: '#6236FF'}}>
                 <Avatar className="gx-mr-2" size="large" icon={<UserOutlined />}/>
@@ -260,8 +282,11 @@ class SocialMedia extends Component {
               </Row>
               <Row>
                 <Col md={24}>
-                  <Card className="gx-card" title="Followers">
-                    <FollowerGraph/>
+                  <Card className="gx-card" title="Page Views">
+                    <BarCharts data={this.state.bar_data}/>
+                  </Card>
+                  <Card className="gx-card" title="Page Likes">
+                    <BarCharts data={this.state.page_likes}/>
                   </Card>
                   <Card className="gx-card" title="Followers">
                     <FollowerGraph/>
@@ -273,11 +298,13 @@ class SocialMedia extends Component {
               </Row>
 
             </div>
+          }
           </div>
         </div>
 
         <AddSocialAccount open={addAccount} onClose={this.onClose}/>
         <SchedulePost open={schedulePost} onClose={this.onCloseSchedulePost}/>
+      </div>
       </div>
     )
   }
