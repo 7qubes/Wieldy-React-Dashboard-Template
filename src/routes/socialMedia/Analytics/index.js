@@ -9,6 +9,7 @@ import IntlMessages from "util/IntlMessages";
 import SchedulePost from "../../../components/SocialMedia/SchedulePost";
 import FollowerGraph from "../../../components/SocialMedia/FollowerGraph";
 import BarCharts from "../../../components/SocialMedia/BarCharts";
+import {BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip,ResponsiveContainer, Legend,} from 'recharts';
 
 let contactId = 723812738;
 const Option = Select.Option;
@@ -220,7 +221,13 @@ class SocialMedia extends Component {
          console.log(result)
          this.setState({page_likes:result,loading:false})
        })
-  }
+			fetch("http://localhost:5000/fb_stats/page_fans_age")
+			.then(res => res.json())
+				.then(result => {
+					console.log(result)
+					this.setState({page_age:result,loading:false})
+				})
+	}
 
   render() {
     const {
@@ -287,6 +294,29 @@ class SocialMedia extends Component {
                   </Card>
                   <Card className="gx-card" title="Page Likes">
                     <BarCharts data={this.state.page_likes}/>
+									</Card>
+									<Card className="gx-card" title="Demographics">
+									<ResponsiveContainer width="100%" height={200}>
+		<BarChart
+			width={500}
+			height={300}
+			data={this.state.page_age}
+			margin={{
+				top: 5, right: 30, left: 20, bottom: 5,
+			}}
+			>
+				<CartesianGrid strokeDasharray="3 3" />
+				<XAxis dataKey="name" />
+				<YAxis />
+				<Tooltip />
+				<Legend />
+
+				<Bar dataKey="M" fill="#8884d8" />
+					<Bar dataKey="F" fill="#82ca9d" />
+					<Bar dataKey="U" fill="#82ca9d" />
+			</BarChart>
+	</ResponsiveContainer>
+
                   </Card>
                   <Card className="gx-card" title="Followers">
                     <FollowerGraph/>
