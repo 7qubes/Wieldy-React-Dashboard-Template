@@ -7,9 +7,10 @@ import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
 // import AddPayment from "components/billing/Payment/AddPayment";
 import IntlMessages from "util/IntlMessages";
 import SchedulePost from "../../../components/SocialMedia/SchedulePost";
-import FollowerGraph from "../../../components/SocialMedia/FollowerGraph";
-import BarCharts from "../../../components/SocialMedia/BarCharts";
-import {BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip,ResponsiveContainer, Legend,} from 'recharts';
+import ProfileGrowth from "./ProfileGrowth";
+import ProfileInteractions from "./ProfileInteractions";
+import AudienceDemographics from "./AudienceDemographics";
+
 
 let contactId = 723812738;
 const Option = Select.Option;
@@ -89,6 +90,9 @@ class SocialMedia extends Component {
     this.setState({schedulePost: false});
   };
 
+  handleChange=(e)=>{
+    this.setState({selectPane:e},()=>console.log(this.state));
+  }
   onFilterOptionSelect = (option) => {
     switch (option.name) {
       case 'All Payees': {
@@ -191,7 +195,8 @@ class SocialMedia extends Component {
       addAccount: false,
       schedulePost: false,
       bar_data:{},
-      page_likes:{}
+      page_likes:{},
+      selectPane:'interaction'
     }
   }
 
@@ -228,7 +233,15 @@ class SocialMedia extends Component {
 					this.setState({page_age:result,loading:false})
 				})
 	}
-
+  renderComponentDisplay = () => {
+    if (this.state.selectPane === "discovery") {
+        return <ProfileGrowth props={this.state}></ProfileGrowth>;
+    } else if (this.state.selectPane === "interaction") {
+        return <ProfileInteractions props={this.state}></ProfileInteractions>;
+    } else if (this.state.selectPane === "audience") {
+        return <AudienceDemographics></AudienceDemographics>;
+    }
+};
   render() {
     const {
       user,
@@ -236,7 +249,7 @@ class SocialMedia extends Component {
       addAccount,
       schedulePost
     } = this.state;
-
+    console.log(this.state.selectPane)
     return (
       <div>
       
@@ -275,7 +288,7 @@ class SocialMedia extends Component {
               </div>
               <Row>
                 <Col md={12}>
-                  <Select className="gx-mr-3 gx-mb-3" defaultValue="Profile Growth & Discovery" style={{width: 300}}>
+                  <Select id="options_views" onChange={this.handleChange}  className="gx-mr-3 gx-mb-3" defaultValue="Profile Growth & Discovery" style={{width: 300}}>
                     <Option value="discovery">Profile Growth & Discovery</Option>
                     <Option value="interaction">Profile Interactions</Option>
                     <Option value="audience">Audience Demographics</Option>
@@ -289,41 +302,7 @@ class SocialMedia extends Component {
               </Row>
               <Row>
                 <Col md={24}>
-                  <Card className="gx-card" title="Page Views">
-                    <BarCharts data={this.state.bar_data}/>
-                  </Card>
-                  <Card className="gx-card" title="Page Likes">
-                    <BarCharts data={this.state.page_likes}/>
-									</Card>
-									<Card className="gx-card" title="Demographics">
-									<ResponsiveContainer width="100%" height={200}>
-		<BarChart
-			width={500}
-			height={300}
-			data={this.state.page_age}
-			margin={{
-				top: 5, right: 30, left: 20, bottom: 5,
-			}}
-			>
-				<CartesianGrid strokeDasharray="3 3" />
-				<XAxis dataKey="name" />
-				<YAxis />
-				<Tooltip />
-				<Legend />
-
-				<Bar dataKey="M" fill="#8884d8" />
-					<Bar dataKey="F" fill="#82ca9d" />
-					<Bar dataKey="U" fill="#82ca9d" />
-			</BarChart>
-	</ResponsiveContainer>
-
-                  </Card>
-                  <Card className="gx-card" title="Followers">
-                    <FollowerGraph/>
-                  </Card>
-                  <Card className="gx-card" title="Followers">
-                    <FollowerGraph/>
-                  </Card>
+                {this.renderComponentDisplay()}
                 </Col>
               </Row>
 
