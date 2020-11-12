@@ -1,5 +1,6 @@
 import React, {Component} from "react";
-import {Button, Checkbox, Drawer, message, Card, Col, Select, Row, Avatar} from "antd";
+import {Button, Checkbox, Drawer, message, Card, Col, Select, Row, Avatar,DatePicker,Spin} from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
 import CustomScrollbars from "util/CustomScrollbars";
 import AppModuleHeader from "components/AppModuleHeader/index";
 import AddSocialAccount from "components/SocialMedia/AddSocialAccount"
@@ -10,7 +11,9 @@ import SchedulePost from "../../../components/SocialMedia/SchedulePost";
 import ProfileGrowth from "./ProfileGrowth";
 import ProfileInteractions from "./ProfileInteractions";
 import AudienceDemographics from "./AudienceDemographics";
+import moment from 'moment'
 
+const { RangePicker } = DatePicker;
 
 let contactId = 723812738;
 const Option = Select.Option;
@@ -177,7 +180,7 @@ class SocialMedia extends Component {
   constructor() {
     super();
     this.state = {
-      loading:true,
+      loading:false,
       noPaymentFoundMessage: 'No Payment found in selected folder',
       alertMessage: '',
       showMessage: false,
@@ -196,7 +199,9 @@ class SocialMedia extends Component {
       schedulePost: false,
       bar_data:{},
       page_likes:{},
-      selectPane:'interaction'
+      selectPane:'interaction',
+      buckets:{ 7:'7 days',30:'1 Month',90:'3 Months' },
+      selectedBucket:7
     }
   }
 
@@ -212,34 +217,66 @@ class SocialMedia extends Component {
       drawerState: !this.state.drawerState
     });
   }
-
-  async componentDidMount(){
-     fetch("http://localhost:5000/fb_stats/page_views")
+  async getData(until,since){
+    this.setState({loading:true})
+    until = parseInt(until/1000)
+    since = parseInt(since/1000)
+    var user_id=123
+    var name="Plutus"
+    await fetch("http://localhost:5000/fb_stats/page_views?user_id="+user_id+"&name="+name+"&since="+since+"&until="+until)
      .then(res => res.json())
       .then(result => {
-        console.log(result)
-        this.setState({bar_data:result,loading:false})
+        result.map(e => e.name = moment.unix(e.name).format('MM-DD')
+          )
+        this.setState({bar_data:result})
+        fetch("http://localhost:5000/fb_stats/page_likes?user_id="+user_id+"&name="+name+"&since="+since+"&until="+until)
+        .then(res => res.json())
+         .then(result => {
+          
+          result.map(e => e.name = moment.unix(e.name).format('MM-DD')
+          )
+           this.setState({page_likes:result})
+           fetch("http://localhost:5000/fb_stats/page_fans_age?user_id="+user_id+"&name="+name)
+          .then(res => res.json())
+            .then(result => {
+              fetch("http://localhost:5000/fb_stats/page_fans_city?user_id="+user_id+"&name="+name)
+          .then(res => res.json())
+            .then(result => {
+              console.log(result)
+              this.setState({page_city:result,loading:false})
+            })
+              console.log(result)
+              this.setState({page_age:result})
+            })
+         })
       })
-      fetch("http://localhost:5000/fb_stats/page_likes")
-      .then(res => res.json())
-       .then(result => {
-         console.log(result)
-         this.setState({page_likes:result,loading:false})
-       })
-			fetch("http://localhost:5000/fb_stats/page_fans_age")
-			.then(res => res.json())
-				.then(result => {
-					console.log(result)
-					this.setState({page_age:result,loading:false})
-				})
+     
+  }
+
+  async componentDidMount(){
+    this.getData(moment().valueOf(),moment().subtract(7, 'days').valueOf())
+    this.setState({selectedBucket:7})
+    //  fetch("http://localhost:5000/fb_stats/page_views")
+    //  .then(res => res.json())
+    //   .then(result => {
+    //     console.log(result)
+    //     this.setState({bar_data:result,loading:false})
+    //   })
+    //   fetch("http://localhost:5000/fb_stats/page_likes")
+    //   .then(res => res.json())
+    //    .then(result => {
+    //      console.log(result)
+    //      this.setState({page_likes:result,loading:false})
+    //    })
+			
 	}
   renderComponentDisplay = () => {
     if (this.state.selectPane === "discovery") {
-        return <ProfileGrowth props={this.state}></ProfileGrowth>;
+        return <ProfileGrowth {...this.state}></ProfileGrowth>;
     } else if (this.state.selectPane === "interaction") {
         return <ProfileInteractions props={this.state}></ProfileInteractions>;
     } else if (this.state.selectPane === "audience") {
-        return <AudienceDemographics></AudienceDemographics>;
+        return <AudienceDemographics {...this.state} ></AudienceDemographics>;
     }
 };
   render() {
@@ -247,7 +284,9 @@ class SocialMedia extends Component {
       user,
       drawerState,
       addAccount,
-      schedulePost
+      schedulePost,
+      selectedBucket,
+      loading
     } = this.state;
     console.log(this.state.selectPane)
     return (
@@ -280,34 +319,48 @@ class SocialMedia extends Component {
                                onChange={this.updateContactUser.bind(this)}
                                value={this.state.searchUser}/>
             </div>
-            { this.state.loading ? <div>Loading...</div>:
+            
             <div className="gx-module-box-content">
               <div className="gx-module-box-topbar" style={{backgroundColor: '#6236FF'}}>
                 <Avatar className="gx-mr-2" size="large" icon={<UserOutlined />}/>
                 <span className="gx-contact-name" style={{color: '#ffffff'}}> @username</span>
               </div>
               <Row>
-                <Col md={12}>
-                  <Select id="options_views" onChange={this.handleChange}  className="gx-mr-3 gx-mb-3" defaultValue="Profile Growth & Discovery" style={{width: 300}}>
+                <Col md={8}>
+                  <Select id="options_views" onChange={this.handleChange}  className="gx-mr-3 gx-mb-3" defaultValue={this.state.selectPane} style={{width: 300}}>
                     <Option value="discovery">Profile Growth & Discovery</Option>
                     <Option value="interaction">Profile Interactions</Option>
                     <Option value="audience">Audience Demographics</Option>
                   </Select>
                 </Col>
-                <Col md={12}>
-                  <Button size="small" className="gx-btn-outline-primary">7 Days</Button>
-                  <Button size="small" className="gx-btn-outline-primary">1 Month</Button>
-                  <Button size="small" className="gx-btn-outline-primary">3 Months</Button>
+                <Col md={16}>
+                {
+                    Object.keys(this.state.buckets).map(e=>
+                      <Button style={{margin:"8px"}} size="small" className={selectedBucket == e ?"btn-primary":"gx-btn-outline-primary"} 
+                      onClick={()=>{
+                        this.getData(moment().valueOf(),moment().subtract(e, 'days').valueOf())
+                        this.setState({selectedBucket:e})
+                      }}>
+                        {this.state.buckets[e]}
+                        </Button>
+                      )
+                  }
+                  <RangePicker onChange={(e)=>{
+                    this.getData(e[1].valueOf(),e[0].valueOf())
+                    this.setState({selectedBucket:'user'})
+                    
+                    }} size="small"   />
                 </Col>
               </Row>
+              { this.state.loading ? <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />:
               <Row>
                 <Col md={24}>
                 {this.renderComponentDisplay()}
                 </Col>
               </Row>
 
+}
             </div>
-          }
           </div>
         </div>
 

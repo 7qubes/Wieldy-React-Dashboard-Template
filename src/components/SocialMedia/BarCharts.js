@@ -27,7 +27,6 @@ const BarCharts = (props) => (
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
-        <Legend />
 
         <Bar dataKey="value" fill="#82ca9d" />
       </BarChart>

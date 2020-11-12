@@ -3,12 +3,12 @@ import { Card } from "antd";
 import FollowerGraph from "../../../components/SocialMedia/FollowerGraph";
 const ProfileInteractions = (props) => (
     <div>
-        <Card className="gx-card" title="Followers">
+        {/* <Card className="gx-card" title="Followers">
             <FollowerGraph />
         </Card>
         <Card className="gx-card" title="Followers">
             <FollowerGraph />
-        </Card>
+        </Card> */}
     </div>
 )
 
