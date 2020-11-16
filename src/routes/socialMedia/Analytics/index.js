@@ -11,6 +11,7 @@ import AudienceDemographics from "./AudienceDemographics";
 import moment from 'moment'
 import SideBarSM from '../components/Sidebar'
 import axios from "axios"
+import SocialMediaIcon from  '../components/SocialMediaIcon'
 
 const { RangePicker } = DatePicker;
 
@@ -19,19 +20,11 @@ const Option = Select.Option;
 
 class SocialMedia extends Component {
 
-
   onAddAccount = () => {
     this.setState({addAccount: true});
   };
   onClose = () => {
     this.setState({addAccount: false});
-  };
-
-  onShowSchedulePost = () => {
-    this.setState({schedulePost: true});
-  };
-  onCloseSchedulePost = () => {
-    this.setState({schedulePost: false});
   };
 
   handleChange=(e)=>{
@@ -117,7 +110,6 @@ class SocialMedia extends Component {
       showMessage: false,
     });
   };
-
   select=(index,checked)=>{
     var selection = this.state.selection
     var status = this.state.status
@@ -128,7 +120,10 @@ class SocialMedia extends Component {
       var i = selection.indexOf(status[index])
       selection.splice(i,1)
     }
-    this.setState({selection})
+    this.setState({selection,selectedBucket:7})
+    if(selection.length > 0)
+      this.getData(selection[0].name,moment().valueOf(),moment().subtract(7, 'days').valueOf())
+
   }
   constructor() {
     super();
@@ -174,12 +169,11 @@ class SocialMedia extends Component {
       drawerState: !this.state.drawerState
     });
   }
-  async getData(until,since){
+  async getData(name,until,since){
     this.setState({loading:true})
     until = parseInt(until/1000)
     since = parseInt(since/1000)
     var user_id=123
-    var name="Plutus"
     await fetch("http://localhost:5000/fb_stats/page_views?user_id="+user_id+"&name="+name+"&since="+since+"&until="+until)
      .then(res => res.json())
       .then(result => {
@@ -215,24 +209,11 @@ class SocialMedia extends Component {
         })
      
   }
-
+  getSocialMediaIcon(medium){
+    return SocialMediaIcon(medium)
+  }
   async componentDidMount(){
-    this.getData(moment().valueOf(),moment().subtract(7, 'days').valueOf())
-    this.setState({selectedBucket:7})
     this.getStatus()
-    //  fetch("http://localhost:5000/fb_stats/page_views")
-    //  .then(res => res.json())
-    //   .then(result => {
-    //     console.log(result)
-    //     this.setState({bar_data:result,loading:false})
-    //   })
-    //   fetch("http://localhost:5000/fb_stats/page_likes")
-    //   .then(res => res.json())
-    //    .then(result => {
-    //      console.log(result)
-    //      this.setState({page_likes:result,loading:false})
-    //    })
-			
   }
   getStatus=()=>{
     var self = this
@@ -271,7 +252,9 @@ class SocialMedia extends Component {
     status={status}      
     select={this.select}
     getStatus={this.getStatus}
-    onAddAccount={this.onAddAccount}     />
+    onAddAccount={this.onAddAccount}
+    getSocialMediaIcon={this.getSocialMediaIcon}
+         />
 
     return (
       <div>
@@ -306,9 +289,11 @@ class SocialMedia extends Component {
             
             <div className="gx-module-box-content">
               <div className="gx-module-box-topbar" style={{backgroundColor: '#6236FF'}}>
-                <Avatar className="gx-mr-2" size="large" icon={<UserOutlined />}/>
-                <span className="gx-contact-name" style={{color: '#ffffff'}}> @username</span>
+                <Avatar className="gx-mr-2" size="large" icon={this.state.selection.length > 0 ?this.getSocialMediaIcon(this.state.selection[0].medium) :<UserOutlined />}/>
+    <span className="gx-contact-name" style={{color: '#ffffff'}}>{this.state.selection.length > 0 ?this.state.selection[0].name :"Please Select a Social Media Account"}</span>
               </div>
+              {this.state.selection.length > 0 ?
+              <Col>
               <Row>
                 <Col md={8}>
                   <Select id="options_views" onChange={this.handleChange}  className="gx-mr-3 gx-mb-3" defaultValue={this.state.selectPane} style={{width: 300}}>
@@ -346,6 +331,7 @@ class SocialMedia extends Component {
               </Row>
 
 }
+            </Col>:""}
             </div>
           </div>
         </div>
