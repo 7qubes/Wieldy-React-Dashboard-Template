@@ -11,7 +11,6 @@ import AudienceDemographics from "./AudienceDemographics";
 import moment from 'moment'
 import SideBarSM from '../components/Sidebar'
 import axios from "axios"
-import Sider from "antd/lib/layout/Sider";
 
 const { RangePicker } = DatePicker;
 
@@ -155,6 +154,8 @@ class SocialMedia extends Component {
       schedulePost: false,
       bar_data:{},
       page_likes:{},
+      page_city:[],
+      page_age:[],
       selectPane:'interaction',
       buckets:{ 7:'7 days',30:'1 Month',90:'3 Months' },
       selectedBucket:7
@@ -198,14 +199,20 @@ class SocialMedia extends Component {
               fetch("http://localhost:5000/fb_stats/page_fans_city?user_id="+user_id+"&name="+name)
           .then(res => res.json())
             .then(result => {
-              console.log(result)
+              // console.log(result)
               this.setState({page_city:result,loading:false})
             })
-              console.log(result)
+              // console.log(result)
               this.setState({page_age:result})
             })
          })
       })
+      await fetch("http://localhost:5000/fb_stats?metrics=page_fans&user_id="+user_id+"&name="+name+"&since="+since+"&until="+until)
+      .then(res => res.json())
+        .then(result => {
+          result.map(e => e.name = moment.unix(e.name).format('MM-DD'))
+          this.setState({page_fans:result})
+        })
      
   }
 
@@ -244,7 +251,7 @@ class SocialMedia extends Component {
     if (this.state.selectPane === "discovery") {
         return <ProfileGrowth {...this.state}></ProfileGrowth>;
     } else if (this.state.selectPane === "interaction") {
-        return <ProfileInteractions props={this.state}></ProfileInteractions>;
+        return <ProfileInteractions {...this.state}></ProfileInteractions>;
     } else if (this.state.selectPane === "audience") {
         return <AudienceDemographics {...this.state} ></AudienceDemographics>;
     }
@@ -310,9 +317,9 @@ class SocialMedia extends Component {
                     <Option value="audience">Audience Demographics</Option>
                   </Select>
                 </Col>
+                { this.state.selectPane != "audience" ?
                 <Col md={16}>
-                {
-                    Object.keys(this.state.buckets).map(e=>
+                    {Object.keys(this.state.buckets).map(e=>
                       <Button style={{margin:"8px"}} size="small" className={selectedBucket == e ?"btn-primary":"gx-btn-outline-primary"} 
                       onClick={()=>{
                         this.getData(moment().valueOf(),moment().subtract(e, 'days').valueOf())
@@ -323,11 +330,13 @@ class SocialMedia extends Component {
                       )
                   }
                   <RangePicker onChange={(e)=>{
+                    if(e[1] && e[0])
+                    {
                     this.getData(e[1].valueOf(),e[0].valueOf())
                     this.setState({selectedBucket:'user'})
-                    
+                    }
                     }} size="small"   />
-                </Col>
+                </Col>:""}
               </Row>
               { this.state.loading ? <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />:
               <Row>
