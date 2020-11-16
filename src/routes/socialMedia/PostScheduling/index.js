@@ -12,6 +12,7 @@ import moment from 'moment'
 import axios from "axios"
 import SideBarSM from '../components/Sidebar'
 import events from "./events";
+import SocialMediaIcon from  '../components/SocialMediaIcon'
 
 const localizer = momentLocalizer(moment);
 
@@ -221,6 +222,9 @@ onShowSchedulePost = () => {
     }
     this.setState({selection})
   }
+  getSocialMediaIcon(medium){
+    return SocialMediaIcon(medium)
+  }
   componentDidMount(){
     this.getStatus()
     this.getEvents()
@@ -238,7 +242,8 @@ onShowSchedulePost = () => {
       select={this.select}
       getStatus={this.getStatus}
       onShowSchedulePost={this.onShowSchedulePost}
-      onAddAccount={this.onAddAccount}     />
+      onAddAccount={this.onAddAccount} 
+      getSocialMediaIcon={this.getSocialMediaIcon}    />
     return (
       <div className="gx-main-content">
         <div className="gx-app-module">
