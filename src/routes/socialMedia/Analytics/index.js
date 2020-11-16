@@ -1,83 +1,25 @@
 import React, {Component} from "react";
 import {Button, Checkbox, Drawer, message, Card, Col, Select, Row, Avatar,DatePicker,Spin} from "antd";
 import { LoadingOutlined } from '@ant-design/icons';
-import CustomScrollbars from "util/CustomScrollbars";
 import AppModuleHeader from "components/AppModuleHeader/index";
 import AddSocialAccount from "components/SocialMedia/AddSocialAccount"
 import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
 // import AddPayment from "components/billing/Payment/AddPayment";
-import IntlMessages from "util/IntlMessages";
-import SchedulePost from "../../../components/SocialMedia/SchedulePost";
 import ProfileGrowth from "./ProfileGrowth";
 import ProfileInteractions from "./ProfileInteractions";
 import AudienceDemographics from "./AudienceDemographics";
 import moment from 'moment'
+import SideBarSM from '../components/Sidebar'
+import axios from "axios"
+import Sider from "antd/lib/layout/Sider";
 
 const { RangePicker } = DatePicker;
 
 let contactId = 723812738;
 const Option = Select.Option;
 
-const filterOptions = [
-  {
-    id: 1,
-    name: '@username',
-  }, {
-    id: 2,
-    name: '@username',
-  }, {
-    id: 3,
-    name: '@username',
-  }
-];
-
 class SocialMedia extends Component {
 
-  ContactSideBar = (user) => {
-    return <div className="gx-module-side">
-      <div className="gx-module-side-header">
-        <div className="gx-module-logo">
-          <i className="icon icon-compose gx-mr-4"/>
-          <span><IntlMessages id="chat.media"/></span>
-        </div>
-      </div>
-
-      <div className="gx-module-side-content">
-        <CustomScrollbars className="gx-module-side-scroll">
-          <div className="gx-module-add-task">
-            <Button className="gx-btn-block ant-btn" type="primary" aria-label="add"
-                    onClick={this.onShowSchedulePost}>
-              <i className="icon icon-add-circle gx-mr-1"/>
-              <span>Schedule a Post</span>
-            </Button>
-          </div>
-          <div className="gx-module-side-nav">
-            <ul className="gx-module-nav">
-              {filterOptions.map(option => <li key={option.id} className="gx-nav-item">
-                  <span
-                    className={`gx-link ${option.id === this.state.selectedSectionId ? 'active' : ''}`} onClick={
-                    this.onFilterOptionSelect.bind(this, option)
-                  }>
-                    <Checkbox className="gx-icon-btn"/>
-                    <Avatar className="gx-mr-2" shape="square" size="small" icon={<UserOutlined />}/>
-                    <span className="gx-contact-name">{option.name}</span>
-                  </span>
-                </li>
-              )}
-            </ul>
-          </div>
-          <div className="gx-module-add-task">
-            <Button className="gx-btn-block ant-btn" aria-label="add"
-                    onClick={this.onAddAccount}>
-              <i className="icon icon-add-circle gx-mr-1"/>
-              <span>Add account</span>
-            </Button>
-          </div>
-        </CustomScrollbars>
-      </div>
-    </div>
-
-  };
 
   onAddAccount = () => {
     this.setState({addAccount: true});
@@ -177,9 +119,23 @@ class SocialMedia extends Component {
     });
   };
 
+  select=(index,checked)=>{
+    var selection = this.state.selection
+    var status = this.state.status
+    if(checked)
+      selection.push(status[index])
+    else
+    {
+      var i = selection.indexOf(status[index])
+      selection.splice(i,1)
+    }
+    this.setState({selection})
+  }
   constructor() {
     super();
     this.state = {
+      status:[],
+      selection:[],
       loading:false,
       noPaymentFoundMessage: 'No Payment found in selected folder',
       alertMessage: '',
@@ -256,6 +212,7 @@ class SocialMedia extends Component {
   async componentDidMount(){
     this.getData(moment().valueOf(),moment().subtract(7, 'days').valueOf())
     this.setState({selectedBucket:7})
+    this.getStatus()
     //  fetch("http://localhost:5000/fb_stats/page_views")
     //  .then(res => res.json())
     //   .then(result => {
@@ -269,7 +226,20 @@ class SocialMedia extends Component {
     //      this.setState({page_likes:result,loading:false})
     //    })
 			
-	}
+  }
+  getStatus=()=>{
+    var self = this
+    axios.post('http://localhost:5000/getStatus', {
+			user_id: '123',
+		  })
+		  .then(function (response) {
+			console.log(response);
+			self.setState({status:response.data})
+		  })
+		  .catch(function (error) {
+			console.log(error);
+		  });
+  }
   renderComponentDisplay = () => {
     if (this.state.selectPane === "discovery") {
         return <ProfileGrowth {...this.state}></ProfileGrowth>;
@@ -282,13 +252,20 @@ class SocialMedia extends Component {
   render() {
     const {
       user,
+      status,
       drawerState,
       addAccount,
       schedulePost,
       selectedBucket,
       loading
     } = this.state;
-    console.log(this.state.selectPane)
+
+    const SideBar = <SideBarSM 
+    status={status}      
+    select={this.select}
+    getStatus={this.getStatus}
+    onAddAccount={this.onAddAccount}     />
+
     return (
       <div>
       
@@ -300,11 +277,11 @@ class SocialMedia extends Component {
               closable={false}
               visible={drawerState}
               onClose={this.onToggleDrawer.bind(this)}>
-              {this.ContactSideBar()}
+              {SideBar}
             </Drawer>
           </div>
           <div className="gx-module-sidenav gx-d-none gx-d-lg-flex">
-            {this.ContactSideBar(user)}
+            {SideBar}
           </div>
 
           <div className="gx-module-box">
@@ -365,7 +342,6 @@ class SocialMedia extends Component {
         </div>
 
         <AddSocialAccount open={addAccount} onClose={this.onClose}/>
-        <SchedulePost open={schedulePost} onClose={this.onCloseSchedulePost}/>
       </div>
       </div>
     )
