@@ -16,14 +16,7 @@ const userImageList = [
     id: 3,
     image: "assets/images/customer_3.jpg",
 
-  },
-  {
-    id: 4,
-    image: "assets/images/customer_4.jpg",
-    name: 'Mila Alba',
-    rating: '5.0',
-    deals: '27 Deals'
-  },
+  }
 ]
 
 const NewCustomers = () => {

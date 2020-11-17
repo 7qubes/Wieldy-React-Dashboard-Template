@@ -10,6 +10,7 @@ const SocialMedia = ({match}) => (
     <Route path={`${match.url}/analytics`} component={asyncComponent(() => import('./Analytics'))}/>
     <Route path={`${match.url}/scheduling`} component={asyncComponent(() => import('./PostScheduling'))}/>
     <Route path={`${match.url}/automation`} component={asyncComponent(() => import('./Automations'))}/>
+    <Route path={`${match.url}/autobot`} component={asyncComponent(() => import('./Autobot'))}/>
   </Switch>
 );
 
