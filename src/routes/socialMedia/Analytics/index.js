@@ -307,7 +307,7 @@ class SocialMedia extends Component {
                     {Object.keys(this.state.buckets).map(e=>
                       <Button style={{margin:"8px"}} size="small" className={selectedBucket == e ?"btn-primary":"gx-btn-outline-primary"} 
                       onClick={()=>{
-                        this.getData(moment().valueOf(),moment().subtract(e, 'days').valueOf())
+                        this.getData(this.state.selection[0].name,moment().valueOf(),moment().subtract(e, 'days').valueOf())
                         this.setState({selectedBucket:e})
                       }}>
                         {this.state.buckets[e]}
@@ -317,7 +317,7 @@ class SocialMedia extends Component {
                   <RangePicker onChange={(e)=>{
                     if(e[1] && e[0])
                     {
-                    this.getData(e[1].valueOf(),e[0].valueOf())
+                    this.getData(this.state.selection[0].name,e[1].valueOf(),e[0].valueOf())
                     this.setState({selectedBucket:'user'})
                     }
                     }} size="small"   />
