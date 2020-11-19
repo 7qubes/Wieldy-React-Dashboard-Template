@@ -45,7 +45,7 @@ class AddAccount extends React.Component {
     const {tags, inputVisible, inputValue} = this.state;
     const {title} = this.props;
     return (
-      <Card title={title} className="gx-card">
+      <div>
         {tags.map((tag, index) => {
           const isLongTag = tag.length > 20;
           const tagElem = (
@@ -75,7 +75,7 @@ class AddAccount extends React.Component {
             <PlusOutlined /> New Tag
           </Tag>
         )}
-      </Card>
+      </div>
     );
   }
 }

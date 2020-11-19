@@ -300,6 +300,10 @@ const SidebarContent = () => {
                   </span>
                 </Link>
               </Menu.Item>
+              <Menu.Item key="media/autobot">
+                <Link to="/media/autobot">
+                  <span><IntlMessages id="sidebar.social.autobot"/></span></Link>
+              </Menu.Item>
             </SubMenu>
             <Menu.Item key="finance">
               <Link to="/finance">

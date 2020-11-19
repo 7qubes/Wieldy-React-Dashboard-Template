@@ -308,9 +308,16 @@
   "sidebar.extensions.profile": "Profile",
   "sidebar.social": "Social Apps",
   "sidebar.social.media": "Social Media",
+<<<<<<< HEAD
   "sidebar.media.analytics": "Analytics",
   "sidebar.media.scheduling": "Scheduling",
   "sidebar.media.automations": "Automations",
+=======
+  "sidebar.social.analytics": "Analytics",
+  "sidebar.social.scheduling": "Post Scheduling",
+  "sidebar.social.automation": "Automations",
+  "sidebar.social.autobot": "Autobot",
+>>>>>>> 8e875dd (automations ui)
   "sidebar.finance": "Finance",
   "sidebar.inventories": "Inventories",
   "sidebar.inventories.eshop": "E-Shop",
