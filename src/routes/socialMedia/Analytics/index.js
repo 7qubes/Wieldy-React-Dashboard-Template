@@ -169,43 +169,27 @@ class SocialMedia extends Component {
       drawerState: !this.state.drawerState
     });
   }
-  async getData(name,until,since){
+  async getData(account,until,since){
     this.setState({loading:true})
     until = parseInt(until/1000)
     since = parseInt(since/1000)
     var user_id=123
-    await fetch("http://localhost:5000/fb_stats/page_views?user_id="+user_id+"&name="+name+"&since="+since+"&until="+until)
-     .then(res => res.json())
-      .then(result => {
-        result.map(e => e.name = moment.unix(e.name).format('MM-DD')
-          )
-        this.setState({bar_data:result})
-        fetch("http://localhost:5000/fb_stats/page_likes?user_id="+user_id+"&name="+name+"&since="+since+"&until="+until)
-        .then(res => res.json())
-         .then(result => {
-          
-          result.map(e => e.name = moment.unix(e.name).format('MM-DD')
-          )
-           this.setState({page_likes:result})
-           fetch("http://localhost:5000/fb_stats/page_fans_age?user_id="+user_id+"&name="+name)
-          .then(res => res.json())
-            .then(result => {
-              fetch("http://localhost:5000/fb_stats/page_fans_city?user_id="+user_id+"&name="+name)
-          .then(res => res.json())
-            .then(result => {
-              // console.log(result)
-              this.setState({page_city:result,loading:false})
-            })
-              // console.log(result)
-              this.setState({page_age:result})
-            })
-         })
-      })
-      await fetch("http://localhost:5000/fb_stats?metrics=page_fans&user_id="+user_id+"&name="+name+"&since="+since+"&until="+until)
+    if( account.medium == 1)
+      await fetch("http://localhost:5000/fb_stats?user_id="+user_id+"&name="+account.name+"&since="+since+"&until="+until)
       .then(res => res.json())
         .then(result => {
-          result.map(e => e.name = moment.unix(e.name).format('MM-DD'))
-          this.setState({page_fans:result})
+          result['page_views'].map(e => e.name = moment.unix(e.name).format('MM-DD'))
+          result['page_likes'].map(e => e.name = moment.unix(e.name).format('MM-DD'))
+          result['page_fans'].map(e => e.name = moment.unix(e.name).format('MM-DD'))
+          this.setState(
+            {
+            bar_data:result['page_views'],
+            page_fans:result['page_fans'],
+            page_likes:result['page_likes'],
+            page_age:result['page_age'],
+            page_city:result['page_city'],
+            loading:false
+          })
         })
      
   }
@@ -307,7 +291,7 @@ class SocialMedia extends Component {
                     {Object.keys(this.state.buckets).map(e=>
                       <Button style={{margin:"8px"}} size="small" className={selectedBucket == e ?"btn-primary":"gx-btn-outline-primary"} 
                       onClick={()=>{
-                        this.getData(this.state.selection[0].name,moment().valueOf(),moment().subtract(e, 'days').valueOf())
+                        this.getData(this.state.selection[0],moment().valueOf(),moment().subtract(e, 'days').valueOf())
                         this.setState({selectedBucket:e})
                       }}>
                         {this.state.buckets[e]}
@@ -317,7 +301,7 @@ class SocialMedia extends Component {
                   <RangePicker onChange={(e)=>{
                     if(e[1] && e[0])
                     {
-                    this.getData(this.state.selection[0].name,e[1].valueOf(),e[0].valueOf())
+                    this.getData(this.state.selection[0],e[1].valueOf(),e[0].valueOf())
                     this.setState({selectedBucket:'user'})
                     }
                     }} size="small"   />

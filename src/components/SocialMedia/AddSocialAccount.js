@@ -59,7 +59,7 @@ class AddSocialAccount extends React.Component {
             <div className="gx-form-group gx-text-center">
               <ul className="gx-list-inline gx-mb-3 gx-mb-lg-4" onClick={this.showSignInModal}>
                 <li><FacebookFilled style={{fontSize:"48px",color:'#1877f2'}} onClick={()=>this.faceBookLogin() }/></li>
-                <li><InstagramFilled  style={{fontSize:"48px"}}/></li>
+                <li><InstagramFilled  style={{fontSize:"48px"}} onClick={()=>this.OpenLoginWindow('http://localhost:5000/instagram_login')}/></li>
                 <li><TwitterOutlined style={{fontSize:"48px",color:'rgba(29,161,242,1.00)'}} onClick={()=>this.OpenLoginWindow('http://localhost:5000/t_getAuthUrl')}/></li>
                 <li><LinkedinOutlined  style={{fontSize:"48px",color:'#0073b1'}} onClick={()=>this.OpenLoginWindow('http://localhost:5000/getAuthUrl')}/></li>
               </ul>
