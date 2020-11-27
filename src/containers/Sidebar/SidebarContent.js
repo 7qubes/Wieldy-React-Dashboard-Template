@@ -292,17 +292,16 @@ const SidebarContent = () => {
                   </span>
                 </Link>
               </Menu.Item>
-              <Menu.Item key="media/automations">
-                <Link to="/media/automations">
-                  <i className="icon icon-automations" />
-                  <span>
-                    <IntlMessages id="sidebar.media.automations" />
-                  </span>
-                </Link>
-              </Menu.Item>
+              {/* <Menu.Item key="media/automation">
+                <Link to="/media/automation">
+                  <span><IntlMessages id="sidebar.social.automation"/></span></Link>
+              </Menu.Item> */}
               <Menu.Item key="media/autobot">
                 <Link to="/media/autobot">
-                  <span><IntlMessages id="sidebar.social.autobot"/></span></Link>
+                  <span>
+                    <IntlMessages id="sidebar.social.autobot" />
+                  </span>
+                </Link>
               </Menu.Item>
             </SubMenu>
             <Menu.Item key="finance">
