@@ -125,10 +125,10 @@ const SidebarContent = () => {
                 <Link to="/media/scheduling">
                   <span><IntlMessages id="sidebar.social.scheduling"/></span></Link>
               </Menu.Item>
-              <Menu.Item key="media/automation">
+              {/* <Menu.Item key="media/automation">
                 <Link to="/media/automation">
                   <span><IntlMessages id="sidebar.social.automation"/></span></Link>
-              </Menu.Item>
+              </Menu.Item> */}
               <Menu.Item key="media/autobot">
                 <Link to="/media/autobot">
                   <span><IntlMessages id="sidebar.social.autobot"/></span></Link>

@@ -7,7 +7,6 @@ import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
 import PlusOutlined from "@ant-design/icons/lib/icons/PlusOutlined";
 import IntlMessages from "util/IntlMessages";
 import SchedulePost from "../../../components/SocialMedia/SchedulePost";
-
 import Panel from './panel';
 
 const filterOptions = [
@@ -194,6 +193,10 @@ class Autobot extends Component {
       selectedContacts: 0,
       addAccount: false,
       schedulePost: false,
+      engagement: 30,
+      posts: 40,
+      followers: 800,
+      following: 1000
     }
   }
 
@@ -251,11 +254,48 @@ class Autobot extends Component {
                 value={this.state.searchUser} />
             </div>
             <div className="gx-module-box-content">
-              <div className="gx-module-box-topbar" style={{ backgroundColor: '#6236FF' }}>
-                <Avatar className="gx-mr-2" size="large" icon={<UserOutlined />} />
+              <div className="gx-module-box-topbar" style={{ backgroundColor: '#6236FF', display: "flex","justify-content": "space-between" }}>
+              
+              <div>
+              <Avatar className="gx-mr-2" size="large" icon={<UserOutlined />} />
                 <span className="gx-contact-name" style={{ color: '#ffffff' }}> @username</span>
               </div>
-              <div style={{ padding: '32px 32px 0', backgroundColor:"#F5F6FA"}}>
+                
+                <div  style={{ color: '#ffffff' }}x>
+                <table className="padding-table-columns">
+                  <tr>
+                    <th style={{padding:"0 20px 0 0" }}>
+                      {this.state.engagement}%
+                   </th>
+                    <th style={{padding:"0 20px 0 0" }}>
+                      {this.state.posts}
+                    </th>
+                    <th style={{padding:"0 20px 0 0" }}>
+                      {this.state.followers}
+                    </th>
+                    <th style={{padding:"0 20px 0 0" }}>
+                      {this.state.following}
+                    </th>
+                  </tr>
+                  <tr>
+                    <th style={{padding:"0 20px 0 0" }}>
+                      Engagement
+                   </th>
+                    <th style={{padding:"0 20px 0 0" }}>
+                      Posts
+                   </th>
+                    <th style={{padding:"0 20px 0 0" }}>
+                      Followers
+                   </th>
+                    <th style={{padding:"0 20px 0 0" }}>
+                      Following
+                   </th>
+                  </tr>
+                </table>
+              </div>
+              </div>
+              
+              <div style={{ padding: '32px 32px 0', backgroundColor: "#F5F6FA" }}>
                 <Panel />
               </div>
             </div>
