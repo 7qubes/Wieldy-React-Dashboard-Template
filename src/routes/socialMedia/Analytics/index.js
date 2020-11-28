@@ -8,6 +8,7 @@ import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
 import ProfileGrowth from "./ProfileGrowth";
 import ProfileInteractions from "./ProfileInteractions";
 import AudienceDemographics from "./AudienceDemographics";
+import InstagramCharts from "./InstagramCharts";
 import moment from 'moment'
 import SideBarSM from '../components/Sidebar'
 import axios from "axios"
@@ -122,7 +123,7 @@ class SocialMedia extends Component {
     }
     this.setState({selection,selectedBucket:7})
     if(selection.length > 0)
-      this.getData(selection[0].name,moment().valueOf(),moment().subtract(7, 'days').valueOf())
+      this.getData(selection[0],moment().valueOf(),moment().subtract(7, 'days').valueOf())
 
   }
   constructor() {
@@ -151,9 +152,16 @@ class SocialMedia extends Component {
       page_likes:{},
       page_city:[],
       page_age:[],
-      selectPane:'interaction',
+      selectPane:'',
       buckets:{ 7:'7 days',30:'1 Month',90:'3 Months' },
-      selectedBucket:7
+      selectedBucket:7,
+      options:{
+        1:{
+          "discovery_1":"Profile Growth & Discovery",
+          "audience_1":"Audience Demographics",
+          "interaction_1":"Profile Interactions"
+        },
+      }
     }
   }
 
@@ -174,7 +182,8 @@ class SocialMedia extends Component {
     until = parseInt(until/1000)
     since = parseInt(since/1000)
     var user_id=123
-    if( account.medium == 1)
+    console.log(account,account.medium == "1")
+    if( account.medium == "1")
       await fetch("http://localhost:5000/fb_stats?user_id="+user_id+"&name="+account.name+"&since="+since+"&until="+until)
       .then(res => res.json())
         .then(result => {
@@ -188,7 +197,19 @@ class SocialMedia extends Component {
             page_likes:result['page_likes'],
             page_age:result['page_age'],
             page_city:result['page_city'],
-            loading:false
+            loading:false,
+            selectPane:"discovery_1"
+          })
+        })
+      else if ( account.medium == "2")
+      await fetch("http://localhost:5000/insta_stats?user_id="+user_id+"&name="+account.name+"&since="+since+"&until="+until)
+      .then(res => res.json())
+        .then(result => {
+          this.setState(
+            {
+            insta_data:result,
+            loading:false,
+            selectPane:'instagram'
           })
         })
      
@@ -213,13 +234,16 @@ class SocialMedia extends Component {
 		  });
   }
   renderComponentDisplay = () => {
-    if (this.state.selectPane === "discovery") {
+    if (this.state.selectPane === "discovery_1") {
         return <ProfileGrowth {...this.state}></ProfileGrowth>;
-    } else if (this.state.selectPane === "interaction") {
+    } else if (this.state.selectPane === "interaction_1") {
         return <ProfileInteractions {...this.state}></ProfileInteractions>;
-    } else if (this.state.selectPane === "audience") {
+    } else if (this.state.selectPane === "audience_1") {
         return <AudienceDemographics {...this.state} ></AudienceDemographics>;
     }
+    else if (this.state.selectPane === "instagram") {
+      return <InstagramCharts {...this.state} ></InstagramCharts>;
+  }
 };
   render() {
     const {
@@ -229,7 +253,8 @@ class SocialMedia extends Component {
       addAccount,
       schedulePost,
       selectedBucket,
-      loading
+      loading,
+      options
     } = this.state;
 
     const SideBar = <SideBarSM 
@@ -278,15 +303,19 @@ class SocialMedia extends Component {
               </div>
               {this.state.selection.length > 0 ?
               <Col>
+              {this.state.selection[0].medium=="1"?
               <Row>
                 <Col md={8}>
                   <Select id="options_views" onChange={this.handleChange}  className="gx-mr-3 gx-mb-3" defaultValue={this.state.selectPane} style={{width: 300}}>
-                    <Option value="discovery">Profile Growth & Discovery</Option>
-                    <Option value="interaction">Profile Interactions</Option>
-                    <Option value="audience">Audience Demographics</Option>
+
+                    {
+                      Object.entries(options[this.state.selection[0].medium]).map(
+                        ([k,v])=> <Option value={k}>{v}</Option>
+                      )
+                    }
                   </Select>
                 </Col>
-                { this.state.selectPane != "audience" ?
+                { this.state.selectPane != "audience_1"  ?
                 <Col md={16}>
                     {Object.keys(this.state.buckets).map(e=>
                       <Button style={{margin:"8px"}} size="small" className={selectedBucket == e ?"btn-primary":"gx-btn-outline-primary"} 
@@ -307,6 +336,7 @@ class SocialMedia extends Component {
                     }} size="small"   />
                 </Col>:""}
               </Row>
+              :<Row></Row>}
               { this.state.loading ? <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />:
               <Row>
                 <Col md={24}>
