@@ -99,14 +99,22 @@ class Panel extends React.Component {
         }
 
     }
-    activity_speed() {
+    activity_speed(setting) {
         return (
+            setting != "Days"?
             <div style={{ float: "right" }}>
                 <Dropdown overlay={speed} >
                     <Button>
                         Fast <DownOutlined />
                     </Button>
                 </Dropdown>
+            </div>:<div>
+                <Row style={{paddingLeft:24}} >
+                {this.state.days.map(e=>
+                    <Col>
+                    <Button type="text" size="small" style={{padding:5}}>{e}</Button>
+                    </Col>)}
+                    </Row>
             </div>
         )
     }
@@ -324,7 +332,7 @@ class Panel extends React.Component {
                                         {automation_settings.map((p) =>
                                             <li key={p}>
                                                 {p}
-                                                {this.activity_speed()}
+                                                {this.activity_speed(p)}
                                                 <div style={{ clear: "both" }}></div>
                                             </li>
                                         )
