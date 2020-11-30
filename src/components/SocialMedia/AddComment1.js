@@ -5,14 +5,17 @@ import { CloseOutlined } from '@ant-design/icons';
 
 
 class AddComment extends React.Component {
-  state = {
-    tags: ['Leave your work', 'Wow!'],
-    inputVisible: false,
-    inputValue: '',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      // tags: ['Leave your work', 'Wow!'],
+      inputVisible: false,
+      inputValue: '',
+    };
+  }
 
   handleClose = (removedTag) => {
-    const tags = this.state.tags.filter(tag => tag !== removedTag);
+    const tags = this.props.tags.filter(tag => tag !== removedTag);
     console.log(tags);
     this.setState({ tags });
   };
@@ -28,7 +31,7 @@ class AddComment extends React.Component {
   handleInputConfirm = () => {
     const state = this.state;
     const inputValue = state.inputValue;
-    let tags = state.tags;
+    let tags = this.props.tags;
     if (inputValue && tags.indexOf(inputValue) === -1) {
       tags = [...tags, inputValue];
     }
@@ -48,7 +51,7 @@ class AddComment extends React.Component {
     return (
       <div>
         {
-          tags.map((tag, index) => (
+          this.props.tags.map((tag, index) => (
             <Input placeholder={tag}
               iconRender={visible => (visible ? this.handleClose(tag) : <CloseOutlined />)}
               // onClick={() => this.handleClose(tag)}
@@ -69,7 +72,7 @@ class AddComment extends React.Component {
             size="medium"
             style={{ width: '100% ' }}
             value={inputValue}
-            onChange={this.handleInputChange}
+            onChange={(e)=>this.props.onChangeSetting(e)}
             onBlur={this.handleInputConfirm}
             onPressEnter={this.handleInputConfirm}
           />

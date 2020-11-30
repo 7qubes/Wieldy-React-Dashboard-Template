@@ -8,7 +8,6 @@ import { DownOutlined } from '@ant-design/icons';
 const { Option } = Select;
 const TabPane = Tabs.TabPane;
 
-// import {recentActivity, taskList, trafficData} from "./data";
 const userImageList = [
     {
         id: 1,
@@ -42,7 +41,6 @@ const userImageList = [
 
     }
 ]
-// const quick_settings = ['Likes', 'Comments', 'Follows', 'Unfollows', 'Watch Stories']
 const automation_settings = ['Activity Speed', 'Days', 'Time', 'Unfollow']
 const data = [
     {
@@ -58,66 +56,84 @@ const data = [
         name: 'Location', uv: 8.22, fill: '#14F4C9',
     }
 ];
-const opt = (
-    <Menu onClick={handleMenuClick}>
-        <Menu.Item key="1" >
-            Yes
-      </Menu.Item>
-        <Menu.Item key="2" >
-            NO
-      </Menu.Item>
-    </Menu>
-);
-const speed = (
-    <Menu onClick={handleMenuClick}>
-        <Menu.Item key="1" >
-            Slow
-      </Menu.Item>
-        <Menu.Item key="2" >
-            Medium
-      </Menu.Item>
-        <Menu.Item key="3" >
-            Fast
-      </Menu.Item>
-    </Menu>
-);
+
 const categories = ['Art', 'Entertainment', 'Fashion', 'Food', 'Health & Fitness', 'Inspiration', 'Lifestyle', 'Music', 'Photography', 'Sports', 'Travel', 'Business'];
 const style = {
     top: 10,
     left: 500,
     lineHeight: '64px',
 };
-function handleMenuClick(e) {
-    console.log('click', e);
-}
 class Panel extends React.Component {
     constructor() {
         super();
         this.state = {
+            tags: ['Leave your work', 'Wow!'],
             quick_settings: { 'Likes': 'NO', 'Comments': 'NO', 'Follows': 'NO', 'Unfollows': 'NO', 'Watch Stories': 'NO' },
-            days: ['S', 'M', 'T', 'W', 'T', 'F', 'S']
+            days: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+            save_settings:{
+                categories:"",
+                similar_accounts:[],
+                hashtags:[],
+                locations:[],
+                keywords:[],
+                organization:[],
+                preset_comments:[],
+                quick_settings: { 'Likes': 'NO', 'Comments': 'NO', 'Follows': 'NO', 'Unfollows': 'NO', 'Watch Stories': 'NO' },
+                automation_settings:{'activity_speed':'Slow','days':[],'Time':'Fast','Unfollow':'Fast'},
+                new_followers:{}
+            }
         }
 
     }
+    onChangeSetting=(e,option)=>{
+        console.log(e,option)
+        // this.state({save_settings:{...opttion:e}})
+        // console.log(this.state.save_settings)
+    }
+    opt=(option) => (
+        <Menu onClick={(e)=>this.onChangeSetting(e,option)}>
+            <Menu.Item key="1" >
+                Yes
+          </Menu.Item>
+            <Menu.Item key="2" >
+                NO
+          </Menu.Item>
+        </Menu>
+    );
+    speed=(opt) => (
+        <Menu onClick={(e)=>this.onChangeSetting(e.key,opt)}>
+            <Menu.Item key="1" >
+                Slow
+          </Menu.Item>
+            <Menu.Item key="2" >
+                Medium
+          </Menu.Item>
+            <Menu.Item key="3" >
+                Fast
+          </Menu.Item>
+        </Menu>
+    );
+   
     activity_speed(setting) {
         return (
             setting != "Days"?
             <div style={{ float: "right" }}>
-                <Dropdown overlay={speed} >
-                    <Button>
-                        Fast <DownOutlined />
+                <Dropdown overlay={()=>this.speed("save_settings.automation_settings.activity_speed")} >
+                    <Button id="save_settings.automation_settings.activity_speed" onChange={this.onChangeSetting}>
+                        {this.state.save_settings.automation_settings.activity_speed} <DownOutlined />
                     </Button>
                 </Dropdown>
             </div>:<div>
                 <Row style={{paddingLeft:24}} >
                 {this.state.days.map(e=>
                     <Col>
-                    <Button type="text" size="small" style={{padding:5}}>{e}</Button>
+                    <Button type="text" size="small" style={{padding:5}} onChange={this.onChangeSetting}>{e}</Button>
                     </Col>)}
                     </Row>
             </div>
         )
     }
+    
     activity_days() {
         return (
             <div style={{ float: "right" }}>
@@ -125,11 +141,8 @@ class Panel extends React.Component {
             </div>
         )
     }
-    activity_time() {
-
-    }
-    activity_unfollow() {
-
+    save_settings(){
+        console.log(this.state);
     }
     render() {
         return (
@@ -137,7 +150,7 @@ class Panel extends React.Component {
                 <Row>
                     <Col span={24}>
                         <div className="gx-card ">
-                            {/* <div className="gx-card-body"> */}
+                            
                             <Row>
                                 <Col xl={6} lg={12} md={12} sm={12} xs={24}>
                                     <div className="gx-module-box-topbar">
@@ -166,7 +179,7 @@ class Panel extends React.Component {
                                 </Col>
 
                             </Row>
-                            {/* </div> */}
+                            
                         </div>
 
                     </Col>
@@ -203,7 +216,7 @@ class Panel extends React.Component {
                                                 <li key={option}>
                                                     {option}
                                                     <div style={{ float: "right" }}>
-                                                        <Dropdown overlay={opt} >
+                                                        <Dropdown  overlay={()=>this.opt(option+value)} >
                                                             <Button>
                                                                 {value} <DownOutlined />
                                                             </Button>
@@ -243,9 +256,10 @@ class Panel extends React.Component {
                                                     showSearch
                                                     style={{ width: '100%' }}
                                                     placeholder="Art"
+                                                    onChange={(e)=>this.onChangeSetting(e,"categories")}
                                                 >
                                                     {categories.map((p) => {
-                                                        return <Option value={p}>{p}</Option>
+                                                        return <Option value={p} >{p}</Option>
                                                     })}
                                                 </Select>
                                             </TabPane>
@@ -356,7 +370,7 @@ class Panel extends React.Component {
                             <Widget title="" >
                                 <Tabs defaultActiveKey="1">
                                     <TabPane tab="Preset Comments" key="1">
-                                        <AddComment1 />
+                                        <AddComment1 onChangeSetting={this.onChangeSetting} tags={this.state.tags}/>
                                     </TabPane>
 
                                 </Tabs>
