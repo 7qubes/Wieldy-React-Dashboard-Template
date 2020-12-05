@@ -1,11 +1,10 @@
 import React from "react";
 import {Card, Input, Tag, Tooltip} from "antd";
-import Icon from '@ant-design/icons';
 import PlusOutlined from "@ant-design/icons/lib/icons/PlusOutlined";
 
 class AddTags extends React.Component {
   state = {
-    tags: ['@taylorfun', '@taylorfun', '@taylorfun', '@taylorfun',],
+    tags: this.props.data,
     inputVisible: false,
     inputValue: '',
   };
@@ -30,13 +29,15 @@ class AddTags extends React.Component {
     let tags = state.tags;
     if (inputValue && tags.indexOf(inputValue) === -1) {
       tags = [...tags, inputValue];
+      this.props.onChangeSetting(tags,this.props.title)
     }
-    console.log(tags);
+    // console.log(tags);
     this.setState({
       tags,
       inputVisible: false,
       inputValue: '',
     });
+    
   };
 
   saveInputRef = input => this.input = input;

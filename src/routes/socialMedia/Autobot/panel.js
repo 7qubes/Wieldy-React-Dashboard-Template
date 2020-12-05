@@ -56,42 +56,68 @@ const data = [
         name: 'Location', uv: 8.22, fill: '#14F4C9',
     }
 ];
-
 const categories = ['Art', 'Entertainment', 'Fashion', 'Food', 'Health & Fitness', 'Inspiration', 'Lifestyle', 'Music', 'Photography', 'Sports', 'Travel', 'Business'];
-const style = {
-    top: 10,
-    left: 500,
-    lineHeight: '64px',
-};
+const style = {top: 10,left: 500,lineHeight: '64px'};
 class Panel extends React.Component {
     constructor() {
         super();
         this.state = {
             tags: ['Leave your work', 'Wow!'],
-            quick_settings: { 'Likes': 'NO', 'Comments': 'NO', 'Follows': 'NO', 'Unfollows': 'NO', 'Watch Stories': 'NO' },
             days: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-            save_settings:{
-                categories:"",
-                similar_accounts:[],
-                hashtags:[],
-                locations:[],
-                keywords:[],
-                organization:[],
-                preset_comments:[],
-                quick_settings: { 'Likes': 'NO', 'Comments': 'NO', 'Follows': 'NO', 'Unfollows': 'NO', 'Watch Stories': 'NO' },
-                automation_settings:{'activity_speed':'Slow','days':[],'Time':'Fast','Unfollow':'Fast'},
-                new_followers:{}
-            }
+            categories: "",
+            similar_accounts: [],
+            hashtags: ['@worklifebalance','@weekendgateway'],
+            locations: ['@Chicago','@Boston','@NY'],
+            keywords: ['@work','@play','sleep','@exercise'],
+            organization: ['@UIC','@IIT','UIUC'],
+            preset_comments: [],
+            quick_settings: { 'Likes': 'NO', 'Comments': 'NO', 'Follows': 'NO', 'Unfollows': 'NO', 'Watch Stories': 'NO' },
+            automation_settings: { 'Activity Speed': 'Slow', 'Days': [], 'Time': 'Fast', 'Unfollow': 'Fast' },
+            new_followers: {}
+
         }
 
     }
-    onChangeSetting=(e,option)=>{
-        console.log(e,option)
-        // this.state({save_settings:{...opttion:e}})
-        // console.log(this.state.save_settings)
+    onChangeSetting = (e, option) => {
+        console.log(e, option)
+        switch (option) {
+            case 'Likes':
+            case 'Comments':
+            case 'Follows':
+            case 'Unfollows':
+            case 'Watch Stories':
+                {
+                    var qs = { ...this.state.quick_settings, [option]: e == 1 ? 'Yes' : 'No' }
+                    this.setState({ quick_settings: qs }, () => { console.log(this.state) })
+                    break;
+                }
+
+            case 'Categories': {
+                this.setState({ categories: e }, () => { console.log(this.state) })
+                break;
+            }
+
+            case 'locations':
+            case 'hastags': 
+            case 'keywords': 
+            case 'organization': {
+                this.setState({ [option]: e }, () => { console.log(this.state) })
+                break;
+            }
+
+            
+            case 'Days':
+            case 'Activity Speed':
+            case 'Time':
+            case 'Unfollow': {
+                var as = { ...this.state.automation_settings, [option]: e }
+                this.setState({ automation_settings: as }, () => { console.log(this.state) })
+                break;
+            }
+        }
     }
-    opt=(option) => (
-        <Menu onClick={(e)=>this.onChangeSetting(e,option)}>
+    opt = (option) => (
+        <Menu onClick={(e) => this.onChangeSetting(e.key, option)}>
             <Menu.Item key="1" >
                 Yes
           </Menu.Item>
@@ -100,48 +126,43 @@ class Panel extends React.Component {
           </Menu.Item>
         </Menu>
     );
-    speed=(opt) => (
-        <Menu onClick={(e)=>this.onChangeSetting(e.key,opt)}>
-            <Menu.Item key="1" >
+    speed = (option) => (
+        <Menu onClick={(e) => this.onChangeSetting(e.key, option)}>
+            <Menu.Item key="Slow" >
                 Slow
           </Menu.Item>
-            <Menu.Item key="2" >
+            <Menu.Item key="Medium" >
                 Medium
           </Menu.Item>
-            <Menu.Item key="3" >
+            <Menu.Item key="Fast" >
                 Fast
           </Menu.Item>
         </Menu>
     );
-   
-    activity_speed(setting) {
-        return (
-            setting != "Days"?
-            <div style={{ float: "right" }}>
-                <Dropdown overlay={()=>this.speed("save_settings.automation_settings.activity_speed")} >
-                    <Button id="save_settings.automation_settings.activity_speed" onChange={this.onChangeSetting}>
-                        {this.state.save_settings.automation_settings.activity_speed} <DownOutlined />
-                    </Button>
-                </Dropdown>
-            </div>:<div>
-                <Row style={{paddingLeft:24}} >
-                {this.state.days.map(e=>
-                    <Col>
-                    <Button type="text" size="small" style={{padding:5}} onChange={this.onChangeSetting}>{e}</Button>
-                    </Col>)}
-                    </Row>
-            </div>
-        )
-    }
-    
-    activity_days() {
-        return (
-            <div style={{ float: "right" }}>
 
-            </div>
+    automation_settings(option,value) {
+        return (
+            option != "Days" ?
+                <div style={{ float: "right" }}>
+                    <Dropdown overlay={() => this.speed(option)} >
+                        <Button >
+                            {value} <DownOutlined />
+                        </Button>
+                    </Dropdown>
+                </div> : 
+                 <div style={{ clear: "both" }}>
+                <div >
+                    <Row style={{ margin: " 0px 40px"}} >
+                        {this.state.days.map(e =>
+                            <Col>
+                                <Button text="large" style={{ padding: 5,backgroundcolor: "white",border: "2px solid #555555"}} onClick={()=>this.onChangeSetting(e,'Days')}>{e}</Button>
+                            </Col>)}
+                    </Row>
+                </div>
+                </div>
         )
     }
-    save_settings(){
+    save_settings() {
         console.log(this.state);
     }
     render() {
@@ -150,7 +171,7 @@ class Panel extends React.Component {
                 <Row>
                     <Col span={24}>
                         <div className="gx-card ">
-                            
+
                             <Row>
                                 <Col xl={6} lg={12} md={12} sm={12} xs={24}>
                                     <div className="gx-module-box-topbar">
@@ -166,7 +187,7 @@ class Panel extends React.Component {
 
                                 </Col>
                                 <Col xl={14} lg={12} md={6} sm={12} xs={24}>
-                                    <div  className="gx-module-box-topbar"> 
+                                    <div className="gx-module-box-topbar">
                                         <ul className="gx-list-inline" style={{ margin: 0 }}>
                                             {userImageList.map((user, index) =>
                                                 <li key={index}>
@@ -179,7 +200,7 @@ class Panel extends React.Component {
                                 </Col>
 
                             </Row>
-                            
+
                         </div>
 
                     </Col>
@@ -216,7 +237,7 @@ class Panel extends React.Component {
                                                 <li key={option}>
                                                     {option}
                                                     <div style={{ float: "right" }}>
-                                                        <Dropdown  overlay={()=>this.opt(option+value)} >
+                                                        <Dropdown overlay={() => this.opt(option)} >
                                                             <Button>
                                                                 {value} <DownOutlined />
                                                             </Button>
@@ -256,10 +277,10 @@ class Panel extends React.Component {
                                                     showSearch
                                                     style={{ width: '100%' }}
                                                     placeholder="Art"
-                                                    onChange={(e)=>this.onChangeSetting(e,"categories")}
+                                                    onChange={(e) => this.onChangeSetting(e, 'Categories')}
                                                 >
                                                     {categories.map((p) => {
-                                                        return <Option value={p} >{p}</Option>
+                                                        return <Option value={p} key={p} >{p}</Option>
                                                     })}
                                                 </Select>
                                             </TabPane>
@@ -289,7 +310,7 @@ class Panel extends React.Component {
                                         <Tabs defaultActiveKey="1">
                                             <TabPane tab="Hastags" key="1">
                                                 <p>Add at least 4 hashtags that are relevant to your account and commonly used by the audience you wish to attract</p>
-                                                <AddTags title="Hashtags" />
+                                                <AddTags title="hashtags" onChangeSetting={this.onChangeSetting} data={this.state.hashtags}/>
                                             </TabPane>
 
                                         </Tabs>
@@ -301,7 +322,7 @@ class Panel extends React.Component {
                                     <Widget title="" >
                                         <Tabs defaultActiveKey="1">
                                             <TabPane tab="Locations" key="1">
-                                                <AddTags title="Locations" />
+                                                <AddTags title="locations" onChangeSetting={this.onChangeSetting} data={this.state.locations} />
                                             </TabPane>
 
                                         </Tabs>
@@ -316,7 +337,7 @@ class Panel extends React.Component {
                                     <Widget title="" >
                                         <Tabs defaultActiveKey="1">
                                             <TabPane tab="Keywords" key="1">
-                                                <AddTags title="Keywords" />
+                                                <AddTags title="keywords" onChangeSetting={this.onChangeSetting} data={this.state.keywords}/>
                                             </TabPane>
 
                                         </Tabs>
@@ -327,8 +348,8 @@ class Panel extends React.Component {
                                 <div className="gx-card">
                                     <Widget title="" >
                                         <Tabs defaultActiveKey="1">
-                                            <TabPane tab="Organization" key="1">
-                                                <AddTags title="Organization" />
+                                            <TabPane tab="organization" key="1">
+                                                <AddTags title="Organization" onChangeSetting={this.onChangeSetting} data={this.state.organization}/>
                                             </TabPane>
 
                                         </Tabs>
@@ -343,10 +364,10 @@ class Panel extends React.Component {
                             <Widget title="" >
                                 <Tabs defaultActiveKey="1">
                                     <TabPane tab="Automation Settings" key="1">
-                                        {automation_settings.map((p) =>
-                                            <li key={p}>
-                                                {p}
-                                                {this.activity_speed(p)}
+                                        {Object.entries(this.state.automation_settings).map(([option, value]) =>
+                                            <li key={option}>
+                                                {option}
+                                                {this.automation_settings(option,value)}
                                                 <div style={{ clear: "both" }}></div>
                                             </li>
                                         )
@@ -370,7 +391,7 @@ class Panel extends React.Component {
                             <Widget title="" >
                                 <Tabs defaultActiveKey="1">
                                     <TabPane tab="Preset Comments" key="1">
-                                        <AddComment1 onChangeSetting={this.onChangeSetting} tags={this.state.tags}/>
+                                        <AddComment1 onChangeSetting={this.onChangeSetting} tags={this.state.tags} />
                                     </TabPane>
 
                                 </Tabs>
