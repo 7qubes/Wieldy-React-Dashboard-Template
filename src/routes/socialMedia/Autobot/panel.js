@@ -64,7 +64,7 @@ class Panel extends React.Component {
         super();
         this.state = {
             tags: ['Leave your work', 'Wow!'],// this is not there
-            days: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],//for schedular 
+            days: [ 'M', 'T', 'W', 'T', 'F', 'S','S'],//for schedular 
             categories: "Art",//not done
             similar_accounts: [],//related to  list of followers,following
             hashtags: ['#worklifebalance', '#weekendgateway'],// this is for recommendation
@@ -72,8 +72,8 @@ class Panel extends React.Component {
             keywords: ['#work', '#play', '#sleep', '#exercise'],// following people based on tags  follow tag
             organization: ['#UIC', '#IIT', '#UIUC'],// not done
             preset_comments: [],//like and comment
-            quick_settings: { 'Likes': 'NO', 'Comments': 'NO', 'Follows': 'NO', 'Unfollows': 'NO', 'Watch Stories': 'NO' },
-            automation_settings: { 'Activity Speed': 'Slow', 'Days': '', 'Time': 'Fast', 'Unfollow': 'Fast' },
+            quick_settings: { 'Likes': 'No', 'Comments': 'No', 'Follows': 'No', 'Unfollows': 'No', 'Watch Stories': 'No' },
+            automation_settings: { 'Activity Speed': 'Slow', 'Days': '', 'Time': 'Fast', 'Unfollow': 'Fast','Days':[] },
             new_followers: {}
 
         }
@@ -108,6 +108,14 @@ class Panel extends React.Component {
 
 
             case 'Days':
+                var days = this.state.automation_settings.Days
+                if(days.indexOf(e) > -1)
+                    days.splice(days.indexOf(e),1)
+                else
+                    days.push(e)
+                var as = { ...this.state.automation_settings, [option]: days }
+                this.setState({ automation_settings: as }, () => { console.log(this.state) })
+                break;
             case 'Activity Speed':
             case 'Time':
             case 'Unfollow': {
@@ -123,7 +131,7 @@ class Panel extends React.Component {
                 Yes
           </Menu.Item>
             <Menu.Item key="2" >
-                NO
+                No
           </Menu.Item>
         </Menu>
     );
@@ -153,10 +161,13 @@ class Panel extends React.Component {
                 </div> :
                 <div style={{ clear: "both" }}>
                     <div >
-                        <Row style={{ margin: " 0px 40px" }} >
-                            {this.state.days.map(e =>
+                        <Row style={{ margin: "0px 10px" }} >
+                            {this.state.days.map((e,index) =>
                                 <Col>
-                                    <Button text="large" style={{ padding: 5, backgroundcolor: "white", border: "2px solid #555555" }} onClick={() => this.onChangeSetting(e, 'Days')}>{e}</Button>
+                                    <Button size="small" 
+                                    // style={{width:7}}
+                                    type={this.state.automation_settings.Days.indexOf(index) > -1 ?"primary":"link"} 
+                                    onClick={() => this.onChangeSetting(index, 'Days')}>{e}</Button>
                                 </Col>)}
                         </Row>
                     </div>
@@ -175,7 +186,9 @@ class Panel extends React.Component {
             "organization":this.state.organization,
             "preset_comments":this.state.preset_comments,
             "quick_settings":this.state.quick_settings,
-            "automation_settings":this.state.automation_settings
+            "automation_settings":this.state.automation_settings,
+            "user_id":"123",
+            "social_id":this.props.selection[0].social_id
         }
         console.log(params)
         axios.post('http://localhost:5000/automation_settings', params)
@@ -425,7 +438,9 @@ render() {
             <Row>
                 <Col span={24}>
                     <div style={{ float: "right" }}>
-                        <Button class="ant-btn ant-btn-lg gx-btn-secondary" onClick={this.save_settings}>Save</Button>
+                        <Button class="ant-btn ant-btn-lg gx-btn-secondary" 
+                        disabled={this.props.selection.length <= 0}
+                        onClick={this.save_settings}>Save</Button>
                     </div>
                 </Col>
             </Row>

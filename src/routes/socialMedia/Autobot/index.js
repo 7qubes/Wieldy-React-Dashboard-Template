@@ -6,8 +6,10 @@ import AddSocialAccount from "components/SocialMedia/AddSocialAccount"
 import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
 import PlusOutlined from "@ant-design/icons/lib/icons/PlusOutlined";
 import IntlMessages from "util/IntlMessages";
-import SchedulePost from "../../../components/SocialMedia/SchedulePost";
 import Panel from './panel';
+import SocialMediaIcon from  '../components/SocialMediaIcon'
+import SideBarSM from '../components/Sidebar'
+import axios from 'axios'
 
 const filterOptions = [
   {
@@ -21,68 +23,8 @@ const filterOptions = [
     name: '@username',
   }
 ];
-const userImageList = [
-  {
-    id: 1,
-    image: "/src/assets/images/customer_1.jpg",
-  },
-  {
-    id: 2,
-    image: "assets/images/customer_2.jpg",
-  },
-  {
-    id: 3,
-    image: "assets/images/customer_3.jpg",
 
-  }
-]
 class Autobot extends Component {
-
-  ContactSideBar = (user) => {
-    return <div className="gx-module-side">
-      <div className="gx-module-side-header">
-        <div className="gx-module-logo">
-          <i className="icon icon-compose gx-mr-4" />
-          <span><IntlMessages id="chat.media" /></span>
-        </div>
-      </div>
-
-      <div className="gx-module-side-content">
-        <CustomScrollbars className="gx-module-side-scroll">
-          <div className="gx-module-add-task">
-            <Button className="gx-btn-block ant-btn" type="primary" aria-label="add"
-              onClick={this.onShowSchedulePost}>
-              <i className="icon icon-add-circle gx-mr-1" />
-              <span>Schedule a Post</span>
-            </Button>
-          </div>
-          <div className="gx-module-side-nav">
-            <ul className="gx-module-nav">
-              {filterOptions.map(option => <li key={option.id} className="gx-nav-item">
-                <span
-                  className={`gx-link ${option.id === this.state.selectedSectionId ? 'active' : ''}`} onClick={
-                    this.onFilterOptionSelect.bind(this, option)
-                  }>
-                  <Checkbox className="gx-icon-btn" />
-                  <Avatar className="gx-mr-2" shape="square" size="small" icon={<UserOutlined />} />
-                  <span className="gx-contact-name">{option.name}</span>
-                </span>
-              </li>
-              )}
-            </ul>
-          </div>
-          <div className="gx-module-add-task">
-            <Button className="gx-btn-block ant-btn" aria-label="add"
-              onClick={this.onAddAccount}>
-              <i className="icon icon-add-circle gx-mr-1" />
-              <span>Add account</span>
-            </Button>
-          </div>
-        </CustomScrollbars>
-      </div>
-    </div>
-
-  };
 
   onAddAccount = () => {
     this.setState({ addAccount: true });
@@ -91,12 +33,6 @@ class Autobot extends Component {
     this.setState({ addAccount: false });
   };
 
-  onShowSchedulePost = () => {
-    this.setState({ schedulePost: true });
-  };
-  onCloseSchedulePost = () => {
-    this.setState({ schedulePost: false });
-  };
 
   onFilterOptionSelect = (option) => {
     switch (option.name) {
@@ -120,7 +56,19 @@ class Autobot extends Component {
         break;
     }
   };
-
+  getStatus=()=>{
+    var self = this
+    axios.post('http://localhost:5000/getStatus', {
+			user_id: '123',
+		  })
+		  .then(function (response) {
+      var data = response.data.filter((e)=>e.medium == "2")
+			self.setState({status:data})
+		  })
+		  .catch(function (error) {
+			console.log(error);
+		  });
+  }
   onSaveContact = (data) => {
     let isNew = true;
     const paymentList = this.state.allContact.map((contact) => {
@@ -196,7 +144,9 @@ class Autobot extends Component {
       engagement: 30,
       posts: 40,
       followers: 800,
-      following: 1000
+      following: 1000,
+      status:[],
+      selection:[]
     }
   }
 
@@ -213,18 +163,42 @@ class Autobot extends Component {
       drawerState: !this.state.drawerState
     });
   }
+  getSocialMediaIcon(medium){
+    return SocialMediaIcon(medium)
+  }
+  select=(index,checked)=>{
+    var selection = this.state.selection
+    var status = this.state.status
+    if(checked)
+      selection.push(status[index])
+    else
+    {
+      var i = selection.indexOf(status[index])
+      selection.splice(i,1)
+    }
+    this.setState({selection})
 
+  }
+  componentDidMount(){
+    this.getStatus()
+  }
   render() {
     const {
       user,
       drawerState,
       addAccount,
-      schedulePost,
+      status,
       inputVisible,
       inputValue,
       tags
     } = this.state;
-
+    const SideBar = <SideBarSM 
+    status={status}      
+    select={this.select}
+    getStatus={this.getStatus}
+    onAddAccount={this.onAddAccount}
+    getSocialMediaIcon={this.getSocialMediaIcon}
+         />
     return (
       <div className="gx-main-content">
         <div className="gx-app-module">
@@ -234,11 +208,11 @@ class Autobot extends Component {
               closable={false}
               visible={drawerState}
               onClose={this.onToggleDrawer.bind(this)}>
-              {this.ContactSideBar()}
+               {SideBar}
             </Drawer>
           </div>
           <div className="gx-module-sidenav gx-d-none gx-d-lg-flex">
-            {this.ContactSideBar(user)}
+          {SideBar}
           </div>
 
           <div className="gx-module-box">
@@ -257,9 +231,12 @@ class Autobot extends Component {
               <div className="gx-module-box-topbar" style={{ backgroundColor: '#6236FF', display: "flex","justify-content": "space-between" }}>
               
               <div>
-              <Avatar className="gx-mr-2" size="large" icon={<UserOutlined />} />
-                <span className="gx-contact-name" style={{ color: '#ffffff' }}> @username</span>
+              <div className="gx-module-box-topbar" style={{backgroundColor: '#6236FF',border:'none'}}>
+                <Avatar className="gx-mr-2" size="large" icon={this.state.selection.length > 0 ?this.getSocialMediaIcon(this.state.selection[0].medium) :<UserOutlined />}/>
+                <span className="gx-contact-name" style={{color: '#ffffff'}}>{this.state.selection.length > 0 ?this.state.selection[0].name :"Please Select a Social Media Account"}</span>
               </div>
+              </div>
+              {this.state.selection.length > 0?
                 
                 <div  style={{ color: '#ffffff' }}x>
                 <table className="padding-table-columns">
@@ -292,18 +269,20 @@ class Autobot extends Component {
                    </th>
                   </tr>
                 </table>
+              </div>:""}
               </div>
-              </div>
+              {this.state.selection.length > 0?
               
               <div style={{ padding: '32px 32px 0', backgroundColor: "#F5F6FA" }}>
-                <Panel />
+                <Panel  selection={this.state.selection} />
               </div>
+              :""
+              }
             </div>
           </div>
         </div>
 
         <AddSocialAccount open={addAccount} onClose={this.onClose} />
-        <SchedulePost open={schedulePost} onClose={this.onCloseSchedulePost} />
       </div>
     )
   }
