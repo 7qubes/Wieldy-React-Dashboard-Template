@@ -13,11 +13,40 @@ import moment from 'moment'
 import SideBarSM from '../components/Sidebar'
 import axios from "axios"
 import SocialMediaIcon from  '../components/SocialMediaIcon'
+import Metrics from 'components/Metrics'
 
 const { RangePicker } = DatePicker;
 
 let contactId = 723812738;
 const Option = Select.Option;
+
+class StandardPane extends Component {
+
+  render(){
+    return <Row style={{paddingTop:'15%',paddingLeft:'15%'}}>
+       <Col xl={8} lg={24} md={8} sm={24} xs={24}>
+         
+       <Metrics title="Followers">
+      <Row>
+        <Col xl={11} lg={12} md={24} sm={12} xs={12}>
+          <h1 className="gx-mb-1 gx-revenue-title">2,167</h1>
+        </Col>
+      </Row>
+    </Metrics>
+    </Col>
+    <Col xl={8} lg={24} md={8} sm={24} xs={24}>
+
+    <Metrics title="Posts">
+      <Row>
+        <Col xl={11} lg={12} md={24} sm={12} xs={12}>
+          <h1 className="gx-mb-1 gx-revenue-title">2,167</h1>
+        </Col>
+      </Row>
+    </Metrics>
+    </Col>
+    </Row>
+  }
+}
 
 class SocialMedia extends Component {
 
@@ -29,7 +58,7 @@ class SocialMedia extends Component {
   };
 
   handleChange=(e)=>{
-    this.setState({selectPane:e},()=>console.log(this.state));
+    this.setState({selectPane:e});
   }
   onFilterOptionSelect = (option) => {
     switch (option.name) {
@@ -161,6 +190,15 @@ class SocialMedia extends Component {
           "audience_1":"Audience Demographics",
           "interaction_1":"Profile Interactions"
         },
+        2:{
+          "instagram":"Comments and Followers"
+        },
+        3:{
+          "twitter":"Profile Interactions"
+        },
+       4:{
+          "":""
+        }
       }
     }
   }
@@ -198,7 +236,8 @@ class SocialMedia extends Component {
             page_age:result['page_age'],
             page_city:result['page_city'],
             loading:false,
-            selectPane:"discovery_1"
+            selectPane:"home"
+
           })
         })
       else if ( account.medium == "2")
@@ -209,7 +248,7 @@ class SocialMedia extends Component {
             {
             insta_data:result,
             loading:false,
-            selectPane:'instagram'
+            selectPane:"home"
           })
         })
      
@@ -226,7 +265,6 @@ class SocialMedia extends Component {
 			user_id: '123',
 		  })
 		  .then(function (response) {
-			console.log(response);
 			self.setState({status:response.data})
 		  })
 		  .catch(function (error) {
@@ -244,6 +282,7 @@ class SocialMedia extends Component {
     else if (this.state.selectPane === "instagram") {
       return <InstagramCharts {...this.state} ></InstagramCharts>;
   }
+  else return <StandardPane {...this.state} ></StandardPane>;
 };
   render() {
     const {
@@ -301,51 +340,51 @@ class SocialMedia extends Component {
                 <Avatar className="gx-mr-2" size="large" icon={this.state.selection.length > 0 ?this.getSocialMediaIcon(this.state.selection[0].medium) :<UserOutlined />}/>
     <span className="gx-contact-name" style={{color: '#ffffff'}}>{this.state.selection.length > 0 ?this.state.selection[0].name :"Please Select a Social Media Account"}</span>
               </div>
-              {this.state.selection.length > 0 ?
-              <Col>
-              {this.state.selection[0].medium=="1"?
-              <Row>
-                <Col md={8}>
-                  <Select id="options_views" onChange={this.handleChange}  className="gx-mr-3 gx-mb-3" defaultValue={this.state.selectPane} style={{width: 300}}>
-
-                    {
-                      Object.entries(options[this.state.selection[0].medium]).map(
-                        ([k,v])=> <Option value={k}>{v}</Option>
-                      )
-                    }
-                  </Select>
-                </Col>
-                { this.state.selectPane != "audience_1"  ?
-                <Col md={16}>
-                    {Object.keys(this.state.buckets).map(e=>
-                      <Button style={{margin:"8px"}} size="small" className={selectedBucket == e ?"btn-primary":"gx-btn-outline-primary"} 
-                      onClick={()=>{
-                        this.getData(this.state.selection[0],moment().valueOf(),moment().subtract(e, 'days').valueOf())
-                        this.setState({selectedBucket:e})
-                      }}>
-                        {this.state.buckets[e]}
-                        </Button>
-                      )
-                  }
-                  <RangePicker onChange={(e)=>{
-                    if(e[1] && e[0])
-                    {
-                    this.getData(this.state.selection[0],e[1].valueOf(),e[0].valueOf())
-                    this.setState({selectedBucket:'user'})
-                    }
-                    }} size="small"   />
-                </Col>:""}
-              </Row>
-              :<Row></Row>}
+              
               { this.state.loading ? <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />:
+              
+              (this.state.selection.length > 0 ?
+              <Col>
+                <Row>
+                  <Col md={8}>
+                    <Select id="options_views" onChange={this.handleChange}  className="gx-mr-3 gx-mb-3" defaultValue={"home"} style={{width: 300}}>
+                    <Option value={"home"}>Followers and Posts</Option>
+                      {
+                        Object.entries(options[this.state.selection[0].medium]).map(
+                          ([k,v])=> <Option value={k}>{v}</Option>
+                        )
+                      }
+                    </Select>
+                  </Col>
+                  { ["audience_1","instagram"].indexOf(this.state.selectPane) > -1 &&  this.state.selectPane != ""  ?
+                  <Col md={16}>
+                      {Object.keys(this.state.buckets).map(e=>
+                        <Button style={{margin:"8px"}} size="small" className={selectedBucket == e ?"btn-primary":"gx-btn-outline-primary"} 
+                        onClick={()=>{
+                          this.getData(this.state.selection[0],moment().valueOf(),moment().subtract(e, 'days').valueOf())
+                          this.setState({selectedBucket:e})
+                        }}>
+                          {this.state.buckets[e]}
+                          </Button>
+                        )
+                    }
+                    <RangePicker onChange={(e)=>{
+                      if(e[1] && e[0])
+                      {
+                      this.getData(this.state.selection[0],e[1].valueOf(),e[0].valueOf())
+                      this.setState({selectedBucket:'user'})
+                      }
+                      }} size="small"   />
+                  </Col>:""}
+                </Row>
               <Row>
                 <Col md={24}>
                 {this.renderComponentDisplay()}
                 </Col>
               </Row>
+              </Col>:"")
 
-}
-            </Col>:""}
+}         
             </div>
           </div>
         </div>
