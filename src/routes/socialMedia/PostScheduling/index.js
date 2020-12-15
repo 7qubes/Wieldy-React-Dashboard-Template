@@ -13,12 +13,24 @@ import axios from "axios"
 import SideBarSM from '../components/Sidebar'
 import events from "./events";
 import SocialMediaIcon from  '../components/SocialMediaIcon'
+import './calendar.css'
 
 const localizer = momentLocalizer(moment);
 
 let contactId = 723812738;
 const Option = Select.Option;
 
+const  NewTitle=({event})=>{
+  console.log(event)
+      return <div>
+        {SocialMediaIcon(event.medium,32)}
+        {<span style={{fontSize:12,fontWeight:'bold'}}>
+          {
+           moment( event.start).format("hh:mm a")
+          }
+        </span>}
+      </div>
+}
 
 class PostSchedule extends Component {
 
@@ -56,6 +68,19 @@ onShowSchedulePost = () => {
 		  .catch(function (error) {
 			console.log(error);
 		  });
+  }
+  editSchedulePost =(params)=>{
+    console.log(params)
+    // var self= this
+    // axios.post('http://localhost:5000/editEvent', params)
+		//   .then(function (response) {
+    //   notification['success']({
+    //     message:"Post Scheduled Succesfully"
+    //   })
+		//   })
+		//   .catch(function (error) {
+		// 	console.log(error);
+		//   });
   }
 
   onFilterOptionSelect = (option) => {
@@ -199,6 +224,7 @@ onShowSchedulePost = () => {
       var events = []
       response.data.map(e =>{
         events.push({
+          ...e,
           'title': e.text,
           'start': new Date(e.sch_dt),
           'end': new Date(e.sch_dt),
@@ -229,6 +255,7 @@ onShowSchedulePost = () => {
     this.getStatus()
     this.getEvents()
   }
+ 
   render() {
     const {
       user,
@@ -286,14 +313,21 @@ onShowSchedulePost = () => {
                           localizer={localizer}
                           selectable
                           events={this.state.events}
+                          components={{
+                            event: NewTitle
+                          }}
                           defaultView='week'
                           scrollToTime={new Date(1970, 1, 1, 6)}
                           defaultDate={new Date()}
-                          titleAccessor={(event)=>'String'}
-                          onSelectEvent={event => alert(event.title)}
+                          // titleAccessor={(event)=>'String'}
+                          onSelectEvent={event => this.setState({selectedEvent:event,schedulePostMode:"edit"},
+                          ()=>this.setState({schedulePost:true})
+                          )
+                        }
                           onSelectSlot={(slotInfo) => {
                             if (slotInfo.start > new Date())
-                                this.setState({'startTime' :slotInfo.start.toISOString()},()=>this.onShowSchedulePost())
+                                this.setState({'startTime' :slotInfo.start.toISOString(),
+                                schedulePostMode:"new"},()=>this.onShowSchedulePost())
                           }
                         }
                         />
@@ -311,8 +345,10 @@ onShowSchedulePost = () => {
         <SchedulePost 
         open={true}
         name={this.state.selection[0]}
-        selectedTime={this.state.startTime} 
-        onOk = { this.onSchedulePost}
+        selectedTime={this.state.startTime}
+        selectedEvent={this.state.selectedEvent}
+        mode={this.state.schedulePostMode}
+        onOk = { this.state.schedulePostMode =="edit" ?this.editSchedulePost:this.onSchedulePost}
         onClose={this.onCloseSchedulePost}/>
         :""} 
       </div>

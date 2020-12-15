@@ -356,7 +356,7 @@ class SocialMedia extends Component {
                       }
                     </Select>
                   </Col>
-                  { ["audience_1","instagram"].indexOf(this.state.selectPane) > -1 &&  this.state.selectPane != ""  ?
+                  { ["audience_1","instagram","home"].indexOf(this.state.selectPane) < 0 &&  this.state.selectPane != ""  ?
                   <Col md={16}>
                       {Object.keys(this.state.buckets).map(e=>
                         <Button style={{margin:"8px"}} size="small" className={selectedBucket == e ?"btn-primary":"gx-btn-outline-primary"} 

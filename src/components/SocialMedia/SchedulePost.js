@@ -35,7 +35,8 @@ class SchedulePost extends React.Component {
     loading: false,
     timezone: moment.tz.guess(true),
     selectedTime : this.props.selectedTime?this.props.selectedTime:new Date().toISOString(),
-    account:this.props.name?this.props.name:{'name':'','medium':''}
+    account:this.props.mode =="edit"?this.props.selectedEvent:(this.props.name?this.props.name:{'name':'','medium':''}),
+    mode:this.props.mode
 
   };
   getSocialMediaIcon=(medium)=>{
@@ -68,29 +69,29 @@ class SchedulePost extends React.Component {
 
   }
   handleChange = (info) => {
-    if (info.file.status === 'uploading') {
-      this.setState({loading: true});
-      return;
-    }
-    if (info.file.status === 'done') {
+    // if (info.file.status === 'uploading') {
+    //   this.setState({loading: true});
+    //   return;
+    // }
+    // if (info.file.status === 'done') {
       // Get this url from response in real world.
       getBase64(info.file.originFileObj, imageUrl => this.setState({
         imageUrl,
         filename:info.file.originFileObj.name,
         loading: false,
       }));
-    }
+    // }
   };
   onSubmit=()=>{
-    if( !this.state.text && !this.state.file)
-      return 
+    // if( !this.state.text && !this.state.file)
+    //   return 
     this.props.onOk({
-      'file':this.state.imageUrl.split(',')[1],
-      'filename':this.state.filename,
+      'file':this.state.imageUrl?this.state.imageUrl.split(',')[1]:"",
+      'filename':this.state.filename?this.state.filename:"",
       'name':this.state.account['name'],
       'user_id':123,
-      'text':this.state.text+" "+this.state.hashtag,
-      'medium':this.state.account['medium'],
+      'text':this.state.text+" "+(this.state.hashtag ?this.state.hashtag:"") ,
+      'medium':[this.state.account['medium']],
       'sch_dt':this.state.selectedTime
   })
   }
@@ -109,6 +110,7 @@ class SchedulePost extends React.Component {
       <Modal
         // style={{backgroundColor: '#6236FF'}}
         title={
+          
         <h2>{this.getSocialMediaIcon(this.state.account['medium'])}{<span>&emsp;</span>}{ this.state.account['name'] }</h2>
         }
         maskClosable={false}
@@ -121,7 +123,7 @@ class SchedulePost extends React.Component {
           <TimePicker allowClear={false} value={moment(this.state.selectedTime)} onChange={(e)=>this.onChange(e,'time')} style={{marginLeft: '5px'}}
            format={'HH:mm'}
           />
-          <Button onClick={this.onSubmit} type="primary" style={{marginLeft: '5px'}}>Schedule Post</Button>
+          <Button onClick={this.onSubmit} type="primary" style={{marginLeft: '5px'}}>{this.state.mode =="edit"?"Edit Post":"Schedule Post"}</Button>
             </div>
         ]}
         >
