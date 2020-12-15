@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, Checkbox, Drawer, Tooltip, Card, Tag, Col, Input, Row, Avatar } from "antd";
 import CustomScrollbars from "util/CustomScrollbars";
 import AppModuleHeader from "components/AppModuleHeader";
-import AddSocialAccount from "components/SocialMedia/AddSocialAccount"
+import AddSocialAccount from "components/SocialMedia/AddSocialAccount";
 import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
 import PlusOutlined from "@ant-design/icons/lib/icons/PlusOutlined";
 import IntlMessages from "util/IntlMessages";

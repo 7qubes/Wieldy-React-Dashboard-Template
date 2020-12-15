@@ -17,8 +17,12 @@ import Communications from "./communications";
 import SocialMedia from "./socialMedia";
 import Finance from "./Finance";
 import Inventories from "./Inventories";
+<<<<<<< HEAD
 import Reports from "./reports";
 import Analytics from "../../src/components/analytics/Analytics";
+=======
+import Reports from "./Report";
+>>>>>>> aa31a8a (Inventory BOM page initial development)
 
 const App = ({ match }) => (
   <div className="gx-main-content-wrapper">

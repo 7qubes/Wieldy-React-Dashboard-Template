@@ -319,10 +319,17 @@
   "sidebar.social.autobot": "Autobot",
 >>>>>>> 8e875dd (automations ui)
   "sidebar.finance": "Finance",
+<<<<<<< HEAD
   "sidebar.inventories": "Inventories",
   "sidebar.inventories.eshop": "E-Shop",
   "sidebar.inventories.bom": "BOM",
   "sidebar.inventories.orders": "Orders",
+=======
+  "sidebar.inventories": "Inventory",
+  "sidebar.inventories.eshop": "E-Shop",
+  "sidebar.inventories.bom": "BOM",
+  "sidebar.inventories.order": "Orders",
+>>>>>>> aa31a8a (Inventory BOM page initial development)
   "sidebar.website": "Website",
   "sidebar.document": "Documents",
   "sidebar.analytics": "Analytics",
