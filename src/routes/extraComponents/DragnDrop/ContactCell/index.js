@@ -55,7 +55,7 @@ class ContactCell extends React.Component {
 
 
         <div className="gx-dragndrop-actions gx-px-2">
-          {starred ? <i className="gx-icon-btn icon icon-star"/> : <i className="gx-icon-btn icon icon-star-o"/>}
+          {starred ? <i className="gx-icon-btn icon icon-star"/> : <i className="gx-icon-btn icon icon-star_o"/>}
 
           <i className="gx-icon-btn icon icon-ellipse-v"
              onClick={this.onContactOptionSelect}/>

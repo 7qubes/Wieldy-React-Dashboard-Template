@@ -74,7 +74,7 @@ class FirebaseCRUD extends Component {
     return <div className="gx-module-side">
       <div className="gx-module-side-header">
         <div className="gx-module-logo">
-          <i className="icon icon-contacts gx-mr-4"/>
+          <i className="icon icon-contact gx-mr-4"/>
           <span><IntlMessages id="chat.contacts"/></span>
         </div>
       </div>

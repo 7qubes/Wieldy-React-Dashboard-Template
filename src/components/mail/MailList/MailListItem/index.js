@@ -20,7 +20,7 @@ const MailListItem = ({mail, onMailSelect, onMailChecked, onStartSelect}) => {
         }}>
           {mail.starred ?
             <i className="gx-icon-btn icon icon-star"/> :
-            <i className="gx-icon-btn icon icon-star-o"/>
+            <i className="gx-icon-btn icon icon-star_o"/>
           }
 
         </div>

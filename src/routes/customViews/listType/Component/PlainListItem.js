@@ -19,7 +19,7 @@ const PlainListItem =({data})=> {
           </li>
           <li>
             <span className="gx-link gx-meta-comment">
-              <i className="icon icon-chat-new"/>
+              <i className="icon icon-chat"/>
               {comments}
             </span>
           </li>

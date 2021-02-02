@@ -78,7 +78,7 @@ const Client = () => {
               <div className="ant-card-body">
                 <Row>
                   <Col xl={8} md={8} xs={24} sm={24} lg={8}>
-                    <span><i className='icon icon-contacts'/> Gold @ $200/yr</span>
+                    <span><i className='icon icon-contact'/> Gold @ $200/yr</span>
                   </Col>
                   <Col xl={8} md={8} xs={24} sm={24} lg={8}>
                     <span>Renews 10/20/2021</span>

@@ -163,7 +163,7 @@ class ToDoDetail extends React.Component {
                   }}>
                         {todo.starred ?
                           <i className="gx-icon-btn icon icon-star"/> :
-                          <i className="gx-icon-btn icon icon-star-o"/>
+                          <i className="gx-icon-btn icon icon-star_o"/>
                         }
 
                   </span>

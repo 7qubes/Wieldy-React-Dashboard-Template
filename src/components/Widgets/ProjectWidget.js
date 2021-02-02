@@ -25,7 +25,7 @@ const ProjectWidget = () => {
         <li><i className="icon icon-invert-color"/></li>
         <li><Dropdown overlay={menu} trigger={['click']}>
           <span className="gx-link ant-dropdown-link gx-text-grey">
-            <i className="icon icon-chevron-down"/>
+            <i className="icon icon-dropdown"/>
           </span>
         </Dropdown></li>
       </ul>
