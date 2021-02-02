@@ -69,7 +69,7 @@ class ContactCell extends React.Component {
           <div className="gx-d-none gx-d-sm-flex" onClick={() => {
             addFavourite(contact)
           }}>
-            {starred ? <i className="gx-icon-btn icon icon-star"/> : <i className="gx-icon-btn icon icon-star-o"/>}
+            {starred ? <i className="gx-icon-btn icon icon-star"/> : <i className="gx-icon-btn icon icon-star_o"/>}
           </div>
           <div className="gx-ml-2 gx-d-none gx-d-sm-flex">
             {(thumb === null || thumb === '') ?

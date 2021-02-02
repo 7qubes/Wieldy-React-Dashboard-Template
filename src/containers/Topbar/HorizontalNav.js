@@ -100,7 +100,7 @@ const HorizontalNav = () => {
         </Menu.Item>
 
         <Menu.Item key="in-built-apps/contacts">
-          <Link to="/in-built-apps/contacts"><i className="icon icon-contacts"/><IntlMessages
+          <Link to="/in-built-apps/contacts"><i className="icon icon-contact"/><IntlMessages
             id="sidebar.contactsApp"/></Link>
         </Menu.Item>
 
