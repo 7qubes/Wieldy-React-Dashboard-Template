@@ -58,7 +58,7 @@ class MailDetail extends React.Component {
                 }}>
                   {mail.starred ?
                     <i className="icon icon-star gx-icon-btn"/> :
-                    <i className="icon icon-star-o gx-icon-btn"/>
+                    <i className="icon icon-star_o gx-icon-btn"/>
                   }
 
                 </div>
