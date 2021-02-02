@@ -155,12 +155,12 @@ const SidebarContent = () => {
                   <span><IntlMessages id="sidebar.inventories.eshop"/></span></Link>
               </Menu.Item>
               <Menu.Item key="inventories/bom">
-                <Link to="inventories/bom">
+                <Link to="/inventories/bom">
                 <i className="icon icon-bom"/>
                   <span><IntlMessages id="sidebar.inventories.bom"/></span></Link>
               </Menu.Item>
               <Menu.Item key="inventories/orders">
-                <Link to="inventories/orders">
+                <Link to="/inventories/orders">
                 <i className="icon icon-invoice"/>
                   <span><IntlMessages id="sidebar.inventories.orders"/></span></Link>
               </Menu.Item>
