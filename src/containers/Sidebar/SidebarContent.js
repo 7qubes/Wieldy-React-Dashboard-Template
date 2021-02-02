@@ -151,7 +151,7 @@ const SidebarContent = () => {
                      }>
               <Menu.Item key="inventories/eshop">
                 <Link to="/inventories/eshop">
-                <i className="icon icon-inventory"/>
+                <i className="icon icon-shop"/>
                   <span><IntlMessages id="sidebar.inventories.eshop"/></span></Link>
               </Menu.Item>
               <Menu.Item key="inventories/bom">
@@ -161,7 +161,7 @@ const SidebarContent = () => {
               </Menu.Item>
               <Menu.Item key="inventories/orders">
                 <Link to="/inventories/orders">
-                <i className="icon icon-invoice"/>
+                <i className="icon icon-inventory"/>
                   <span><IntlMessages id="sidebar.inventories.orders"/></span></Link>
               </Menu.Item>
               
