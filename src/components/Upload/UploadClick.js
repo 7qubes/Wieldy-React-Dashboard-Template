@@ -26,8 +26,8 @@ const UploadClick = () => {
 
       <div className= "gx-module-upload">
         <Upload {...props}>
-          <Button>
-            <UploadOutlined /> Click to Upload 
+          <Button width= "flex">
+            <UploadOutlined/> Click to Upload 
           </Button>
         </Upload>
      

@@ -887,7 +887,7 @@ const HorizontalNav = () => {
         </SubMenu>
 
         <SubMenu popupClassName="gx-menu-horizontal" key="extra-elements"
-                 title={<span><i className="icon icon-ellipse-h"/><IntlMessages
+                 title={<span><i className="icon icon-menu_dots"/><IntlMessages
                    id="sidebar.listType.extras"/></span>}>
           <Menu.Item key="custom-views/extras/pricing-table">
             <Link to="/custom-views/extras/pricing-table">

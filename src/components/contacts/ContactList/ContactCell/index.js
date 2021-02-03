@@ -103,7 +103,7 @@ class ContactCell extends React.Component {
           <div className="gx-module-contact-right">
 
             <Dropdown overlay={this.menus()} placement="bottomRight" trigger={['click']}>
-              <i className="gx-icon-btn icon icon-ellipse-h"/>
+              <i className="gx-icon-btn icon icon-menu_dots"/>
             </Dropdown>
 
             {addContactState &&

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'gaxon';
-  src:  url('fonts/gaxon.eot?jhl0pj');
-  src:  url('fonts/gaxon.eot?jhl0pj#iefix') format('embedded-opentype'),
-    url('fonts/gaxon.ttf?jhl0pj') format('truetype'),
-    url('fonts/gaxon.woff?jhl0pj') format('woff'),
-    url('fonts/gaxon.svg?jhl0pj#gaxon') format('svg');
+  src:  url('fonts/gaxon.eot?5704f');
+  src:  url('fonts/gaxon.eot?5704f#iefix') format('embedded-opentype'),
+    url('fonts/gaxon.ttf?5704f') format('truetype'),
+    url('fonts/gaxon.woff?5704f') format('woff'),
+    url('fonts/gaxon.svg?5704f#gaxon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -279,4 +279,10 @@
 }
 .icon-filter:before {
   content: "\e94d";
+}
+.icon-back:before {
+  content: "\e94e";
+}
+.icon-menu_dots:before {
+  content: "\e94f";
 }
