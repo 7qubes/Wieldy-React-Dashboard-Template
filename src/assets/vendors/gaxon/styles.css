@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'gaxon';
-  src:  url('fonts/gaxon.eot?5704f');
-  src:  url('fonts/gaxon.eot?5704f#iefix') format('embedded-opentype'),
-    url('fonts/gaxon.ttf?5704f') format('truetype'),
-    url('fonts/gaxon.woff?5704f') format('woff'),
-    url('fonts/gaxon.svg?5704f#gaxon') format('svg');
+  src:  url('fonts/gaxon.eot?dnf36');
+  src:  url('fonts/gaxon.eot?dnf36#iefix') format('embedded-opentype'),
+    url('fonts/gaxon.ttf?dnf36') format('truetype'),
+    url('fonts/gaxon.woff?dnf36') format('woff'),
+    url('fonts/gaxon.svg?dnf36#gaxon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -222,21 +222,21 @@
 .icon-svg:before {
   content: "\e93c";
 }
-.icon-target_goal_project .path1:before {
+.icon-target .path1:before {
   content: "\e93d";
   color: rgb(0, 0, 0);
 }
-.icon-target_goal_project .path2:before {
+.icon-target .path2:before {
   content: "\e93e";
   margin-left: -1em;
   color: rgb(0, 0, 0);
 }
-.icon-target_goal_project .path3:before {
+.icon-target .path3:before {
   content: "\e93f";
   margin-left: -1em;
   color: rgb(0, 0, 0);
 }
-.icon-target_goal_project .path4:before {
+.icon-target .path4:before {
   content: "\e940";
   margin-left: -1em;
   color: rgb(255, 255, 255);
@@ -285,4 +285,46 @@
 }
 .icon-menu_dots:before {
   content: "\e94f";
+}
+.icon-Verify:before {
+  content: "\e950";
+}
+.icon-Analyze:before {
+  content: "\e951";
+}
+.icon-Catalog:before {
+  content: "\e952";
+}
+.icon-Construction:before {
+  content: "\e953";
+}
+.icon-DashboardAnalytics:before {
+  content: "\e954";
+}
+.icon-EditHistory:before {
+  content: "\e956";
+}
+.icon-Duplicate:before {
+  content: "\e955";
+}
+.icon-ErrorNo:before {
+  content: "\e957";
+}
+.icon-Graph:before {
+  content: "\e958";
+}
+.icon-PencilEdit:before {
+  content: "\e959";
+}
+.icon-QueryQuestion:before {
+  content: "\e95a";
+}
+.icon-Splitscreen:before {
+  content: "\e95b";
+}
+.icon-Timeline:before {
+  content: "\e95c";
+}
+.icon-Truck:before {
+  content: "\e95d";
 }

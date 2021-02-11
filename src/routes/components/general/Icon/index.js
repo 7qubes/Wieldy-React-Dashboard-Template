@@ -1654,6 +1654,12 @@ const Icons = () => {
             <span className="gx-icon-text">dropdown</span>
           </div>
         </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-target"/>
+            <span className="gx-icon-text">project</span>
+          </div>
+        </Col>
 
 
 
