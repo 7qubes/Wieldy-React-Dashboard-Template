@@ -9,7 +9,8 @@ import Communications from "./communications";
 import SocialMedia from "./socialMedia";
 import Finance from "./Finance";
 import Inventories from "./Inventories"
-import Reports from "./reports"
+import Reports from "./reports";
+import Analytics from "../../src/components/analytics/Analytics";
 
 const App = ({match}) => (
   <div className="gx-main-content-wrapper">
@@ -23,6 +24,7 @@ const App = ({match}) => (
       <Route path={`${match.url}finance`} component={Finance}/>
       <Route path={`${match.url}inventories`} component={Inventories}/>
       <Route path={`${match.url}reports`} component={Reports}/>
+      <Route path={`${match.url}analytics`} component={Analytics} />
       <Route path={`${match.url}workspace`} />
     </Switch>
   </div>
