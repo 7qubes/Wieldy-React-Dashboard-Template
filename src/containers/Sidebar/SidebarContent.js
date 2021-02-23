@@ -58,11 +58,7 @@ const SidebarContent = () => {
           >
             <Menu.Item key="dashboard">
               <Link to="/dashboard">
-<<<<<<< HEAD
-                <i className="icon icon-dashboard" />
-=======
                 <i className="icon icon-culture-calendar" />
->>>>>>> aa31a8a (Inventory BOM page initial development)
                 <span>
                   <IntlMessages id="sidebar.dashboard" />
                 </span>
@@ -114,7 +110,7 @@ const SidebarContent = () => {
                   </span>
                 </Link>
               </Menu.Item>
-
+            </SubMenu>
             <Menu.Item key="calendar">
               <Link to="/calendar">
                 <i className="icon icon-calendar-new" />
@@ -123,7 +119,7 @@ const SidebarContent = () => {
                 </span>
               </Link>
             </Menu.Item>
-
+            {/* close the submenu */}
             <SubMenu
               key="communications"
               popupClassName={getNavStyleSubMenuClass(navStyle)}

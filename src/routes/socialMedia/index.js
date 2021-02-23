@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import {Redirect, Route, Switch} from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import { Col, Row, Menu, Button } from "antd";
 import {
@@ -11,12 +11,11 @@ import {
 import { Link } from "react-router-dom";
 import CustomScrollbars from "util/CustomScrollbars";
 import IntlMessages from "../../util/IntlMessages";
-import Calendar from "../extensions/calendar/basic/index";
+// import Calendar from "../extensions/calendar/basic/index";
+import asyncComponent from "util/asyncComponent";
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
-
-// import asyncComponent from "util/asyncComponent";
 
 const SocialMedia = ({ match }) => (
   <Switch>

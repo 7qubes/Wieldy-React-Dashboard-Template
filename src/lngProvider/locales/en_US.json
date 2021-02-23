@@ -308,28 +308,15 @@
   "sidebar.extensions.profile": "Profile",
   "sidebar.social": "Social Apps",
   "sidebar.social.media": "Social Media",
-<<<<<<< HEAD
-  "sidebar.media.analytics": "Analytics",
-  "sidebar.media.scheduling": "Scheduling",
-  "sidebar.media.automations": "Automations",
-=======
   "sidebar.social.analytics": "Analytics",
   "sidebar.social.scheduling": "Post Scheduling",
   "sidebar.social.automation": "Automations",
   "sidebar.social.autobot": "Autobot",
->>>>>>> 8e875dd (automations ui)
   "sidebar.finance": "Finance",
-<<<<<<< HEAD
-  "sidebar.inventories": "Inventories",
-  "sidebar.inventories.eshop": "E-Shop",
-  "sidebar.inventories.bom": "BOM",
-  "sidebar.inventories.orders": "Orders",
-=======
   "sidebar.inventories": "Inventory",
   "sidebar.inventories.eshop": "E-Shop",
   "sidebar.inventories.bom": "BOM",
-  "sidebar.inventories.order": "Orders",
->>>>>>> aa31a8a (Inventory BOM page initial development)
+  "sidebar.inventories.orders": "Orders",
   "sidebar.website": "Website",
   "sidebar.document": "Documents",
   "sidebar.analytics": "Analytics",
