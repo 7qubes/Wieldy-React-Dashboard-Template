@@ -20,16 +20,11 @@ const ColorBlock = ({ id, colorPallete, setCardColor }) => {
     <div>
       <Color
         onClick={cardColorChangeHandler}
-        // onMouseOver={checkmarkDisplayOnHover}
         style={{
           background: `#${colorPallete.rgb}`,
         }}
         className="color"
-      >
-        {/* <div style={{ pointerEvents: "none" }} className="check-mark">
-          &#10003;
-        </div> */}
-      </Color>
+      ></Color>
     </div>
   );
 };

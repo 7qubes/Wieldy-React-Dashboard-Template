@@ -99,7 +99,7 @@ const Inventories = ({ match }) => {
       />
       <Route
         exact
-        path={`${match.url}/order`}
+        path={`${match.url}/orders`}
         component={asyncComponent(() => import("./Order"))}
       />
     </Switch>

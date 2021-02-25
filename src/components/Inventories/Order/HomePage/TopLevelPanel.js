@@ -10,39 +10,7 @@ const TopLevelPanel = () => {
       <PrimaryPanel className="main-panel">
         <PanelItems className="panel-items">
           <PanelItem className="panel-item">
-            <h3>
-              <span>
-                <i className="icon icon-DashboardAnalytics"></i>
-              </span>
-              Dashboard
-            </h3>
-          </PanelItem>
-          <PanelItem className="panel-item">
-            <h3>
-              <span>
-                <i
-                  className="icon icon-Timeline"
-                  style={{ transform: "rotate(270deg)" }}
-                ></i>
-              </span>
-              Timeline
-            </h3>
-          </PanelItem>
-          <PanelItem className="panel-item">
-            <h3>
-              <span>
-                <i className="icon icon-bom"></i>
-              </span>
-              BOM
-            </h3>
-          </PanelItem>
-          <PanelItem className="panel-item">
-            <h3>
-              <span>
-                <i className="icon icon-Splitscreen"></i>
-              </span>
-              Split Screen
-            </h3>
+            <h3 style={{ fontWeight: "500" }}>Bulk Actions:</h3>
           </PanelItem>
           <PanelItem className="panel-item">
             <h3>
@@ -50,6 +18,22 @@ const TopLevelPanel = () => {
                 <i className="icon icon-PencilEdit"></i>
               </span>
               Edit
+            </h3>
+          </PanelItem>
+          <PanelItem className="panel-item">
+            <h3>
+              <span>
+                <i className="icon icon-folder_move"></i>
+              </span>
+              Move To Folder
+            </h3>
+          </PanelItem>
+          <PanelItem className="panel-item">
+            <h3>
+              <span>
+                <i className="icon icon-email_label"></i>
+              </span>
+              Create Labels
             </h3>
           </PanelItem>
           <PanelItem className="panel-item">

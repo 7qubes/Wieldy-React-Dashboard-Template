@@ -27,6 +27,19 @@ const SingleBOMCard = () => {
     { rgb: "FE92AF", id: uuidv4() },
   ]);
 
+  const [cardIcon, setCardIcon] = useState("icon-start-up");
+
+  const [iconPalettes, setIconPalettes] = useState([
+    { class: "icon-start-up", id: uuidv4() },
+    { class: "icon-ecology", id: uuidv4() },
+    { class: "icon-Gear_Tech_Machine-1", id: uuidv4() },
+    { class: "icon-Stationary-1", id: uuidv4() },
+    { class: "icon-Clothes_Fashion-1", id: uuidv4() },
+    { class: "icon-Toy_Pets_Infant-1", id: uuidv4() },
+    { class: "icon-Food_ForkKnife_Resturant-1", id: uuidv4() },
+    { class: "icon-Bio_Health_Leaf-1", id: uuidv4() },
+  ]);
+
   const [isMenuOpen, setIsMenuOpen] = useState({
     firstMenu: false,
     firstDisplay: "none",
@@ -34,10 +47,6 @@ const SingleBOMCard = () => {
     secondDisplay: "none",
     key: uuidv4(),
   });
-
-  // const OpenClose = (classN) => {
-  //   const random = docum;
-  // };
 
   // Handler
   const FirstMenuToggleHandler = (event) => {
@@ -54,7 +63,6 @@ const SingleBOMCard = () => {
       firstMenuBlock.style.display = isMenuOpen.firstDisplay;
     } else {
       setIsMenuOpen({
-        ...isMenuOpen,
         firstMenu: false,
         firstDisplay: "none",
         secondMenu: false,
@@ -75,6 +83,10 @@ const SingleBOMCard = () => {
             colorPalletes={colorPalletes}
             isMenuOpen={isMenuOpen}
             setIsMenuOpen={setIsMenuOpen}
+            iconPalettes={iconPalettes}
+            setIconPalettes={setIconPalettes}
+            cardIcon={cardIcon}
+            setCardIcon={setCardIcon}
           />
         </div>
         <BOMCard className="bom-card">
@@ -87,11 +99,15 @@ const SingleBOMCard = () => {
             <p
               className="three-dots"
               onClick={FirstMenuToggleHandler}
-              style={{ fontWeight: "bold" }}
+              style={{ fontWeight: "normal" }}
             >
               ...
             </p>
-            <h4>icon</h4>
+            <i
+              style={{ color: "white", fontSize: "1.8rem" }}
+              // className="icon icon-start-up"
+              className={"icon " + cardIcon}
+            />
           </BOMIconBox>
           <TextBoxTitle className="text-box">
             <h5>Title</h5>
@@ -123,21 +139,33 @@ const BOMIconBox = styled(motion.div)`
   height: 4rem;
   width: 4rem;
   border-radius: 10%;
-  text-align: center;
-  vertical-align: center;
+  /* text-align: center;
+  vertical-align: center; */
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 0.25rem;
+  padding-right: 5px;
   p {
-    position: absolute;
-    right: 10%;
-    top: 0;
+    /* position: absolute; */
+    /* right: 5%; */
+    /* top: 0%; */
+    /* padding-right: 20px; */
+    color: white;
+    align-self: flex-end;
     cursor: pointer;
+    margin: 0;
+    padding: 0;
+    line-height: 0.5;
   }
-  h4 {
+  i {
+    /* justify-self: start; */
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: 60%;
+    transform: translate(-50%, -60%);
   }
 `;
 

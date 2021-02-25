@@ -2,8 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import ColorBlock from "./ColorBlock";
+import IconBlock from "./IconBlock";
 
-const MenuOptionsTwo = ({ setCardColor, colorPalletes }) => {
+const MenuOptionsTwo = ({
+  setCardColor,
+  colorPalletes,
+  iconPalettes,
+  setIconPalettes,
+  cardIcon,
+  setCardIcon,
+  cardColor,
+}) => {
   // Event Handlers
 
   return (
@@ -20,7 +29,16 @@ const MenuOptionsTwo = ({ setCardColor, colorPalletes }) => {
             ))}
           </ColorSwatch>
           <IconSwatch className="icon-swatch">
-            <IconSwatchRowOne>
+            {iconPalettes.map((iconPalette) => (
+              <IconBlock
+                key={iconPalette.id}
+                iconPalette={iconPalette}
+                setCardIcon={setCardIcon}
+                cardColor={cardColor}
+                cardIcon={cardIcon}
+              />
+            ))}
+            {/* <IconSwatchRowOne>
               <Icon className="icon"></Icon>
               <Icon className="icon"></Icon>
               <Icon className="icon"></Icon>
@@ -31,7 +49,7 @@ const MenuOptionsTwo = ({ setCardColor, colorPalletes }) => {
               <Icon className="icon"></Icon>
               <Icon className="icon"></Icon>
               <Icon className="icon"></Icon>
-            </IconSwatchRowTwo>
+            </IconSwatchRowTwo> */}
           </IconSwatch>
         </ListTwo>
       </OptionSetTwo>
@@ -87,7 +105,7 @@ const IconSwatch = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  flex-wrap: wrap;
   width: 100%;
 `;
 

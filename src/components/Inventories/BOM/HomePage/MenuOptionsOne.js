@@ -10,6 +10,10 @@ const MenuOptionsOne = ({
   colorPalletes,
   isMenuOpen,
   setIsMenuOpen,
+  iconPalettes,
+  setIconPalettes,
+  cardIcon,
+  setCardIcon,
 }) => {
   // Handlers
   const SecondMenuToggleHandler = (event) => {
@@ -34,12 +38,6 @@ const MenuOptionsOne = ({
 
   return (
     <div>
-      <div className="second-menu" style={{ display: "none" }}>
-        <MenuOptionsTwo
-          setCardColor={setCardColor}
-          colorPalletes={colorPalletes}
-        />
-      </div>
       <OptionSetOne>
         <ListOne>
           <ListItemWithColor onClick={SecondMenuToggleHandler}>
@@ -62,6 +60,17 @@ const MenuOptionsOne = ({
           </ListItem>
         </ListOne>
       </OptionSetOne>
+      <div className="second-menu" style={{ display: "none" }}>
+        <MenuOptionsTwo
+          setCardColor={setCardColor}
+          colorPalletes={colorPalletes}
+          iconPalettes={iconPalettes}
+          setIconPalettes={setIconPalettes}
+          cardIcon={cardIcon}
+          setCardIcon={setCardIcon}
+          cardColor={cardColor}
+        />
+      </div>
     </div>
   );
 };
