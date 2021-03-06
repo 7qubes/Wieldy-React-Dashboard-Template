@@ -11,7 +11,7 @@ const trafficData = [
   { name: "Page B", value: 2000 },
   { name: "Page C", value: 600 },
   { name: "Page D", value: 4400 },
-  { name: "Page D", value: 900 },
+  { name: "Page E", value: 900 },
   { name: "Page H", value: 4860 },
 ];
 
@@ -19,28 +19,36 @@ const ActiveOrderCard = () => {
   return (
     <Metrics styleName={`gx-card-full`} title="">
       <Row>
-        <Col lg={12} md={24} sm={9} xs={9}>
+        <Col lg={10} md={24} sm={9} xs={9}>
           <div className=" gx-pl-2 gx-pt-1">
-            <h2 className="gx-fs-xxl " style={{ marginBottom: 0 }}>
+            <h2
+              className="gx-fs-xxl "
+              style={{ marginBottom: 0, fontSize: "20px" }}
+            >
               180
             </h2>
-            <p className="gx-mb-0 gx-text-grey">ACTIVE ORDERS</p>
+            <p className="gx-mb-0 gx-text-grey" style={{ fontSize: "11px" }}>
+              ACTIVE ORDERS
+            </p>
           </div>
         </Col>
         <Col lg={9} md={24} sm={9} xs={9}>
-          <div className=" gx-pl-4 gx-pt-2" style={{ paddingRight: 0 }}>
-            <h2 className="gx-fs-xl gx-chart-up">
+          <div className=" gx-pl-4 gx-pt-2">
+            <h2
+              style={{ paddingRight: 0, paddingLeft: 0, fontSize: "15px" }}
+              className="gx-fs-xl gx-chart-up"
+            >
               07%
               <CaretUpFilled />
             </h2>
           </div>
         </Col>
-        <Col lg={3} md={24} sm={9} xs={9}>
-          <div className=" gx-pl-4">
-            {/* <i className="icon icon-report"></i> */}
+        <Col lg={5} md={24} sm={9} xs={9}>
+          <div className=" gx-pl-2 gx-pt-2 gx-pr-4">
+            <i className="icon icon-report" style={{ color: "#038FDE" }}></i>
           </div>
         </Col>
-        <Col lg={15} md={24} sm={15} xs={15}></Col>
+        {/* <Col lg={15} md={24} sm={15} xs={15}></Col> */}
       </Row>
       <Row>
         <ResponsiveContainer width="100%" height={103}>

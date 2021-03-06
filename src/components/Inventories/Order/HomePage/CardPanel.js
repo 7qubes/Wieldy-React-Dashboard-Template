@@ -25,14 +25,14 @@ const CardPanel = () => {
 
 const CardPanelRow = styled(motion.div)`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  margin: 1rem 0.5rem;
+  margin: 1rem 0rem;
   /* background: lightcoral; */
 `;
 
 const CardContainer = styled(motion.div)`
-  margin: 0 1.5rem;
+  margin: 0 0.5rem;
 `;
 
 export default CardPanel;

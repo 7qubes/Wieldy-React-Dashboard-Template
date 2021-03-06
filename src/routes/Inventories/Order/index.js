@@ -239,7 +239,7 @@ class Orders extends Component {
             >
               <TopLevelPanel />
               <CardPanel />
-              {/* <OrdersTable /> */}
+              <OrdersTable />
             </div>
           </div>
         </div>
