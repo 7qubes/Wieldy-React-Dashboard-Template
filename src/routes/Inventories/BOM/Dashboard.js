@@ -1,35 +1,11 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Checkbox,
-  Drawer,
-  message,
-  Col,
-  Collapse,
-  Typography,
-  Space,
-  Avatar,
-} from "antd";
-import { v4 as uuidv4 } from "uuid";
-
-import styled from "styled-components";
-import { motion } from "framer-motion";
-
-import TestTables from "../../../components/Inventories/BOM/TestTables";
-import TopLevelPanel from "../../../components/Inventories/BOM/TestTables/TopLevelPanel";
-import SecondaryLevelPanel from "../../../components/Inventories/BOM/TestTables/SecondaryLevelPanel";
-import BriefInfoBar from "../../../components/Inventories/BOM/TestTables/BriefInfoBar";
-import TableData from "../../../components/Inventories/BOM/TestTables/TableData";
-
+import { Button, Drawer } from "antd";
 import CustomScrollbars from "../../../util/CustomScrollbars";
 import IntlMessages from "../../../util/IntlMessages";
-import { AntDesignOutlined } from "@ant-design/icons";
-import { Tabs } from "antd";
-import { DashboardOutlined, AndroidOutlined } from "@ant-design/icons";
-
-// for top-level-panel Tabs
-const { TabPane } = Tabs;
-
+// importing display content
+import TopLevelPanel from "../../../components/Inventories/BOM/TestTables/TopLevelPanel";
+import TodayPanel from "../../../components/Inventories/BOM/Dashboard/TodayPanel";
+import CardPanel from "../../../components/Inventories/BOM/Dashboard/CardPanel";
 const filterOptions = [
   {
     id: 1,
@@ -43,7 +19,7 @@ const filterOptions = [
   },
 ];
 
-class TestTable extends Component {
+class Dashboard extends Component {
   ContactSideBar = (user) => {
     return (
       <div className="gx-module-side">
@@ -228,12 +204,9 @@ class TestTable extends Component {
                 style={{ background: "#F5F6FA" }}
               >
                 <TopLevelPanel />
-                <SecondaryLevelPanel />
-                <BriefInfoBar />
-                <div className="table-data">
-                  <TableData />
-                </div>
-                <div style={{ height: "5vh" }}></div>
+                <TodayPanel />
+                <CardPanel />
+                {/* <div style={{ height: "5vh", background: "lightblue" }}></div> */}
               </div>
             </div>
           </div>
@@ -243,4 +216,4 @@ class TestTable extends Component {
   }
 }
 
-export default TestTable;
+export default Dashboard;

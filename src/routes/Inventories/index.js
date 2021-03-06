@@ -94,6 +94,11 @@ const Inventories = ({ match }) => {
       />
       <Route
         exact
+        path={`${match.url}/bom/dashboard`}
+        component={asyncComponent(() => import("./BOM/Dashboard"))}
+      />
+      <Route
+        exact
         path={`${match.url}/bom`}
         component={asyncComponent(() => import("./BOM"))}
       />

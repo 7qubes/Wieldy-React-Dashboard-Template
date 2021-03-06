@@ -53,7 +53,7 @@ const MainPanel = styled(motion.div)`
   background: #6236ff;
   color: white;
   height: 4vh;
-  padding: 0.2rem 2rem;
+  padding: 1px 1px;
   border-top: 1px solid #828181;
   overflow: hidden;
 `;
@@ -68,20 +68,26 @@ const PanelItem = styled(motion.div)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
   p {
     font-weight: lighter;
     font-size: 1rem;
     color: white;
-    span {
-      padding-right: 0.2rem;
+    padding-top: 3px;
+  }
+  &:nth-child(odd) {
+    cursor: pointer;
+    padding: 0 20px;
+    &:hover {
+      background: #e8e8e8;
+      p {
+        color: #6236ff;
+      }
     }
   }
-  &:hover {
-    background: #e8e8e8;
+  &:nth-child(even) {
     p {
-      color: #6236ff;
-      font-weight: normal;
+      pointer-events: none;
+      padding: 0;
     }
   }
 `;

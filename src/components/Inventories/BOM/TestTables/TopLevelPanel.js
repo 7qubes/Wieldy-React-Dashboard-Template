@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 import { VerticalAlignTopOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 const TopLevelPanel = () => {
   return (
@@ -14,7 +15,9 @@ const TopLevelPanel = () => {
               <span>
                 <i className="icon icon-DashboardAnalytics"></i>
               </span>
-              Dashboard
+              <Link style={{ color: "inherit" }} to="./dashboard">
+                Dashboard
+              </Link>
             </h3>
           </PanelItem>
           <PanelItem className="panel-item">

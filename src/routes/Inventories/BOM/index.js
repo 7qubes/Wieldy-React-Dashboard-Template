@@ -245,22 +245,13 @@ class BOM extends Component {
                   style={{ fontSize: "1.2rem" }}
                   key="1"
                 >
-                  {/* <ExclamationCircleOutlined /> */}
                   <Space>
                     <Text style={{ fontSize: "1rem" }} type="secondary">
                       Ant Design (success)
                     </Text>
                   </Space>
-
-                  {/* <InfoCircleOutlined /> */}
                 </Panel>
-                {/* <Panel header="BOMS" key="2">
-                  <Avatar
-                    size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
-                    icon={<AntDesignOutlined />}
-                    style={{ backgroundColor: "red" }}
-                  />
-                </Panel> */}
+
                 <Panel header="BOMS" style={{ fontSize: "1.2rem" }} key="2">
                   <div style={{ display: "flex" }}>
                     {/* {testArray.map((test) => (
@@ -270,30 +261,10 @@ class BOM extends Component {
                   </div>
                 </Panel>
               </Collapse>
-              {/* , mountNode, */}
             </div>
           </div>
         </div>
       </div>
-
-      // <div>
-      //     <div className="gx-module-sidenav gx-d-none gx-d-lg-flex">
-      //         {this.ContactSideBar(user)}
-      //     </div>
-
-      //     <div className="gx-module-box">
-      //         <div className="gx-module-box-header">
-      //             <span className="gx-drawer-btn gx-d-flex gx-d-lg-none">
-      //                 <i className="icon icon-menu gx-icon-btn" aria-label="Menu"
-      //                     onClick={this.onToggleDrawer.bind(this)}/>
-      //             </span>
-
-      //             <h2>Hello</h2>
-      //             {/* <AppModuleHeader placeholder="Search Payee history" notification={false} apps={false}/> */}
-      //         </div>
-      //     </div>
-
-      // </div>
     );
   }
 }
