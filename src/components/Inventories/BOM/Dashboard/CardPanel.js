@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import OnHandProductCard from "./OrderCards/OnHandProductCard";
-import TotalCostCard from "./OrderCards/TotalCostCard";
-import TotalLeadTimeCard from "./OrderCards/TotalLeadTimeCard";
+import OnHandProductCard from "./BOMDashboardCards/OnHandProductCard";
+import TotalCostCard from "./BOMDashboardCards/TotalCostCard";
+import TotalLeadTimeCard from "./BOMDashboardCards/TotalLeadTimeCard";
 
 const CardPanel = () => {
   return (

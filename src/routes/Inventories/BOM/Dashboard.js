@@ -3,9 +3,8 @@ import { Button, Drawer } from "antd";
 import CustomScrollbars from "../../../util/CustomScrollbars";
 import IntlMessages from "../../../util/IntlMessages";
 // importing display content
-import TopLevelPanel from "../../../components/Inventories/BOM/TestTables/TopLevelPanel";
-import TodayPanel from "../../../components/Inventories/BOM/Dashboard/TodayPanel";
-import CardPanel from "../../../components/Inventories/BOM/Dashboard/CardPanel";
+import Home from "../../../components/Inventories/BOM/Dashboard/Home";
+
 const filterOptions = [
   {
     id: 1,
@@ -203,9 +202,7 @@ class Dashboard extends Component {
                 className="top-level-panel"
                 style={{ background: "#F5F6FA" }}
               >
-                <TopLevelPanel />
-                <TodayPanel />
-                <CardPanel />
+                <Home />
                 {/* <div style={{ height: "5vh", background: "lightblue" }}></div> */}
               </div>
             </div>
