@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 const LineCardThree = () => {
   return (
     <div>
-      <CardBody className="gx-site-dash gx-mb-2 gx-pt-3 gx-pb-3 gx-pt-xl-2">
+      <CardBody className="gx-site-dash gx-mb-3 gx-pb-2 gx-pt-xl-2">
         <CardList className="gx-line-indicator">
           <ListItem>
             <h6 className="gx-text-uppercase">ESTIMATED LEAD HOURS</h6>
@@ -42,6 +42,7 @@ const CardBody = styled(motion.div)`
   box-shadow: 1px 1px 8px #c9c9c9;
   border-radius: 10px;
   overflow: hidden;
+  width: 80%;
 `;
 
 const CardList = styled(motion.div)`
@@ -53,11 +54,11 @@ const LineBreaker = styled(motion.div)`
   width: 100%;
   height: 2px;
   background: #d9d9d9;
-  margin: 20px 0;
+  margin: 15px 0;
 `;
 
 const ListItem = styled(motion.div)`
-  padding-left: 30px;
+  padding: 0 10px;
   h6 {
     padding-bottom: 2px;
   }

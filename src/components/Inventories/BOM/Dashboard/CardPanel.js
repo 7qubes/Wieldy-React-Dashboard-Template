@@ -27,7 +27,7 @@ const CardPanelRowTop = styled(motion.div)`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 1rem 0rem;
+  margin: 1rem 0rem 0rem;
   /* background: lightcoral; */
 `;
 

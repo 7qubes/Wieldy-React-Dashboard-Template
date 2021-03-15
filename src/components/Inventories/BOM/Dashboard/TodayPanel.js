@@ -1,13 +1,83 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { DatePicker, Space } from "antd";
-import styles from "./style/dashboardstyle.css";
 
-const TodayPanel = () => {
+const TodayPanel = ({ activeTimeFrame, setActiveTimeFrame, date, setDate }) => {
+  // styles for the time frame boxes
+  const timeFrameStyle = {
+    activeBackground: "#4A9AF9",
+    inactiveBackground: "#F5F6FA",
+    activePTag: "#fff",
+    inactivePTag: "#8c8c8c",
+  };
+
+  // function to change the styles of active/inactive time frame boxes
+  const changeBGColor = (parentDiv) => {
+    parentDiv.childNodes.forEach((child, index) => {
+      if (index !== activeTimeFrame) {
+        child.style.background = timeFrameStyle.inactiveBackground;
+        child.childNodes[0].style.color = timeFrameStyle.inactivePTag;
+      } else {
+        child.style.background = timeFrameStyle.activeBackground;
+        child.childNodes[0].style.color = timeFrameStyle.activePTag;
+      }
+    });
+  };
+
+  // Date picker function
   function onChange(date, dateString) {
     console.log(date, dateString);
+    let year = dateString.slice(0, 4);
+    let month = dateString.slice(5, 7);
+    setDate({
+      yearIndex: year,
+      monthIndex: month - 1,
+    });
+    console.log(date);
   }
+
+  // const fullYear = new Date().getFullYear();
+  // const month = new Date().getMonth();
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  // event handler
+  const activeTimeFrameToggleHandler = (event) => {
+    console.log(event.target);
+    const activeDivClass = event.target.classList[2];
+    const parentDiv = event.target.parentElement;
+
+    switch (activeDivClass) {
+      case "month-frame":
+        setActiveTimeFrame(0);
+        changeBGColor(parentDiv);
+        break;
+      case "week-frame":
+        setActiveTimeFrame(1);
+        changeBGColor(parentDiv);
+        break;
+      case "day-frame":
+        setActiveTimeFrame(2);
+        changeBGColor(parentDiv);
+        break;
+      default:
+        setActiveTimeFrame(0);
+    }
+  };
+
   return (
     <div>
       <MainPanel className="main-panel">
@@ -18,12 +88,24 @@ const TodayPanel = () => {
             </Space>
           </SelectDate>
           <ShowDate className="show-date">
-            <p>February 2021</p>
+            {date === null ? (
+              <p>
+                {months[new Date().getMonth()]}
+                {new Date().getFullYear}
+              </p>
+            ) : (
+              <p>
+                {months[date.monthIndex]} {date.yearIndex}
+              </p>
+            )}
           </ShowDate>
         </DateContainer>
-        <FrameContainer className="frame-container">
-          <MonthFramer className={styles.activeFrame}>
-            <p>Month</p>
+        <TimeFrameContainer
+          className="time-frame-container"
+          onClick={activeTimeFrameToggleHandler}
+        >
+          <MonthFramer className="month-frame">
+            <p style={{ color: "#fff" }}>Month</p>
           </MonthFramer>
           <WeekFramer className="week-frame">
             <p>Week</p>
@@ -31,7 +113,7 @@ const TodayPanel = () => {
           <DayFramer className="day-frame">
             <p>Day</p>
           </DayFramer>
-        </FrameContainer>
+        </TimeFrameContainer>
       </MainPanel>
     </div>
   );
@@ -63,18 +145,23 @@ const ShowDate = styled(motion.div)`
   font-weight: 300;
 `;
 
-const FrameContainer = styled(motion.div)`
+const TimeFrameContainer = styled(motion.div)`
   width: 40%;
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  cursor: pointer;
   div {
     border: solid #8c8c8c 1px;
     padding: 5px 40px;
+    /* :hover {
+      background: #99c7ff;
+    } */
     p {
       font-size: 10px;
       color: #8c8c8c;
       padding-top: 5px;
+      pointer-events: none;
     }
   }
 `;
@@ -84,7 +171,7 @@ const MonthFramer = styled(motion.div)`
   border-radius: 10px 0 0 10px;
   background: #4a9af9;
   p {
-    color: white !important;
+    color: white;
   }
 `;
 

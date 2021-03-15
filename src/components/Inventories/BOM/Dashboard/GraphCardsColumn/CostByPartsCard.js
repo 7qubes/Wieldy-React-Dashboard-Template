@@ -127,6 +127,7 @@ const CostByPartsCard = () => {
 const CardBody = styled(motion.div)`
   box-sizing: border-box;
   margin-left: 20px;
+  margin-top: 20px;
   box-shadow: 1px 1px 8px #c9c9c9;
   border-radius: 10px;
   overflow: hidden;
