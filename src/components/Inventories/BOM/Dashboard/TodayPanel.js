@@ -37,8 +37,6 @@ const TodayPanel = ({ activeTimeFrame, setActiveTimeFrame, date, setDate }) => {
     console.log(date);
   }
 
-  // const fullYear = new Date().getFullYear();
-  // const month = new Date().getMonth();
   const months = [
     "January",
     "February",

@@ -1,8 +1,0 @@
-.ant-table-thead > tr > th,
-.ant-table-tbody > tr > td {
-  padding: 10px 10px !important;
-}
-
-.ant-table-tbody > tr > td {
-  font-weight: normal;
-}

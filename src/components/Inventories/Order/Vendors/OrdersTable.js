@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import { Table, Tag, Menu, Dropdown } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
-// importing styles
-import styles from "./style/tableStyler.css";
-
 const columns = [
   {
     title: "Order ID",
@@ -156,6 +153,7 @@ const OrdersTable = () => {
         }}
         columns={columns}
         dataSource={data}
+        size={"middle"}
       />
     </div>
   );
