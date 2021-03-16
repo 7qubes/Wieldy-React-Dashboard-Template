@@ -12,14 +12,14 @@ import {
 } from "antd";
 import { v4 as uuidv4 } from "uuid";
 
-import CustomScrollbars from "../../../util/CustomScrollbars";
-import IntlMessages from "../../../util/IntlMessages";
+import CustomScrollbars from "../../../../util/CustomScrollbars";
+import IntlMessages from "../../../../util/IntlMessages";
 import { AntDesignOutlined, BehanceOutlined } from "@ant-design/icons";
 
 // import TopLevelPanel from "../../../components/Inventories/Order/Common/TopLevelPanel";
 // import CardPanel from "../../../components/Inventories/Order/Common/CardPanel";
 // import OrdersTable from "../../../components/Inventories/Order/Vendors/OrdersTable";
-import Home from "../../../components/Inventories/Order/Home";
+import Home from "../../../../components/Inventories/Order/Vendors/Home";
 
 import AppModuleHeader from "components/AppModuleHeader/index";
 

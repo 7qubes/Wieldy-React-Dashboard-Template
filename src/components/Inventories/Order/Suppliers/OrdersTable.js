@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import { Table, Tag, Menu, Dropdown } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
-const primaryColor = ["#F7B500", "#00BF9A", "#933CCC"];
+const primaryColor = ["#F7B500", "#933CCC", "#00BF9A"];
 let colorLabel;
 
 const columns = [
   {
-    title: "Order ID",
-    dataIndex: "orderid",
-    key: "orderid",
-  },
-  {
     title: "Created",
     dataIndex: "created",
     key: "created",
+  },
+  {
+    title: "Part",
+    dataIndex: "part",
+    key: "part",
   },
   {
     title: "Vendor",
@@ -27,50 +27,9 @@ const columns = [
     key: "amount",
   },
   {
-    //This will be for fulfillment. Logic will be created later
-    title: "Fulfillment",
-    key: "fulfillment",
-    dataIndex: "fulfillment",
-    render: (fulfillment) => (
-      <>
-        {(() => {
-          switch (fulfillment) {
-            case "unfulfilled":
-              colorLabel = primaryColor[0];
-              break;
-            case "pending":
-              colorLabel = primaryColor[1];
-              break;
-            case "complete":
-              colorLabel = primaryColor[2];
-              break;
-            default:
-              colorLabel = "#696969";
-          }
-        })()}
-        <Dropdown
-          overlay={menu}
-          trigger={["click"]}
-          onClick={labelChangeHandler}
-          style={{ cursor: "pointer" }}
-        >
-          <Tag color={colorLabel} key={fulfillment}>
-            {fulfillment.toUpperCase()}
-            <DownOutlined style={{ marginLeft: "5px" }} />
-          </Tag>
-        </Dropdown>
-      </>
-    ),
-  },
-  {
     title: "Total",
     dataIndex: "total",
     key: "total",
-  },
-  {
-    title: "Expected Profit",
-    dataIndex: "expectedprofit",
-    key: "expectedprofit",
   },
   {
     title: "Status",
@@ -80,13 +39,13 @@ const columns = [
       <>
         {(() => {
           switch (status) {
-            case "unfulfilled":
+            case "unsent":
               colorLabel = primaryColor[0];
               break;
-            case "pending":
+            case "in-transit":
               colorLabel = primaryColor[1];
               break;
-            case "complete":
+            case "received":
               colorLabel = primaryColor[2];
               break;
             default:
@@ -114,43 +73,45 @@ const columns = [
     dataIndex: "updated",
     key: "updated",
   },
+  {
+    title: "Action",
+    dataIndex: "action",
+    key: "action",
+  },
 ];
 const data = [
   {
     key: "1",
-    orderid: "132-456",
     created: "01/05/2021",
-    vendor: "Walmart",
-    amount: "N-90",
-    fulfillment: "unfulfilled",
-    total: "$1000.00",
-    expectedprofit: "$200.00",
-    status: "unfulfilled",
+    part: "Screw (5)",
+    vendor: "SCREWSRUS",
+    amount: "900",
+    total: "$100.00",
+    status: "in-transit",
     updated: "02/14/2021",
+    action: "ORDER",
   },
   {
     key: "2",
-    orderid: "132-456",
     created: "01/05/2021",
-    vendor: "Target",
-    amount: "N-60",
-    fulfillment: "complete",
-    total: "$1000.00",
-    expectedprofit: "$200.00",
-    status: "pending",
+    part: "Screw (5)",
+    vendor: "SCREWSRUS",
+    amount: "900",
+    total: "$100.00",
+    status: "received",
     updated: "02/14/2021",
+    action: "ORDER",
   },
   {
     key: "3",
-    orderid: "132-456",
     created: "01/05/2021",
-    vendor: "ToysRus",
-    amount: "N-30",
-    fulfillment: "pending",
-    total: "$1000.00",
-    expectedprofit: "$200.00",
-    status: "complete",
+    part: "Screw (5)",
+    vendor: "SCREWSRUS",
+    amount: "900",
+    total: "$100.00",
+    status: "unsent",
     updated: "02/14/2021",
+    action: "ORDER",
   },
 ];
 
@@ -166,9 +127,9 @@ const labelSelectorHandler = (event) => {
 
 const menu = (
   <Menu>
-    <Menu.Item key="0">Unfulfilled</Menu.Item>
-    <Menu.Item key="1">Pending</Menu.Item>
-    <Menu.Item key="2">Complete</Menu.Item>
+    <Menu.Item key="0">Unsent</Menu.Item>
+    <Menu.Item key="1">In-Transit</Menu.Item>
+    <Menu.Item key="2">Received</Menu.Item>
   </Menu>
 );
 

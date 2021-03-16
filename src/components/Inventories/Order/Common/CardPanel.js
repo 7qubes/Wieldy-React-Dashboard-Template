@@ -1,22 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import ActiveOrdersCard from "./OrderCards/ActiveOrdersCard";
-import ProductOnHandCard from "./OrderCards/ProductOnHandCard";
-import FulfilledCard from "./OrderCards/FulfilledCard";
+import OrdersCardOne from "./OrderCards/OrdersCardOne";
+import OrdersCardTwo from "./OrderCards/OrdersCardTwo";
+import OrdersCardThree from "./OrderCards/OrdersCardThree";
 
-const CardPanel = () => {
+const CardPanel = ({ cardNameOne, cardNameTwo, cardNameThree }) => {
   return (
     <div>
       <CardPanelRow className="card-panel-row">
         <CardContainer className="card-container">
-          <ActiveOrdersCard />
+          <OrdersCardOne cardNameOne={cardNameOne} />
         </CardContainer>
         <CardContainer className="card-container">
-          <ProductOnHandCard />
+          <OrdersCardTwo cardNameTwo={cardNameTwo} />
         </CardContainer>
         <CardContainer className="card-container">
-          <FulfilledCard />
+          <OrdersCardThree cardNameThree={cardNameThree} />
         </CardContainer>
       </CardPanelRow>
     </div>
@@ -28,7 +28,6 @@ const CardPanelRow = styled(motion.div)`
   justify-content: space-around;
   align-items: center;
   margin: 1rem 0rem;
-  /* background: lightcoral; */
 `;
 
 const CardContainer = styled(motion.div)`

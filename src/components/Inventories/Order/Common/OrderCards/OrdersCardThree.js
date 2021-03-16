@@ -1,7 +1,7 @@
 import React from "react";
 import { Area, AreaChart, ResponsiveContainer, Tooltip } from "recharts";
 import { Col, Row } from "antd";
-import { CaretDownFilled, CaretUpFilled } from "@ant-design/icons";
+import { CaretUpFilled } from "@ant-design/icons";
 
 // import Metrics from "components/Metrics";
 import Metrics from "../../../../Metrics";
@@ -15,7 +15,7 @@ const trafficData = [
   { name: "Page H", value: 4860 },
 ];
 
-const ProductOnHand = () => {
+const OrdersCardThree = ({ cardNameThree }) => {
   return (
     <Metrics styleName={`gx-card-full`} title="">
       <Row>
@@ -25,10 +25,10 @@ const ProductOnHand = () => {
               className="gx-fs-xxl "
               style={{ marginBottom: 0, fontSize: "20px" }}
             >
-              25
+              0
             </h2>
-            <p className="gx-mb-0 gx-text-grey" style={{ fontSize: "10px" }}>
-              PRODUCTS ON-HAND
+            <p className="gx-mb-0 gx-text-grey" style={{ fontSize: "11px" }}>
+              {cardNameThree}
             </p>
           </div>
         </Col>
@@ -36,10 +36,10 @@ const ProductOnHand = () => {
           <div className=" gx-pl-4 gx-pt-2">
             <h2
               style={{ paddingRight: 0, paddingLeft: 0, fontSize: "15px" }}
-              className="gx-fs-xl gx-chart-down"
+              className="gx-fs-xl gx-chart-up"
             >
               07%
-              <CaretDownFilled />
+              <CaretUpFilled />
             </h2>
           </div>
         </Col>
@@ -78,4 +78,4 @@ const ProductOnHand = () => {
   );
 };
 
-export default ProductOnHand;
+export default OrdersCardThree;

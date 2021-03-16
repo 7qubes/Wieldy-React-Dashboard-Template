@@ -11,11 +11,11 @@ const trafficData = [
   { name: "Page B", value: 2000 },
   { name: "Page C", value: 600 },
   { name: "Page D", value: 4400 },
-  { name: "Page D", value: 900 },
+  { name: "Page E", value: 900 },
   { name: "Page H", value: 4860 },
 ];
 
-const FulfilledCard = () => {
+const OrdersCardOne = ({ cardNameOne }) => {
   return (
     <Metrics styleName={`gx-card-full`} title="">
       <Row>
@@ -25,10 +25,10 @@ const FulfilledCard = () => {
               className="gx-fs-xxl "
               style={{ marginBottom: 0, fontSize: "20px" }}
             >
-              0
+              180
             </h2>
             <p className="gx-mb-0 gx-text-grey" style={{ fontSize: "11px" }}>
-              FULFILLED
+              {cardNameOne}
             </p>
           </div>
         </Col>
@@ -78,4 +78,4 @@ const FulfilledCard = () => {
   );
 };
 
-export default FulfilledCard;
+export default OrdersCardOne;

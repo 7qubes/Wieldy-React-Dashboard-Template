@@ -104,8 +104,13 @@ const Inventories = ({ match }) => {
       />
       <Route
         exact
-        path={`${match.url}/orders`}
-        component={asyncComponent(() => import("./Order"))}
+        path={`${match.url}/orders/vendors`}
+        component={asyncComponent(() => import("./Order/Vendors"))}
+      />
+      <Route
+        exact
+        path={`${match.url}/orders/suppliers`}
+        component={asyncComponent(() => import("./Order/Suppliers"))}
       />
     </Switch>
   );
