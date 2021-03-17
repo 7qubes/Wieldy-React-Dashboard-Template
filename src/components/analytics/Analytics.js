@@ -1,11 +1,9 @@
 import React, { useCallback, useState } from 'react';
 import { Modal, Menu, Dropdown, Drawer, Button, Upload, message } from 'antd';
-import Dropzone from 'react-dropzone';
-import input from 'react';
+import { CheckCircleOutlined } from '@ant-design/icons';
+import "bootstrap/dist/css/bootstrap.min.css";
 import AppModuleHeader from '../../components/AppModuleHeader/index';
 import { useCSVStore } from '../../mobx/csvContext';
-
-
 import DropZoneComponent from './dropzoneComponent';
 import { CSVView } from './CSVView';
 
@@ -13,7 +11,7 @@ const filterOptions = [
     {
         id: 1,
         name: 'Verify',
-        icon: ''
+        icon: 'CheckCircleOutlined'
     },
     {
         id: 2,
@@ -128,7 +126,7 @@ const Analytics = () => {
             <div className="gx-module-side">
                 <div className="gx-module-side-header">
                     <div className="gx-module-logo">
-                        <i className="icon icon-contact gx-mr-4" />
+                        <i className="icon icon-analytics gx-mr-4" > Analytics</i>
 
                     </div>
                 </div>
@@ -170,7 +168,7 @@ const Analytics = () => {
             <div className="gx-module-side">
                 <div className="gx-module-side-header">
                     <div className="gx-module-logo">
-                        <i className="icon icon-contact gx-mr-4" />
+                        <i className="icon icon-analytics gx-mr-4" > Analytics</i>
 
                     </div>
                 </div>
@@ -239,9 +237,12 @@ const Analytics = () => {
             <div className="gx-main-content">
                 <div className="gx-app-module">
                     <div className="gx-module-sidenav gx-d-none gx-d-lg-flex">
+                        
                         {!state.displayFile ?
                             AnalyticsSideBar() : ColumnSideBar()}
                         <Modal
+                            
+                            headStyle={{ backgroundColor:'#6236FF'}} 
                             style={{ width: 100, height: 300 }}
                             title="Create New"
                             visible={state.showCreateNewModal}
@@ -249,16 +250,19 @@ const Analytics = () => {
                             onCancel={handleCancel}
                             maskClosable={true}
                             okText="Next">
-                            <p>{`Welcome to Analytics \nBring your data to life by utilizing our visualizing tools`}</p>
-
+                            <p>{`Welcome to Analytics`}</p>
+                            <p>{`Bring your data to life by utilizing our visualizing tools`}</p>
+                    
+                    
                         <Upload 
                             accept=".csv"
                             {...uploadProps}>
-                            <Button>Upload CSV</Button>
+                            <Button type="button" class="btn btn-outline-primary">Upload CSV</Button>
                         </Upload>
                         <div style={{ marginTop: 10, borderBlockStyle:'dashed' }}>
                             <DropZoneComponent />
                         </div>
+                        
                             {/* <Dropzone 
                         onDrop={acceptedFiles => this.showDraggedFiles(acceptedFiles)}>
                             {({getRootProps, getInputProps}) => (
@@ -294,10 +298,12 @@ const Analytics = () => {
                             value={state.searchAnalyticsText} />
                         {
                             state.displayFile && (
-                                <div style={{ backgroundColor: '#6236FF', padding: 15, color: 'Black' }}>
+                        
+                                <div style={{ backgroundColor: '#6236FF', padding: 10, color: 'White' }}>
                                     {filterOptions.map((item, index) => (
-                                        <button onClick={() => handleAnalyticsOptions(item.name)}>
-                                            {`${item.name}`}
+                                        <button type="button" class="btn btn-light" style={{ backgroundColor:"#6236FF", outline: "none", borderColor: "#6236FF",color:"white" }}  onClick={() => handleAnalyticsOptions(item.name)}>
+                                         {`${item.name}`}
+                                         
                                         </button>
                                     ))}
                                     <div className="gx-module-box-header">
@@ -306,6 +312,7 @@ const Analytics = () => {
                                         </div>
                                     </div>
                                 </div>
+                                
                             )
                         }
                     </div>
