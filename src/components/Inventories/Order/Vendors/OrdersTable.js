@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Table, Tag, Menu, Dropdown } from "antd";
 import { DownOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 const primaryColor = ["#F7B500", "#00BF9A", "#933CCC"];
 let colorLabel;
@@ -80,13 +81,13 @@ const columns = [
       <>
         {(() => {
           switch (status) {
-            case "unfulfilled":
+            case "send invoice":
               colorLabel = primaryColor[0];
               break;
             case "pending":
               colorLabel = primaryColor[1];
               break;
-            case "complete":
+            case "paid":
               colorLabel = primaryColor[2];
               break;
             default:
@@ -100,10 +101,19 @@ const columns = [
           style={{ cursor: "pointer" }}
         >
           <Tag color={colorLabel} key={status}>
-            {status.toUpperCase()}
-            <DownOutlined
-              style={{ marginLeft: "5px", PointerEvents: "none" }}
-            />
+            {status === "send invoice" ? (
+              <Link to="/billing/invoice" replace>
+                {status.toUpperCase()}
+              </Link>
+            ) : (
+              <div>
+                {status.toUpperCase()}
+
+                <DownOutlined
+                  style={{ marginLeft: "5px", PointerEvents: "none" }}
+                />
+              </div>
+            )}
           </Tag>
         </Dropdown>
       </>
@@ -125,7 +135,7 @@ const data = [
     fulfillment: "unfulfilled",
     total: "$1000.00",
     expectedprofit: "$200.00",
-    status: "unfulfilled",
+    status: "send invoice",
     updated: "02/14/2021",
   },
   {
@@ -149,7 +159,7 @@ const data = [
     fulfillment: "pending",
     total: "$1000.00",
     expectedprofit: "$200.00",
-    status: "complete",
+    status: "paid",
     updated: "02/14/2021",
   },
 ];
@@ -166,9 +176,9 @@ const labelSelectorHandler = (event) => {
 
 const menu = (
   <Menu>
-    <Menu.Item key="0">Unfulfilled</Menu.Item>
+    <Menu.Item key="0">Send Invoice</Menu.Item>
     <Menu.Item key="1">Pending</Menu.Item>
-    <Menu.Item key="2">Complete</Menu.Item>
+    <Menu.Item key="2">Paid</Menu.Item>
   </Menu>
 );
 

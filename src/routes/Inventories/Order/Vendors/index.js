@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { useHistory, Link } from "react-router-dom";
 import {
   Button,
   Checkbox,
@@ -51,7 +52,7 @@ function callback(key) {
 }
 
 // const for headings of collapsible
-const { Text, Link } = Typography;
+// const { Text, Link } = Typography;
 const { Title } = Typography;
 
 class Orders extends Component {
@@ -91,19 +92,25 @@ class Orders extends Component {
             <div className="gx-module-side-nav">
               <ul className="gx-module-nav">
                 {filterOptions.map((option) => (
-                  <li key={option.id} className="gx-nav-item">
-                    <span
-                      className={`gx-link ${
-                        option.id === this.state.selectedSectionId
-                          ? "active"
-                          : ""
-                      }`}
-                      onClick={this.onFilterOptionSelect.bind(this, option)}
-                    >
-                      <i className={`icon icon-${option.icon}`} />
-                      <span>{option.name}</span>
-                    </span>
-                  </li>
+                  <Link
+                    to={`/inventories/orders/${option.name.toLowerCase()}`}
+                    replace
+                  >
+                    <li key={option.id} className="gx-nav-item">
+                      <span
+                        className={`gx-link ${
+                          option.id === this.state.selectedSectionId
+                            ? "active"
+                            : ""
+                        }`}
+                        // onClick={this.onFilterOptionSelect.bind(this, option)}
+                        // onClick={this.supplyVendorToggle.bind(option)}
+                      >
+                        <i className={`icon icon-${option.icon}`} />
+                        <span>{option.name}</span>
+                      </span>
+                    </li>
+                  </Link>
                 ))}
               </ul>
             </div>
@@ -113,28 +120,40 @@ class Orders extends Component {
     );
   };
 
-  onFilterOptionSelect = (option) => {
-    switch (option.name) {
-      case "All BOM": {
-        this.setState({
-          selectedSectionId: option.id,
-          filterOption: option.name,
-          //   paymentList: this.state.allContact
-        });
-        break;
-      }
-      case "All Catalogs": {
-        this.setState({
-          selectedSectionId: option.id,
-          filterOption: option.name,
-          //   paymentList: this.state.allContact.filter((contact) => contact.frequently)
-        });
-        break;
-      }
-      default:
-        break;
-    }
-  };
+  // supplyVendorToggle = (option) => {
+  //   const history = useHistory();
+  //   switch (option.name) {
+  //     case "VENDORS":
+  //       history.replace("./suppliers");
+  //       break;
+  //     case "SUPPLIERS":
+  //       history.replace("./vendors");
+  //       break;
+  //   }
+  // };
+
+  // onFilterOptionSelect = (option) => {
+  //   switch (option.name) {
+  //     case "All BOM": {
+  //       this.setState({
+  //         selectedSectionId: option.id,
+  //         filterOption: option.name,
+  //         //   paymentList: this.state.allContact
+  //       });
+  //       break;
+  //     }
+  //     case "All Catalogs": {
+  //       this.setState({
+  //         selectedSectionId: option.id,
+  //         filterOption: option.name,
+  //         //   paymentList: this.state.allContact.filter((contact) => contact.frequently)
+  //       });
+  //       break;
+  //     }
+  //     default:
+  //       break;
+  //   }
+  // };
 
   onToggleDrawer() {
     this.setState({
