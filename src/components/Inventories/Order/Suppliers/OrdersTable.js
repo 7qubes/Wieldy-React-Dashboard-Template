@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Table, Tag, Menu, Dropdown } from "antd";
+import { Table, Tag, Menu, Dropdown, Space } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
 const primaryColor = ["#F7B500", "#933CCC", "#00BF9A"];
@@ -77,41 +77,44 @@ const columns = [
     title: "Action",
     dataIndex: "action",
     key: "action",
+
+    render: () => (
+      <Space size="middle">
+        <a href="#">ORDER</a>
+      </Space>
+    ),
   },
 ];
 const data = [
   {
     key: "1",
-    created: "01/05/2021",
+    created: "01/10/2021",
     part: "Screw (5)",
     vendor: "SCREWSRUS",
     amount: "900",
     total: "$100.00",
     status: "in-transit",
     updated: "02/14/2021",
-    action: "ORDER",
   },
   {
     key: "2",
     created: "01/05/2021",
     part: "Screw (5)",
     vendor: "SCREWSRUS",
-    amount: "900",
+    amount: "90",
     total: "$100.00",
     status: "received",
     updated: "02/14/2021",
-    action: "ORDER",
   },
   {
     key: "3",
-    created: "01/05/2021",
+    created: "01/15/2021",
     part: "Screw (5)",
     vendor: "SCREWSRUS",
-    amount: "900",
+    amount: "1000",
     total: "$100.00",
     status: "unsent",
     updated: "02/14/2021",
-    action: "ORDER",
   },
 ];
 
