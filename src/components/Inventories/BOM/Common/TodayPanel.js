@@ -54,7 +54,6 @@ const TodayPanel = ({ activeTimeFrame, setActiveTimeFrame, date, setDate }) => {
 
   // event handler
   const activeTimeFrameToggleHandler = (event) => {
-    console.log(event.target);
     const activeDivClass = event.target.classList[2];
     const parentDiv = event.target.parentElement;
 

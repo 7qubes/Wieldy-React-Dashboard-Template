@@ -315,6 +315,7 @@
   "sidebar.finance": "Finance",
   "sidebar.inventories": "Inventory",
   "sidebar.inventories.eshop": "E-Shop",
+  "sidebar.inventories.eshop.heading": "Inventories",
   "sidebar.inventories.bom": "BOM",
   "sidebar.inventories.orders": "Orders",
   "sidebar.website": "Website",

@@ -50,10 +50,8 @@ const SingleBOMCard = () => {
 
   // Handler
   const FirstMenuToggleHandler = (event) => {
-    // console.log(event.target);
     const firstMenuBlock = document.querySelector(".first-menu");
 
-    // console.log(firstMenuBlock);
     if (!isMenuOpen.firstMenu) {
       setIsMenuOpen({
         ...isMenuOpen,
@@ -105,7 +103,6 @@ const SingleBOMCard = () => {
             </p>
             <i
               style={{ color: "white", fontSize: "1.8rem" }}
-              // className="icon icon-start-up"
               className={"icon " + cardIcon}
             />
           </BOMIconBox>
@@ -125,6 +122,7 @@ const enclosingDiv = styled(motion.div)`
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  position: relative;
 `;
 
 const BOMCard = styled(motion.div)`
@@ -139,8 +137,6 @@ const BOMIconBox = styled(motion.div)`
   height: 4rem;
   width: 4rem;
   border-radius: 10%;
-  /* text-align: center;
-  vertical-align: center; */
   position: relative;
   display: flex;
   flex-direction: column;
@@ -149,19 +145,15 @@ const BOMIconBox = styled(motion.div)`
   margin-bottom: 0.25rem;
   padding-right: 5px;
   p {
-    /* position: absolute; */
-    /* right: 5%; */
-    /* top: 0%; */
-    /* padding-right: 20px; */
     color: white;
     align-self: flex-end;
     cursor: pointer;
     margin: 0;
     padding: 0;
     line-height: 0.5;
+    user-select: none;
   }
   i {
-    /* justify-self: start; */
     position: absolute;
     left: 50%;
     top: 60%;

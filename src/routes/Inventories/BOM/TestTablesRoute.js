@@ -15,11 +15,12 @@ import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-import TestTables from "../../../components/Inventories/BOM/TestTables";
-import TopLevelPanel from "../../../components/Inventories/BOM/TestTables/TopLevelPanel";
-import SecondaryLevelPanel from "../../../components/Inventories/BOM/TestTables/SecondaryLevelPanel";
-import BriefInfoBar from "../../../components/Inventories/BOM/TestTables/BriefInfoBar";
-import TableData from "../../../components/Inventories/BOM/TestTables/TableData";
+// import TestTables from "../../../components/Inventories/BOM/TestTables";
+// import TopLevelPanel from "../../../components/Inventories/BOM/TestTables/TopLevelPanel";
+// import SecondaryLevelPanel from "../../../components/Inventories/BOM/TestTables/SecondaryLevelPanel";
+// import BriefInfoBar from "../../../components/Inventories/BOM/TestTables/BriefInfoBar";
+// import TableData from "../../../components/Inventories/BOM/TestTables/TableData";
+import Home from "../../../components/Inventories/BOM/TestTables/Home";
 
 import CustomScrollbars from "../../../util/CustomScrollbars";
 import IntlMessages from "../../../util/IntlMessages";
@@ -227,13 +228,14 @@ class TestTable extends Component {
                 className="top-level-panel"
                 style={{ background: "#F5F6FA" }}
               >
-                <TopLevelPanel />
+                {/* <TopLevelPanel />
                 <SecondaryLevelPanel />
                 <BriefInfoBar />
                 <div className="table-data">
                   <TableData />
                 </div>
-                <div style={{ height: "5vh" }}></div>
+                <div style={{ height: "5vh" }}></div> */}
+                <Home />
               </div>
             </div>
           </div>

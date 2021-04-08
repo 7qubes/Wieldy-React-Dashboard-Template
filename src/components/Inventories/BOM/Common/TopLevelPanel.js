@@ -11,73 +11,75 @@ const TopLevelPanel = () => {
       <PrimaryPanel className="main-panel">
         <PanelItems className="panel-items">
           <PanelItem className="panel-item">
-            <h3>
+            <h4>
               <span>
                 <i className="icon icon-DashboardAnalytics"></i>
               </span>
-              <Link style={{ color: "inherit" }} to="./dashboard">
+              <Link style={{ color: "inherit" }} to="../dashboard">
                 Dashboard
               </Link>
-            </h3>
+            </h4>
           </PanelItem>
           <PanelItem className="panel-item">
-            <h3>
+            <h4>
               <span>
                 <i
                   className="icon icon-Timeline"
                   style={{ transform: "rotate(270deg)" }}
                 ></i>
               </span>
-              Timeline
-            </h3>
+              <Link style={{ color: "inherit" }} to="./testtable/timeline">
+                Timeline
+              </Link>
+            </h4>
           </PanelItem>
           <PanelItem className="panel-item">
-            <h3>
+            <h4>
               <span>
                 <i className="icon icon-bom"></i>
               </span>
               BOM
-            </h3>
+            </h4>
           </PanelItem>
           <PanelItem className="panel-item">
-            <h3>
+            <h4>
               <span>
                 <i className="icon icon-Splitscreen"></i>
               </span>
               Split Screen
-            </h3>
+            </h4>
           </PanelItem>
           <PanelItem className="panel-item">
-            <h3>
+            <h4>
               <span>
                 <i className="icon icon-PencilEdit"></i>
               </span>
               Edit
-            </h3>
+            </h4>
           </PanelItem>
           <PanelItem className="panel-item">
-            <h3>
+            <h4>
               <span>
                 <i className="icon icon-Duplicate"></i>
               </span>
               Clone
-            </h3>
+            </h4>
           </PanelItem>
           <PanelItem className="panel-item">
-            <h3>
+            <h4>
               <span>
                 <VerticalAlignTopOutlined />
               </span>
               Export
-            </h3>
+            </h4>
           </PanelItem>
           <PanelItem className="panel-item">
-            <h3>
+            <h4>
               <span>
                 <i className="icon icon-email_trash"></i>
               </span>
               Delete
-            </h3>
+            </h4>
           </PanelItem>
         </PanelItems>
       </PrimaryPanel>
@@ -91,7 +93,7 @@ const PrimaryPanel = styled(motion.div)`
   box-sizing: border-box;
   background: #6236ff;
   color: white;
-  height: 7vh;
+  height: 6vh;
   padding: 1rem 2rem;
 `;
 
@@ -106,7 +108,7 @@ const PanelItem = styled(motion.div)`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  h3 {
+  h4 {
     color: white;
     span {
       padding-right: 0.2rem;

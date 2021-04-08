@@ -18,6 +18,7 @@
     "draftjs-to-html": "^0.9.1",
     "firebase": "^7.6.1",
     "framer-motion": "^3.3.0",
+    "gantt-schedule-timeline-calendar": "^3.6.6",
     "instantsearch.css": "^7.3.1",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",

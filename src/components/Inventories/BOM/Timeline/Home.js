@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-
+// components
 import TopLevelPanel from "../Common/TopLevelPanel";
 import TodayPanel from "../Common/TodayPanel";
-import CardPanel from "./CardPanel";
-import BottomPanel from "./BottomPanel";
+import TimelineData from "./TimelineData";
 
 const Home = () => {
   // states
@@ -12,7 +11,6 @@ const Home = () => {
     yearIndex: new Date().getFullYear(),
     monthIndex: new Date().getMonth(),
   });
-
   return (
     <div>
       <TopLevelPanel />
@@ -22,8 +20,7 @@ const Home = () => {
         date={date}
         setDate={setDate}
       />
-      <CardPanel />
-      <BottomPanel />
+      <TimelineData />
       <div style={{ height: "5vh" }}></div>
     </div>
   );

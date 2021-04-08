@@ -1,6 +1,6 @@
 import React from "react";
 
-import TopLevelPanel from "../Common/TopLevelPanel";
+import TopLevelPanel from "../../CommonOrdersEShop/TopLevelPanel";
 import CardPanel from "../Common/CardPanel";
 import OrdersTable from "./OrdersTable";
 
