@@ -22,9 +22,9 @@ const columns = [
     key: "vendor",
   },
   {
-    title: "Amount",
-    dataIndex: "amount",
-    key: "amount",
+    title: "Quantity",
+    dataIndex: "quantity",
+    key: "quantity",
   },
   {
     title: "Total",
@@ -89,9 +89,9 @@ const data = [
   {
     key: "1",
     created: "01/10/2021",
-    part: "Screw (5)",
+    part: "Screw",
     vendor: "SCREWSRUS",
-    amount: "900",
+    quantity: "900",
     total: "$100.00",
     status: "in-transit",
     updated: "02/14/2021",
@@ -99,9 +99,9 @@ const data = [
   {
     key: "2",
     created: "01/05/2021",
-    part: "Screw (5)",
+    part: "Screw",
     vendor: "SCREWSRUS",
-    amount: "90",
+    quantity: "90",
     total: "$100.00",
     status: "received",
     updated: "02/14/2021",
@@ -109,9 +109,9 @@ const data = [
   {
     key: "3",
     created: "01/15/2021",
-    part: "Screw (5)",
+    part: "Screw",
     vendor: "SCREWSRUS",
-    amount: "1000",
+    quantity: "1000",
     total: "$100.00",
     status: "unsent",
     updated: "02/14/2021",

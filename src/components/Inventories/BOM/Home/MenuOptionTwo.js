@@ -73,7 +73,7 @@ const MenuOptionTwo = ({ data, bomData, setBOMData }) => {
     // finding the index of the data to be updated in state
     let index = bomData.indexOf(data);
     cloneBOMData[index] = { ...cloneBOMData[index], icon: newIcon };
-    // updating the state through the crated copy
+    // updating the state through the created copy
     setBOMData(cloneBOMData);
   };
 

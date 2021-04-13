@@ -5,31 +5,97 @@ import { DownOutlined } from "@ant-design/icons";
 
 const columns = [
   {
-    title: "Name",
-    dataIndex: "name",
+    title: "BOM ID",
+    dataIndex: "bomid",
     fixed: "left",
-    width: 200,
-  },
-  {
-    title: "Age",
-    dataIndex: "age",
     width: 100,
   },
   {
-    title: "Address",
-    dataIndex: "address",
-    filters: [
-      {
-        text: "London",
-        value: "London",
-      },
-      {
-        text: "New York",
-        value: "New York",
-      },
-    ],
-    onFilter: (value, record) => record.address.indexOf(value) === 0,
+    title: "Inventory ID",
+    dataIndex: "inventoryid",
+    width: 150,
   },
+  {
+    title: "Level",
+    dataIndex: "level",
+    width: 150,
+  },
+  {
+    title: "Part ID",
+    dataIndex: "partid",
+    width: 150,
+  },
+  {
+    title: "Description",
+    dataIndex: "description",
+    width: 150,
+  },
+  {
+    title: "Quantity Per Unit",
+    dataIndex: "quantityperunit",
+    width: 150,
+  },
+  {
+    title: "Type",
+    dataIndex: "type",
+    width: 150,
+  },
+  {
+    title: "Lot Size",
+    dataIndex: "lotsize",
+    width: 150,
+  },
+  {
+    title: "Lead Time",
+    dataIndex: "leadtime",
+    width: 150,
+  },
+  {
+    title: "Units",
+    dataIndex: "units",
+    width: 150,
+  },
+  {
+    title: "Payment Terms",
+    dataIndex: "paymentterms",
+    width: 150,
+  },
+  {
+    title: "Vendor ID",
+    dataIndex: "vendorid",
+    width: 150,
+  },
+  {
+    title: "Substitute Vendor",
+    dataIndex: "substitutevendor",
+    width: 150,
+  },
+  {
+    title: "Procurement ID",
+    dataIndex: "procurementid",
+    width: 150,
+  },
+  {
+    title: "labor Hours",
+    dataIndex: "laborhours",
+    width: 150,
+  },
+  {
+    title: "Status",
+    dataIndex: "status",
+    width: 150,
+  },
+  {
+    title: "Date Updated",
+    dataIndex: "dateupdated",
+    width: 150,
+  },
+  {
+    title: "Modified By",
+    dataIndex: "modifiedby",
+    width: 150,
+  },
+
   {
     title: "Action",
     key: "action",
@@ -46,15 +112,15 @@ const columns = [
 ];
 
 const data = [];
-for (let i = 1; i <= 10; i++) {
-  data.push({
-    key: i,
-    name: "John Brown",
-    age: `${i}2`,
-    address: `New York No. ${i} Lake Park`,
-    description: `My name is John Brown, I am ${i}2 years old, living in New York No. ${i} Lake Park.`,
-  });
-}
+// for (let i = 1; i <= 10; i++) {
+//   data.push({
+//     key: i,
+//     name: "John Brown",
+//     age: `${i}2`,
+//     address: `New York No. ${i} Lake Park`,
+//     description: `My name is John Brown, I am ${i}2 years old, living in New York No. ${i} Lake Park.`,
+//   });
+// }
 
 const showHeader = true;
 

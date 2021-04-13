@@ -4,28 +4,26 @@ import Card from "./Card";
 // style and animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
-// route
-import { Link, useLocation } from "react-router-dom";
 // BOM card data
 import data from "./data/bomInfo.json";
 
 const Cards = () => {
   const [bomData, setBOMData] = useState(data.bom);
-  const location = useLocation();
+
+  window.addEventListener("click", console.log("window-click"));
 
   return (
-    <Link to={`${location.pathname}/testtable`}>
-      <CardsContainer>
-        {bomData.map((data) => (
-          <Card
-            data={data}
-            bomData={bomData}
-            setBOMData={setBOMData}
-            key={data.id}
-          />
-        ))}
-      </CardsContainer>
-    </Link>
+    <CardsContainer>
+      {bomData.map((data, index) => (
+        <Card
+          data={data}
+          bomData={bomData}
+          setBOMData={setBOMData}
+          key={data.id}
+          index={index}
+        />
+      ))}
+    </CardsContainer>
   );
 };
 

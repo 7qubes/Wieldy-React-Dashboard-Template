@@ -28,7 +28,7 @@ const MenuOptionOne = ({
       ...cloneBOMData[index],
       favorite: !cloneBOMData[index].favorite,
     };
-    // updating the state through the crated copy
+    // updating the state through the created copy
     setBOMData(cloneBOMData);
     console.log(bomData);
   };
@@ -91,6 +91,7 @@ const ListItem = styled(motion.div)`
   position: relative;
   padding: 10px 0;
   transition: all 0.2s ease-in;
+  cursor: pointer;
   p {
     font-size: 12px;
     color: #535353;

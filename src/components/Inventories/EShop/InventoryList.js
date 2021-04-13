@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 const columns = [
   {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
+    title: "Product Name",
+    dataIndex: "productname",
+    key: "productname",
   },
   {
     title: "Type",
@@ -72,7 +72,7 @@ const InventoryList = ({ eshopData }) => {
   eshopData.map((singleData) => {
     const tempData = {
       key: singleData.id,
-      name: singleData.blocks[0].headline,
+      productname: singleData.blocks[0].headline,
       type: singleData.blocks[0].type,
       quantity: singleData.blocks[0].quantity,
       price: singleData.blocks[0].price,
