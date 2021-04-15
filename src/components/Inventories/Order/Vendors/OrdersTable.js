@@ -11,27 +11,32 @@ const columns = [
     title: "Order ID",
     dataIndex: "orderid",
     key: "orderid",
+    align: "center",
   },
   {
     title: "Created",
     dataIndex: "created",
     key: "created",
+    align: "center",
   },
   {
     title: "Vendor",
     dataIndex: "vendor",
     key: "vendor",
+    align: "center",
   },
   {
     title: "Payment Terms",
     dataIndex: "paymentterms",
     key: "paymentterms",
+    align: "center",
   },
   {
     //This will be for fulfillment. Logic will be created later
     title: "Fulfillment",
     key: "fulfillment",
     dataIndex: "fulfillment",
+    align: "center",
     render: (fulfillment) => (
       <>
         {(() => {
@@ -67,16 +72,19 @@ const columns = [
     title: "Total",
     dataIndex: "total",
     key: "total",
+    align: "center",
   },
   {
     title: "Expected Profit",
     dataIndex: "expectedprofit",
     key: "expectedprofit",
+    align: "center",
   },
   {
     title: "Status",
     dataIndex: "status",
     key: "status",
+    align: "center",
     render: (status) => (
       <>
         {(() => {
@@ -123,6 +131,7 @@ const columns = [
     title: "Updated",
     dataIndex: "updated",
     key: "updated",
+    align: "center",
   },
 ];
 const data = [

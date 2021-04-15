@@ -10,31 +10,37 @@ const columns = [
     title: "Created",
     dataIndex: "created",
     key: "created",
+    align: "center",
   },
   {
     title: "Part",
     dataIndex: "part",
     key: "part",
+    align: "center",
   },
   {
     title: "Vendor",
     dataIndex: "vendor",
     key: "vendor",
+    align: "center",
   },
   {
     title: "Quantity",
     dataIndex: "quantity",
     key: "quantity",
+    align: "center",
   },
   {
     title: "Total",
     dataIndex: "total",
     key: "total",
+    align: "center",
   },
   {
     title: "Status",
     dataIndex: "status",
     key: "status",
+    align: "center",
     render: (status) => (
       <>
         {(() => {
@@ -72,12 +78,13 @@ const columns = [
     title: "Updated",
     dataIndex: "updated",
     key: "updated",
+    align: "center",
   },
   {
     title: "Action",
     dataIndex: "action",
     key: "action",
-
+    align: "center",
     render: () => (
       <Space size="middle">
         <a href="#">ORDER</a>

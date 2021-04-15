@@ -8,51 +8,61 @@ const columns = [
     title: "Product Name",
     dataIndex: "productname",
     key: "productname",
+    align: "center",
   },
   {
     title: "Type",
     dataIndex: "type",
     key: "type",
+    align: "center",
   },
   {
     title: "Quantity",
     dataIndex: "quantity",
     key: "quantity",
+    align: "center",
   },
   {
     title: "Price",
     dataIndex: "price",
     key: "price",
+    align: "center",
   },
   {
     title: "Notes",
     dataIndex: "notes",
     key: "notes",
+    align: "center",
   },
   {
     title: "Tags",
     dataIndex: "tags",
     key: "tags",
+    align: "center",
   },
   {
     title: "Rating",
     dataIndex: "rating",
     key: "rating",
+    align: "center",
   },
   {
     title: "Primary Folder",
     dataIndex: "primaryfolder",
     key: "primaryfolder",
+    align: "center",
   },
   {
     title: "Size",
     dataIndex: "size",
     key: "size",
+    align: "center",
   },
   {
     title: "Status",
     dataIndex: "status",
     key: "status",
+    align: "center",
   },
 ];
 
