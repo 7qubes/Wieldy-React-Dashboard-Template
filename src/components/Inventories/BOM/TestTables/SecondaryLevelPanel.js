@@ -2,43 +2,50 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-const SecondaryLevelPanel = () => {
+const SecondaryLevelPanel = ({ setActiveSecondLevel }) => {
+  // event handlers
+  //////// switch the table on click on tabs
+  let selected;
+  const tableSwitchHandler = (event) => {
+    if (event.target.classList.contains("item")) {
+      // console.log(event.target.innerHTML.toLowerCase());
+      selected = event.target.innerText.toLowerCase();
+    } else if (event.target.classList.contains("panel-item")) {
+      // console.log(event.target.firstChild.innerText.toLowerCase());
+      selected = event.target.firstChild.innerText.toLowerCase();
+    }
+    setActiveSecondLevel(selected);
+  };
   return (
     <div>
       <MainPanel className="main-panel">
-        <PanelItems className="panel-items">
+        <PanelItems className="panel-items" onClick={tableSwitchHandler}>
           <PanelItem className="panel-item">
-            <p>BOM</p>
+            <p className="item">BOM</p>
           </PanelItem>
           <PanelItem>
             <p>|</p>
           </PanelItem>
           <PanelItem className="panel-item">
-            <p>Material Cost</p>
+            <p className="item">Material Cost</p>
           </PanelItem>
           <PanelItem>
             <p>|</p>
           </PanelItem>
           <PanelItem className="panel-item">
-            <p>MRP</p>
+            <p className="item">MRP</p>
           </PanelItem>
           <PanelItem>
             <p>|</p>
           </PanelItem>
           <PanelItem className="panel-item">
-            <p>Billing Schedule</p>
+            <p className="item">Billing Schedule</p>
           </PanelItem>
           <PanelItem>
             <p>|</p>
           </PanelItem>
           <PanelItem className="panel-item">
-            <p>Chart Pivot</p>
-          </PanelItem>
-          <PanelItem>
-            <p>|</p>
-          </PanelItem>
-          <PanelItem className="panel-item">
-            <p>Payables vs Receivables Summary</p>
+            <p className="item">Payables vs Receivables Summary</p>
           </PanelItem>
         </PanelItems>
       </MainPanel>

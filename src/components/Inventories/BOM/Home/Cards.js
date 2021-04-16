@@ -10,7 +10,7 @@ import data from "./data/bomInfo.json";
 const Cards = () => {
   const [bomData, setBOMData] = useState(data.bom);
 
-  window.addEventListener("click", console.log("window-click"));
+  // window.addEventListener("click", console.log("window-click"));
 
   return (
     <CardsContainer>

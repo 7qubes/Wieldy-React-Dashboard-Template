@@ -143,7 +143,7 @@ const data = [];
 
 const showHeader = true;
 
-class TableData extends React.Component {
+class BOMTableData extends React.Component {
   state = {
     bordered: true,
     pagination: false,
@@ -191,4 +191,4 @@ class TableData extends React.Component {
   }
 }
 
-export default TableData;
+export default BOMTableData;

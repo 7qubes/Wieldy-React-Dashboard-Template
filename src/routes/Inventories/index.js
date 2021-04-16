@@ -90,7 +90,7 @@ const Inventories = ({ match }) => {
       <Route
         exact
         path={`${match.url}/bom`}
-        component={asyncComponent(() => import("./BOM"))}
+        component={asyncComponent(() => import("./BOM/index"))}
       />
       <Route
         exact
@@ -99,7 +99,7 @@ const Inventories = ({ match }) => {
       />
       <Route
         exact
-        path={`${match.url}/bom/testtable/timeline`}
+        path={`${match.url}/bom/timeline`}
         component={asyncComponent(() => import("./BOM/Timeline"))}
       />
       <Route

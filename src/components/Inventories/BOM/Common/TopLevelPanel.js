@@ -15,7 +15,7 @@ const TopLevelPanel = () => {
               <span>
                 <i className="icon icon-DashboardAnalytics"></i>
               </span>
-              <Link style={{ color: "inherit" }} to="../dashboard">
+              <Link style={{ color: "inherit" }} to="./dashboard">
                 Dashboard
               </Link>
             </h4>
@@ -28,7 +28,7 @@ const TopLevelPanel = () => {
                   style={{ transform: "rotate(270deg)" }}
                 ></i>
               </span>
-              <Link style={{ color: "inherit" }} to="./testtable/timeline">
+              <Link style={{ color: "inherit" }} to="./timeline">
                 Timeline
               </Link>
             </h4>
@@ -38,7 +38,9 @@ const TopLevelPanel = () => {
               <span>
                 <i className="icon icon-bom"></i>
               </span>
-              BOM
+              <Link style={{ color: "inherit" }} to="../bom">
+                BOM
+              </Link>
             </h4>
           </PanelItem>
           <PanelItem className="panel-item">
