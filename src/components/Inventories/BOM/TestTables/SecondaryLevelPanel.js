@@ -8,10 +8,8 @@ const SecondaryLevelPanel = ({ setActiveSecondLevel }) => {
   let selected;
   const tableSwitchHandler = (event) => {
     if (event.target.classList.contains("item")) {
-      // console.log(event.target.innerHTML.toLowerCase());
       selected = event.target.innerText.toLowerCase();
     } else if (event.target.classList.contains("panel-item")) {
-      // console.log(event.target.firstChild.innerText.toLowerCase());
       selected = event.target.firstChild.innerText.toLowerCase();
     }
     setActiveSecondLevel(selected);

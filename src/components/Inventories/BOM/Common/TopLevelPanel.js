@@ -5,7 +5,48 @@ import { motion } from "framer-motion";
 import { VerticalAlignTopOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-const TopLevelPanel = () => {
+const TopLevelPanel = ({
+  activeSecondLevel,
+  setIsTableSplit,
+  isTableSplit,
+}) => {
+  // event handler
+  const tableSplitHandler = (event) => {
+    console.log(event.target);
+    switch (activeSecondLevel) {
+      case "bom":
+        setIsTableSplit({ ...isTableSplit, bom: !isTableSplit.bom });
+        break;
+      case "material cost":
+        setIsTableSplit({
+          ...isTableSplit,
+          materialCost: !isTableSplit.materialCost,
+        });
+        break;
+      case "payables vs receivables summary":
+        setIsTableSplit({
+          ...isTableSplit,
+          payableVSReceivableSummary: !isTableSplit.payableVSReceivableSummary,
+        });
+        break;
+      case "billing schedule":
+        setIsTableSplit({
+          ...isTableSplit,
+          billingSchedule: !isTableSplit.billingSchedule,
+        });
+        break;
+      case "mrp":
+        setIsTableSplit({
+          ...isTableSplit,
+          mrp: !isTableSplit.mrp,
+        });
+        break;
+      default:
+    }
+
+    console.log("table split info ", isTableSplit);
+  };
+
   return (
     <div>
       <PrimaryPanel className="main-panel">
@@ -48,7 +89,7 @@ const TopLevelPanel = () => {
               <span>
                 <i className="icon icon-Splitscreen"></i>
               </span>
-              Split Screen
+              <span onClick={tableSplitHandler}>Split Screen</span>
             </h4>
           </PanelItem>
           <PanelItem className="panel-item">

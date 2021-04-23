@@ -78,7 +78,7 @@ const { Content } = Layout;
 // export default withUrlSync(App);
 
 const Inventories = ({ match }) => {
-  console.log("Hello - ", match);
+  // console.log("Hello - ", match);
   return (
     <Switch>
       <Redirect exact from={`${match.url}/`} to={`${match.url}/eshop`} />
