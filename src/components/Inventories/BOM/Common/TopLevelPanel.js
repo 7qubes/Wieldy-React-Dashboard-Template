@@ -79,7 +79,7 @@ const TopLevelPanel = ({
               <span>
                 <i className="icon icon-bom"></i>
               </span>
-              <Link style={{ color: "inherit" }} to="../bom">
+              <Link style={{ color: "inherit" }} to="./testtable">
                 BOM
               </Link>
             </h4>

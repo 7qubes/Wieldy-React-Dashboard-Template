@@ -13,11 +13,11 @@ import {
 } from "antd";
 import { v4 as uuidv4 } from "uuid";
 
-import CustomScrollbars from "../../../util/CustomScrollbars";
-import IntlMessages from "../../../util/IntlMessages";
+import CustomScrollbars from "../../../../util/CustomScrollbars";
+import IntlMessages from "../../../../util/IntlMessages";
 import { AntDesignOutlined } from "@ant-design/icons";
 // import SingleBOMCard from "../../../components/Inventories/BOM/HomePage/SingleBOMCard";
-import Cards from "../../..//components/Inventories/BOM/Home/Cards";
+// import Cards from "../../..//components/Inventories/BOM/Home/Cards";
 
 import AppModuleHeader from "components/AppModuleHeader/index";
 
@@ -52,7 +52,11 @@ function callback(key) {
 const { Text } = Typography;
 const { Title } = Typography;
 
-class BOM extends Component {
+const testHandler = (event) => {
+  console.log(event.target);
+};
+
+class MyCatalogs extends Component {
   ContactSideBar = (user) => {
     return (
       <div className="gx-module-side">
@@ -95,7 +99,11 @@ class BOM extends Component {
                       .replace(/ /g, "")}`}
                     replace
                   >
-                    <li key={option.id} className="gx-nav-item">
+                    <li
+                      onClick={testHandler}
+                      key={option.id}
+                      className="gx-nav-item"
+                    >
                       <span
                         className={`gx-link ${
                           option.id === this.state.selectedSectionId
@@ -240,7 +248,10 @@ class BOM extends Component {
               </div>
             </div>
             <div className="gx-module-box-content">
-              <Collapse
+              <div>
+                <h2>you are inside MyCatalogs</h2>
+              </div>
+              {/* <Collapse
                 defaultActiveKey={["1", "2"]}
                 onChange={callback}
                 style={{
@@ -263,14 +274,11 @@ class BOM extends Component {
 
                 <Panel header="BOMS" style={{ fontSize: "1.2rem" }} key="2">
                   <div style={{ display: "flex" }}>
-                    {/* {testArray.map((test) => (
-                      <SingleBOMCard key={test.key} />
-                    ))} */}
-                    {/* <SingleBOMCard /> */}
+                  
                     <Cards />
                   </div>
                 </Panel>
-              </Collapse>
+              </Collapse> */}
             </div>
           </div>
         </div>
@@ -279,4 +287,4 @@ class BOM extends Component {
   }
 }
 
-export default BOM;
+export default MyCatalogs;

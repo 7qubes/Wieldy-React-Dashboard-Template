@@ -3,10 +3,11 @@ import React, { useState, useEffect } from "react";
 import TopLevelPanel from "../Common/TopLevelPanel";
 import SecondaryLevelPanel from "./SecondaryLevelPanel";
 import BriefInfoBar from "./BriefInfoBar";
-import BOMTableData from "./BOMTableData";
+import BOMTable from "./BOMTables";
 import PayableVSReceivableSummaryTable from "./PayableVSReceivableSummaryTable";
 import BillingScheduleTable from "./BillingScheduleTable";
-import MaterialCostTable from "./MaterialCostTable";
+// import MaterialCostTable from "./MaterialCostTable";
+import MaterialCostTable from "./MaterialCostTables";
 import MRPTable from "./MRPTable";
 import { findLastKey } from "lodash-es";
 
@@ -51,9 +52,9 @@ const Home = () => {
       {(() => {
         switch (activeSecondLevel) {
           case "bom":
-            return <BOMTableData />;
+            return <BOMTable isTableSplit={isTableSplit} />;
           case "material cost":
-            return <MaterialCostTable />;
+            return <MaterialCostTable isTableSplit={isTableSplit} />;
           case "payables vs receivables summary":
             return <PayableVSReceivableSummaryTable />;
           case "billing schedule":
@@ -61,7 +62,7 @@ const Home = () => {
           case "mrp":
             return <MRPTable />;
           default:
-            return <BOMTableData />;
+            return <BOMTable isTableSplit={isTableSplit} />;
         }
       })()}
       {/* {useEffect(() => {

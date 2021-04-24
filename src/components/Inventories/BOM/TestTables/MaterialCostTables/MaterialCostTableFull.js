@@ -5,51 +5,21 @@ import { DownOutlined } from "@ant-design/icons";
 
 const columns = [
   {
-    title: "BOM ID",
-    dataIndex: "bomid",
+    title: "Level",
+    dataIndex: "level",
     fixed: "left",
     width: 100,
     align: "center",
   },
   {
-    title: "Inventory ID",
-    dataIndex: "inventoryid",
-    width: 150,
-    align: "center",
-  },
-  {
-    title: "Level",
-    dataIndex: "level",
-    width: 150,
-    align: "center",
-  },
-  {
-    title: "Part ID",
-    dataIndex: "partid",
-    width: 150,
-    align: "center",
-  },
-  {
-    title: "Description",
-    dataIndex: "description",
-    width: 150,
-    align: "center",
-  },
-  {
-    title: "Quantity Per Unit",
-    dataIndex: "quantityperunit",
+    title: "Parts Needed",
+    dataIndex: "partsneeded",
     width: 150,
     align: "center",
   },
   {
     title: "Type",
     dataIndex: "type",
-    width: 150,
-    align: "center",
-  },
-  {
-    title: "Lot Size",
-    dataIndex: "lotsize",
     width: 150,
     align: "center",
   },
@@ -72,61 +42,34 @@ const columns = [
     align: "center",
   },
   {
-    title: "Vendor ID",
-    dataIndex: "vendorid",
+    title: "Supplier",
+    dataIndex: "supplier",
     width: 150,
     align: "center",
   },
   {
-    title: "Substitute Vendor",
-    dataIndex: "substitutevendor",
+    title: "Lot Size",
+    dataIndex: "lotsize",
     width: 150,
     align: "center",
   },
   {
-    title: "Procurement ID",
-    dataIndex: "procurementid",
+    title: "Unit Cost",
+    dataIndex: "unitcost",
     width: 150,
     align: "center",
   },
   {
-    title: "labor Hours",
-    dataIndex: "laborhours",
+    title: "Ordering Cost",
+    dataIndex: "orderingcost",
     width: 150,
     align: "center",
   },
   {
-    title: "Status",
-    dataIndex: "status",
+    title: "Part No.",
+    dataIndex: "partno",
     width: 150,
     align: "center",
-  },
-  {
-    title: "Date Updated",
-    dataIndex: "dateupdated",
-    width: 150,
-    align: "center",
-  },
-  {
-    title: "Modified By",
-    dataIndex: "modifiedby",
-    width: 150,
-    align: "center",
-  },
-
-  {
-    title: "Action",
-    key: "action",
-    align: "center",
-    sorter: true,
-    render: () => (
-      <Space size="middle">
-        <a>Delete</a>
-        <a className="ant-dropdown-link">
-          More actions <DownOutlined />
-        </a>
-      </Space>
-    ),
   },
 ];
 
@@ -143,7 +86,7 @@ const data = [];
 
 const showHeader = true;
 
-class BOMTableData extends React.Component {
+class MaterialCostTableFull extends React.Component {
   state = {
     bordered: true,
     pagination: false,
@@ -191,4 +134,4 @@ class BOMTableData extends React.Component {
   }
 }
 
-export default BOMTableData;
+export default MaterialCostTableFull;

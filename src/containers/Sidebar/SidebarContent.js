@@ -229,8 +229,8 @@ const SidebarContent = () => {
                   </span>
                 </Link>
               </Menu.Item>
-              <Menu.Item key="inventories/bom">
-                <Link to="/inventories/bom">
+              <Menu.Item key="inventories/bom/allboms">
+                <Link to="/inventories/bom/allboms">
                   <i className="icon icon-bom" />
                   <span>
                     <IntlMessages id="sidebar.inventories.bom" />

@@ -89,22 +89,27 @@ const Inventories = ({ match }) => {
       />
       <Route
         exact
-        path={`${match.url}/bom`}
+        path={`${match.url}/bom/allboms`}
         component={asyncComponent(() => import("./BOM/index"))}
       />
       <Route
         exact
-        path={`${match.url}/bom/testtable`}
+        path={`${match.url}/bom/mycatalogs`}
+        component={asyncComponent(() => import("./BOM/MyCatalogs"))}
+      />
+      <Route
+        exact
+        path={`${match.url}/bom/allboms/testtable`}
         component={asyncComponent(() => import("./BOM/TestTablesRoute"))}
       />
       <Route
         exact
-        path={`${match.url}/bom/timeline`}
+        path={`${match.url}/bom/allboms/timeline`}
         component={asyncComponent(() => import("./BOM/Timeline"))}
       />
       <Route
         exact
-        path={`${match.url}/bom/dashboard`}
+        path={`${match.url}/bom/allboms/dashboard`}
         component={asyncComponent(() => import("./BOM/Dashboard"))}
       />
       <Route
