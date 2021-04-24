@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import TopLevelPanel from "../CommonOrdersEShop/TopLevelPanel";
 import InventoryCard from "./InventoryCard";
 import InventoryList from "./InventoryList";
+import AddInventory from "./AddInventory";
 // styling and animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -12,7 +13,7 @@ import listIcon from "./image/list-icon.svg";
 // data
 import data from "./data/eshopInventory.json";
 
-const Home = ({ filter }) => {
+const Home = ({ filter, isAddNew }) => {
   // state for view switch
   const [isGrid, setIsGrid] = useState(false);
 
@@ -43,6 +44,7 @@ const Home = ({ filter }) => {
   return (
     <div>
       <TopLevelPanel />
+      <AddInventory isAddNew={isAddNew} />
       <ViewSwitcher onClick={viewSwitchHandler} className="view-switcher">
         <p>View Grid</p>
         <img src={gridIcon} alt="" />

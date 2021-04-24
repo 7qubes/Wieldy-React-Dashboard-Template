@@ -43,6 +43,9 @@ const filterOptions = [
   },
 ];
 
+// toggle for Add New E-Shop Item
+// let isAddNew = false;
+
 // // creating a random array to test our BOMS
 // const testArray = [
 //   { value: 1, key: uuidv4() },
@@ -81,7 +84,7 @@ class Orders extends Component {
                 className="gx-btn-block ant-btn"
                 type="primary"
                 aria-label="add"
-                onClick={this.onAddContact}
+                onClick={this.testHandler}
               >
                 <i className="icon icon-add gx-mr-1" />
                 <span>Add New</span>
@@ -188,8 +191,20 @@ class Orders extends Component {
       // selectedContacts: 0,
       // addPaymentState: false,
       filter: "Available Inventory",
+      isAddNew: false,
     };
+
+    this.testHandler = this.testHandler.bind(this);
   }
+
+  testHandler = (event) => {
+    console.log("button clicked");
+    console.log("before state", this.isAddNew);
+    this.setState((state) => ({
+      isAddNew: !state.isAddNew,
+    }));
+    console.log("after state", this.isAddNew);
+  };
 
   render() {
     const {
@@ -197,6 +212,7 @@ class Orders extends Component {
       // paymentList,
       // addPaymentState,
       drawerState,
+      isAddNew,
       // selectedContacts,
       // alertMessage,
       // showMessage,
@@ -267,7 +283,7 @@ class Orders extends Component {
               {/* <TopLevelPanel />
               <CardPanel />
               <OrdersTable /> */}
-              <Home filter={filter} />
+              <Home filter={filter} isAddNew={isAddNew} />
             </div>
           </div>
         </div>

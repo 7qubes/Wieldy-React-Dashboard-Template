@@ -16,8 +16,7 @@ import { v4 as uuidv4 } from "uuid";
 import CustomScrollbars from "../../../../util/CustomScrollbars";
 import IntlMessages from "../../../../util/IntlMessages";
 import { AntDesignOutlined } from "@ant-design/icons";
-// import SingleBOMCard from "../../../components/Inventories/BOM/HomePage/SingleBOMCard";
-// import Cards from "../../..//components/Inventories/BOM/Home/Cards";
+import MyCatalogsHome from "../../../../components/Inventories/BOM/MyCatalogs";
 
 import AppModuleHeader from "components/AppModuleHeader/index";
 
@@ -249,7 +248,7 @@ class MyCatalogs extends Component {
             </div>
             <div className="gx-module-box-content">
               <div>
-                <h2>you are inside MyCatalogs</h2>
+                <MyCatalogsHome />
               </div>
               {/* <Collapse
                 defaultActiveKey={["1", "2"]}
