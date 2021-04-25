@@ -17,7 +17,8 @@ import CustomScrollbars from "../../../util/CustomScrollbars";
 import IntlMessages from "../../../util/IntlMessages";
 import { AntDesignOutlined } from "@ant-design/icons";
 // import SingleBOMCard from "../../../components/Inventories/BOM/HomePage/SingleBOMCard";
-import Cards from "../../..//components/Inventories/BOM/Home/Cards";
+import Cards from "../../../components/Inventories/BOM/Home/Cards";
+import AddBOM from "../../../components/Inventories/BOM/AddBOM";
 
 import AppModuleHeader from "components/AppModuleHeader/index";
 
@@ -256,21 +257,18 @@ class BOM extends Component {
                 >
                   <Space>
                     <Text style={{ fontSize: "1rem" }} type="secondary">
-                      Ant Design (success)
+                      More BOMs
                     </Text>
                   </Space>
                 </Panel>
 
                 <Panel header="BOMS" style={{ fontSize: "1.2rem" }} key="2">
                   <div style={{ display: "flex" }}>
-                    {/* {testArray.map((test) => (
-                      <SingleBOMCard key={test.key} />
-                    ))} */}
-                    {/* <SingleBOMCard /> */}
                     <Cards />
                   </div>
                 </Panel>
               </Collapse>
+              {/* <AddBOM /> */}
             </div>
           </div>
         </div>

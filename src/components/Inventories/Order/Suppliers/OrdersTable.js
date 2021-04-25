@@ -135,7 +135,6 @@ const data = [
     updated: "02/14/2021",
   },
 ];
-
 const statusValues = ["unsent", "in-transt", "received"];
 let rowIndex;
 // Event Handler
