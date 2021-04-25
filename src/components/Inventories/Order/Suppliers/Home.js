@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import TopLevelPanel from "../../CommonOrdersEShop/TopLevelPanel";
 import SecondaryLevelPanel from "../Common/SecondaryLevelPanel";
@@ -9,16 +9,19 @@ const Home = () => {
   const cardNameOne = "ACTIVE ORDERS";
   const cardNameTwo = "COST OF MATERIALS";
   const cardNameThree = "EXPECTED RETURN";
+
+  const [filter, setFilter] = useState("all");
+
   return (
     <div>
       <TopLevelPanel />
-      <SecondaryLevelPanel />
+      <SecondaryLevelPanel setFilter={setFilter} />
       <CardPanel
         cardNameOne={cardNameOne}
         cardNameTwo={cardNameTwo}
         cardNameThree={cardNameThree}
       />
-      <OrdersTable />
+      <OrdersTable filter={filter} />
     </div>
   );
 };

@@ -2,11 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-const SecondaryLevelPanel = () => {
+const SecondaryLevelPanel = ({ setFilter }) => {
+  const filterHandler = (event) => {
+    let itemValue = event.target.children[0].innerText;
+    let val = itemValue.indexOf("(");
+    console.log("index of (", val);
+    let strippedValue = itemValue.slice(0, val - 1);
+    setFilter(strippedValue);
+  };
+
   return (
     <div>
       <SecondaryPanel className="secondary-panel">
-        <PanelItems className="panel-items">
+        <PanelItems className="panel-items" onClick={filterHandler}>
           <PanelItem className="panel-item">
             <h4>
               ALL (180)<span>|</span>
@@ -54,8 +62,9 @@ const PanelItem = styled(motion.div)`
   /* background: lightcoral; */
   height: 100%;
   margin: 0 10px;
-
+  padding: 0 10px;
   h4 {
+    pointer-events: none;
     font-size: 15px;
     color: white;
     font-weight: lighter;

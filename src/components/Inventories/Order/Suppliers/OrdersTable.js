@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Table, Tag, Menu, Dropdown, Space } from "antd";
 import { DownOutlined } from "@ant-design/icons";
+import { filter } from "lodash-es";
 
 const primaryColor = ["#F7B500", "#933CCC", "#00BF9A"];
 let colorLabel;
@@ -97,7 +98,7 @@ const data = [
     key: "1",
     created: "01/10/2021",
     part: "Screw",
-    vendor: "SCREWSRUS",
+    vendor: "Walmart",
     quantity: "900",
     total: "$100.00",
     status: "in-transit",
@@ -107,7 +108,7 @@ const data = [
     key: "2",
     created: "01/05/2021",
     part: "Screw",
-    vendor: "SCREWSRUS",
+    vendor: "Target",
     quantity: "90",
     total: "$100.00",
     status: "received",
@@ -117,26 +118,45 @@ const data = [
     key: "3",
     created: "01/15/2021",
     part: "Screw",
-    vendor: "SCREWSRUS",
+    vendor: "ToysRUs",
     quantity: "1000",
     total: "$100.00",
     status: "unsent",
     updated: "02/14/2021",
   },
+  {
+    key: "4",
+    created: "01/15/2021",
+    part: "Screw",
+    vendor: "Target",
+    quantity: "1000",
+    total: "$100.00",
+    status: "in-transit",
+    updated: "02/14/2021",
+  },
 ];
 
+const statusValues = ["unsent", "in-transt", "received"];
+let rowIndex;
 // Event Handler
+
+// to identify the dropdown menu of which row has been selected/clicked
 const labelChangeHandler = (event) => {
-  console.log(event.target);
-  console.log("hello");
+  rowIndex = event.target.parentElement.parentElement.dataset.rowKey - 1;
 };
 
+// to identify which menu item in a dropdown has been selected/clicked
 const labelSelectorHandler = (event) => {
-  console.log(event.target);
+  let selectedMenuItem = event.key;
+  // row data manipulation
+  // setData([
+  //   ...data,
+  //   (data[rowIndex].status = statusValues[parseInt(selectedMenuItem)]),
+  // ]);
 };
 
 const menu = (
-  <Menu>
+  <Menu onClick={labelSelectorHandler}>
     <Menu.Item key="0">Unsent</Menu.Item>
     <Menu.Item key="1">In-Transit</Menu.Item>
     <Menu.Item key="2">Received</Menu.Item>
@@ -154,10 +174,30 @@ const rowSelection = {
   },
 };
 
-const OrdersTable = () => {
+const OrdersTable = ({ filter }) => {
   const [selectionType, setSelectionType] = useState("checkbox");
-  return (
-    <div>
+
+  // filtering data according to the Secondary Level selection value
+  let filteredData = data;
+  if (filter.toLowerCase() === "all") {
+    filteredData = data;
+  } else {
+    filteredData = [];
+    data.forEach((d) => {
+      if (d.vendor.toLowerCase() === filter.toLowerCase()) {
+        filteredData.push(d);
+      }
+    });
+  }
+
+  console.log(filteredData);
+
+  useEffect(() => {
+    someFunction();
+  }, []);
+
+  const someFunction = () => {
+    return (
       <Table
         pagination={false}
         rowSelection={{
@@ -165,11 +205,13 @@ const OrdersTable = () => {
           ...rowSelection,
         }}
         columns={columns}
-        dataSource={data}
+        dataSource={filteredData}
         size={"middle"}
       />
-    </div>
-  );
+    );
+  };
+
+  return <div>{someFunction()}</div>;
 };
 
 export default OrdersTable;
