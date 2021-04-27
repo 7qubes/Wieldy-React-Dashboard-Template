@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useCSVStore } from '../../mobx/csvContext';
 import { Table, Tag, Space } from 'antd';
 
 export const CSVView = () => {
     const csvStore = useCSVStore();
-    const { csvData:tableData } = csvStore;
+    const [csvData] = useState(csvStore.getCSVData());
 
-    const dataRows = tableData.map((rowData, idx) => {
+    const dataRows = csvData.map((rowData, idx) => {
         return (
             <tr key={rowData.Sl + idx}>
                 <td>{rowData.Sl}</td>
@@ -20,7 +20,7 @@ export const CSVView = () => {
                 <td>{rowData.Merchant}</td>
                 <td>{rowData.Tax}</td>
             </tr>
-        ); 
+        );
     });
 
     const columns = [
@@ -65,35 +65,24 @@ export const CSVView = () => {
             key: 'owner',
         },
         {
+            title: 'Merchant',
+            dataIndex: 'Merchant',
+            key: 'merchant',
+        },
+        {
             title: 'Tax',
             dataIndex: 'Tax',
             key: 'tax',
         }
-        
+
       ];
 
     return (
         <div>
-         <table>
-            <thead>
-             <tr>
-                <td>SL No</td>
-                <td>Name</td>
-                <td>Author</td>
-                <td>Unit</td>
-                <td>Price</td>
-                <td>Discount</td>
-                <td>Quantity</td>
-                <td>Owner</td>
-                <td>Merchant</td>
-                <td>Tax</td>
-             </tr>
-            </thead>
-             <tbody>{dataRows}</tbody>
-         </table>
+
          <Table className="gx-table-responsive"
                      columns={columns}
-                     dataSource={tableData}
+                     dataSource={csvData}
                      pagination={false}
               />
         </div>

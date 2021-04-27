@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Modal, Menu, Dropdown, Drawer, Button, Upload, message } from 'antd';
+import { Modal, Menu, Dropdown, Drawer, Button, Upload, message, Alert } from 'antd';
 import Dropzone from 'react-dropzone';
 import input from 'react';
 import AppModuleHeader from '../../components/AppModuleHeader/index';
@@ -8,6 +8,7 @@ import { useCSVStore } from '../../mobx/csvContext';
 
 import DropZoneComponent from './dropzoneComponent';
 import { CSVView } from './CSVView';
+import { ErrorLog } from './ErrorLog';
 
 const filterOptions = [
     {
@@ -69,6 +70,7 @@ const Analytics = () => {
         searchAnalyticsText: '',
         uploadedFiles: [],
     })
+    const [errorLogData, setErrorLogData] = useState(null);
     const csvStore = useCSVStore();
 
     const handleCreateNew = () => {
@@ -97,18 +99,38 @@ const Analytics = () => {
         })
     }
 
-    const isValid = (str) => {
-        var iChars = "~`!#$%^&*+=-[]\\\';,/{}|\":<>?";
-    
+    const isValid = (rowData, key) => {
+        let str = rowData[key];
+        console.log("rowData", rowData);
+        var iChars = "~`!#$%^&*+=[]\\\;/{}|\:<>?";
+        let errorObj = {};
         for (var i = 0; i < str.length; i++) {
            if (iChars.indexOf(str.charAt(i)) != -1) {
-               return str;
+               //at this point the string has special characters
+               console.log(errorObj, str);
+               errorObj["errorMsg"] = 'Cannot read item ' + str.charAt(i) + ' in column ' + key + ' row ' + rowData.Sl;
+               errorObj["str"] = str;
+               errorObj["key"] = key;
+               errorObj["row"] = parseInt(rowData.Sl);
+               errorObj["resolveError"] = 'Resolve';
+               return errorObj;
            }
         }
-        return true;
+        return null;
     }
 
-    
+    // const isValid = (str) => {
+    //     var iChars = "~`!#$%^&*+=-[]\\\';,/{}|\":<>?";
+
+    //     for (var i = 0; i < str.length; i++) {
+    //        if (iChars.indexOf(str.charAt(i)) != -1) {
+    //            return str;
+    //        }
+    //     }
+    //     return true;
+    // }
+
+
     const handleCancel = () => {
         console.log('Close Modal');
         setState(prevState => {
@@ -158,7 +180,7 @@ const Analytics = () => {
     const updateAnalyticsText = (evt) => {
         setState(prevState => {
             return {
-                ...prevState, 
+                ...prevState,
                 searchAnalyticsText: evt.target.value,
             }
         })
@@ -183,20 +205,40 @@ const Analytics = () => {
     const handleAnalyticsOptions = (buttonName) => {
         switch (buttonName) {
             case 'Verify':
-                console.log('Verify button clicked');
-                const verifyDataArray = csvStore.getCSVData();
+                /*const verifyDataArray = csvStore.getCSVData();
+                console.log(verifyDataArray)
                 let inValidString = [];
                 verifyDataArray.map(item => {
                     //console.log('i am here 33333');
-                  //console.log(item); 
+                  //console.log(item);
                   const inValidStr = isValid(item) ;
                   if(inValidStr){
                     inValidString.push(inValidStr);
-                  } 
+                  }
                 });
                 console.log('In Valid Strings....');
                 console.log(inValidString);
-                break;
+                break;*/
+            case 'Error Log':
+                console.log('Error Log button clicked');
+                const { csvData:tableData } = csvStore;
+                let errorDataArr = [];
+
+                tableData.map(rowData => {
+                  let rowItems = Object.keys(rowData);
+
+                  rowItems.map(item => {
+
+                    const inValidStr = isValid(rowData,item) ;
+                    if(inValidStr){
+                        errorDataArr.push(inValidStr);
+                    }
+                  });
+                });
+
+                setErrorLogData(errorDataArr);
+
+                    break;
         }
     }
 
@@ -215,7 +257,6 @@ const Analytics = () => {
     }*/
 
     const uploadProps = {
-        accept: ".csv",
         beforeUpload: file => {
             const reader = new FileReader();
 
@@ -224,8 +265,8 @@ const Analytics = () => {
             }
             reader.readAsText(file);
              if (file.name.substr(file.name.length - 4) !== '.csv') {
-                message.error(`${file.name} is not a csv file`);
-                 return Upload.LIST_IGNORE;
+              message.error(`${file.name} is not a csv file`);
+              return Upload.LIST_IGNORE;
              }
              const {uploadedFiles} = state;
              console.log(uploadedFiles, file);
@@ -251,43 +292,17 @@ const Analytics = () => {
                             okText="Next">
                             <p>{`Welcome to Analytics \nBring your data to life by utilizing our visualizing tools`}</p>
 
-                        <Upload 
-                            accept=".csv"
+                        <Upload
                             {...uploadProps}>
                             <Button>Upload CSV</Button>
                         </Upload>
+
                         <div style={{ marginTop: 10, borderBlockStyle:'dashed' }}>
                             <DropZoneComponent />
                         </div>
-                            {/* <Dropzone 
-                        onDrop={acceptedFiles => this.showDraggedFiles(acceptedFiles)}>
-                            {({getRootProps, getInputProps}) => (
-                                <section>
-                                    <div 
-                                    style={{ borderBlockStyle:'dashed' }}
-                                    {...getRootProps()}>
-                                        <input {...getInputProps()} />
-                                        {this.state.showDragDropText  ? (
-                                            <p>Drag and Drop</p>
-                                        ) :
-                                        (
-                                            <div>
-                                                <ul>
-                                                {this.state.acceptedFiles.map((item) => (
-                                                    <li>
-                                                        {`${item.name}`}
-                                                    </li>
-                                                ))}
-                                                </ul>
-                                            </div>
-                                        )
-                                        }                                        
-                                    </div>
-                                </section>
-                            )}
-                        </Dropzone> */}
                         </Modal>
                     </div>
+
                     <div className="gx-module-box">
                         <AppModuleHeader placeholder="Search Analytics" notification={false} apps={false}
                             // onChange={this.updateAnalyticsText.bind(this)}
@@ -304,7 +319,8 @@ const Analytics = () => {
                                         <div>
                                             <CSVView />
                                         </div>
-                                    </div>
+                                        {errorLogData && <ErrorLog errorData={errorLogData} />}
+                                        </div>
                                 </div>
                             )
                         }
