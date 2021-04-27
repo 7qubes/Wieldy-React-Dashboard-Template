@@ -6,7 +6,7 @@ export default function DropZoneComponent() {
 
     const csvStore = useCSVStore();
 
-    const [dropBoxMessage, setDropBoxMessage] = useState("Drag 'n' drop some files here, or click to select files");
+    const [dropBoxMessage, setDropBoxMessage] = useState(" Drag 'n' drop some files here, or click to select files");
     const onDrop = useCallback((acceptedFiles) => {
         setDropBoxMessage(acceptedFiles.pop().name)
     }, [])
