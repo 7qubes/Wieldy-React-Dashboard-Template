@@ -18,7 +18,7 @@ import IntlMessages from "../../../util/IntlMessages";
 import { AntDesignOutlined } from "@ant-design/icons";
 // import SingleBOMCard from "../../../components/Inventories/BOM/HomePage/SingleBOMCard";
 import Cards from "../../../components/Inventories/BOM/Home/Cards";
-import AddBOM from "../../../components/Inventories/BOM/AddBOM";
+import AddBOM from "../../../components/Inventories/BOM/AddBOM/AddBOM";
 
 import AppModuleHeader from "components/AppModuleHeader/index";
 
@@ -73,7 +73,7 @@ class BOM extends Component {
                 className="gx-btn-block ant-btn"
                 type="primary"
                 aria-label="add"
-                onClick={this.onAddContact}
+                onClick={this.onAddNewHandler}
               >
                 <i className="icon icon-add gx-mr-1" />
                 <span>Add New</span>
@@ -168,8 +168,18 @@ class BOM extends Component {
       // selectedContact: null,
       // selectedContacts: 0,
       // addPaymentState: false,
+      addNew: false,
+      onAddNewHandler: this.onAddNewHandler(),
     };
+
+    // this.onAddNewHandler = this.onAddNewHandler.bind(this);
   }
+
+  onAddNewHandler = () => {
+    this.setState((state) => ({
+      addNew: !state.addNew,
+    }));
+  };
 
   render() {
     const {
@@ -181,6 +191,8 @@ class BOM extends Component {
       // alertMessage,
       // showMessage,
       // noPaymentFoundMessage
+      addNew,
+      onAddNewHandler,
     } = this.state;
 
     return (
@@ -209,14 +221,6 @@ class BOM extends Component {
                   onClick={this.onToggleDrawer.bind(this)}
                 />
               </span>
-
-              {/* We need AppModuleHandler gere from src.components.AppModuleHandler.index.js 
-              But I am doing it temporarily by bringing the HTML code here and adjusting it just to show the results*/}
-              {/* <AppModuleHeader placeholder="Search Mails" 
-                            notification={false} 
-                            apps={false}
-                            onChange=""
-                            value=""/> */}
               <div className="gx-module-box-header-inner">
                 <div className="gx-search-bar gx-lt-icon-search-bar-lg gx-module-search-bar gx-d-none gx-d-sm-block">
                   <div className="gx-form-group">
@@ -240,36 +244,42 @@ class BOM extends Component {
                 </div>
               </div>
             </div>
-            <div className="gx-module-box-content">
-              <Collapse
-                defaultActiveKey={["1", "2"]}
-                onChange={callback}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-evenly",
-                }}
-              >
-                <Panel
-                  header="BOMS Due Soon!"
-                  style={{ fontSize: "1.2rem" }}
-                  key="1"
-                >
-                  <Space>
-                    <Text style={{ fontSize: "1rem" }} type="secondary">
-                      More BOMs
-                    </Text>
-                  </Space>
-                </Panel>
 
-                <Panel header="BOMS" style={{ fontSize: "1.2rem" }} key="2">
-                  <div style={{ display: "flex" }}>
-                    <Cards />
-                  </div>
-                </Panel>
-              </Collapse>
-              {/* <AddBOM /> */}
-            </div>
+            {addNew ? (
+              <div className="gx-module-box-content">
+                <AddBOM onAddNewHandler={this.onAddNewHandler} />
+              </div>
+            ) : (
+              <div className="gx-module-box-content">
+                <Collapse
+                  defaultActiveKey={["1", "2"]}
+                  onChange={callback}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-evenly",
+                  }}
+                >
+                  <Panel
+                    header="BOMS Due Soon!"
+                    style={{ fontSize: "1.2rem" }}
+                    key="1"
+                  >
+                    <Space>
+                      <Text style={{ fontSize: "1rem" }} type="secondary">
+                        More BOMs
+                      </Text>
+                    </Space>
+                  </Panel>
+
+                  <Panel header="BOMS" style={{ fontSize: "1.2rem" }} key="2">
+                    <div style={{ display: "flex" }}>
+                      <Cards />
+                    </div>
+                  </Panel>
+                </Collapse>
+              </div>
+            )}
           </div>
         </div>
       </div>
