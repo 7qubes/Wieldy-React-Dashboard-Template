@@ -196,92 +196,107 @@ class BOM extends Component {
     } = this.state;
 
     return (
-      <div className="gx-main-content">
-        <div className="gx-app-module">
-          <div className="gx-d-block gx-d-lg-none">
-            <Drawer
-              placement="left"
-              closable={false}
-              visible={drawerState}
-              onClose={this.onToggleDrawer.bind(this)}
-            >
-              {this.ContactSideBar()}
-            </Drawer>
-          </div>
-          <div className="gx-module-sidenav gx-d-none gx-d-lg-flex">
-            {this.ContactSideBar(user)}
-          </div>
-
-          <div className="gx-module-box">
-            <div className="gx-module-box-header">
-              <span className="gx-drawer-btn gx-d-flex gx-d-lg-none">
-                <i
-                  className="icon icon-menu gx-icon-btn"
-                  aria-label="Menu"
-                  onClick={this.onToggleDrawer.bind(this)}
-                />
-              </span>
-              <div className="gx-module-box-header-inner">
-                <div className="gx-search-bar gx-lt-icon-search-bar-lg gx-module-search-bar gx-d-none gx-d-sm-block">
-                  <div className="gx-form-group">
-                    <input
-                      className="ant-input gx-border-0"
-                      type="search"
-                      placeholder="Search Mails..."
-                    />
-                    <span className="gx-search-icon gx-pointer">
-                      <i className="icon icon-search" />
-                    </span>
+      <div>
+        {addNew ? (
+          <div className="gx-main-content-wrapper">
+            <div className="gx-main-content">
+              {/* only the above div needs to be added below */}
+              <div className="gx-app-module-lg">
+                <div classNam="gx-module-box">
+                  <div className="gx-module-box-content">
+                    <AddBOM onAddNewHandler={this.onAddNewHandler} />
                   </div>
-                </div>
-                <div className="gx-module-box-header-right">
-                  <span className="gx-fs-xl">
-                    <i className="icon icon-back gx-icon-btn" />
-                  </span>
-                  <span className="gx-fs-xl">
-                    <i className="icon icon-dashboard gx-icon-btn" />
-                  </span>
                 </div>
               </div>
             </div>
-
-            {addNew ? (
-              <div className="gx-module-box-content">
-                <AddBOM onAddNewHandler={this.onAddNewHandler} />
-              </div>
-            ) : (
-              <div className="gx-module-box-content">
-                <Collapse
-                  defaultActiveKey={["1", "2"]}
-                  onChange={callback}
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-evenly",
-                  }}
-                >
-                  <Panel
-                    header="BOMS Due Soon!"
-                    style={{ fontSize: "1.2rem" }}
-                    key="1"
-                  >
-                    <Space>
-                      <Text style={{ fontSize: "1rem" }} type="secondary">
-                        More BOMs
-                      </Text>
-                    </Space>
-                  </Panel>
-
-                  <Panel header="BOMS" style={{ fontSize: "1.2rem" }} key="2">
-                    <div style={{ display: "flex" }}>
-                      <Cards />
-                    </div>
-                  </Panel>
-                </Collapse>
-              </div>
-            )}
           </div>
-        </div>
+        ) : (
+          <div className="gx-main-content-wrapper">
+            <div className="gx-main-content">
+              <div style={{ margin: 0 }} className="gx-app-module">
+                <div className="gx-d-block gx-d-lg-none">
+                  <Drawer
+                    placement="left"
+                    closable={false}
+                    visible={drawerState}
+                    onClose={this.onToggleDrawer.bind(this)}
+                  >
+                    {this.ContactSideBar()}
+                  </Drawer>
+                </div>
+                <div className="gx-module-sidenav gx-d-none gx-d-lg-flex">
+                  {this.ContactSideBar(user)}
+                </div>
+                <div className="gx-module-box">
+                  <div className="gx-module-box-header">
+                    <span className="gx-drawer-btn gx-d-flex gx-d-lg-none">
+                      <i
+                        className="icon icon-menu gx-icon-btn"
+                        aria-label="Menu"
+                        onClick={this.onToggleDrawer.bind(this)}
+                      />
+                    </span>
+                    <div className="gx-module-box-header-inner">
+                      <div className="gx-search-bar gx-lt-icon-search-bar-lg gx-module-search-bar gx-d-none gx-d-sm-block">
+                        <div className="gx-form-group">
+                          <input
+                            className="ant-input gx-border-0"
+                            type="search"
+                            placeholder="Search Mails..."
+                          />
+                          <span className="gx-search-icon gx-pointer">
+                            <i className="icon icon-search" />
+                          </span>
+                        </div>
+                      </div>
+                      <div className="gx-module-box-header-right">
+                        <span className="gx-fs-xl">
+                          <i className="icon icon-back gx-icon-btn" />
+                        </span>
+                        <span className="gx-fs-xl">
+                          <i className="icon icon-dashboard gx-icon-btn" />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="gx-module-box-content">
+                    <Collapse
+                      defaultActiveKey={["1", "2"]}
+                      onChange={callback}
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-evenly",
+                      }}
+                    >
+                      <Panel
+                        header="BOMS Due Soon!"
+                        style={{ fontSize: "1.2rem" }}
+                        key="1"
+                      >
+                        <Space>
+                          <Text style={{ fontSize: "1rem" }} type="secondary">
+                            More BOMs
+                          </Text>
+                        </Space>
+                      </Panel>
+
+                      <Panel
+                        header="BOMS"
+                        style={{ fontSize: "1.2rem" }}
+                        key="2"
+                      >
+                        <div style={{ display: "flex" }}>
+                          <Cards />
+                        </div>
+                      </Panel>
+                    </Collapse>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
