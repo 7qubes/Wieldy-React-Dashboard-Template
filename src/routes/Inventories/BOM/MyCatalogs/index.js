@@ -16,7 +16,7 @@ import { v4 as uuidv4 } from "uuid";
 import CustomScrollbars from "../../../../util/CustomScrollbars";
 import IntlMessages from "../../../../util/IntlMessages";
 import { AntDesignOutlined } from "@ant-design/icons";
-import MyCatalogsHome from "../../../../components/Inventories/BOM/MyCatalogs";
+import Home from "../../../../components/Inventories/BOM/MyCatalogs/Home";
 
 import AppModuleHeader from "components/AppModuleHeader/index";
 
@@ -248,36 +248,8 @@ class MyCatalogs extends Component {
             </div>
             <div className="gx-module-box-content">
               <div>
-                <MyCatalogsHome />
+                <Home />
               </div>
-              {/* <Collapse
-                defaultActiveKey={["1", "2"]}
-                onChange={callback}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-evenly",
-                }}
-              >
-                <Panel
-                  header="BOMS Due Soon!"
-                  style={{ fontSize: "1.2rem" }}
-                  key="1"
-                >
-                  <Space>
-                    <Text style={{ fontSize: "1rem" }} type="secondary">
-                      Ant Design (success)
-                    </Text>
-                  </Space>
-                </Panel>
-
-                <Panel header="BOMS" style={{ fontSize: "1.2rem" }} key="2">
-                  <div style={{ display: "flex" }}>
-                  
-                    <Cards />
-                  </div>
-                </Panel>
-              </Collapse> */}
             </div>
           </div>
         </div>

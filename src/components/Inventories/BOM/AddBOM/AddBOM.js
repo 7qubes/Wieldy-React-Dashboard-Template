@@ -63,7 +63,7 @@ const AddBOM = ({ onAddNewHandler }) => {
                 trigger={["click"]}
                 className="dropdown"
               >
-                <Button>
+                <Button style={{ marginBottom: 0 }}>
                   Template <DownOutlined />
                 </Button>
               </Dropdown>
@@ -197,10 +197,19 @@ const AddBOM = ({ onAddNewHandler }) => {
           </RowData>
         </AddContent>
         <BtnGroup className="btn-group">
-          <Button onClick={onAddNewHandler} size={"large"}>
+          <Button
+            style={{ marginBottom: "15px" }}
+            onClick={onAddNewHandler}
+            size={"large"}
+          >
             Cancel
           </Button>
-          <Button onClick={onAddNewHandler} size={"large"} type="primary">
+          <Button
+            style={{ marginBottom: "15px" }}
+            onClick={onAddNewHandler}
+            size={"large"}
+            type="primary"
+          >
             Add
           </Button>
         </BtnGroup>
@@ -228,6 +237,8 @@ const RowData = styled.div`
   margin: 1.4rem 1rem;
   div {
     margin: 0 1rem;
+    flex-grow: 1;
+    width: 50%;
   }
   div h4 {
     margin: 0;
