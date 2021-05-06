@@ -7,6 +7,8 @@ import { useCSVStore } from '../../mobx/csvContext';
 import DropZoneComponent from './dropzoneComponent';
 import { CSVView } from './CSVView';
 import { ErrorLog } from './ErrorLog';
+import { uploadFile } from 'react-s3';
+import axios from "axios";
 
 const filterOptions = [
     {
@@ -57,7 +59,19 @@ const filterOptions = [
 
 ]
 
-
+const config = {
+    bucketName: 'uic7qubes',
+    region: 'us-east-2',
+    accessKeyId: 'AKIAQ3ZBAFBP7JXZPAE7',
+    secretAccessKey: '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',
+  }
+  
+const upload = file => {
+    // console.log(e.target.files[0]);
+    uploadFile(file, config)
+        .then(data => console.log(data))
+        .catch(err => console.error(err))
+}
 
 const Analytics = () => {
     const [state, setState] = useState({
@@ -78,11 +92,10 @@ const Analytics = () => {
             return {
                 ...prevState,
                 showCreateNewModal: true
-            }
-        })
-
-    }
-
+            };
+        });
+    };
+    
     const handleNext = () => {
         const { acceptedFiles } = state;
         console.log('1122');
@@ -95,8 +108,20 @@ const Analytics = () => {
                 //handle the next button for non csv file
             }
         })
+        upload(csvStore.getCSVData());
+        saveCSV();
     }
-
+    function saveCSV() {
+        const url = "http://localhost:8000/data/parse/csv";
+        const dataJson = {
+          data: state.uploadedFiles,
+        };
+        console.log("SaveCSV dataJson", dataJson);
+        axios
+          .post(url, state.uploadedFiles)
+          .then((response) => console.log("In saveCSV response: ", response));
+      }
+      
     const isValid = (rowData, key) => {
         let str = rowData[key];
         console.log("rowData", rowData);
@@ -158,6 +183,7 @@ const Analytics = () => {
               <i className="icon icon-add gx-mr-1"/>
               <span>Create New</span>
             </Button>
+            
                 </div>
 
             </div>
@@ -278,7 +304,7 @@ const Analytics = () => {
             <div className="gx-main-content">
                 <div className="gx-app-module">
                     <div className="gx-module-sidenav gx-d-none gx-d-lg-flex">
-                        
+                    
                         {!state.displayFile ?
                             AnalyticsSideBar() : ColumnSideBar()}
                         <Modal
@@ -328,6 +354,7 @@ const Analytics = () => {
                                 
                             )
                         }
+                        
                     </div>
                 </div>
             </div>
