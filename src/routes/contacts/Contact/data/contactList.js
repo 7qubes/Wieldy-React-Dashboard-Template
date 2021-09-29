@@ -11,7 +11,8 @@ export default [
     'frequently': true,
     'employee': true,
     'customers': false,
-    'vendors': false
+    'vendors': false,
+    'utilities':false
   }, {
     'id': 1457690401,
     'name': 'Garry Sobars',
@@ -24,7 +25,8 @@ export default [
     'frequently': true,
     'employee': false,
     'customers': false,
-    'vendors': true
+    'vendors': true,
+    'utilities':false
   },
   {
     'id': 1457690402,
@@ -38,7 +40,8 @@ export default [
     'frequently': true,
     'employee': true,
     'customers': false,
-    'vendors': false
+    'vendors': false,
+    'utilities':false
   }, {
     'id': 1457690403,
     'name': 'Domnic Brown',
@@ -51,7 +54,8 @@ export default [
     'frequently': true,
     'employee': true,
     'customers': false,
-    'vendors': false
+    'vendors': false,
+    'utilities':false
   }, {
     'id': 1457690404,
     'name': 'Kadir M',
@@ -64,7 +68,8 @@ export default [
     'frequently': false,
     'employee': false,
     'customers': false,
-    'vendors': true
+    'vendors': true,
+    'utilities':false
   }, {
     'id': 1457690405,
     'name': 'John Smith',
@@ -77,7 +82,8 @@ export default [
     'frequently': false,
     'employee': true,
     'customers': false,
-    'vendors': false
+    'vendors': false,
+    'utilities':false
   }, {
     'id': 1457690406,
     'name': 'Domnic Harris',
@@ -90,7 +96,8 @@ export default [
     'frequently': false,
     'employee': true,
     'customers': false,
-    'vendors': false
+    'vendors': false,
+    'utilities':false
   }, {
     'id': 1457690407,
     'name': 'Jimmy Jo',
@@ -103,7 +110,8 @@ export default [
     'frequently': false,
     'employee': true,
     'customers': false,
-    'vendors': false
+    'vendors': false,
+    'utilities':false
   }, {
     'id': 1457690408,
     'name': 'Jimmy Jon',
@@ -116,7 +124,8 @@ export default [
     'frequently': false,
     'employee': false,
     'customers': true,
-    'vendors': false
+    'vendors': false,
+    'utilities':false
   }, {
     'id': 1457690409,
     'name': 'Jeson Born',
@@ -129,7 +138,8 @@ export default [
     'frequently': false,
     'employee': true,
     'customers': false,
-    'vendors': false
+    'vendors': false,
+    'utilities':false
   }, {
     'id': 1457690410,
     'name': 'Steve Smith',
@@ -142,7 +152,8 @@ export default [
     'frequently': false,
     'employee': true,
     'customers': false,
-    'vendors': false
+    'vendors': false,
+    'utilities':false
   },
   {
     'id': 1457690500,
@@ -156,7 +167,8 @@ export default [
     'frequently': true,
     'employee': false,
     'customers': true,
-    'vendors': false
+    'vendors': false,
+    'utilities':false
   }, {
     'id': 1457690501,
     'name': 'Garry Sobars',
@@ -169,7 +181,8 @@ export default [
     'frequently': true,
     'employee': true,
     'customers': false,
-    'vendors': false
+    'vendors': false,
+    'utilities':false
   },
   {
     'id': 1457690502,
@@ -183,7 +196,8 @@ export default [
     'frequently': true,
     'employee': true,
     'customers': false,
-    'vendors': false
+    'vendors': false,
+    'utilities':false
   }, {
     'id': 1457690503,
     'name': 'Domnic Brown',
@@ -196,7 +210,8 @@ export default [
     'frequently': true,
     'employee': true,
     'customers': false,
-    'vendors': false
+    'vendors': false,
+    'utilities':false
   }, {
     'id': 1457690404,
     'name': 'Kadir M',
@@ -209,7 +224,8 @@ export default [
     'frequently': false,
     'employee': true,
     'customers': false,
-    'vendors': false
+    'vendors': false,
+    'utilities':false
   }, {
     'id': 1457690505,
     'name': 'John Smith',
@@ -222,7 +238,8 @@ export default [
     'frequently': false,
     'employee': true,
     'customers': false,
-    'vendors': false
+    'vendors': false,
+    'utilities':false
   }, {
     'id': 1457690506,
     'name': 'Domnic Harris',
@@ -235,7 +252,8 @@ export default [
     'frequently': false,
     'employee': true,
     'customers': false,
-    'vendors': false
+    'vendors': false,
+    'utilities':false
   }, {
     'id': 1457690507,
     'name': 'Jimmy Jo',
@@ -248,7 +266,8 @@ export default [
     'frequently': false,
     'employee': false,
     'customers': false,
-    'vendors': true
+    'vendors': true,
+    'utilities':false
   }, {
     'id': 1457690508,
     'name': 'Jimmy Jon',
@@ -261,7 +280,8 @@ export default [
     'frequently': false,
     'employee': true,
     'customers': false,
-    'vendors': false
+    'vendors': false,
+    'utilities':false
   }, {
     'id': 1457690509,
     'name': 'Jeson Born',
@@ -274,20 +294,22 @@ export default [
     'frequently': false,
     'employee': true,
     'customers': false,
-    'vendors': false
+    'vendors': false,
+    'utilities':false
   }, {
     'id': 1457690510,
-    'name': 'Steve Smith',
+    'name': 'Comcast',
     'thumb': "https://via.placeholder.com/150",
-    'email': 'steve.smith@example.com',
+    'email': 'comcast@example.com',
     'phone': '+1-215-586-5862',
-    'designation': 'CEO',
+    'designation': 'Utilities',
     'selected': false,
     'starred': false,
     'frequently': false,
-    'employee': true,
+    'employee': false,
     'customers': false,
-    'vendors': false
+    'vendors': false,
+    'utilities':true
   }
 
 ]

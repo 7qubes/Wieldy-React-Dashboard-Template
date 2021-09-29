@@ -1,6 +1,10 @@
 import React from "react";
-import {Card, Collapse, Divider, Table} from "antd";
+import {Button, Card, Collapse, Divider, Table} from "antd";
 import Icon from '@ant-design/icons';
+import pdf from './sample.pdf'
+import UploadClick from "components/Upload/UploadClick";
+import AddDocument from "../contact/AddDocument";
+
 
 const Panel = Collapse.Panel;
 
@@ -38,7 +42,10 @@ const columns = [
     render: () => (
       <Collapse bordered={false} expandIconPosition='right'>
         <Panel header="Signed" style={customPanelStyle}>
-          <p><icon className='icon icon-eye'/> View</p>
+          <p>
+            <a href={pdf} target='_blank'>
+              <icon className='icon icon-eye'/> View</a>
+          </p>
           <p><icon className='icon icon-backtop'/> Export</p>
         </Panel>
       </Collapse>
@@ -50,32 +57,57 @@ const data = [
   {
     key: '1',
     id: '4514',
-    contractor: 'John Brown',
+    contractor: <a href={pdf} target='_blank'>John Brown</a>,
     doc: 32,
     type: 'New Hire',
   },
   {
     key: '2',
     id: '4514',
-    contractor: 'Jim Green',
+    contractor: <a href={pdf} target='_blank'>Jim Green</a>,
     doc: 42,
     type: 'New Hire',
   },
   {
     key: '3',
     id: '4514',
-    contractor: 'Joe Black',
+    contractor: <a href={pdf} target='_blank'>Joe Black</a>,
     doc: 32,
     type: 'New Hire',
   }
 ];
 
-const AgreementsTable = () => {
-  return (
-    <Card title="Documents">
-      <Table className="gx-table-responsive" columns={columns} dataSource={data}/>
-    </Card>
-  );
-};
+class AgreementsTable extends React.Component{
+  constructor() {
+    super();
+    this.state = {
+      showAddDocument: false
+    }
+  }
+
+  showAddDocument = () => {
+    this.setState({showAddDocument: true})
+  };
+
+  hideAddDocument = () => {
+    this.setState({showAddDocument: false})
+  };
+
+  render() {
+    const {showAddDocument} = this.state;
+    return (
+      <Card title="Documents" extra={
+        <Button className="gx-btn-block ant-btn" type="primary" onClick={this.showAddDocument}>
+          <i className="icon icon-add-circle gx-mr-1"/>
+          <span>Add Document</span>
+        </Button>
+        // <AddDocument/>
+      }>
+        <Table className="gx-table-responsive" columns={columns} dataSource={data}/>
+        <AddDocument open={showAddDocument} onClose={this.hideAddDocument}/>
+      </Card>
+    );
+  }
+}
 
 export default AgreementsTable;
