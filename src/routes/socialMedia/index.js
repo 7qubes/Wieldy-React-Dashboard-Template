@@ -19,23 +19,11 @@ const MenuItemGroup = Menu.ItemGroup;
 
 const SocialMedia = ({ match }) => (
   <Switch>
-    <Redirect exact from={`${match.url}/`} to={`${match.url}/analytics`} />
-    <Route
-      path={`${match.url}/analytics`}
-      component={asyncComponent(() => import("./Analytics"))}
-    />
-    <Route
-      path={`${match.url}/scheduling`}
-      component={asyncComponent(() => import("./PostScheduling"))}
-    />
-    <Route
-      path={`${match.url}/automation`}
-      component={asyncComponent(() => import("./Automations"))}
-    />
-    <Route
-      path={`${match.url}/autobot`}
-      component={asyncComponent(() => import("./Autobot"))}
-    />
+    <Redirect exact from={`${match.url}/`} to={`${match.url}/analytics`}/>
+    <Route path={`${match.url}/analytics`} component={asyncComponent(() => import('./Analytics'))}/>
+    <Route path={`${match.url}/scheduling`} component={asyncComponent(() => import('./PostScheduling'))}/>
+    <Route path={`${match.url}/automation`} component={asyncComponent(() => import('./Automations'))}/>
+    <Route path={`${match.url}/autobot`} component={asyncComponent(() => import('./Autobot'))}/>
   </Switch>
 );
 
