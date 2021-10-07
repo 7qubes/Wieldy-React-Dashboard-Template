@@ -1,0 +1,13 @@
+.rbc-event-label{
+    display: none;
+    
+}
+.rbc-day-slot .rbc-event{
+    border:none;
+    background-color: transparent;
+    overflow: inherit;
+    color: black;
+}
+.rbc-event-content{
+    overflow: inherit;
+}

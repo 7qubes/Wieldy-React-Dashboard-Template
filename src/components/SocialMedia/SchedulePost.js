@@ -1,25 +1,27 @@
 import React from "react";
 import {Col, Form, Row, Upload, Button, TimePicker, DatePicker, message, Input, Modal} from "antd";
 import {NotificationContainer, NotificationManager} from "react-notifications";
-import {LoadingOutlined,PlusOutlined} from "@ant-design/icons";
+import {LoadingOutlined,PlusOutlined,FacebookFilled,InstagramFilled,TwitterOutlined,LinkedinOutlined } from "@ant-design/icons";
+import moment from 'moment'
+import 'moment-timezone';
 
 const FormItem = Form.Item;
-const {TextArea} = Input;
+const { TextArea } = Input;
 
 function getBase64(img, callback) {
   const reader = new FileReader();
-  reader.addEventListener('load', () => callback(reader.result));
+  reader.addEventListener("load", () => callback(reader.result));
   reader.readAsDataURL(img);
 }
 
 function beforeUpload(file) {
-  const isJPG = file.type === 'image/jpeg';
+  const isJPG = file.type === "image/jpeg";
   if (!isJPG) {
-    message.error('You can only upload JPG file!');
+    message.error("You can only upload JPG file!");
   }
   const isLt2M = file.size / 1024 / 1024 < 2;
   if (!isLt2M) {
-    message.error('Image must smaller than 2MB!');
+    message.error("Image must smaller than 2MB!");
   }
   return isJPG && isLt2M;
 }
@@ -31,24 +33,71 @@ class SchedulePost extends React.Component {
 
   state = {
     loading: false,
+    timezone: moment.tz.guess(true),
+    selectedTime : this.props.selectedTime?this.props.selectedTime:new Date().toISOString(),
+    account:this.props.mode =="edit"?this.props.selectedEvent:(this.props.name?this.props.name:{'name':'','medium':''}),
+    mode:this.props.mode
+
   };
-  handleChange = (info) => {
-    if (info.file.status === 'uploading') {
-      this.setState({loading: true});
-      return;
+  getSocialMediaIcon=(medium)=>{
+    switch(parseInt(medium)){
+      case 1:
+        return <FacebookFilled style={{fontSize:'32px',color:'#1877f2'}} />
+      case 2:
+        return <InstagramFilled style={{fontSize:'32px',}} />
+      case 3:
+        return <TwitterOutlined style={{fontSize:'32px',color:'rgba(29,161,242,1.00)'}} />
+      case 4:
+        return <LinkedinOutlined style={{fontSize:'32px',color:'#0073b1'}} />
     }
-    if (info.file.status === 'done') {
+  }
+  onChange=(e,type)=>{
+    var selectedTime = moment(this.state.selectedTime)
+    if(type === 'date')
+    {
+      selectedTime.set('year',e.get('year'))
+      selectedTime.set('month',e.get('month'))
+      selectedTime.set('date',e.get('date'))
+    }
+    if(type === 'time')
+    {
+      selectedTime.set('hour',e.get('hour'))
+      selectedTime.set('minute',e.get('minute'))
+    }
+
+    this.setState({selectedTime:selectedTime.toISOString()})
+
+  }
+  handleChange = (info) => {
+    // if (info.file.status === 'uploading') {
+    //   this.setState({loading: true});
+    //   return;
+    // }
+    // if (info.file.status === 'done') {
       // Get this url from response in real world.
       getBase64(info.file.originFileObj, imageUrl => this.setState({
         imageUrl,
+        filename:info.file.originFileObj.name,
         loading: false,
       }));
-    }
+    // }
   };
-
+  onSubmit=()=>{
+    // if( !this.state.text && !this.state.file)
+    //   return 
+    this.props.onOk({
+      'file':this.state.imageUrl?this.state.imageUrl.split(',')[1]:"",
+      'filename':this.state.filename?this.state.filename:"",
+      'name':this.state.account['name'],
+      'user_id':123,
+      'text':this.state.text+" "+(this.state.hashtag ?this.state.hashtag:"") ,
+      'medium':[this.state.account['medium']],
+      'sch_dt':this.state.selectedTime
+  })
+  }
 
   render() {
-    const {open, onClose} = this.props;
+    const { open, onClose } = this.props;
     const uploadButton = (
       <div>
         {this.state.loading ? <LoadingOutlined /> : <PlusOutlined />}
@@ -61,20 +110,23 @@ class SchedulePost extends React.Component {
       <Modal
         // style={{backgroundColor: '#6236FF'}}
         title={
-            <h2>@username</h2>
+          
+        <h2>{this.getSocialMediaIcon(this.state.account['medium'])}{<span>&emsp;</span>}{ this.state.account['name'] }</h2>
         }
+        maskClosable={false}
         visible={open}
         onCancel={onClose}
-        onOk={onClose}
         footer={[
           <div>
-          <Button>Discard</Button>
-          <DatePicker className="gx-mb-3"/>
-          <TimePicker value={this.state.value} onChange={this.onChange} style={{marginLeft: '5px'}}/>
-          <Button type="primary" style={{marginLeft: '5px'}}>Schedule Post</Button>
+          <Button  onClick={onClose} >Discard</Button>
+          <DatePicker allowClear={false} value={moment(this.state.selectedTime)} onChange={(e)=>this.onChange(e,'date')} className="gx-mb-3"/>
+          <TimePicker allowClear={false} value={moment(this.state.selectedTime)} onChange={(e)=>this.onChange(e,'time')} style={{marginLeft: '5px'}}
+           format={'HH:mm'}
+          />
+          <Button onClick={this.onSubmit} type="primary" style={{marginLeft: '5px'}}>{this.state.mode =="edit"?"Edit Post":"Schedule Post"}</Button>
             </div>
         ]}
-        >
+      >
         {/*<Modal.Header>Connect Bank</Modal.Header>*/}
         <div className="gx-modal-box-row">
           <div className="gx-modal-box-form-item">
@@ -85,8 +137,8 @@ class SchedulePost extends React.Component {
                   name="avatar"
                   listType="picture-card"
                   className="avatar-uploader"
+                  customRequest={()=>console.log('')}
                   showUploadList={false}
-                  action="//jsonplaceholder.typicode.com/posts/"
                   beforeUpload={beforeUpload}
                   onChange={this.handleChange}
                 >
@@ -95,14 +147,17 @@ class SchedulePost extends React.Component {
               </div>
               </Col>
               <Col md={18}>
-                <TextArea className="ant-card" placeholder="Write Captions here..." rows={3}/>
-                <TextArea className="ant-card" placeholder="Hashtags" rows={2}/>
+                <TextArea className="ant-card"  onChange={(e)=>{this.setState({'text':e.target.value})} } placeholder="Write Captions here..." rows={3}/>
+                <TextArea className="ant-card"  onChange={(e)=>{this.setState({'hashtag':e.target.value})}} placeholder="Add Hashtags separated by a space" rows={2}/>
                 <Input placeholder="Location"/>
               </Col>
             </Row>
+            <Row style={{paddingTop:20,paddingLeft:20}}>
+                <h5> This will be posted on {moment.tz(moment(this.state.selectedTime), this.state.timezone).format("dddd, MMMM Do YYYY, h:mm a zz")}</h5>
+            </Row>
           </div>
         </div>
-        <NotificationContainer/>
+        <NotificationContainer />
       </Modal>
     );
   }

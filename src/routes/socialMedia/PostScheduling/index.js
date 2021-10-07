@@ -1,96 +1,87 @@
 import React, {Component} from "react";
-import {Button, Checkbox, Drawer, message, Card, Col, Select, Row, Avatar} from "antd";
-import CustomScrollbars from "util/CustomScrollbars";
+import {Button, Checkbox, Drawer, message, Card, Col, Select, Row, Avatar, notification } from "antd";
+
 import AppModuleHeader from "components/AppModuleHeader/index";
 import AddSocialAccount from "components/SocialMedia/AddSocialAccount"
 import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
 // import AddPayment from "components/billing/Payment/AddPayment";
-import IntlMessages from "util/IntlMessages";
+
 import SchedulePost from "../../../components/SocialMedia/SchedulePost";
 import {Calendar, momentLocalizer} from 'react-big-calendar'
 import moment from 'moment'
-
+import axios from "axios"
+import SideBarSM from '../components/Sidebar'
 import events from "./events";
+import SocialMediaIcon from  '../components/SocialMediaIcon'
+import './calendar.css'
 
 const localizer = momentLocalizer(moment);
 
 let contactId = 723812738;
 const Option = Select.Option;
 
-const filterOptions = [
-  {
-    id: 1,
-    name: '@username',
-  }, {
-    id: 2,
-    name: '@username',
-  }, {
-    id: 3,
-    name: '@username',
-  }
-];
+const  NewTitle=({event})=>{
+  console.log(event)
+      return <div>
+        {SocialMediaIcon(event.medium,32)}
+        {<span style={{fontSize:12,fontWeight:'bold'}}>
+          {
+           moment( event.start).format("hh:mm a")
+          }
+        </span>}
+      </div>
+}
 
 class PostSchedule extends Component {
 
-  ContactSideBar = (user) => {
-    return <div className="gx-module-side">
-      <div className="gx-module-side-header">
-        <div className="gx-module-logo">
-          <i className="icon icon-compose gx-mr-4"/>
-          <span><IntlMessages id="chat.media"/></span>
-        </div>
-      </div>
-
-      <div className="gx-module-side-content">
-        <CustomScrollbars className="gx-module-side-scroll">
-          <div className="gx-module-add-task">
-            <Button className="gx-btn-block ant-btn" type="primary" aria-label="add"
-                    onClick={this.onShowSchedulePost}>
-              <i className="icon icon-add-circle gx-mr-1"/>
-              <span>Schedule a Post</span>
-            </Button>
-          </div>
-          <div className="gx-module-side-nav">
-            <ul className="gx-module-nav">
-              {filterOptions.map(option => <li key={option.id} className="gx-nav-item">
-                  <span
-                    className={`gx-link ${option.id === this.state.selectedSectionId ? 'active' : ''}`} onClick={
-                    this.onFilterOptionSelect.bind(this, option)
-                  }>
-                    <Checkbox className="gx-icon-btn"/>
-                    <Avatar className="gx-mr-2" shape="square" size="small" icon={<UserOutlined />}/>
-                    <span className="gx-contact-name">{option.name}</span>
-                  </span>
-                </li>
-              )}
-            </ul>
-          </div>
-          <div className="gx-module-add-task">
-            <Button className="gx-btn-block ant-btn" aria-label="add"
-                    onClick={this.onAddAccount}>
-              <i className="icon icon-add-circle gx-mr-1"/>
-              <span>Add account</span>
-            </Button>
-          </div>
-        </CustomScrollbars>
-      </div>
-    </div>
-
-  };
+  
 
   onAddAccount = () => {
     this.setState({addAccount: true});
   };
   onClose = () => {
     this.setState({addAccount: false});
+    this.getStatus()
   };
 
-  onShowSchedulePost = () => {
-    this.setState({schedulePost: true});
+onShowSchedulePost = () => {
+    if (this.state.selection.length == 1)
+      this.setState({schedulePost: true});
+    else
+      notification['info']({
+      message: 'Please select an account'
+      });
   };
-  onCloseSchedulePost = () => {
+  onCloseSchedulePost = (params) => {
+    
     this.setState({schedulePost: false});
   };
+  onSchedulePost =(params)=>{
+    var self= this
+    axios.post('http://localhost:5000/addEvent', params)
+		  .then(function (response) {
+      console.log(response);
+      notification['success']({
+        message:"Post Scheduled Succesfully"
+      })
+		  })
+		  .catch(function (error) {
+			console.log(error);
+		  });
+  }
+  editSchedulePost =(params)=>{
+    console.log(params)
+    // var self= this
+    // axios.post('http://localhost:5000/editEvent', params)
+		//   .then(function (response) {
+    //   notification['success']({
+    //     message:"Post Scheduled Succesfully"
+    //   })
+		//   })
+		//   .catch(function (error) {
+		// 	console.log(error);
+		//   });
+  }
 
   onFilterOptionSelect = (option) => {
     switch (option.name) {
@@ -176,6 +167,9 @@ class PostSchedule extends Component {
   constructor() {
     super();
     this.state = {
+      status:[],
+      selection:[],
+      events:[],
       noPaymentFoundMessage: 'No Payment found in selected folder',
       alertMessage: '',
       showMessage: false,
@@ -207,15 +201,76 @@ class PostSchedule extends Component {
       drawerState: !this.state.drawerState
     });
   }
-
+  getStatus=()=>{
+    var self = this
+    axios.post('http://localhost:5000/getStatus', {
+			user_id: '123',
+		  })
+		  .then(function (response) {
+			console.log(response);
+			self.setState({status:response.data})
+		  })
+		  .catch(function (error) {
+			console.log(error);
+		  });
+  }
+  getEvents=()=>{
+    var self = this
+    axios.post('http://localhost:5000/getEvents', {
+			user_id: '123',
+		  })
+		  .then(function (response) {
+      console.log(response);
+      var events = []
+      response.data.map(e =>{
+        events.push({
+          ...e,
+          'title': e.text,
+          'start': new Date(e.sch_dt),
+          'end': new Date(e.sch_dt),
+        })
+      })
+			self.setState({events:events})
+		  })
+		  .catch(function (error) {
+			console.log(error);
+		  });
+  }
+  select=(index,checked)=>{
+    var selection = this.state.selection
+    var status = this.state.status
+    if(checked)
+      selection.push(status[index])
+    else
+    {
+      var i = selection.indexOf(status[index])
+      selection.splice(i,1)
+    }
+    this.setState({selection})
+  }
+  getSocialMediaIcon(medium){
+    return SocialMediaIcon(medium)
+  }
+  componentDidMount(){
+    this.getStatus()
+    this.getEvents()
+  }
+ 
   render() {
     const {
       user,
       drawerState,
       addAccount,
-      schedulePost
+      schedulePost,
+      status
     } = this.state;
-
+    const SideBar = <SideBarSM 
+      status={status}      
+      select={this.select}
+      getStatus={this.getStatus}
+      onShowSchedulePost={this.onShowSchedulePost}
+      onAddAccount={this.onAddAccount} 
+      getSocialMediaIcon={this.getSocialMediaIcon}    />
     return (
       <div className="gx-main-content">
         <div className="gx-app-module">
@@ -225,11 +280,11 @@ class PostSchedule extends Component {
               closable={false}
               visible={drawerState}
               onClose={this.onToggleDrawer.bind(this)}>
-              {this.ContactSideBar()}
+              {SideBar}
             </Drawer>
           </div>
           <div className="gx-module-sidenav gx-d-none gx-d-lg-flex">
-            {this.ContactSideBar(user)}
+            {SideBar}
           </div>
 
           <div className="gx-module-box">
@@ -257,16 +312,24 @@ class PostSchedule extends Component {
                         <Calendar
                           localizer={localizer}
                           selectable
-                          events={events}
+                          events={this.state.events}
+                          components={{
+                            event: NewTitle
+                          }}
                           defaultView='week'
                           scrollToTime={new Date(1970, 1, 1, 6)}
-                          defaultDate={new Date(2015, 3, 12)}
-                          onSelectEvent={event => alert(event.title)}
-                          onSelectSlot={(slotInfo) => alert(
-                            `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +
-                            `\nend: ${slotInfo.end.toLocaleString()}` +
-                            `\naction: ${slotInfo.action}`
-                          )}
+                          defaultDate={new Date()}
+                          // titleAccessor={(event)=>'String'}
+                          onSelectEvent={event => this.setState({selectedEvent:event,schedulePostMode:"edit"},
+                          ()=>this.setState({schedulePost:true})
+                          )
+                        }
+                          onSelectSlot={(slotInfo) => {
+                            if (slotInfo.start > new Date())
+                                this.setState({'startTime' :slotInfo.start.toISOString(),
+                                schedulePostMode:"new"},()=>this.onShowSchedulePost())
+                          }
+                        }
                         />
                       </div>
                     </div>
@@ -278,7 +341,16 @@ class PostSchedule extends Component {
         </div>
 
         <AddSocialAccount open={addAccount} onClose={this.onClose}/>
-        <SchedulePost open={schedulePost} onClose={this.onCloseSchedulePost}/>
+        {schedulePost?
+        <SchedulePost 
+        open={true}
+        name={this.state.selection[0]}
+        selectedTime={this.state.startTime}
+        selectedEvent={this.state.selectedEvent}
+        mode={this.state.schedulePostMode}
+        onOk = { this.state.schedulePostMode =="edit" ?this.editSchedulePost:this.onSchedulePost}
+        onClose={this.onCloseSchedulePost}/>
+        :""} 
       </div>
     )
   }
