@@ -100,7 +100,7 @@ const HorizontalNav = () => {
         </Menu.Item>
 
         <Menu.Item key="in-built-apps/contacts">
-          <Link to="/in-built-apps/contacts"><i className="icon icon-contacts"/><IntlMessages
+          <Link to="/in-built-apps/contacts"><i className="icon icon-contact"/><IntlMessages
             id="sidebar.contactsApp"/></Link>
         </Menu.Item>
 
@@ -887,7 +887,7 @@ const HorizontalNav = () => {
         </SubMenu>
 
         <SubMenu popupClassName="gx-menu-horizontal" key="extra-elements"
-                 title={<span><i className="icon icon-ellipse-h"/><IntlMessages
+                 title={<span><i className="icon icon-menu_dots"/><IntlMessages
                    id="sidebar.listType.extras"/></span>}>
           <Menu.Item key="custom-views/extras/pricing-table">
             <Link to="/custom-views/extras/pricing-table">

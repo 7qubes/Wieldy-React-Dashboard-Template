@@ -3,7 +3,7 @@
 /* stylelint-disable */
 /* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
 /*
-Author         : G-axon
+Author         : G-axonn style.css
 Template Name  : Wieldy Antd React - Admin Template
 Version        : 1.0
 */
@@ -8267,7 +8267,7 @@ textarea.ant-picker-input > input {
 }
 .ant-form-item-control-input-content {
   flex: auto;
-  max-width: 100%;
+  max-width: 98%;
 }
 .ant-form-item-explain,
 .ant-form-item-extra {
@@ -15953,6 +15953,7 @@ textarea.ant-mentions {
 .ant-menu-dark .ant-menu-item:hover {
   background-color: transparent;
 }
+
 .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
   background-color: #ffffff;
 }
@@ -31344,7 +31345,7 @@ h6,
   border-radius: 4px;
 }
 .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
-  background-color: transparent;
+  background-color: #6236FF;
 }
 /* Footer Style */
 .ant-layout-footer {
@@ -36656,7 +36657,7 @@ textarea.gx-chat-textarea {
   padding-bottom: 88px;
   margin: -32px;
   margin-bottom: -58px;
-  background-color: #003366;
+  background-color: #6236FF;
   color: #ffffff;
   position: relative;
 }
@@ -36759,6 +36760,7 @@ textarea.gx-chat-textarea {
 @media (max-width: 575px) {
   .gx-profile-banner-top-right {
     margin-left: 0;
+    margin-top: 30px;
   }
 }
 .gx-profile-banner-bottom {
@@ -39711,3 +39713,8 @@ textarea.gx-chat-textarea {
     flex-direction: column;
   }
 }
+
+/* .padding-table-columns td
+{
+    padding:0 5px 0 0; /* Only right padding*/
+} */

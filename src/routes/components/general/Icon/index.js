@@ -307,7 +307,7 @@ const Icons = () => {
         </Col>
         <Col xl={4} lg={6} md={6} sm={8} xs={12}>
           <div className="gx-icon-views">
-            <i className="icon icon-chat-new"/>
+            <i className="icon icon-chat"/>
             <span className="gx-icon-text">chat-new</span>
           </div>
         </Col>
@@ -419,12 +419,7 @@ const Icons = () => {
             <span className="gx-icon-text">compose</span>
           </div>
         </Col>
-        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
-          <div className="gx-icon-views">
-            <i className="icon icon-contacts"/>
-            <span className="gx-icon-text">contacts</span>
-          </div>
-        </Col>
+  
         <Col xl={4} lg={6} md={6} sm={8} xs={12}>
           <div className="gx-icon-views">
             <i className="icon icon-copy"/>
@@ -437,12 +432,7 @@ const Icons = () => {
             <span className="gx-icon-text">crm</span>
           </div>
         </Col>
-        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
-          <div className="gx-icon-views">
-            <i className="icon icon-culture-calendar"/>
-            <span className="gx-icon-text">culture-calendar</span>
-          </div>
-        </Col>
+  
         <Col xl={4} lg={6} md={6} sm={8} xs={12}>
           <div className="gx-icon-views">
             <i className="icon icon-custom-view"/>
@@ -1147,7 +1137,7 @@ const Icons = () => {
         </Col>
         <Col xl={4} lg={6} md={6} sm={8} xs={12}>
           <div className="gx-icon-views">
-            <i className="icon icon-search-new"/>
+            <i className="icon icon-search"/>
             <span className="gx-icon-text">search-new</span>
           </div>
         </Col>
@@ -1529,6 +1519,155 @@ const Icons = () => {
             <span className="gx-icon-text">orders</span>
           </div>
         </Col>
+
+        {/* New icon Set start here */}
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-dashboard"/>
+            <span className="gx-icon-text">dashboard</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-contact"/>
+            <span className="gx-icon-text">contact</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-billing"/>
+            <span className="gx-icon-text">billing</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-transaction"/>
+            <span className="gx-icon-text">transaction</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-payment"/>
+            <span className="gx-icon-text">payment</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-invoice"/>
+            <span className="gx-icon-text">invoice</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-calendar"/>
+            <span className="gx-icon-text">calendar</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-chat"/>
+            <span className="gx-icon-text">chat</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-email"/>
+            <span className="gx-icon-text">email</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-video"/>
+            <span className="gx-icon-text">video</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-support"/>
+            <span className="gx-icon-text">support</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-report"/>
+            <span className="gx-icon-text">report</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-time"/>
+            <span className="gx-icon-text">time</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-automations"/>
+            <span className="gx-icon-text">automations</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-finance"/>
+            <span className="gx-icon-text">finance</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-inventory"/>
+            <span className="gx-icon-text">inventory</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-bom"/>
+            <span className="gx-icon-text">bom</span>
+          </div>
+        </Col>
+
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-website"/>
+            <span className="gx-icon-text">website</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-report"/>
+            <span className="gx-icon-text">reports</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-analytics"/>
+            <span className="gx-icon-text">analytics</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-forecaster"/>
+            <span className="gx-icon-text">forecaster</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-dropdown"/>
+            <span className="gx-icon-text">dropdown</span>
+          </div>
+        </Col>
+        <Col xl={4} lg={6} md={6} sm={8} xs={12}>
+          <div className="gx-icon-views">
+            <i className="icon icon-target"/>
+            <span className="gx-icon-text">project</span>
+          </div>
+        </Col>
+
+
+
+
+
+
+
+
       </Row>
     </Card>
   );

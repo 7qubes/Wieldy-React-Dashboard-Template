@@ -3,7 +3,7 @@
 /* stylelint-disable */
 /* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
 /*
-Author         : G-axon
+Author         : G-axon orange.css
 Template Name  : Wieldy Antd React - Admin Template
 Version        : 1.0
 */
@@ -8267,7 +8267,7 @@ textarea.ant-picker-input > input {
 }
 .ant-form-item-control-input-content {
   flex: auto;
-  max-width: 100%;
+  max-width: 98%;
 }
 .ant-form-item-explain,
 .ant-form-item-extra {
@@ -36656,7 +36656,7 @@ textarea.gx-chat-textarea {
   padding-bottom: 88px;
   margin: -32px;
   margin-bottom: -58px;
-  background-color: #272932;
+  background-color: #6236FF;
   color: #ffffff;
   position: relative;
 }

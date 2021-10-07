@@ -2,7 +2,7 @@ import React from "react";
 import {Avatar, Dropdown, Menu} from "antd";
 import CustomScrollbars from 'util/CustomScrollbars'
 
-import labels from "routes/inBuiltApps/Mail/data/labels";
+import labels from "routes/communications/Mail/data/labels";
 
 const options = [
   'Reply',
@@ -58,7 +58,7 @@ class MailDetail extends React.Component {
                 }}>
                   {mail.starred ?
                     <i className="icon icon-star gx-icon-btn"/> :
-                    <i className="icon icon-star-o gx-icon-btn"/>
+                    <i className="icon icon-star_o gx-icon-btn"/>
                   }
 
                 </div>
