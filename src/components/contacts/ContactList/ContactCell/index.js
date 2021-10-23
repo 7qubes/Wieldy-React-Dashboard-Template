@@ -69,7 +69,7 @@ class ContactCell extends React.Component {
           <div className="gx-d-none gx-d-sm-flex" onClick={() => {
             addFavourite(contact)
           }}>
-            {starred ? <i className="gx-icon-btn icon icon-star"/> : <i className="gx-icon-btn icon icon-star_o"/>}
+            {starred ? <i className="gx-icon-btn icon icon-star"/> : <i className="gx-icon-btn icon icon-star-o"/>}
           </div>
           <div className="gx-ml-2 gx-d-none gx-d-sm-flex">
             {(thumb === null || thumb === '') ?
@@ -103,7 +103,7 @@ class ContactCell extends React.Component {
           <div className="gx-module-contact-right">
 
             <Dropdown overlay={this.menus()} placement="bottomRight" trigger={['click']}>
-              <i className="gx-icon-btn icon icon-menu_dots"/>
+              <i className="gx-icon-btn icon icon-ellipse-h"/>
             </Dropdown>
 
             {addContactState &&

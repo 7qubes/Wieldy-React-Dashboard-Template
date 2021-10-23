@@ -1,10 +1,7 @@
 import React from "react";
-import { Avatar, Form, Checkbox, Button, Input, Modal } from "antd";
-import { Link } from "react-router-dom";
-import {
-  NotificationContainer,
-  NotificationManager,
-} from "react-notifications";
+import {Avatar, Form, Checkbox, Button, Input, Modal} from "antd";
+import {Link} from "react-router-dom";
+import {NotificationContainer, NotificationManager} from "react-notifications";
 import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
 import LockOutlined from "@ant-design/icons/lib/icons/LockOutlined";
 import axios from "axios"
@@ -45,7 +42,7 @@ class AddSocialAccount extends React.Component {
       }
     
   render() {
-    const { open, onClose } = this.props;
+    const {open, onClose} = this.props;
 
     return (
       <Modal
@@ -55,7 +52,7 @@ class AddSocialAccount extends React.Component {
         onCancel={onClose}
         onOk={onClose}
         footer={null}
-      >
+        >
         {/*<Modal.Header>Connect Bank</Modal.Header>*/}
         <div className="gx-modal-box-row">
           <div className="gx-modal-box-form-item">
@@ -97,7 +94,7 @@ class AddSocialAccount extends React.Component {
             </div> */}
           </div> 
         </div>
-        <NotificationContainer />
+        <NotificationContainer/>
       </Modal>
     );
   }

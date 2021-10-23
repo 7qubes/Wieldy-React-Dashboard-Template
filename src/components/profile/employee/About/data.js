@@ -27,29 +27,29 @@ const userImageList = [
 export const workList = [
   {
     id: 1,
-    title: 'Current Project',
-    icon: 'target',
+    title: 'Current working',
+    icon: 'close-circle',
     userList: '',
     desc: ['Project X']
   },
   {
     id: 2,
     title: 'Future Project',
-    icon: 'target',
+    icon: 'calendar',
     userList: '',
     desc: ['Project Z']
   },
   {
     id: 3,
-    title: 'Past Project',
-    icon: 'target',
+    title: 'Pass Project',
+    icon: 'growth',
     userList: '',
     desc: ['Project W']
   },
   {
     id: 4,
-    title: 'Upcoming Due',
-    icon: 'time',
+    title: 'Due Dates',
+    icon: 'hotel-booking',
     userList: '',
     desc: ['Jan 20 2021']
   },
@@ -65,21 +65,21 @@ export const overviewList = [
   {
     id: 1,
     title: 'Works At',
-    icon: 'work',
+    icon: 'company',
     userList: '',
     desc: ['G-axon Tech Pvt.Ltd']
   },
   {
     id: 2,
     title: 'Birthday',
-    icon: 'calendar',
+    icon: 'birthday-new',
     userList: '',
     desc: ['Oct 25, 1984']
   },
   {
     id: 3,
     title: 'Went to',
-    icon: 'education',
+    icon: 'graduation',
     userList: '',
     desc: ['Oxford University']
   },
@@ -177,7 +177,7 @@ export const contactList = [
   {
     id: 2,
     title: 'Web page',
-    icon: 'website',
+    icon: 'link',
     desc: [<span className="gx-link" key={2}>example.com</span>]
   }, {
     id: 3,

@@ -67,20 +67,20 @@ class Edit extends Component {
               <span>Add New Payee</span>
             </Button>
           </div>
-          {/*<div className="gx-module-side-nav">*/}
-          {/*  <ul className="gx-module-nav">*/}
-          {/*    {filterOptions.map(option => <li key={option.id} className="gx-nav-item">*/}
-          {/*        <span*/}
-          {/*          className={`gx-link ${option.id === this.state.selectedSectionId ? 'active' : ''}`} onClick={*/}
-          {/*          this.onFilterOptionSelect.bind(this, option)*/}
-          {/*        }>*/}
-          {/*          <i className={`icon icon-${option.icon}`}/>*/}
-          {/*          <span>{option.name}</span>*/}
-          {/*        </span>*/}
-          {/*      </li>*/}
-          {/*    )}*/}
-          {/*  </ul>*/}
-          {/*</div>*/}
+          <div className="gx-module-side-nav">
+            <ul className="gx-module-nav">
+              {filterOptions.map(option => <li key={option.id} className="gx-nav-item">
+                  <span
+                    className={`gx-link ${option.id === this.state.selectedSectionId ? 'active' : ''}`} onClick={
+                    this.onFilterOptionSelect.bind(this, option)
+                  }>
+                    <i className={`icon icon-${option.icon}`}/>
+                    <span>{option.name}</span>
+                  </span>
+                </li>
+              )}
+            </ul>
+          </div>
         </CustomScrollbars>
       </div>
     </div>

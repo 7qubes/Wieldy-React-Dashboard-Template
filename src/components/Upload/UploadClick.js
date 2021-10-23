@@ -23,14 +23,14 @@ const props = {
 
 const UploadClick = () => {
     return (
-
-      <div className= "gx-module-upload">
+      // <Card className="gx-card" title="Upload Click">
+      <div style={{marginTop: '-20px', marginLeft: '40px'}}>
         <Upload {...props}>
-          <Button width= "flex">
-            <UploadOutlined/> Click to Upload 
+          <Button>
+            <UploadOutlined /> Click to Upload
           </Button>
         </Upload>
-     
+      {/*</Card>*/}
       </div>
     );
   }

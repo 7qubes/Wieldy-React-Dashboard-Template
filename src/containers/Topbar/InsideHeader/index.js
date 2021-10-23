@@ -105,7 +105,7 @@ const InsideHeader = () => {
                                value={searchText}/></div>
                 } trigger="click">
 
-                  <span className="gx-pointer gx-d-block"><i className="icon icon-search"/></span>
+                  <span className="gx-pointer gx-d-block"><i className="icon icon-search-new"/></span>
 
                 </Popover>
               </li>
@@ -121,7 +121,7 @@ const InsideHeader = () => {
                 <Popover overlayClassName="gx-popover-horizantal" placement="bottomRight"
                          content={<MailNotification/>} trigger="click">
                 <span className="gx-pointer gx-status-pos gx-d-block">
-                <i className="icon icon-chat"/>
+                <i className="icon icon-chat-new"/>
                 <span className="gx-status gx-status-rtl gx-small gx-orange"/>
                 </span>
                 </Popover>

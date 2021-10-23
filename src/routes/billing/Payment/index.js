@@ -40,7 +40,7 @@ const filterOptions = [
 
 class Payment extends Component {
 
-  PaymentSideBar = (user) => {
+  ContactSideBar = (user) => {
     return <div className="gx-module-side">
       <div className="gx-module-side-header">
         <div className="gx-module-logo">
@@ -81,17 +81,17 @@ class Payment extends Component {
   onContactSelect = (data) => {
     data.selected = !data.selected;
     let selectedContacts = 0;
-    const paymentList = this.state.paymentList.map(payment => {
-        if (payment.selected) {
+    const paymentList = this.state.paymentList.map(contact => {
+        if (contact.selected) {
           selectedContacts++;
         }
-        if (payment.id === data.id) {
-          if (payment.selected) {
+        if (contact.id === data.id) {
+          if (contact.selected) {
             selectedContacts++;
           }
           return data;
         } else {
-          return payment;
+          return contact;
         }
       }
     );
@@ -114,47 +114,15 @@ class Payment extends Component {
         this.setState({
           selectedSectionId: option.id,
           filterOption: option.name,
-          paymentList: this.state.allPayment
+          paymentList: this.state.allContact
         });
         break;
       }
-      case 'Frequently Paid': {
+      case 'Frequently contacted': {
         this.setState({
           selectedSectionId: option.id,
           filterOption: option.name,
-          paymentList: this.state.allPayment.filter((payment) => payment.frequently)
-        });
-        break;
-      }
-      case 'Alphabetical Order': {
-        this.setState({
-          selectedSectionId: option.id,
-          filterOption: option.name,
-          paymentList: this.state.allPayment.filter((payment) => payment.order)
-        });
-        break;
-      }
-      case 'Last Paid': {
-        this.setState({
-          selectedSectionId: option.id,
-          filterOption: option.name,
-          paymentList: this.state.allPayment.filter((payment) => payment.last)
-        });
-        break;
-      }
-      case 'Utilities Group': {
-        this.setState({
-          selectedSectionId: option.id,
-          filterOption: option.name,
-          paymentList: this.state.allPayment.filter((payment) => payment.utils)
-        });
-        break;
-      }
-      case 'Employees Group': {
-        this.setState({
-          selectedSectionId: option.id,
-          filterOption: option.name,
-          paymentList: this.state.allPayment.filter((payment) => payment.employee)
+          paymentList: this.state.allContact.filter((contact) => contact.frequently)
         });
         break;
       }
@@ -165,12 +133,12 @@ class Payment extends Component {
 
   onSaveContact = (data) => {
     let isNew = true;
-    const paymentList = this.state.paymentList.map((payment) => {
-      if (payment.id === data.id) {
+    const paymentList = this.state.allContact.map((contact) => {
+      if (contact.id === data.id) {
         isNew = false;
         return data
       } else {
-        return payment
+        return contact
       }
     });
     if (isNew) {
@@ -180,7 +148,7 @@ class Payment extends Component {
       alertMessage: isNew ? 'Payment Added Successfully' : 'Payment Updated Successfully',
       showMessage: true,
       paymentList: paymentList,
-      // allContact: paymentList
+      allContact: paymentList
     });
     // this.onFilterOptionSelect(this.state.filterOption);
   };
@@ -188,39 +156,39 @@ class Payment extends Component {
     this.setState({
       alertMessage: 'Contact Deleted Successfully',
       showMessage: true,
-      // allContact: this.state.allContact.filter((contact) => contact.id !== data.id),
-      paymentList: this.state.paymentList.filter((payment) => payment.id !== data.id)
+      allContact: this.state.allContact.filter((contact) => contact.id !== data.id),
+      paymentList: this.state.allContact.filter((contact) => contact.id !== data.id)
     })
   };
   onDeleteSelectedContact = () => {
-    const payments = this.state.paymentList.filter((payment) => !payment.selected);
+    const contacts = this.state.allContact.filter((contact) => !contact.selected);
     this.setState({
       alertMessage: 'Contact Deleted Successfully',
       showMessage: true,
-      // allContact: contacts,
-      paymentList: payments,
+      allContact: contacts,
+      paymentList: contacts,
       selectedContacts: 0
     })
   };
   filterContact = (userName) => {
     const {filterOption} = this.state;
     if (userName === '') {
-      this.setState({paymentList: this.state.paymentList});
+      this.setState({paymentList: this.state.allContact});
     } else {
-      const filterContact = this.state.paymentList.filter((payment) =>
-        payment.name.toLowerCase().indexOf(userName.toLowerCase()) > -1);
-      if (filterOption === 'All Payees') {
+      const filterContact = this.state.allContact.filter((contact) =>
+        contact.name.toLowerCase().indexOf(userName.toLowerCase()) > -1);
+      if (filterOption === 'All contacts') {
         this.setState({paymentList: filterContact});
-      } else if (filterOption === 'Frequently Paid') {
-        this.setState({paymentList: filterContact.filter((payment) => payment.frequently)});
-      } else if (filterOption === 'Alphabetical Order') {
-        this.setState({paymentList: filterContact.filter((payment) => payment.order)});
-      } else if (filterOption === 'Last Paid') {
-        this.setState({paymentList: filterContact.filter((payment) => payment.last)});
-      } else if (filterOption === 'Utilities Group') {
-        this.setState({paymentList: filterContact.filter((payment) => payment.utils)});
-      } else if (filterOption === 'Employees Group') {
-        this.setState({paymentList: filterContact.filter((payment) => payment.employee)});
+      } else if (filterOption === 'Frequently contacted') {
+        this.setState({paymentList: filterContact.filter((contact) => contact.frequently)});
+      } else if (filterOption === 'Starred contacts') {
+        this.setState({paymentList: filterContact.filter((contact) => contact.starred)});
+      } else if (filterOption === 'Employee') {
+        this.setState({paymentList: filterContact.filter((contact) => contact.employee)});
+      } else if (filterOption === 'Vendors') {
+        this.setState({paymentList: filterContact.filter((contact) => contact.vendors)});
+      } else if (filterOption === 'Customers') {
+        this.setState({paymentList: filterContact.filter((contact) => contact.customers)});
       }
 
     }
@@ -231,24 +199,24 @@ class Payment extends Component {
     });
   };
   getAllContact = () => {
-    let paymentList = this.state.paymentList.map((contact) => contact ? {
+    let paymentList = this.state.allContact.map((contact) => contact ? {
       ...contact,
       selected: true
     } : contact);
     this.setState({
       selectedContacts: paymentList.length,
-      // allContact: paymentList,
+      allContact: paymentList,
       paymentList: paymentList
     });
   };
   getUnselectedAllContact = () => {
-    let paymentList = this.state.paymentList.map((payment) => payment ? {
-      ...payment,
+    let paymentList = this.state.allContact.map((contact) => contact ? {
+      ...contact,
       selected: false
-    } : payment);
+    } : contact);
     this.setState({
       selectedContacts: 0,
-      // allContact: paymentList,
+      allContact: paymentList,
       paymentList: paymentList
     });
   };
@@ -268,7 +236,7 @@ class Payment extends Component {
       },
       searchUser: '',
       filterOption: 'All contacts',
-      allPayment: paymentList,
+      allContact: paymentList,
       paymentList: paymentList,
       selectedContact: null,
       selectedContacts: 0,
@@ -319,11 +287,11 @@ class Payment extends Component {
               closable={false}
               visible={drawerState}
               onClose={this.onToggleDrawer.bind(this)}>
-              {this.PaymentSideBar()}
+              {this.ContactSideBar()}
             </Drawer>
           </div>
           <div className="gx-module-sidenav gx-d-none gx-d-lg-flex">
-            {this.PaymentSideBar(user)}
+            {this.ContactSideBar(user)}
           </div>
 
           <div className="gx-module-box">

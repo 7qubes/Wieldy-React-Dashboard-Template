@@ -3,7 +3,7 @@
 /* stylelint-disable */
 /* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
 /*
-Author         : G-axon dark theme
+Author         : G-axon
 Template Name  : Wieldy Antd React - Admin Template
 Version        : 1.0
 */
@@ -15954,9 +15954,6 @@ textarea.ant-mentions {
   background-color: transparent;
 }
 .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
-  background-color: #fff !important;
-
-.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
   background-color: #ffffff;
 }
 .ant-menu-dark .ant-menu-item-selected {
@@ -30944,7 +30941,10 @@ h6,
 .ant-menu-dark .ant-menu-item-selected span {
   color: inherit;
 }
-
+.ant-menu.ant-menu-dark .ant-menu-item-selected,
+.ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+  background-color: transparent;
+}
 .ant-menu-dark .ant-menu-item-disabled,
 .ant-menu-dark .ant-menu-submenu-disabled,
 .ant-menu-dark .ant-menu-item-disabled > a,

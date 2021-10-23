@@ -103,7 +103,7 @@ export const contactList = [
   {
     id: 2,
     title: 'Web page',
-    icon: 'website',
+    icon: 'link',
     desc: [<span className="gx-link" key={2}>example.com</span>]
   },
   {
@@ -115,7 +115,7 @@ export const contactList = [
   {
     id: 4,
     title: 'Chat',
-    icon: 'chat',
+    icon: 'chat-bubble',
     desc: ['@username']
   },
 ];

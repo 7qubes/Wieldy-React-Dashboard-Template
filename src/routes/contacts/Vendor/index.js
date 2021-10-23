@@ -8,7 +8,6 @@ const FormItem = Form.Item;
 
 const Vendor = () => {
   const url = `/contacts`;
-  const avatar = require('assets/images/avatar.jpg');
 
   return (
     <Auxiliary>
@@ -20,7 +19,7 @@ const Vendor = () => {
           <div className="gx-profile-banner-top">
             <div className="gx-profile-banner-top-left">
               <div className="gx-profile-banner-avatar">
-                <Avatar className="gx-size-90" alt="..." src={avatar}/>
+                <Avatar className="gx-size-90" alt="..." src={"https://via.placeholder.com/150"}/>
               </div>
               <div className="gx-profile-banner-avatar-info">
                 <h2 className="gx-mb-2 gx-mb-sm-3 gx-fs-xxl gx-font-weight-light">Kiley Brown</h2>
@@ -83,7 +82,7 @@ const Vendor = () => {
               <div className="ant-card-body">
                 <Row>
                   <Col xl={8} md={8} xs={24} sm={24} lg={8}>
-                    <span><i className='icon icon-contact'/> Gold @ $200/yr</span>
+                    <span><i className='icon icon-contacts'/> Gold @ $200/yr</span>
                   </Col>
                   <Col xl={8} md={8} xs={24} sm={24} lg={8}>
                     <span>Renews 10/20/2021</span>

@@ -39,10 +39,10 @@
 }
 
 .@{class-prefix}-layout-sider-dark {
-  background: @nav-dark-bg;
+  background-color: @nav-dark-bg;
   color: @nav-dark-text-color;
 }
-// @nav-dark-bg;
+
 .@{class-prefix}-layout-sider-header {
   padding: 10px @sidebar-padding-lr 10px (2*@sidebar-padding-lr + 10px);
   height: @layout-header-height;
@@ -224,7 +224,7 @@
   padding-left: 0;
   .flex-display(flex, row, wrap);
   .align-items(center);
-  margin: 0 -10px;
+  margin: 0 -20px;
   color: @primary-color;
 
   .ant-layout-sider-dark &,
@@ -233,7 +233,7 @@
   }
 
   & li {
-    padding: 0 15px;
+    padding: 0 20px;
     font-size: @font-size-lg + 4px;
 
     & .icon {

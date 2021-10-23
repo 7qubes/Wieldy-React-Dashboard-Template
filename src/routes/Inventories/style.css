@@ -12,7 +12,7 @@ body {
 }
 
 .content a {
-  color: #0063c3;
+  color: #0063C3;
   text-decoration: none;
 }
 
@@ -42,7 +42,7 @@ body {
   width: 100%;
   height: 60px;
   padding: 10px;
-  background: #222f3f;
+  background: #222F3F;
 }
 
 .content header .is-logo {
@@ -55,7 +55,7 @@ body {
   margin-right: 16px;
   font-size: 30px;
   font-weight: bold;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 .content header .logo:hover {
@@ -77,7 +77,7 @@ body {
 
 .content header .input-group #q:focus {
   outline: none;
-  box-shadow: inset 0 0 0 1px #ffbe61;
+  box-shadow: inset 0 0 0 1px #FFBE61;
 }
 
 .content header .input-group .form-control {
@@ -87,20 +87,20 @@ body {
 
 .content header .input-group .form-control:focus {
   outline: none;
-  box-shadow: inset 0 0 0 1px #ffbe61;
+  box-shadow: inset 0 0 0 1px #FFBE61;
 }
 
 .content header .input-group .input-group-btn button {
   height: 100%;
   padding: 0 30px;
   border: 0;
-  background: #ffbe61;
+  background: #FFBE61;
 }
 
 .content header .input-group .input-group-btn {
   height: 100%;
   border: 0;
-  background: #ffbe61;
+  background: #FFBE61;
 }
 
 .content aside {
@@ -111,8 +111,8 @@ body {
   bottom: 0;
   width: 250px;
   padding: 20px;
-  border-right: 1px solid #eee;
-  background: #ffffff;
+  border-right: 1px solid #EEE;
+  background: #FFFFFF;
   z-index: 99;
 }
 
@@ -124,9 +124,9 @@ body {
 
 .content aside .facet-wrapper {
   padding-bottom: 12px;
-  border-bottom: solid 1px #eee;
+  border-bottom: solid 1px #EEE;
   margin-bottom: 12px;
-  font-size: 0.87em;
+  font-size: .87em;
   display: flex;
   flex-direction: column;
 }
@@ -147,8 +147,7 @@ body {
   text-transform: none;
 }
 
-.content aside .ais-HierarchicalMenu-link,
-aside a {
+.content aside .ais-HierarchicalMenu-link, aside a {
   color: #000000;
 }
 
@@ -164,7 +163,7 @@ aside a {
 aside a:hover,
 .content aside .ais-HierarchicalMenu-link:hover,
 .ais-RatingMenu-link:hover {
-  color: #b32500;
+  color: #B32500;
   text-decoration: none;
 }
 
@@ -173,13 +172,12 @@ aside a:hover,
   font-weight: bold;
 }
 
-.content aside .ais-HierarchicalMenu-link input,
-aside a input {
+.content aside .ais-HierarchicalMenu-link input, aside a input {
   margin-right: 4px;
 }
 
 .content aside .ais-HierarchicalMenu-label:before {
-  content: "> ";
+  content: "> "
 }
 
 .content aside .ais-HierarchicalMenu-list--child {
@@ -199,9 +197,8 @@ aside a input {
   margin-right: 5px;
 }
 
-.content aside .ais-RefinementList-count,
-.ais-HierarchicalMenu-count {
-  color: #6f6e6c;
+.content aside .ais-RefinementList-count, .ais-HierarchicalMenu-count {
+  color: #6F6E6C;
   background-color: initial;
 }
 
@@ -239,8 +236,8 @@ aside a input {
 }
 
 .content aside .facet-color[data-facet-value="White"] {
-  background-color: #ffffff;
-  box-shadow: inset 0 0 0 1px #ccc;
+  background-color: #FFFFFF;
+  box-shadow: inset 0 0 0 1px #CCC;
 }
 
 .content aside .facet-color[data-facet-value="White"].checked {
@@ -256,27 +253,27 @@ aside a input {
 }
 
 .content aside .facet-color[data-facet-value="Pink"] {
-  background-color: #c0116d;
+  background-color: #C0116D;
 }
 
 .content aside .facet-color[data-facet-value="Gray"] {
-  background-color: #6f6e6c;
+  background-color: #6F6E6C;
 }
 
 .content aside .facet-color[data-facet-value="Blue"] {
-  background-color: #5182a1;
+  background-color: #5182A1;
 }
 
 .content aside .facet-color[data-facet-value="Green"] {
-  background-color: #1e9c5e;
+  background-color: #1E9C5E;
 }
 
 .content aside .facet-color[data-facet-value="Brown"] {
-  background-color: #7b6a63;
+  background-color: #7B6A63;
 }
 
 .content aside .facet-color[data-facet-value="Red"] {
-  background-color: #bc1c1a;
+  background-color: #BC1C1A;
 }
 
 .content aside .facet-color[data-facet-value="Dark gray"] {
@@ -284,43 +281,43 @@ aside a input {
 }
 
 .content aside .facet-color[data-facet-value="Silver color"] {
-  background-color: #aaaaa8;
+  background-color: #AAAAA8;
 }
 
 .content aside .facet-color[data-facet-value="Light brown"] {
-  background-color: #c19a6e;
+  background-color: #C19A6E;
 }
 
 .content aside .facet-color[data-facet-value="Black-brown stain"] {
-  background-color: #4b4640;
+  background-color: #4B4640;
 }
 
 .content aside .facet-color[data-facet-value="Off-white"] {
-  background-color: #d0c8b4;
+  background-color: #D0C8B4;
 }
 
 .content aside .facet-color[data-facet-value="Beige"] {
-  background-color: #c9b8a3;
+  background-color: #C9B8A3;
 }
 
 .content aside .facet-color[data-facet-value="Light green"] {
-  background-color: #abbd9b;
+  background-color: #ABBD9B;
 }
 
 .content aside .facet-color[data-facet-value="White stain"] {
-  background-color: #e4e1dc;
+  background-color: #E4E1DC;
 }
 
 .content aside .facet-color[data-facet-value="Turquoise"] {
-  background-color: #46bcc9;
+  background-color: #46BCC9;
 }
 
 .content aside .facet-color[data-facet-value="Birch effect"] {
-  background-color: #cbbfa4;
+  background-color: #CBBFA4;
 }
 
 .content aside .facet-color[data-facet-value="Yellow"] {
-  background-color: #f5e500;
+  background-color: #F5E500;
 }
 
 .content aside .facet-color[data-facet-value="Dark blue"] {
@@ -328,31 +325,31 @@ aside a input {
 }
 
 .content aside .facet-color[data-facet-value="Galvanized"] {
-  background-color: #726f6a;
+  background-color: #726F6A;
 }
 
 .content aside .facet-color[data-facet-value="Birch"] {
-  background-color: #726f6a;
+  background-color: #726F6A;
 }
 
 .content aside .facet-color[data-facet-value="Dark brown"] {
-  background-color: #74523e;
+  background-color: #74523E;
 }
 
 .content aside .facet-color[data-facet-value="High gloss gray"] {
-  background-color: #e5e5e5;
+  background-color: #E5E5E5;
 }
 
 .content aside .facet-color[data-facet-value="Gray/white"] {
-  background-color: #e5e5e5;
+  background-color: #E5E5E5;
 }
 
 .content aside .facet-color[data-facet-value="Red/white"] {
-  background-color: #fa757b;
+  background-color: #FA757B;
 }
 
 .content aside .facet-color[data-facet-value="Clear"] {
-  background-color: #d5dae0;
+  background-color: #D5DAE0;
 }
 
 .content aside .facet-color[data-facet-value="Matte black"] {
@@ -360,11 +357,11 @@ aside a input {
 }
 
 .content aside .facet-color[data-facet-value="Matte white"] {
-  background-color: #dcdbd7;
+  background-color: #DCDBD7;
 }
 
 .content aside .facet-color[data-facet-value="White stained oak effect"] {
-  background-color: #e7e8e0;
+  background-color: #E7E8E0;
 }
 
 .content .results-wrapper {
@@ -408,7 +405,7 @@ aside a input {
 
 .content #results-topbar label {
   font-weight: normal;
-  font-size: 0.8em;
+  font-size: .8em;
 }
 
 .content #results-topbar #sort-by-selector {
@@ -426,11 +423,11 @@ aside a input {
 
 .content .ais-Stats-text {
   padding-left: 10px;
-  font-size: 0.8em;
+  font-size: .8em;
 }
 
 .content #hits {
-  margin: 0 -0.5%;
+  margin: 0 -.5%;
 }
 
 .content #hits:after {
@@ -444,9 +441,9 @@ aside a input {
   float: left;
   padding: 10px 20px 20px;
   margin-bottom: 10px;
-  border-bottom: solid 1px #eee;
-  margin: 0.5%;
-  border: solid 1px #eee;
+  border-bottom: solid 1px #EEE;
+  margin: .5%;
+  border: solid 1px #EEE;
   box-shadow: 0 0 3px #f6f6f6;
   position: relative;
 }
@@ -478,8 +475,7 @@ aside a input {
   max-width: 100%;
 }
 
-.content {
-}
+.content
 
 @media (min-width: 1400px) {
   .content .hit .product-picture img {
@@ -497,13 +493,13 @@ aside a input {
 .content .hit .product-name {
   font-weight: bold;
   color: #000000;
-  font-size: 0.9em;
+  font-size: .9em;
   margin: 0 0 8px;
   min-width: 120px;
 }
 
 .content .hit .product-type {
-  font-size: 0.8em;
+  font-size: .8em;
   margin: 0 0 10px;
   color: #a2a2a2;
 }
@@ -523,12 +519,12 @@ aside a input {
 .content .hit em {
   color: #000000;
   font-style: normal;
-  background-color: #ffbe61;
+  background-color: #FFBE61;
 }
 
 .content .thank-you {
   text-align: center;
-  font-size: 0.8em;
+  font-size: .8em;
   padding: 10px;
 }
 
@@ -544,8 +540,7 @@ aside a input {
   clear: both;
 }
 
-.content .ais-RangeInput-input--min,
-.ais-RangeInput-input--max {
+.content .ais-RangeInput-input--min, .ais-RangeInput-input--max {
   width: 50px;
   border-radius: 2px;
   border: solid 1px #888;
@@ -576,8 +571,8 @@ aside a input {
 }
 
 .content .ais-RangeInput-submit:hover {
-  color: #0063c3;
-  background-color: #ffffff;
+  color: #0063C3;
+  background-color: #FFFFFF;
 }
 
 .content .ais-RatingMenu-label,
@@ -590,6 +585,6 @@ aside a input {
 }
 
 .content .ais-RatingMenu-count {
-  color: #6f6e6c;
+  color: #6F6E6C;
   background-color: initial;
 }

@@ -3,7 +3,7 @@
 /* stylelint-disable */
 /* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
 /*
-Author         : G-axonn style.css
+Author         : G-axon
 Template Name  : Wieldy Antd React - Admin Template
 Version        : 1.0
 */
@@ -15953,7 +15953,6 @@ textarea.ant-mentions {
 .ant-menu-dark .ant-menu-item:hover {
   background-color: transparent;
 }
-
 .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
   background-color: #ffffff;
 }
@@ -31345,7 +31344,7 @@ h6,
   border-radius: 4px;
 }
 .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
-  background-color: #6236FF;
+  background-color: transparent;
 }
 /* Footer Style */
 .ant-layout-footer {

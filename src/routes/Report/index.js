@@ -1,14 +1,15 @@
 import React, {Component} from "react";
-import {Button, Col, Card, Drawer, Row, Select} from "antd";
+import {Card, Drawer, Col, Row} from "antd";
 import CustomScrollbars from "util/CustomScrollbars";
 
 import AppModuleHeader from "components/AppModuleHeader/index";
 import IntlMessages from "util/IntlMessages";
+import UploadClick from "components/Upload/UploadClick";
 import FollowerGraph from "../../components/SocialMedia/FollowerGraph";
-// import UploadClick from "components/Upload/UploadClick";
+import ReportBarChart from "../../components/Report/ReportBarChart";
 
 let contactId = 723812738;
-const Option = Select.Option;
+
 const filterOptions = [
   {
     id: 1,
@@ -37,27 +38,21 @@ const filterOptions = [
   }
 ];
 
-class Finance extends Component {
+class Reports extends Component {
 
   ContactSideBar = (user) => {
     return <div className="gx-module-side">
       <div className="gx-module-side-header">
         <div className="gx-module-logo">
           <i className="icon icon-compose gx-mr-4"/>
-          <span><IntlMessages id="chat.finance"/></span>
+          <span><IntlMessages id="chat.reports"/></span>
         </div>
       </div>
 
       <div className="gx-module-side-content">
         <CustomScrollbars className="gx-module-side-scroll">
-          <div className="gx-module-add-task">
-            <Button className="gx-btn-block ant-btn" type="primary" aria-label="add"
-                    onClick={this.onAddContact}>
-              <i className="icon icon-add-circle gx-mr-1"/>
-              <span>Add New</span>
-            </Button>
-          </div>
-          <div className="gx-module-side-nav">
+          <div className="gx-module-side-nav" style={{marginTop: '30px'}}>
+            <UploadClick/>
             <ul className="gx-module-nav">
               {filterOptions.map(option => <li key={option.id} className="gx-nav-item">
                   <span
@@ -113,9 +108,6 @@ class Finance extends Component {
         avatar: "https://via.placeholder.com/150"
       },
       searchUser: '',
-      // filterOption: 'All contacts',
-      // allContact: paymentList,
-      // paymentList: paymentList,
       selectedContact: null,
       selectedContacts: 0,
     }
@@ -169,29 +161,18 @@ class Finance extends Component {
                                value={this.state.searchUser}/>
             </div>
             <div className="gx-module-box-content">
-              {/*<div className="gx-module-box-topbar" style={{backgroundColor: '#6236FF'}}>*/}
-              {/*  <h2 style={{color: '#ffffff'}}>Standard Reports</h2>*/}
-              {/*</div>*/}
+              <div className="gx-module-box-topbar" style={{backgroundColor: '#6236FF'}}>
+                <h2 style={{color: '#ffffff'}}>Standard Reports</h2>
+              </div>
               <Row>
-                <Col md={18}>
-                    <Select className="gx-mr-3 gx-mb-3" defaultValue="Portfolio" style={{width: 300}}>
-                      <Option value="portfolio">Portfolio</Option>
-                      <Option value="sales">Sales</Option>
-                      <Option value="table">Cap table</Option>
-                    </Select>
-                    <Button size="small" className="gx-btn-outline-primary">7 Days</Button>
-                    <Button size="small" className="gx-btn-outline-primary">1 Month</Button>
-                    <Button size="small" className="gx-btn-outline-primary">3 Months</Button>
-                  <Card className="gx-card" title="Performance">
+                <Col md={24}>
+                  <Card className="gx-card" title="Simple with Gradient">
                     <FollowerGraph/>
                   </Card>
+                  <Card className="gx-card" title="Gradient Bar Chart">
+                    <ReportBarChart/>
+                  </Card>
                 </Col>
-                <Col md={6}>
-
-                </Col>
-              </Row>
-              <Row>
-
               </Row>
             </div>
           </div>
@@ -201,4 +182,4 @@ class Finance extends Component {
   }
 }
 
-export default Finance;
+export default Reports;

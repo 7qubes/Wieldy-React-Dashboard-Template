@@ -2,7 +2,7 @@ import createSagaMiddleware from "redux-saga";
 import {applyMiddleware, compose, createStore} from 'redux'
 import {routerMiddleware} from 'connected-react-router'
 import thunk from 'redux-thunk';
-// import rootSaga from "../sagas/index";
+import rootSaga from "../sagas/index";
 import createRootReducer from '../reducers'
 
 const createBrowserHistory = require('history').createBrowserHistory;
@@ -28,6 +28,6 @@ export default function configureStore(preloadedState) {
     ),
   );
 
-  // sagaMiddleware.run(rootSaga);
+  sagaMiddleware.run(rootSaga);
   return store;
 }

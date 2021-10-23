@@ -9,8 +9,6 @@ const Communications = ({match}) => (
     <Redirect exact from={`${match.url}/`} to={`${match.url}/email`}/>
     <Route path={`${match.url}/email`} component={asyncComponent(() => import('./Mail'))}/>
     <Route path={`${match.url}/chats`} component={asyncComponent(() => import('./Chat'))}/>
-    <Route path={`${match.url}/calls`} component={asyncComponent(() => import('./VideoCall'))}/>
-    <Route path={`${match.url}/support`} component={asyncComponent(() => import('./Support'))}/>
   </Switch>
 );
 

@@ -10,10 +10,10 @@ const Agreements = () => {
         <span className="ant-card-head-title gx-mb-1">Agreements</span>
       </div>
       <div className="ant-card-body">
-        <Row><i className="icon icon-contact"/><p style={{marginLeft: '15px'}}>Task list attachments (0)</p></Row>
-        <Row><i className="icon icon-contact"/><p style={{marginLeft: '15px'}}>Workflow attachments (0)</p></Row>
-        <Row><i className="icon icon-contact"/><p style={{marginLeft: '15px'}}>Contract (0)</p></Row>
-        <Row><i className="icon icon-contact"/><p style={{marginLeft: '15px'}}>Signed documents (0)</p></Row>
+        <Row><i className="icon icon-contacts"/><p style={{marginLeft: '15px'}}>Task list attachments (0)</p></Row>
+        <Row><i className="icon icon-contacts"/><p style={{marginLeft: '15px'}}>Workflow attachments (0)</p></Row>
+        <Row><i className="icon icon-contacts"/><p style={{marginLeft: '15px'}}>Contract (0)</p></Row>
+        <Row><i className="icon icon-contacts"/><p style={{marginLeft: '15px'}}>Signed documents (0)</p></Row>
       </div>
     </Widget>
   );

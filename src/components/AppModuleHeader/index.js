@@ -17,9 +17,9 @@ const AppModuleHeader = (props) => {
         </div>
         <div className="gx-module-box-header-right">
           <span className="gx-fs-xl" onClick={window.history.back}> <i
-            className="icon icon-back gx-icon-btn"/></span>
+            className="icon icon-long-arrow-left gx-icon-btn"/></span>
           <span className="gx-fs-xl"><i
-            className="icon icon-dashboard gx-icon-btn"/></span>
+            className="icon icon-home gx-icon-btn"/></span>
         </div>
       </div>
     )

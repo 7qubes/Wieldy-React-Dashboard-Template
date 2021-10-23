@@ -15,7 +15,7 @@ const filterOptions = [
   {
     id: 1,
     name: 'All contacts',
-    icon: 'filter'
+    icon: 'all-contacts'
   }, {
     id: 2,
     name: 'Frequently contacted',
@@ -30,22 +30,17 @@ const filterOptions = [
 
     id: 4,
     name: 'Employee',
-    icon: 'e_circle'
+    icon: 'team'
   }, {
 
     id: 5,
     name: 'Vendors',
-    icon: 'v_circle'
+    icon: 'team'
   }, {
 
     id: 6,
     name: 'Customers',
-    icon: 'c_circle'
-  },{
-
-    id: 7,
-    name: 'Utilities',
-    icon: 'u_circle'
+    icon: 'team'
   }
 ];
 
@@ -55,7 +50,7 @@ class Contact extends Component {
     return <div className="gx-module-side">
       <div className="gx-module-side-header">
         <div className="gx-module-logo">
-          <i className="icon icon-contact gx-mr-4"/>
+          <i className="icon icon-contacts gx-mr-4"/>
           <span><IntlMessages id="chat.contacts"/></span>
         </div>
       </div>
@@ -65,16 +60,12 @@ class Contact extends Component {
           <div className="gx-module-add-task">
             <Button className="gx-btn-block ant-btn" type="primary" aria-label="add"
                     onClick={this.onAddContact}>
-              <i className="icon icon-add gx-mr-1"/>
+              <i className="icon icon-add-circle gx-mr-1"/>
               <span>Add Contacts</span>
             </Button>
           </div>
-          
-                <UploadClick/>
-          
-         
           <div className="gx-module-side-nav">
-  
+            <UploadClick/>
             <ul className="gx-module-nav">
               {filterOptions.map(option => <li key={option.id} className="gx-nav-item">
                   <span
@@ -189,14 +180,6 @@ class Contact extends Component {
         });
         break;
       }
-      case 'Utilities': {
-        this.setState({
-          selectedSectionId: option.id,
-          filterOption: option.name,
-          contactList: this.state.allContact.filter((contact) => contact.utilities)
-        });
-        break;
-      }
       default:
         break;
     }
@@ -261,8 +244,6 @@ class Contact extends Component {
         this.setState({contactList: filterContact.filter((contact) => contact.vendors)});
       } else if (filterOption === 'Customers') {
         this.setState({contactList: filterContact.filter((contact) => contact.customers)});
-      }else if (filterOption === 'Utilities') {
-        this.setState({contactList: filterContact.filter((contact) => contact.utilities)});
       }
 
     }
