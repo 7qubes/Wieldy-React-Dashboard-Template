@@ -38,7 +38,7 @@ const App = ({ match }) => (
       <Route path={`${match.url}inventories`} component={Inventories} />
       {/* <Route path={`${match.url}social-apps`} component={SocialApps} /> commented due to no proper import path */}
       {/* <Route path={`${match.url}documents`} component={Documents} /> */}
-      <Route path={`${match.url}social-media`} component={SocialMedia} />
+      <Route path={`${match.url}media`} component={SocialMedia} />
     </Switch>
   </div>
 );
